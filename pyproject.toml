@@ -1,0 +1,6 @@
+[project]
+name = "actu"
+
+[tool.black]
+line-length = 79
+include = '\.pyi?$'

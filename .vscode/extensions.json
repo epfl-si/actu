@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "batisteo.vscode-django",
+    "editorconfig.editorconfig",
+    "mrorz.language-gettext",
+    "ms-python.black-formatter",
+    "ms-python.flake8",
+    "ms-python.isort",
+    "ms-python.python"
+  ]
+}

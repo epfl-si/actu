@@ -21,7 +21,7 @@ services:
       - ./src:/app/src
       - ./docker:/app/docker
       - ./.flake8:/app/.flake8
-      - ./.pyproject.toml:/app/.pyproject.toml
+      - ./pyproject.toml:/app/pyproject.toml
     ports:
       - "8000:8000"
     depends_on:

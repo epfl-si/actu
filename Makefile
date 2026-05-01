@@ -78,7 +78,7 @@ lint: black isort flake8
 .PHONY: test
 test: lint
 	@docker exec -it --user root local-app-actu bash -c \
-		"python3 src/manage.py test"
+		"python src/manage.py test"
 
 .PHONY: local-build
 local-build:

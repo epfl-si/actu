@@ -1,0 +1,53 @@
+services:
+  app:
+    build:
+      context: .
+      target: development
+      dockerfile: docker/app/Dockerfile
+    image: local-app-actu
+    container_name: local-app-actu
+    entrypoint: docker/app/entrypoint-app-local.sh
+    environment:
+      - DJANGO_SETTINGS_MODULE=configs.settings
+      - ACTU_DATABASE_HOST=${ACTU_DATABASE_HOST}
+      - ACTU_DATABASE_NAME=${ACTU_DATABASE_NAME}
+      - ACTU_DATABASE_USER=${ACTU_DATABASE_USER}
+      - ACTU_DATABASE_PASSWORD=${ACTU_DATABASE_PASSWORD}
+      - ACTU_SECRET_KEY=${ACTU_SECRET_KEY}
+      - ACTU_TENANT_ID=${ACTU_TENANT_ID}
+      - ACTU_OIDC_RP_CLIENT_ID=${ACTU_OIDC_RP_CLIENT_ID}
+      - ACTU_OIDC_RP_CLIENT_SECRET=${ACTU_OIDC_RP_CLIENT_SECRET}
+    volumes:
+      - ./src:/app/src
+      - ./docker:/app/docker
+      - ./.flake8:/app/.flake8
+      - ./.pyproject.toml:/app/.pyproject.toml
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:18.3-alpine
+    container_name: local-postgres-actu
+    environment:
+      - POSTGRES_DB=${ACTU_DATABASE_NAME}
+      - POSTGRES_USER=${ACTU_DATABASE_USER}
+      - POSTGRES_PASSWORD=${ACTU_DATABASE_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    ports:
+      - "25432:5432"
+    healthcheck:
+      test: [
+        "CMD-SHELL",
+        "pg_isready -U ${ACTU_DATABASE_USER} -d ${ACTU_DATABASE_NAME}"
+      ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 2s
+
+volumes:
+  postgres_data:

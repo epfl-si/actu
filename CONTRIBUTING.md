@@ -1,6 +1,6 @@
 # Contributing
 
-## Prerequisites
+## Prerequisite
 
 - Access to the Keybase team `epfl_actu`.
 
@@ -29,7 +29,7 @@ make help
 make local-up     # local Django development server (automatic reloads)
 ```
 
-## Test
+## Tests
 
 Lint code, unit tests and integration tests
 

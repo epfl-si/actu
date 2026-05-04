@@ -1,0 +1,42 @@
+name: Test
+
+on: [push, pull_request]
+
+env:
+  ACTU_SECRET_KEY: ${{ secrets.ACTU_SECRET_KEY }}
+  ACTU_TENANT_ID: "UNUSED"
+  ACTU_OIDC_RP_CLIENT_ID: "UNUSED"
+  ACTU_OIDC_RP_CLIENT_SECRET: "UNUSED"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Build/Start containers
+        run: |
+          docker compose -f docker-compose-dev.yml up -d
+          sleep 10
+
+      - name: Check migrations
+        run: |
+          docker compose -f docker-compose-dev.yml exec \
+            django python src/manage.py makemigrations --check --dry-run
+
+      - name: Black
+        run: |
+          make black
+
+      - name: isort
+        run: |
+          make isort
+
+      - name: Flake8
+        run: |
+          make flake8

@@ -1,12 +1,12 @@
 services:
-  app:
+  django:
     build:
       context: .
       target: development
-      dockerfile: docker/app/Dockerfile
-    image: local-app-actu
-    container_name: local-app-actu
-    entrypoint: docker/app/entrypoint-app-local.sh
+      dockerfile: docker/django/Dockerfile
+    image: local-django-actu
+    container_name: local-django-actu
+    entrypoint: docker/django/entrypoint-django-local.sh
     environment:
       - DJANGO_SETTINGS_MODULE=configs.settings
       - ACTU_DATABASE_HOST=${ACTU_DATABASE_HOST}

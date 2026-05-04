@@ -18,7 +18,7 @@ help:
 	@echo "  make local-build          — Build actu for local development"
 	@echo "  make local-build-force    — Force build actu for local development"
 	@echo "  make local-up             — Brings up actu for local development"
-	@echo "  make local-app-exec       — Enter the local development app container"
+	@echo "  make local-django-exec    — Enter the local development django container"
 	@echo "  make local-postgres-exec  — Enter the local development postgres container"
 
 # To add all variable to your shell, use
@@ -60,17 +60,17 @@ delete-venv:
 
 .PHONY: black
 black:
-	@docker exec -it --user root local-app-actu bash -c \
+	@docker exec -it --user root local-django-actu bash -c \
 		"black --check --diff ."
 
 .PHONY: flake8
 flake8:
-	@docker exec -it --user root local-app-actu bash -c \
+	@docker exec -it --user root local-django-actu bash -c \
 		"flake8"
 
 .PHONY: isort
 isort:
-	@docker exec -it --user root local-app-actu bash -c \
+	@docker exec -it --user root local-django-actu bash -c \
 		"isort --check-only --diff ."
 
 .PHONY: lint
@@ -78,7 +78,7 @@ lint: black isort flake8
 
 .PHONY: test
 test: lint
-	@docker exec -it --user root local-app-actu bash -c \
+	@docker exec -it --user root local-django-actu bash -c \
 		"python src/manage.py test"
 
 .PHONY: local-build
@@ -93,9 +93,9 @@ local-build-force:
 local-up:
 	@docker compose -f docker-compose-dev.yml up
 
-.PHONY: local-app-exec
-local-app-exec:
-	@docker exec -it --user root local-app-actu bash
+.PHONY: local-django-exec
+local-django-exec:
+	@docker exec -it --user root local-django-actu bash
 
 .PHONY: local-postgres-exec
 local-postgres-exec:

@@ -4,8 +4,6 @@
 import os
 import sys
 
-from django.http import HttpResponse
-
 
 def main():
     """Run administrative tasks."""

@@ -1,0 +1,48 @@
+name: Test
+
+on: [push, pull_request]
+
+env:
+  ACTU_SECRET_KEY: ${{ secrets.ACTU_SECRET_KEY }}
+  ACTU_DATABASE_HOST: "postgres"
+  ACTU_DATABASE_PORT: 5432
+  ACTU_DATABASE_NAME: "actu"
+  ACTU_DATABASE_USER: "actu"
+  ACTU_DATABASE_PASSWORD: ${{ secrets.ACTU_DATABASE_PASSWORD }}
+  ACTU_TENANT_ID: "UNUSED"
+  ACTU_OIDC_RP_CLIENT_ID: "UNUSED"
+  ACTU_OIDC_RP_CLIENT_SECRET: "UNUSED"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v6
+
+      - name: Build/Start containers
+        run: |
+          docker compose -f docker-compose-dev.yml up -d
+          sleep 10
+
+      - name: Check migrations
+        run: |
+          docker compose -f docker-compose-dev.yml exec \
+            django python src/manage.py makemigrations --check --dry-run
+
+      - name: Black
+        run: |
+          docker compose -f docker-compose-dev.yml exec \
+            django black --check --diff .
+
+      - name: isort
+        run: |
+          docker compose -f docker-compose-dev.yml exec \
+            django isort --check-only --diff .
+
+      - name: Flake8
+        run: |
+          docker compose -f docker-compose-dev.yml exec \
+            django flake8

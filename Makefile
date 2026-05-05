@@ -1,3 +1,8 @@
+SHELL := /bin/bash
+
+mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
+mkfile_dir := $(dir $(mkfile_path))
+
 PYTHON_VERSION=3.14.4
 PYTHON_VENV=actu
 
@@ -79,7 +84,23 @@ lint: black isort flake8
 .PHONY: test
 test: lint
 	@docker exec -it --user root local-django-actu bash -c \
-		"DJANGO_SETTINGS_MODULE='configs.ci' python src/manage.py test"
+		"python src/manage.py test"
+
+.PHONY: coverage
+coverage:
+	@docker exec -it --user root local-django-actu bash -c \
+		"coverage run src/manage.py test"
+	@docker exec -it --user root local-django-actu bash -c \
+		"coverage report"
+
+.PHONY: coverage-html
+coverage-html:
+	@docker exec -it --user root local-django-actu bash -c \
+		"coverage run src/manage.py test"
+	@docker exec -it --user root local-django-actu bash -c \
+		"coverage html"
+	@docker cp local-django-actu:/app/htmlcov .
+	@echo -e "\nOpen file://${mkfile_dir}htmlcov/index.html"
 
 .PHONY: local-build
 local-build:

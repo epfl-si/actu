@@ -46,3 +46,14 @@ jobs:
         run: |
           docker compose -f docker-compose-dev.yml exec \
             django flake8
+
+      - name: Coverage
+        run: |
+          docker compose -f docker-compose-dev.yml exec \
+            -e DJANGO_SETTINGS_MODULE='config.ci' django coverage xml
+          docker cp local-django-actu:/app/coverage.xml .
+
+      - name: Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

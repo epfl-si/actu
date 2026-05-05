@@ -89,14 +89,14 @@ test: lint
 .PHONY: coverage
 coverage:
 	@docker exec -it --user root local-django-actu bash -c \
-		"coverage run src/manage.py test"
+		"DJANGO_SETTINGS_MODULE='configs.ci' coverage run src/manage.py test"
 	@docker exec -it --user root local-django-actu bash -c \
 		"coverage report"
 
 .PHONY: coverage-html
 coverage-html:
 	@docker exec -it --user root local-django-actu bash -c \
-		"coverage run src/manage.py test"
+		"DJANGO_SETTINGS_MODULE='configs.ci' coverage run src/manage.py test"
 	@docker exec -it --user root local-django-actu bash -c \
 		"coverage html"
 	@docker cp local-django-actu:/app/htmlcov .

@@ -12,6 +12,8 @@ help:
 	@echo "  make help                 — Display this help"
 	@echo "Utilities:"
 	@echo "  make black                — Lint Python code with black"
+	@echo "  make coverage             — Run test suite with text coverage"
+	@echo "  make coverage-html        — Run test suite with html coverage"
 	@echo "  make create-venv          — Create Python venv with Pyenv"
 	@echo "  make delete-venv          — Delete Python venv"
 	@echo "  make flake8               — Lint Python code with flake8"

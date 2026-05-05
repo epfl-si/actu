@@ -84,7 +84,7 @@ lint: black isort flake8
 .PHONY: test
 test: lint
 	@docker exec -it --user root local-django-actu bash -c \
-		"python src/manage.py test"
+		"DJANGO_SETTINGS_MODULE='configs.ci' python src/manage.py test"
 
 .PHONY: coverage
 coverage:

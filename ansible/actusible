@@ -1,0 +1,106 @@
+#!/bin/bash
+#
+# This is a wrapper around ansible-playbook.
+
+# Easy to use with ansible (default is --dev)
+#   ./ansible/actusible --dev
+#   ./ansible/actusible --staging
+#   ./ansible/actusible --prod
+#
+# If you are unfamiliar with Ansible, read up on it at
+# - https://www.ansible.com/overview/how-ansible-works
+# - https://github.com/jdauphant/awesome-ansible
+
+set -e
+cd "$(cd "$(dirname "$0")"; pwd)"
+
+help () {
+    fatal <<HELP_MSG
+Usage:
+
+  $0 [ -t sometag ] [OPTION]
+
+Options:
+  --dev                Deploy to development environment
+  --test or --staging  Deploy to staging environment
+  --prod               Deploy to production environment
+  --help               Display this help
+
+HELP_MSG
+}
+
+ensure_suitcase () {
+    if ! test -f ansible-deps-cache/.versions 2>/dev/null; then
+        curl https://raw.githubusercontent.com/epfl-si/ansible.suitcase/master/install.sh | \
+            SUITCASE_DIR=$PWD/ansible-deps-cache \
+            SUITCASE_PIP_EXTRA="kubernetes" \
+            SUITCASE_ANSIBLE_VERSION=10.3.0 \
+            SUITCASE_WITH_KEYBASE=1 \
+            bash -x
+    fi
+    . ansible-deps-cache/lib.sh
+    ensure_ansible_runtime
+}
+
+do_login_oc () {
+    local cluster_url=$1
+
+    if ! oc whoami > /dev/null 2>&1 || ! oc whoami --show-server | grep -q "$cluster_url"; then
+        echo "Logging into OpenShift cluster at $cluster_url..."
+        if ! oc login "$cluster_url" --web; then
+            echo "Login failed. Exiting."
+            exit 1
+        fi
+    else
+        echo "Already logged into $cluster_url."
+    fi
+}
+
+ensure_suitcase
+
+[ "$1" == "--help" ] && help
+
+declare -a ansible_args
+ansible_args=(-e "actusible_suitcase_dir=$PWD/ansible-deps-cache")
+inventory_mode="dev"
+cluster_url="https://api.ocpitsd0001.xaas.epfl.ch:6443"
+namespace="svc0016d-actualites"
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        --help)
+            help ;;
+        --dev)
+            shift ;;
+        --test | --staging)
+            inventory_mode="test"
+            shift ;;
+        --prod)
+            inventory_mode="prod"
+            cluster_url="https://api.ocpitsp0001.xaas.epfl.ch:6443"
+            shift ;;
+        *)
+            ansible_args+=("$1")
+            shift ;;
+    esac
+done
+
+do_login_oc "$cluster_url"
+
+# Attempt to switch to the target namespace
+if ! oc project "$namespace" >/dev/null 2>&1; then
+    echo "Failed to switch to namespace '$namespace'."
+    exit 1
+else
+    echo "Successfully switched to namespace '$namespace'."
+fi
+
+inventories () {
+    case "$inventory_mode" in
+        dev) echo "-i inventory/dev.yml" ;;
+        test) echo "-i inventory/test.yml" ;;
+        prod) echo "-i inventory/prod.yml" ;;
+        *) fatal "Invalid inventory_mode" ;;
+    esac
+}
+
+ansible-playbook $(inventories) "${ansible_args[@]}" playbook.yml

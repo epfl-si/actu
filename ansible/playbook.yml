@@ -1,0 +1,6 @@
+- name: app
+  hosts: all
+  roles:
+    - role: roles/app
+  tags:
+    - app

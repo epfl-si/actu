@@ -50,7 +50,7 @@ jobs:
       - name: Coverage
         run: |
           docker compose -f docker-compose-dev.yml exec \
-            -e DJANGO_SETTINGS_MODULE='config.ci' django coverage run src/manage.py test
+            -e DJANGO_SETTINGS_MODULE='configs.ci' django coverage run src/manage.py test
           docker compose -f docker-compose-dev.yml exec \
             django coverage xml
           docker cp local-django-actu:/app/coverage.xml .

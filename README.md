@@ -1,7 +1,7 @@
 Actu
 ====
 
-[![Test Status][github-actions-image]][github-actions-url]
+[![Test Status][ga-test-image]][ga-test-url]
 [![Python][python-image]][python-url]
 [![Django][django-image]][django-url]
 
@@ -24,8 +24,8 @@ Contributing
 
 See [Contributing](CONTRIBUTING.md).
 
-[github-actions-image]: https://github.com/epfl-si/actu/actions/workflows/test.yml/badge.svg?branch=main
-[github-actions-url]: https://github.com/epfl-si/actu/actions/workflows/test.yml
+[ga-test-image]: https://github.com/epfl-si/actu/actions/workflows/test.yml/badge.svg?branch=main
+[ga-test-url]: https://github.com/epfl-si/actu/actions/workflows/test.yml
 [python-image]: https://img.shields.io/badge/python-3.14-306998.svg
 [python-url]: https://www.python.org/
 [django-image]: https://img.shields.io/badge/django-5.2.13-092e20.svg

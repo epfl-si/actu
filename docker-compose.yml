@@ -1,0 +1,60 @@
+services:
+  nginx:
+    image: nginxinc/nginx-unprivileged:1.30-alpine
+    container_name: prod-nginx-actu
+    depends_on:
+      - django
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - static:/public/static
+    ports:
+      - "80:8080"
+
+  django:
+    build:
+      context: .
+      target: production
+      dockerfile: docker/django/Dockerfile
+    image: prod-django-actu
+    container_name: prod-django-actu
+    environment:
+      - DJANGO_SETTINGS_MODULE=configs.ocp
+      - ACTU_DATABASE_HOST=${ACTU_DATABASE_HOST}
+      - ACTU_DATABASE_PORT=${ACTU_DATABASE_PORT}
+      - ACTU_DATABASE_NAME=${ACTU_DATABASE_NAME}
+      - ACTU_DATABASE_USER=${ACTU_DATABASE_USER}
+      - ACTU_DATABASE_PASSWORD=${ACTU_DATABASE_PASSWORD}
+      - ACTU_SECRET_KEY=${ACTU_SECRET_KEY}
+      - ACTU_TENANT_ID=${ACTU_TENANT_ID}
+      - ACTU_OIDC_RP_CLIENT_ID=${ACTU_OIDC_RP_CLIENT_ID}
+      - ACTU_OIDC_RP_CLIENT_SECRET=${ACTU_OIDC_RP_CLIENT_SECRET}
+    volumes:
+      - static:/public/static
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:18.3-alpine
+    container_name: local-postgres-actu
+    environment:
+      - POSTGRES_DB=${ACTU_DATABASE_NAME}
+      - POSTGRES_USER=${ACTU_DATABASE_USER}
+      - POSTGRES_PASSWORD=${ACTU_DATABASE_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    ports:
+      - "25432:5432"
+    healthcheck:
+      test: [
+        "CMD-SHELL",
+        "pg_isready -U ${ACTU_DATABASE_USER} -d ${ACTU_DATABASE_NAME}"
+      ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 2s
+
+volumes:
+  static:
+  postgres_data:

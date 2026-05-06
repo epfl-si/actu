@@ -27,6 +27,13 @@ help:
 	@echo "  make local-up             — Brings up actu for local development"
 	@echo "  make local-django-exec    — Enter the local development django container"
 	@echo "  make local-postgres-exec  — Enter the local development postgres container"
+	@echo "Local production:"
+	@echo "  make prod-build           — Build actu for local production"
+	@echo "  make prod-build-force     — Force build actu for local production"
+	@echo "  make prod-up              — Brings up actu for local production"
+	@echo "  make prod-django-exec     — Enter the local production django container"
+	@echo "  make prod-nginx-exec      — Enter the local production nginx container"
+	@echo "  make prod-postgres-exec   — Enter the local production postgres container"
 
 # To add all variable to your shell, use
 # export $(xargs < /keybase/team/epfl_actu/local/env);
@@ -123,3 +130,27 @@ local-django-exec:
 .PHONY: local-postgres-exec
 local-postgres-exec:
 	@docker exec -it --user root local-postgres-actu bash
+
+.PHONY: prod-build
+prod-build:
+	@docker compose build
+
+.PHONY: prod-build-force
+prod-build-force:
+	@docker compose build --force-rm --no-cache --pull
+
+.PHONY: prod-up
+prod-up:
+	@docker compose up
+
+.PHONY: prod-django-exec
+prod-django-exec:
+	@docker exec -it --user root prod-django-actu bash
+
+.PHONY: prod-nginx-exec
+prod-nginx-exec:
+	@docker exec -it --user root prod-nginx-actu sh
+
+.PHONY: prod-postgres-exec
+prod-postgres-exec:
+	@docker exec -it --user root prod-postgres-actu bash

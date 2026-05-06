@@ -1,0 +1,26 @@
+- name: Ensure Secrets
+  include_tasks:
+    file: secrets.yml
+    apply:
+      tags:
+        - web.secrets
+  tags:
+    - web.secrets
+
+- name: Create Storage
+  include_tasks:
+    file: storage.yml
+    apply:
+      tags:
+        - web.storage
+  tags:
+    - web.storage
+
+- name: Deploy Web Application
+  include_tasks:
+    file: web.yml
+    apply:
+      tags:
+        - web.web
+  tags:
+    - web.web

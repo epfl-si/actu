@@ -1,0 +1,81 @@
+- name: Create web Deployment
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: "web-{{ app }}-{{ openshift_env }}"
+        namespace: "{{ openshift_namespace }}"
+        labels:
+          app: "web-{{ app }}-{{ openshift_env }}"
+          app.kubernetes.io/component: 'web'
+          app.kubernetes.io/managed-by: 'ansible'
+          app.kubernetes.io/name: "web-{{ app }}-{{ openshift_env }}"
+          app.kubernetes.io/part-of: "web-{{ app }}-{{ openshift_env }}"
+          app.kubernetes.io/version: "{{ version }}"
+          app.openshift.io/runtime: 'django'
+        annotations:
+          app.openshift.io/vcs-uri: 'https://github.com/epfl-si/actu'
+      spec:
+        replicas: 2
+        strategy:
+          type: RollingUpdate
+          rollingUpdate:
+            maxUnavailable: 1
+        selector:
+          matchLabels:
+            app: "web-{{ app }}-{{ openshift_env }}"
+        template:
+          metadata:
+            labels:
+              app: "web-{{ app }}-{{ openshift_env }}"
+          spec:
+            affinity:
+              podAntiAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  - labelSelector:
+                      matchLabels:
+                        app: "web-{{ app }}-{{ openshift_env }}"
+                    topologyKey: kubernetes.io/hostname
+                preferredDuringSchedulingIgnoredDuringExecution:
+                  - weight: 100
+                    podAffinityTerm:
+                      labelSelector:
+                        matchLabels:
+                          app: "web-{{ app }}-{{ openshift_env }}"
+                      topologyKey: topology.kubernetes.io/zone
+            serviceAccountName: quay-image-pull-account
+            containers:
+              - image: "{{ image }}:{{ version }}"
+                imagePullPolicy: Always
+                name: "web-{{ app }}-{{ openshift_env }}"
+                ports:
+                  - containerPort: 8000
+                    name: django-port
+                envFrom:
+                  - secretRef:
+                      name: "{{ app }}-{{ openshift_env }}-secret"
+                resources:
+                  requests:
+                    cpu: 250m
+                    memory: 2Gi
+                  limits:
+                    memory: 4Gi
+                readinessProbe:
+                  tcpSocket:
+                    port: 8000
+                  initialDelaySeconds: 5
+                  timeoutSeconds: 3
+                livenessProbe:
+                  tcpSocket:
+                    port: 8000
+                  initialDelaySeconds: 20
+                  timeoutSeconds: 10
+                volumeMounts:
+                  - name: "web-{{ app }}-{{ openshift_env }}-volume"
+                    mountPath: /public
+                    subPath: public
+            volumes:
+              - name: "web-{{ app }}-{{ openshift_env }}-volume"
+                persistentVolumeClaim:
+                  claimName: "{{ app }}-{{ openshift_env }}-data"

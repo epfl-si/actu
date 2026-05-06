@@ -1,4 +1,5 @@
 image:
 version:
 domain: epfl.ch
-subdomain: dev-actu
+subdomain: actu-next
+app: actu

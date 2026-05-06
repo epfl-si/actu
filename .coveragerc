@@ -1,0 +1,6 @@
+[run]
+source = src
+omit =
+  *wsgi*
+  */tests/*
+  *migrations*

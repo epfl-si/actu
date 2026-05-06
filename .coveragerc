@@ -4,3 +4,5 @@ omit =
   *wsgi*
   */tests/*
   *migrations*
+  src/configs/ocp.py
+  src/utils/testing.py

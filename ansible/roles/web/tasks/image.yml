@@ -1,0 +1,11 @@
+- name: Images - Pull App
+  community.docker.docker_image:
+    name: "{{ app_image_source }}"
+    source: pull
+
+- name: Images - Tag and push App to Quay
+  community.docker.docker_image:
+    name: "{{ app_image_source }}"
+    repository: "{{ quay_host }}/{{ quay_repo_name }}/{{ app_image }}"
+    push: yes
+    source: local

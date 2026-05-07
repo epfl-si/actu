@@ -1,6 +1,13 @@
-- name: app
+- name: web
   hosts: all
   roles:
-    - role: roles/app
+    - role: roles/web
   tags:
-    - app
+    - web
+
+- name: nginx
+  hosts: all
+  roles:
+    - role: roles/nginx
+  tags:
+    - nginx

@@ -79,3 +79,21 @@
               - name: "web-{{ app }}-{{ openshift_env }}-volume"
                 persistentVolumeClaim:
                   claimName: "{{ app }}-{{ openshift_env }}-data"
+
+- name: Web-app - Service
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: "web-{{ app }}-{{ openshift_env }}"
+        namespace: "{{ openshift_namespace }}"
+        labels:
+          app: "web-{{ app }}-{{ openshift_env }}"
+      spec:
+        ports:
+          - name: django
+            port: 8000
+        type: ClusterIP
+        selector:
+          app: "web-{{ app }}-{{ openshift_env }}"

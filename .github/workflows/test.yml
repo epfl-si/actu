@@ -22,6 +22,10 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v6
 
+      - name: Hadolint
+        run: |
+          make hadolint
+
       - name: Build/Start containers
         run: |
           docker compose -f docker-compose-dev.yml up -d

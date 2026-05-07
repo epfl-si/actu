@@ -6,6 +6,11 @@ mkfile_dir := $(dir $(mkfile_path))
 PYTHON_VERSION=3.14.4
 PYTHON_VENV=actu
 
+HADOLINT_IMAGE = hadolint/hadolint
+HADOLINT_VERSION = v2.14.0-alpine
+HADOLINT_VLOCAL = -v ${mkfile_dir}:/host:ro
+HADOLINT = @docker run --rm ${HADOLINT_VLOCAL} ${HADOLINT_IMAGE}:${HADOLINT_VERSION}
+
 .PHONY: help
 help:
 	@echo "Main:"
@@ -17,6 +22,7 @@ help:
 	@echo "  make create-venv          — Create Python venv with Pyenv"
 	@echo "  make delete-venv          — Delete Python venv"
 	@echo "  make flake8               — Lint Python code with flake8"
+	@echo "  make hadolint             — Lint Dockerfile with hadolint"
 	@echo "  make isort                — Lint Python code with isort"
 	@echo "  make lint                 — Lint code"
 	@echo "  make print-env            — Print environment variables"
@@ -82,13 +88,17 @@ flake8:
 	@docker exec -it --user root local-django-actu bash -c \
 		"flake8"
 
+.PHONY: hadolint
+hadolint:
+	@${HADOLINT} sh -c "hadolint /host/docker/*/Dockerfile"
+
 .PHONY: isort
 isort:
 	@docker exec -it --user root local-django-actu bash -c \
 		"isort --check-only --diff ."
 
 .PHONY: lint
-lint: black isort flake8
+lint: hadolint black isort flake8
 
 .PHONY: test
 test: lint

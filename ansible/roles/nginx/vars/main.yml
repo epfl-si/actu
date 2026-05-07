@@ -1,0 +1,9 @@
+quay_host: "quay-its.epfl.ch"
+quay_repo_name: svc0016
+
+_quay_pull_credential: "{{ secrets.quay.pull_robot.name }}:{{ secrets.quay.pull_robot.token }}"
+
+quay_pull_config:
+  auths:
+    "quay-its.epfl.ch":
+      "auth": "{{ _quay_pull_credential | b64encode }}"

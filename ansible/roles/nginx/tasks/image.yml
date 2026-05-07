@@ -1,0 +1,11 @@
+- name: Images - Pull Nginx
+  community.docker.docker_image:
+    name: "{{ nginx_image_source }}"
+    source: pull
+
+- name: Images - Tag and push Nginx to Quay
+  community.docker.docker_image:
+    name: "{{ nginx_image_source }}"
+    repository: "{{ quay_host }}/{{ quay_repo_name }}/{{ nginx_image }}"
+    push: yes
+    source: local

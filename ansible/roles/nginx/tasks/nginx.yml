@@ -1,0 +1,135 @@
+- name: Create nginx Deployment
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: "nginx-{{ app }}-{{ openshift_env }}"
+        namespace: "{{ openshift_namespace }}"
+        labels:
+          app: "nginx-{{ app }}-{{ openshift_env }}"
+          app.kubernetes.io/component: 'web-server'
+          app.kubernetes.io/managed-by: 'ansible'
+          app.kubernetes.io/name: "nginx-{{ app }}-{{ openshift_env }}"
+          app.kubernetes.io/part-of: "web-{{ app }}-{{ openshift_env }}"
+          app.kubernetes.io/version: '{{ nginx_image_tag }}'
+          app.openshift.io/runtime: 'nginx'
+        annotations:
+          app.openshift.io/connects-to: "nginx-{{ app }}-{{ openshift_env }}"
+          app.openshift.io/vcs-uri: 'https://github.com/epfl-si/actu/'
+      spec:
+        replicas: 2
+        strategy:
+          type: RollingUpdate
+          rollingUpdate:
+            maxUnavailable: 1
+        selector:
+          matchLabels:
+            app: "nginx-{{ app }}-{{ openshift_env }}"
+        template:
+          metadata:
+            labels:
+              app: "nginx-{{ app }}-{{ openshift_env }}"
+          spec:
+            affinity:
+              podAntiAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  - labelSelector:
+                      matchLabels:
+                        app: nginx
+                    topologyKey: kubernetes.io/hostname
+                preferredDuringSchedulingIgnoredDuringExecution:
+                  - weight: 100
+                    podAffinityTerm:
+                      labelSelector:
+                        matchLabels:
+                          app: nginx
+                      topologyKey: topology.kubernetes.io/zone
+            serviceAccountName: quay-image-pull-account
+            containers:
+              - name: "nginx-{{ app }}-{{ openshift_env }}"
+                image: "{{ image }}:{{ version }}"
+                ports:
+                  - containerPort: 8080
+                ressources:
+                  requests:
+                    cpu: 10m
+                    memory: 512Mi
+                  limits:
+                    memory: 512Mi
+                livenessProbe:
+                  tcpSocket:
+                    port: 8080
+                  initialDelaySeconds: 5
+                  timeoutSeconds: 3
+                readinessProbe:
+                  tcpSocket:
+                    port: 8080
+                  initialDelaySeconds: 5
+                  timeoutSeconds: 3
+                volumeMounts:
+                  - name: web-{{ app }}-{{ openshift_env }}-volume
+                    mountPath: /public
+                    subPath: public
+                    readOnly: true
+                  - name: nginx-configmap-volume
+                    mountPath: /etc/nginx/conf.d
+                    readOnly: false
+
+- name: Nginx - PodDisruptionBudget
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: policy/v1
+      kind: PodDisruptionBudget
+      metadata:
+        name: "nginx-{{ app }}-{{ openshift_env }}"
+        namespace: "{{ openshift_namespace }}"
+      spec:
+        minAvailable: 1
+        selector:
+          matchLabels:
+            app: "nginx-{{ app }}-{{ openshift_env }}"
+
+- name: Nginx - Service
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: "nginx-{{ app }}-{{ openshift_env }}"
+        namespace: "{{ openshift_namespace }}"
+        labels:
+          app: "nginx-{{ app }}-{{ openshift_env }}"
+      spec:
+        ports:
+          - name: nginx
+            port: 8080
+            targetPort: 8080
+        type: ClusterIP
+        selector:
+          app: "nginx-{{ app }}-{{ openshift_env }}"
+
+- name: Nginx - Routes
+  with_items: '{{ actu_hosts }}'
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: route.openshift.io/v1
+      kind: Route
+      metadata:
+        name: "{{ item }}"
+        namespace: "{{ openshift_namespace }}"
+        labels:
+          route: "{{ avi_route_access_level }}"
+        annotations:
+          haproxy.router.openshift.io/balance: roundrobin
+          haproxy.router.openshift.io/disable_cookies: 'true'
+      spec:
+        host: "{{ item }}"
+        to:
+          kind: Service
+          name: nginx
+        port:
+          targetPort: nginx
+        tls:
+          termination: edge
+          insecureEdgeTerminationPolicy: Redirect

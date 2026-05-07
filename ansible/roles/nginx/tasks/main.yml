@@ -1,0 +1,17 @@
+- name: Pull and push image
+  include_tasks:
+    file: image.yml
+    apply:
+      tags:
+        - nginx.image
+  tags:
+    - nginx.image
+
+- name: Deploy nginx service
+  include_tasks:
+    file: nginx.yml
+    apply:
+      tags:
+        - nginx.nginx
+  tags:
+    - nginx.nginx

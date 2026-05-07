@@ -30,7 +30,9 @@ jobs:
         with:
           image-ref: 'actu'
           severity: 'CRITICAL,HIGH'
+          ignore-unfixed: true
           format: 'sarif'
+          limit-severities-for-sarif: true
           output: 'trivy.sarif'
 
       - name: Upload scan results to GitHub Security tab

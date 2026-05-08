@@ -7,6 +7,15 @@
   tags:
     - web.secrets
 
+- name: Pull and Push Image
+  include_tasks:
+    file: image.yml
+    apply:
+      tags:
+        - web.image
+  tags:
+    - web.image
+
 - name: Create Storage
   include_tasks:
     file: storage.yml

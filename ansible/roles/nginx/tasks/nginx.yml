@@ -48,7 +48,7 @@
             serviceAccountName: quay-image-pull-account
             containers:
               - name: "nginx-{{ app }}-{{ openshift_env }}"
-                image: "{{ image }}:{{ version }}"
+                image: "{{ quay_host }}/{{ quay_repo_name }}/{{ nginx_image }}"
                 ports:
                   - containerPort: 8080
                 ressources:

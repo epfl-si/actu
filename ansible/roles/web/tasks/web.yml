@@ -12,7 +12,7 @@
           app.kubernetes.io/managed-by: 'ansible'
           app.kubernetes.io/name: "web-{{ app }}-{{ openshift_env }}"
           app.kubernetes.io/part-of: "web-{{ app }}-{{ openshift_env }}"
-          app.kubernetes.io/version: "{{ version }}"
+          app.kubernetes.io/version: '{{ app_image_tag }}'
           app.openshift.io/runtime: 'django'
         annotations:
           app.openshift.io/vcs-uri: 'https://github.com/epfl-si/actu'
@@ -46,7 +46,7 @@
                       topologyKey: topology.kubernetes.io/zone
             serviceAccountName: quay-image-pull-account
             containers:
-              - image: "{{ image }}:{{ version }}"
+              - image: "{{ quay_host }}/{{ quay_repo_name }}/{{ app_image }}"
                 imagePullPolicy: Always
                 name: "web-{{ app }}-{{ openshift_env }}"
                 ports:

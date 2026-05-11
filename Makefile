@@ -11,6 +11,12 @@ HADOLINT_VERSION = v2.14.0-alpine
 HADOLINT_VLOCAL = -v ${mkfile_dir}:/host:ro
 HADOLINT = @docker run --rm ${HADOLINT_VLOCAL} ${HADOLINT_IMAGE}:${HADOLINT_VERSION}
 
+TRIVY_IMAGE = aquasec/trivy
+TRIVY_VERSION = 0.70.0
+TRIVY_VCACHE = -v /tmp/trivy/:/root/.cache/
+TRIVY_VLOCAL = -v /var/run/docker.sock:/var/run/docker.sock
+TRIVY = @docker run --rm ${TRIVY_VCACHE} ${TRIVY_VLOCAL} ${TRIVY_IMAGE}:${TRIVY_VERSION}
+
 .PHONY: help
 help:
 	@echo "Main:"
@@ -26,6 +32,7 @@ help:
 	@echo "  make isort                — Lint Python code with isort"
 	@echo "  make lint                 — Lint code"
 	@echo "  make print-env            — Print environment variables"
+	@echo "  make scan                 — Scan latest app image"
 	@echo "  make test                 — Run test suite"
 	@echo "Local development:"
 	@echo "  make local-build          — Build actu for local development"
@@ -120,6 +127,11 @@ coverage-html:
 		"coverage html"
 	@docker cp local-django-actu:/app/htmlcov .
 	@echo -e "\nOpen file://${mkfile_dir}htmlcov/index.html"
+
+.PHONY: scan
+scan:
+	@${TRIVY} clean --scan-cache
+	@${TRIVY} image --severity HIGH,CRITICAL prod-django-actu:latest
 
 .PHONY: local-build
 local-build:

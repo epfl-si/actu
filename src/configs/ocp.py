@@ -12,6 +12,19 @@ ALLOWED_HOSTS = ["*"]
 STATIC_ROOT = "/public/static"
 
 
+# Enable hashing for static files
+# This generates a staticfiles.json manifest that maps original filenames
+# to their hashed versions.
+# https://docs.djangoproject.com/en/5.2/ref/settings/#storages
+
+MSFS = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": MSFS,
+    },
+}
+
+
 # Behind a proxy
 # https://docs.djangoproject.com/en/5.2/ref/settings/#use-x-forwarded-host
 

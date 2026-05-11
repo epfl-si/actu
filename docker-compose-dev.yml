@@ -9,6 +9,7 @@ services:
     entrypoint: docker/django/entrypoint-django-local.sh
     environment:
       - DJANGO_SETTINGS_MODULE=configs.settings
+      - DJANGO_ALLOW_ASYNC_UNSAFE=true
       - ACTU_DATABASE_HOST=${ACTU_DATABASE_HOST}
       - ACTU_DATABASE_PORT=${ACTU_DATABASE_PORT}
       - ACTU_DATABASE_NAME=${ACTU_DATABASE_NAME}
@@ -52,6 +53,15 @@ services:
       timeout: 5s
       retries: 10
       start_period: 2s
+
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.59.0
+    container_name: local-playwright-actu
+    ipc: host
+    init: true
+    command: npx -y playwright@1.59.0 run-server --port 3651 --host 0.0.0.0
+    ports:
+      - "3651:3651"
 
 volumes:
   postgres_data:

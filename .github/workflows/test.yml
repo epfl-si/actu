@@ -31,10 +31,21 @@ jobs:
           docker compose -f docker-compose-dev.yml up -d
           sleep 10
 
+      - name: Setup actu
+        run: |
+          docker compose -f docker-compose-dev.yml exec \
+            -e DJANGO_SETTINGS_MODULE='configs.ci' django python src/manage.py compilemessages
+
       - name: Check migrations
         run: |
           docker compose -f docker-compose-dev.yml exec \
             django python src/manage.py makemigrations --check --dry-run
+
+      - name: Check translations
+        run: |
+          docker compose -f docker-compose-dev.yml exec \
+            -e DJANGO_SETTINGS_MODULE='configs.ci' django python src/manage.py makemessages -a --no-location --no-wrap
+          git diff --numstat | awk '{if ($1>1 || $2>1) { exit 1 }}'
 
       - name: Black
         run: |

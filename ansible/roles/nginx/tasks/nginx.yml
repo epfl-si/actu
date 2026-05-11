@@ -36,7 +36,7 @@
                 requiredDuringSchedulingIgnoredDuringExecution:
                   - labelSelector:
                       matchLabels:
-                        app: nginx
+                        app: "nginx-{{ app }}-{{ openshift_env }}"
                     topologyKey: kubernetes.io/hostname
                 preferredDuringSchedulingIgnoredDuringExecution:
                   - weight: 100
@@ -46,12 +46,19 @@
                           app: nginx
                       topologyKey: topology.kubernetes.io/zone
             serviceAccountName: quay-image-pull-account
+            volumes:
+              - name: web-{{ app }}-{{ openshift_env }}-volume
+                persistentVolumeClaim:
+                  claimName: "{{ app }}-{{ openshift_env }}-data"
+              - name: nginx-configmap-{{ app }}-{{ openshift_env }}
+                configMap:
+                  name: nginx-configmap-{{ app }}-{{ openshift_env }}
             containers:
               - name: "nginx-{{ app }}-{{ openshift_env }}"
                 image: "{{ quay_host }}/{{ quay_repo_name }}/{{ nginx_image }}"
                 ports:
                   - containerPort: 8080
-                ressources:
+                resources:
                   requests:
                     cpu: 10m
                     memory: 512Mi
@@ -72,9 +79,9 @@
                     mountPath: /public
                     subPath: public
                     readOnly: true
-                  - name: nginx-configmap-volume
+                  - name: nginx-configmap-{{ app }}-{{ openshift_env }}
                     mountPath: /etc/nginx/conf.d
-                    readOnly: false
+                    readOnly: true
 
 - name: Nginx - PodDisruptionBudget
   kubernetes.core.k8s:
@@ -127,7 +134,7 @@
         host: "{{ item }}"
         to:
           kind: Service
-          name: nginx
+          name: "nginx-{{ app }}-{{ openshift_env }}"
         port:
           targetPort: nginx
         tls:

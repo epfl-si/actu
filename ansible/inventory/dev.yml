@@ -29,7 +29,7 @@ all:
 
     django_show_debug_toolbar: true
 
-    django_domain: "dev-actu.epfl.ch"
+    django_domain: "dev-ractu.epfl.ch"
     django_site_id: 3
 
     # NGINX/Routing

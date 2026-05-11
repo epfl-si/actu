@@ -1,0 +1,10 @@
+- name: Quay ServiceAccount
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: quay-image-pull-account
+        namespace: "{{ openshift_namespace }}"
+      imagePullSecrets:
+        - name: quay-pull-secret

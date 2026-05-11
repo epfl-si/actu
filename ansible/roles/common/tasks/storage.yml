@@ -10,7 +10,6 @@
       spec:
         accessModes:
           - ReadWriteMany
-        storageClassName: ""
         volumeMode: Filesystem
         resources:
           requests:

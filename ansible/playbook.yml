@@ -1,3 +1,10 @@
+- name: common
+  hosts: all
+  roles:
+    - role: roles/common
+  tags:
+    - common
+
 - name: web
   hosts: all
   roles:

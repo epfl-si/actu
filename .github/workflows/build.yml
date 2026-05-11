@@ -8,6 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
+      security-events: write
       contents: read
       packages: write
     name: Build and push image
@@ -23,6 +24,22 @@ jobs:
             --no-cache \
             --file docker/django/Dockerfile \
             --tag actu
+
+      - name: Scan image
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          image-ref: 'actu'
+          severity: 'CRITICAL,HIGH'
+          ignore-unfixed: true
+          format: 'sarif'
+          limit-severities-for-sarif: true
+          output: 'trivy.sarif'
+
+      - name: Upload scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v4
+        if: always()
+        with:
+          sarif_file: 'trivy.sarif'
 
       - name: Log in to the Container registry
         uses: docker/login-action@v4

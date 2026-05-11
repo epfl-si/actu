@@ -26,6 +26,7 @@ urlpatterns = [
     path("auth/", include("mozilla_django_oidc.urls")),
     path("admin/", admin.site.urls),
     path("healthz/", healthz, name="healthz"),
+    path("i18n/", include("django.conf.urls.i18n")),
 ]
 
 if settings.DEBUG:

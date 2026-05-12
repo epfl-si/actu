@@ -1,0 +1,40 @@
+all:
+  hosts:
+    svc0016t-actus:
+      ansible_connection: local
+      ansible_host: localhost
+      ansible_python_interpreter: "{{ ansible_playbook_python }}"
+      openshift_namespace: svc0016p-actus
+  vars:
+    openshift_env: prod
+    secrets: "{{ lookup('pipe', 'keybase fs read /keybase/team/epfl_actu/staging/secrets.yml') | from_yaml }}"
+    app: actu
+
+    # Images
+    app_image_tag: "20260508084750.559d1eb.9"
+    app_image: "actu:{{ app_image_tag }}"
+    app_image_source: "ghcr.io/epfl-si/{{ app_image }}"
+    nginx_image_tag: 1.28-alpine
+    nginx_image: "nginx-unprivileged:{{ nginx_image_tag }}"
+    nginx_image_source: "docker.io/nginxinc/{{ nginx_image }}"
+
+    # Storage
+    web_app_pv_size: "1Gi"  # 1Gi is symbolic. 60Gi in reality
+
+    # Web-App Django
+    django_server_environment_name: "production"
+    django_debug: False
+    django_allowed_hosts:
+      - "*"
+
+    django_show_debug_toolbar: true
+
+    django_domain: "ractu.epfl.ch"
+    django_site_id: 5
+
+    # NGINX/Routing
+    run_environment: prod
+    avi_route_access_level: public-cf
+    actu_hosts:
+      - ractu.epfl.ch
+    nginx_real_ip_header: CF-Connecting-IP

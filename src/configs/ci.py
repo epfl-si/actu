@@ -6,6 +6,8 @@ from .settings import *  # noqa
 
 DEBUG = False
 
+# Django Debug Toolbar can't be used with tests
+DEBUG_TOOLBAR_CONFIG = {}
 
 # When running tests remotely, ensure the Playwright version in your tests
 # matches the version running in the Docker container.

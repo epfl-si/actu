@@ -26,6 +26,9 @@ SECRET_KEY = os.getenv("ACTU_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("ACTU_DEBUG_MODE", False)
 
+# SECURITY WARNING: don't run with debug_toolbar turned on in production!
+ACTU_SHOW_DEBUG_TOOLBAR = os.getenv("ACTU_SHOW_DEBUG_TOOLBAR", False)
+
 ALLOWED_HOSTS = []
 
 
@@ -112,3 +115,20 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Django Debug Toolbar
+# https://django-debug-toolbar.readthedocs.io/en/latest/configuration.html
+
+if DEBUG:
+    INSTALLED_APPS += ("debug_toolbar",)
+    MIDDLEWARE += ("debug_toolbar.middleware.DebugToolbarMiddleware",)
+
+
+def show_debug_toolbar(request):
+    return ACTU_SHOW_DEBUG_TOOLBAR
+
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": show_debug_toolbar,
+}

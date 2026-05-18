@@ -1,5 +1,5 @@
 msgid "English"
-msgstr ""
+msgstr "Anglais"
 
 msgid "French"
-msgstr ""
+msgstr "Français"

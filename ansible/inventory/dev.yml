@@ -11,7 +11,7 @@ all:
     app: actu
 
     # Images
-    app_image_tag: "20260508084750.559d1eb.9"
+    app_image_tag: "20260518115730.39cbb5a.34"
     app_image: "actu:{{ app_image_tag }}"
     app_image_source: "ghcr.io/epfl-si/{{ app_image }}"
     nginx_image_tag: 1.30-alpine
@@ -25,5 +25,5 @@ all:
     run_environment: dev
     avi_route_access_level: private
     actu_hosts:
-      - dev-actu.epfl.ch
+      - dev-ractu.epfl.ch
     nginx_real_ip_header: X-Forwarded-For

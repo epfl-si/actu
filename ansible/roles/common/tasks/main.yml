@@ -24,3 +24,12 @@
         - common.storage
   tags:
     - common.storage
+
+- name: Create quay secret
+  include_tasks:
+    file: secrets.yml
+    apply:
+      tags:
+        - common.secrets
+  tags:
+    - common.secrets

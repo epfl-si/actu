@@ -4,18 +4,18 @@
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: "nginx-{{ app }}-{{ openshift_env }}"
+        name: "nginx"
         namespace: "{{ openshift_namespace }}"
         labels:
-          app: "nginx-{{ app }}-{{ openshift_env }}"
+          app: "nginx"
           app.kubernetes.io/component: 'web-server'
           app.kubernetes.io/managed-by: 'ansible'
-          app.kubernetes.io/name: "nginx-{{ app }}-{{ openshift_env }}"
-          app.kubernetes.io/part-of: "web-{{ app }}-{{ openshift_env }}"
+          app.kubernetes.io/name: "nginx"
+          app.kubernetes.io/part-of: "web"
           app.kubernetes.io/version: '{{ nginx_image_tag }}'
           app.openshift.io/runtime: 'nginx'
         annotations:
-          app.openshift.io/connects-to: "nginx-{{ app }}-{{ openshift_env }}"
+          app.openshift.io/connects-to: "nginx"
           app.openshift.io/vcs-uri: 'https://github.com/epfl-si/actu/'
       spec:
         replicas: 2
@@ -25,18 +25,18 @@
             maxUnavailable: 1
         selector:
           matchLabels:
-            app: "nginx-{{ app }}-{{ openshift_env }}"
+            app: "nginx"
         template:
           metadata:
             labels:
-              app: "nginx-{{ app }}-{{ openshift_env }}"
+              app: "nginx"
           spec:
             affinity:
               podAntiAffinity:
                 requiredDuringSchedulingIgnoredDuringExecution:
                   - labelSelector:
                       matchLabels:
-                        app: "nginx-{{ app }}-{{ openshift_env }}"
+                        app: "nginx"
                     topologyKey: kubernetes.io/hostname
                 preferredDuringSchedulingIgnoredDuringExecution:
                   - weight: 100
@@ -47,14 +47,14 @@
                       topologyKey: topology.kubernetes.io/zone
             serviceAccountName: quay-image-pull-account
             volumes:
-              - name: web-{{ app }}-{{ openshift_env }}-volume
+              - name: web-volume
                 persistentVolumeClaim:
-                  claimName: "{{ app }}-{{ openshift_env }}-data"
-              - name: nginx-configmap-{{ app }}-{{ openshift_env }}
+                  claimName: "data"
+              - name: nginx-configmap
                 configMap:
-                  name: nginx-configmap-{{ app }}-{{ openshift_env }}
+                  name: nginx-configmap
             containers:
-              - name: "nginx-{{ app }}-{{ openshift_env }}"
+              - name: "nginx"
                 image: "{{ quay_host }}/{{ quay_repo_name }}/{{ nginx_image }}"
                 ports:
                   - containerPort: 8080
@@ -75,11 +75,11 @@
                   initialDelaySeconds: 5
                   timeoutSeconds: 3
                 volumeMounts:
-                  - name: web-{{ app }}-{{ openshift_env }}-volume
+                  - name: web-volume
                     mountPath: /public
                     subPath: public
                     readOnly: true
-                  - name: nginx-configmap-{{ app }}-{{ openshift_env }}
+                  - name: nginx-configmap
                     mountPath: /etc/nginx/conf.d
                     readOnly: true
 
@@ -89,13 +89,13 @@
       apiVersion: policy/v1
       kind: PodDisruptionBudget
       metadata:
-        name: "nginx-{{ app }}-{{ openshift_env }}"
+        name: "nginx"
         namespace: "{{ openshift_namespace }}"
       spec:
         minAvailable: 1
         selector:
           matchLabels:
-            app: "nginx-{{ app }}-{{ openshift_env }}"
+            app: "nginx"
 
 - name: Nginx - Service
   kubernetes.core.k8s:
@@ -103,10 +103,10 @@
       apiVersion: v1
       kind: Service
       metadata:
-        name: "nginx-{{ app }}-{{ openshift_env }}"
+        name: "nginx"
         namespace: "{{ openshift_namespace }}"
         labels:
-          app: "nginx-{{ app }}-{{ openshift_env }}"
+          app: "nginx"
       spec:
         ports:
           - name: nginx
@@ -114,7 +114,7 @@
             targetPort: 8080
         type: ClusterIP
         selector:
-          app: "nginx-{{ app }}-{{ openshift_env }}"
+          app: "nginx"
 
 - name: Nginx - Routes
   with_items: '{{ actu_hosts }}'
@@ -134,7 +134,7 @@
         host: "{{ item }}"
         to:
           kind: Service
-          name: "nginx-{{ app }}-{{ openshift_env }}"
+          name: "nginx"
         port:
           targetPort: nginx
         tls:

@@ -1,6 +1,6 @@
 all:
   hosts:
-    svc0016t-actus:
+    svc0016d-actus:
       ansible_connection: local
       ansible_host: localhost
       ansible_python_interpreter: "{{ ansible_playbook_python }}"
@@ -14,23 +14,12 @@ all:
     app_image_tag: "20260508084750.559d1eb.9"
     app_image: "actu:{{ app_image_tag }}"
     app_image_source: "ghcr.io/epfl-si/{{ app_image }}"
-    nginx_image_tag: 1.28-alpine
+    nginx_image_tag: 1.30-alpine
     nginx_image: "nginx-unprivileged:{{ nginx_image_tag }}"
     nginx_image_source: "docker.io/nginxinc/{{ nginx_image }}"
 
     # Storage
     web_app_pv_size: "1Gi"  # 1Gi is symbolic. 60Gi in reality
-
-    # Web-App Django
-    django_server_environment_name: "development"
-    django_debug: false
-    django_allowed_hosts:
-      - "*"
-
-    django_show_debug_toolbar: true
-
-    django_domain: "dev-ractu.epfl.ch"
-    django_site_id: 3
 
     # NGINX/Routing
     run_environment: dev

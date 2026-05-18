@@ -5,7 +5,7 @@
       apiVersion: v1
       kind: PersistentVolumeClaim
       metadata:
-        name: "{{ app }}-{{ openshift_env }}-data"
+        name: "data"
         namespace: "{{ openshift_namespace }}"
       spec:
         accessModes:

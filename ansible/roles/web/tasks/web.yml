@@ -78,7 +78,7 @@
             volumes:
               - name: "web-volume"
                 persistentVolumeClaim:
-                  claimName: "data"
+                  claimName: "actu"
 
 - name: Web-app - Service
   kubernetes.core.k8s:

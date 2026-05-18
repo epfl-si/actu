@@ -5,7 +5,7 @@
       apiVersion: v1
       kind: PersistentVolumeClaim
       metadata:
-        name: "data"
+        name: "actu"
         namespace: "{{ openshift_namespace }}"
       spec:
         accessModes:
@@ -14,3 +14,4 @@
         resources:
           requests:
             storage: 1Gi
+        storageClassName: ""

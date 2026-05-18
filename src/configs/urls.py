@@ -32,3 +32,12 @@ if settings.DEBUG:
     from debug_toolbar.toolbar import debug_toolbar_urls
 
     urlpatterns += debug_toolbar_urls()
+
+
+# Custom Error Handlers
+# https://github.com/epfl-si/django-epfl-web2018#readme
+
+handler400 = "django_epfl_web2018.views.error_400"
+handler403 = "django_epfl_web2018.views.error_403"
+handler404 = "django_epfl_web2018.views.error_404"
+handler500 = "django_epfl_web2018.views.error_500"

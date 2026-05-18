@@ -1,5 +1,6 @@
 django==5.2.13
 django-debug-toolbar==6.3.0
+django-epfl-web2018==0.0.1
 gunicorn==26.0.0
 pipdeptree==2.35.2
 psycopg[binary]==3.3.3

@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    #
+    # Packages
+    "django_epfl_web2018",
+    #
+    # Applications
     "users",
 ]
 
@@ -100,7 +105,7 @@ AUTH_USER_MODEL = "users.User"
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en"
 
 TIME_ZONE = "UTC"
 

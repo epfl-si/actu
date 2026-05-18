@@ -24,6 +24,9 @@ STORAGES = {
     },
 }
 
+# Check to see if the user's id token has expired and if so, redirect to the
+# OIDC provider's authentication endpoint for a silent re-auth.
+MIDDLEWARE += ("mozilla_django_oidc.middleware.SessionRefresh",)  # noqa: F405
 
 # Behind a proxy
 # https://docs.djangoproject.com/en/5.2/ref/settings/#use-x-forwarded-host

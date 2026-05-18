@@ -17,11 +17,13 @@ Including another URLconf
 
 from django.conf import settings
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 
 from utils.views import healthz
 
 urlpatterns = [
+    path("", include("django_epfl_entra_id.urls")),
+    path("auth/", include("mozilla_django_oidc.urls")),
     path("admin/", admin.site.urls),
     path("healthz/", healthz, name="healthz"),
 ]

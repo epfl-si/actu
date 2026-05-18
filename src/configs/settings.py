@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     #
     # Packages
     "django_epfl_web2018",
+    "mozilla_django_oidc",
     #
     # Applications
     "users",
@@ -101,6 +102,23 @@ AUTH_PASSWORD_VALIDATORS = []
 
 AUTH_USER_MODEL = "users.User"
 
+AUTHENTICATION_BACKENDS = ("django_epfl_entra_id.auth.EPFLOIDCAB",)
+
+TENANT_ID = os.getenv("ACTU_TENANT_ID")
+
+OIDC_RP_CLIENT_ID = os.getenv("ACTU_OIDC_RP_CLIENT_ID")
+OIDC_RP_CLIENT_SECRET = os.getenv("ACTU_OIDC_RP_CLIENT_SECRET")
+
+AUTH_DOMAIN = f"https://login.microsoftonline.com/{TENANT_ID}"
+OIDC_OP_AUTHORIZATION_ENDPOINT = f"{AUTH_DOMAIN}/oauth2/v2.0/authorize"
+OIDC_OP_TOKEN_ENDPOINT = f"{AUTH_DOMAIN}/oauth2/v2.0/token"
+OIDC_OP_JWKS_ENDPOINT = f"{AUTH_DOMAIN}/discovery/v2.0/keys"
+OIDC_OP_USER_ENDPOINT = "https://graph.microsoft.com/oidc/userinfo"
+OIDC_RP_SIGN_ALGO = "RS256"
+
+LOGIN_URL = "/auth/authenticate"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

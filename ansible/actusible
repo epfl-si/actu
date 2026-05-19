@@ -72,6 +72,7 @@ while [ "$#" -gt 0 ]; do
             shift ;;
         --test | --staging)
             inventory_mode="test"
+            cluster_url="https://api.ocpitst0001.xaas.epfl.ch:6443"
             shift ;;
         --prod)
             inventory_mode="prod"

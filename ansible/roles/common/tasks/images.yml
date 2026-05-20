@@ -3,7 +3,7 @@
   community.docker.docker_image:
     name: "{{ app_image_source }}"
     repository: "{{ quay_host }}/{{ quay_repo_name }}/{{ app_image }}"
-    push: yes
+    push: true
     source: pull
 
 # Nginx
@@ -11,5 +11,5 @@
   community.docker.docker_image:
     name: "{{ nginx_image_source }}"
     repository: "{{ quay_host }}/{{ quay_repo_name }}/{{ nginx_image }}"
-    push: yes
+    push: true
     source: pull

@@ -34,6 +34,7 @@ help:
 	@echo "  make print-env            — Print environment variables"
 	@echo "  make scan                 — Scan latest app image"
 	@echo "  make test                 — Run test suite"
+	@echo "  make translation          — Update translation files"
 	@echo "Local development:"
 	@echo "  make local-build          — Build actu for local development"
 	@echo "  make local-build-force    — Force build actu for local development"
@@ -111,6 +112,11 @@ lint: hadolint black isort flake8
 test: lint
 	@docker exec -it --user root local-django-actu bash -c \
 		"DJANGO_SETTINGS_MODULE='configs.ci' python src/manage.py test"
+
+.PHONY: translation
+translation:
+	@docker exec -it --user root local-django-actu bash -c \
+		"python src/manage.py makemessages --all --no-location --no-wrap"
 
 .PHONY: coverage
 coverage:

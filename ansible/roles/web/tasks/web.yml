@@ -8,14 +8,14 @@
         namespace: "{{ openshift_namespace }}"
         labels:
           app: "web"
-          app.kubernetes.io/component: 'web'
-          app.kubernetes.io/managed-by: 'ansible'
+          app.kubernetes.io/component: "web"
+          app.kubernetes.io/managed-by: "ansible"
           app.kubernetes.io/name: "web"
           app.kubernetes.io/part-of: "web"
-          app.kubernetes.io/version: '{{ app_image_tag }}'
-          app.openshift.io/runtime: 'django'
+          app.kubernetes.io/version: "{{ app_image_tag }}"
+          app.openshift.io/runtime: "django"
         annotations:
-          app.openshift.io/vcs-uri: 'https://github.com/epfl-si/actu'
+          app.openshift.io/vcs-uri: "https://github.com/epfl-si/actu"
       spec:
         replicas: 2
         strategy:
@@ -57,20 +57,18 @@
                       name: "secret"
                 resources:
                   requests:
-                    cpu: 250m
-                    memory: 2Gi
+                    cpu: 10m
+                    memory: 1Gi
                   limits:
-                    memory: 4Gi
+                    memory: 1Gi
                 readinessProbe:
-                  tcpSocket:
+                  httpGet:
+                    path: /healthz/
                     port: 8000
-                  initialDelaySeconds: 5
-                  timeoutSeconds: 3
-                livenessProbe: ## to change with /health
-                  tcpSocket:
+                livenessProbe:
+                  httpGet:
+                    path: /healthz/
                     port: 8000
-                  initialDelaySeconds: 20
-                  timeoutSeconds: 10
                 volumeMounts:
                   - name: "web-volume"
                     mountPath: /public

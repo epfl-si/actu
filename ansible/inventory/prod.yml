@@ -7,7 +7,7 @@ all:
       openshift_namespace: svc0016p-actus
   vars:
     openshift_env: prod
-    secrets: "{{ lookup('pipe', 'keybase fs read /keybase/team/epfl_actu/staging/secrets.yml') | from_yaml }}"
+    secrets: "{{ lookup('pipe', 'keybase fs read /keybase/team/epfl_actu/prod/secrets.yml') | from_yaml }}"
     app: actu
 
     # Images

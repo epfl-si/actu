@@ -21,15 +21,15 @@
         namespace: "{{ openshift_namespace }}"
         labels:
           app: "nginx"
-          app.kubernetes.io/component: 'web-server'
-          app.kubernetes.io/managed-by: 'ansible'
+          app.kubernetes.io/component: "web-server"
+          app.kubernetes.io/managed-by: "ansible"
           app.kubernetes.io/name: "nginx"
           app.kubernetes.io/part-of: "web"
-          app.kubernetes.io/version: '{{ nginx_image_tag }}'
-          app.openshift.io/runtime: 'nginx'
+          app.kubernetes.io/version: "{{ nginx_image_tag }}"
+          app.openshift.io/runtime: "web"
         annotations:
-          app.openshift.io/connects-to: "nginx"
-          app.openshift.io/vcs-uri: 'https://github.com/epfl-si/actu/'
+          app.openshift.io/connects-to: "web"
+          app.openshift.io/vcs-uri: "https://github.com/epfl-si/actu/"
       spec:
         replicas: 2
         strategy:
@@ -130,7 +130,7 @@
           app: "nginx"
 
 - name: Nginx - Routes
-  with_items: '{{ actu_hosts }}'
+  with_items: "{{ actu_hosts }}"
   kubernetes.core.k8s:
     definition:
       apiVersion: route.openshift.io/v1
@@ -142,7 +142,7 @@
           route: "{{ avi_route_access_level }}"
         annotations:
           haproxy.router.openshift.io/balance: roundrobin
-          haproxy.router.openshift.io/disable_cookies: 'true'
+          haproxy.router.openshift.io/disable_cookies: "true"
       spec:
         host: "{{ item }}"
         to:

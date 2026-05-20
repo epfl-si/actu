@@ -1,5 +1,5 @@
 - name: Ensure Secrets
-  include_tasks:
+  ansible.builtin.include_tasks:
     file: secrets.yml
     apply:
       tags:
@@ -8,7 +8,7 @@
     - web.secrets
 
 - name: Deploy Web Application
-  include_tasks:
+  ansible.builtin.include_tasks:
     file: web.yml
     apply:
       tags:

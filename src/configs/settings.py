@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "languages",
     "translations",
     "entities",
+    "thematics",
 ]
 
 MIDDLEWARE = [

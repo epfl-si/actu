@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     # Applications
     "homepages",
     "users",
-    "languages"
+    "languages",
+    "translations",
 ]
 
 MIDDLEWARE = [

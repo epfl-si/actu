@@ -1,0 +1,177 @@
+- name: Nginx - ConfigMap
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: nginx
+        namespace: "{{ openshift_namespace }}"
+        labels:
+          app: nginx
+      data:
+        nginx.conf: "{{ lookup('template', 'nginx.conf') }}"
+  register: _nginx_configmap
+
+- name: Create nginx Deployment
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: "nginx"
+        namespace: "{{ openshift_namespace }}"
+        labels:
+          app: "nginx"
+          app.kubernetes.io/component: "web-server"
+          app.kubernetes.io/managed-by: "ansible"
+          app.kubernetes.io/name: "nginx"
+          app.kubernetes.io/part-of: "web"
+          app.kubernetes.io/version: "{{ nginx_image_tag }}"
+          app.openshift.io/runtime: "web"
+        annotations:
+          app.openshift.io/connects-to: "web"
+          app.openshift.io/vcs-uri: "https://github.com/epfl-si/actu/"
+      spec:
+        replicas: 2
+        strategy:
+          type: RollingUpdate
+          rollingUpdate:
+            maxUnavailable: 1
+        selector:
+          matchLabels:
+            app: "nginx"
+        template:
+          metadata:
+            labels:
+              app: "nginx"
+          spec:
+            affinity:
+              podAntiAffinity:
+                requiredDuringSchedulingIgnoredDuringExecution:
+                  - labelSelector:
+                      matchLabels:
+                        app: "nginx"
+                    topologyKey: kubernetes.io/hostname
+                preferredDuringSchedulingIgnoredDuringExecution:
+                  - weight: 100
+                    podAffinityTerm:
+                      labelSelector:
+                        matchLabels:
+                          app: nginx
+                      topologyKey: topology.kubernetes.io/zone
+            serviceAccountName: quay-image-pull-account
+            volumes:
+              - name: web-volume
+                persistentVolumeClaim:
+                  claimName: "actu"
+              - name: nginx
+                configMap:
+                  name: nginx
+            containers:
+              - name: "nginx"
+                image: "{{ quay_host }}/{{ quay_repo_name }}/{{ nginx_image }}"
+                ports:
+                  - containerPort: 8080
+                resources:
+                  requests:
+                    cpu: 10m
+                    memory: 512Mi
+                  limits:
+                    memory: 512Mi
+                livenessProbe:
+                  tcpSocket:
+                    port: 8080
+                  initialDelaySeconds: 5
+                  timeoutSeconds: 3
+                readinessProbe:
+                  tcpSocket:
+                    port: 8080
+                  initialDelaySeconds: 5
+                  timeoutSeconds: 3
+                volumeMounts:
+                  - name: web-volume
+                    mountPath: /public
+                    subPath: public
+                    readOnly: true
+                  - name: nginx
+                    mountPath: /etc/nginx/conf.d
+                    readOnly: true
+
+- name: Nginx - PodDisruptionBudget
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: policy/v1
+      kind: PodDisruptionBudget
+      metadata:
+        name: "nginx"
+        namespace: "{{ openshift_namespace }}"
+      spec:
+        minAvailable: 1
+        selector:
+          matchLabels:
+            app: "nginx"
+
+- name: Nginx - Service
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: "nginx"
+        namespace: "{{ openshift_namespace }}"
+        labels:
+          app: "nginx"
+      spec:
+        ports:
+          - name: nginx
+            port: 8080
+            targetPort: 8080
+        type: ClusterIP
+        selector:
+          app: "nginx"
+
+- name: Nginx - Routes
+  with_items: "{{ actu_hosts }}"
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: route.openshift.io/v1
+      kind: Route
+      metadata:
+        name: "{{ item }}"
+        namespace: "{{ openshift_namespace }}"
+        labels:
+          route: "{{ avi_route_access_level }}"
+        annotations:
+          haproxy.router.openshift.io/balance: roundrobin
+          haproxy.router.openshift.io/disable_cookies: "true"
+      spec:
+        host: "{{ item }}"
+        to:
+          kind: Service
+          name: "nginx"
+        port:
+          targetPort: nginx
+        tls:
+          termination: edge
+          insecureEdgeTerminationPolicy: Redirect
+
+- name: Nginx - Restart
+  when: >-
+    ('nginx.restart' in ansible_run_tags)
+    or
+    ( (_nginx_configmap | default({})) is changed )
+  local_action:
+    module: shell
+    cmd: "oc patch deployment/nginx --namespace {{ openshift_namespace }} --patch
+      '{
+          \"spec\": {
+            \"template\": {
+              \"metadata\": {
+                \"annotations\": {
+                  \"last-restart\": \"{{ ansible_date_time.iso8601 }}\"
+                }
+              }
+            }
+          }
+        }'"
+  tags: nginx.restart

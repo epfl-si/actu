@@ -1,0 +1,20 @@
+- name: common
+  hosts: all
+  roles:
+    - role: roles/common
+  tags:
+    - common
+
+- name: web
+  hosts: all
+  roles:
+    - role: roles/web
+  tags:
+    - web
+
+- name: nginx
+  hosts: all
+  roles:
+    - role: roles/nginx
+  tags:
+    - nginx

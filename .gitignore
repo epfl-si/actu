@@ -219,3 +219,6 @@ __marimo__/
 
 # Python version management tools automatically created
 .python-version
+
+# Ansible cache
+ansible-deps-cache

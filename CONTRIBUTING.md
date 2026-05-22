@@ -3,6 +3,7 @@
 ## Prerequisite
 
 - Access to the Keybase team `epfl_actu`.
+- Access to the three differents openshift environments (dev | test | prod)
 
 ## Setup
 
@@ -36,11 +37,24 @@ Lint code, unit tests and integration tests
 ```bash
 make test
 ```
-
 Coverage
 
 ```bash
 make coverage        # text report
 # or
 make coverage-html   # html report
+```
+
+## Deployment
+
+For deploying this application on OpenShift you need to login in th GitHub registry :
+
+```sh
+docker login ghcr.io/epfl-si/actu 
+```
+
+Run the actusible script with an environment :
+
+```sh
+./ansible/actusible [ --dev | --test | --prod ]
 ```

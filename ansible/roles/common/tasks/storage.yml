@@ -1,0 +1,17 @@
+- name: Create storage for web app
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
+        name: "actu"
+        namespace: "{{ openshift_namespace }}"
+      spec:
+        accessModes:
+          - ReadWriteMany
+        volumeMode: Filesystem
+        resources:
+          requests:
+            storage: 1Gi
+        storageClassName: ""

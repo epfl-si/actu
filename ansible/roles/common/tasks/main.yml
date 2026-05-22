@@ -1,0 +1,35 @@
+- name: Pull and push images
+  ansible.builtin.include_tasks:
+    file: images.yml
+    apply:
+      tags:
+        - common.image
+  tags:
+    - common.image
+
+- name: Service accounts
+  ansible.builtin.include_tasks:
+    file: accounts.yml
+    apply:
+      tags:
+        - common.accounts
+  tags:
+    - common.accounts
+
+- name: Create Storage
+  ansible.builtin.include_tasks:
+    file: storage.yml
+    apply:
+      tags:
+        - common.storage
+  tags:
+    - common.storage
+
+- name: Create quay secret
+  ansible.builtin.include_tasks:
+    file: secrets.yml
+    apply:
+      tags:
+        - common.secrets
+  tags:
+    - common.secrets

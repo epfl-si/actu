@@ -1,12 +1,13 @@
 from django.contrib import admin
-from django.contrib.contenttypes.admin import GenericTabularInline
-from .models import Translation, Entity
 
+from translations.admin import (
+    TranslationInline,
+)
 
-class TranslationInline(GenericTabularInline):
-    model = Translation
-    extra = 1  # number of empty forms shown by default
+from .models import Entity
+
 
 @admin.register(Entity)
-class ThematicAdmin(admin.ModelAdmin):
+class EntityAdmin(admin.ModelAdmin):
+    list_display = ("label", "is_active", "is_main", "has_homepage")
     inlines = [TranslationInline]

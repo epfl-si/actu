@@ -8,7 +8,7 @@ class Language(models.Model):
     For example : en, fr
     """
 
-    language = models.CharField(max_length=2)
+    language = models.CharField(max_length=2, unique=True)
 
     def __str__(self):
         return self.language

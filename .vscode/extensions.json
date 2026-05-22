@@ -2,6 +2,7 @@
   "recommendations": [
     "batisteo.vscode-django",
     "editorconfig.editorconfig",
+    "exiasr.hadolint",
     "mrorz.language-gettext",
     "ms-python.black-formatter",
     "ms-python.flake8",

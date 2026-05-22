@@ -7,7 +7,8 @@ RUN \
   apt-get install -yqq --no-install-recommends \
     python3=* \
     python3-pip=* && \
-  rm -rf /var/lib/apt/lists/*
+  rm -rf /var/lib/apt/lists/* && \
+  mkdir -p /public/static
 
 WORKDIR /app
 
@@ -45,3 +46,39 @@ RUN \
   pip install --no-cache-dir -r requirements/requirements-dev.txt
 
 CMD ["python", "src/manage.py", "runserver", "0.0.0.0:8000"]
+
+
+
+FROM compile AS assets
+
+ENV ACTU_SECRET_KEY="UNUSED" \
+    DJANGO_SETTINGS_MODULE="configs.ocp" \
+    ACTU_DATABASE_HOST="UNUSED" \
+    ACTU_DATABASE_PORT="UNUSED" \
+    ACTU_DATABASE_NAME="UNUSED" \
+    ACTU_DATABASE_USER="UNUSED" \
+    ACTU_DATABASE_PASSWORD="UNUSED"
+
+COPY ./src /app/src
+RUN \
+  python src/manage.py collectstatic --noinput && \
+  python src/manage.py compilemessages
+
+
+
+FROM base AS production
+
+COPY --from=assets /opt/venv /opt/venv
+COPY --from=assets /app/src /app/src
+COPY --from=assets /public/static /app/static
+COPY ./docker/django/entrypoint-django-prod.sh /entrypoint.sh
+
+RUN \
+  chown -R 1000:0 /app /public && \
+  chmod -R g=u /app /public && \
+  chmod +x /entrypoint.sh
+
+VOLUME /public/static
+USER 1000
+EXPOSE 8000
+ENTRYPOINT ["/entrypoint.sh"]

@@ -22,15 +22,30 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v6
 
+      - name: Hadolint
+        run: |
+          make hadolint
+
       - name: Build/Start containers
         run: |
           docker compose -f docker-compose-dev.yml up -d
           sleep 10
 
+      - name: Setup actu
+        run: |
+          docker compose -f docker-compose-dev.yml exec \
+            -e DJANGO_SETTINGS_MODULE='configs.ci' django python src/manage.py compilemessages
+
       - name: Check migrations
         run: |
           docker compose -f docker-compose-dev.yml exec \
             django python src/manage.py makemigrations --check --dry-run
+
+      - name: Check translations
+        run: |
+          docker compose -f docker-compose-dev.yml exec \
+            -e DJANGO_SETTINGS_MODULE='configs.ci' django python src/manage.py makemessages -a --no-location --no-wrap
+          git diff --numstat | awk '{if ($1>0 || $2>0) { exit 1 }}'
 
       - name: Black
         run: |
@@ -46,3 +61,16 @@ jobs:
         run: |
           docker compose -f docker-compose-dev.yml exec \
             django flake8
+
+      - name: Coverage
+        run: |
+          docker compose -f docker-compose-dev.yml exec \
+            -e DJANGO_SETTINGS_MODULE='configs.ci' django coverage run src/manage.py test
+          docker compose -f docker-compose-dev.yml exec \
+            django coverage xml
+          docker cp local-django-actu:/app/coverage.xml .
+
+      - name: Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy as _
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,6 +28,9 @@ SECRET_KEY = os.getenv("ACTU_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("ACTU_DEBUG_MODE", False)
 
+# SECURITY WARNING: don't run with debug_toolbar turned on in production!
+ACTU_SHOW_DEBUG_TOOLBAR = os.getenv("ACTU_SHOW_DEBUG_TOOLBAR", False)
+
 ALLOWED_HOSTS = []
 
 
@@ -38,6 +43,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    #
+    # Packages
+    "django_epfl_web2018",
+    "mozilla_django_oidc",
+    #
+    # Applications
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -48,6 +60,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = "configs.urls"
@@ -90,13 +103,41 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = []
 
+AUTH_USER_MODEL = "users.User"
+
+AUTHENTICATION_BACKENDS = ("django_epfl_entra_id.auth.EPFLOIDCAB",)
+
+TENANT_ID = os.getenv("ACTU_TENANT_ID")
+
+OIDC_RP_CLIENT_ID = os.getenv("ACTU_OIDC_RP_CLIENT_ID")
+OIDC_RP_CLIENT_SECRET = os.getenv("ACTU_OIDC_RP_CLIENT_SECRET")
+
+AUTH_DOMAIN = f"https://login.microsoftonline.com/{TENANT_ID}"
+OIDC_OP_AUTHORIZATION_ENDPOINT = f"{AUTH_DOMAIN}/oauth2/v2.0/authorize"
+OIDC_OP_TOKEN_ENDPOINT = f"{AUTH_DOMAIN}/oauth2/v2.0/token"
+OIDC_OP_JWKS_ENDPOINT = f"{AUTH_DOMAIN}/discovery/v2.0/keys"
+OIDC_OP_USER_ENDPOINT = "https://graph.microsoft.com/oidc/userinfo"
+OIDC_RP_SIGN_ALGO = "RS256"
+
+LOGIN_URL = "/auth/authenticate"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en"
 
-TIME_ZONE = "UTC"
+LANGUAGES = [
+    ("en", _("English")),
+    ("fr", _("French")),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
+
+TIME_ZONE = "Europe/Zurich"
 
 USE_I18N = True
 
@@ -112,3 +153,20 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Django Debug Toolbar
+# https://django-debug-toolbar.readthedocs.io/en/latest/configuration.html
+
+if DEBUG:
+    INSTALLED_APPS += ("debug_toolbar",)
+    MIDDLEWARE += ("debug_toolbar.middleware.DebugToolbarMiddleware",)
+
+
+def show_debug_toolbar(request):
+    return ACTU_SHOW_DEBUG_TOOLBAR
+
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": show_debug_toolbar,
+}

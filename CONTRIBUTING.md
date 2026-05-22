@@ -37,6 +37,13 @@ Lint code, unit tests and integration tests
 ```bash
 make test
 ```
+Coverage
+
+```bash
+make coverage        # text report
+# or
+make coverage-html   # html report
+```
 
 ## Deployment
 

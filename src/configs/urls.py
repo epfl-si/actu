@@ -15,12 +15,30 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from django.conf import settings
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 
 from utils.views import healthz
 
 urlpatterns = [
+    path("", include("django_epfl_entra_id.urls")),
+    path("auth/", include("mozilla_django_oidc.urls")),
     path("admin/", admin.site.urls),
     path("healthz/", healthz, name="healthz"),
+    path("i18n/", include("django.conf.urls.i18n")),
 ]
+
+if settings.DEBUG:
+    from debug_toolbar.toolbar import debug_toolbar_urls
+
+    urlpatterns += debug_toolbar_urls()
+
+
+# Custom Error Handlers
+# https://github.com/epfl-si/django-epfl-web2018#readme
+
+handler400 = "django_epfl_web2018.views.error_400"
+handler403 = "django_epfl_web2018.views.error_403"
+handler404 = "django_epfl_web2018.views.error_404"
+handler500 = "django_epfl_web2018.views.error_500"

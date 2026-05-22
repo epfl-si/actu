@@ -11,7 +11,7 @@ all:
     app: actu
 
     # Images
-    app_image_tag: "20260518115730.39cbb5a.34"
+    app_image_tag: "0.0.1"
     app_image: "actu:{{ app_image_tag }}"
     app_image_source: "ghcr.io/epfl-si/{{ app_image }}"
     nginx_image_tag: 1.30-alpine

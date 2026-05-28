@@ -16,6 +16,7 @@ Including another URLconf
 """
 
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.urls import include, path
 
@@ -24,10 +25,16 @@ from utils.views import healthz
 urlpatterns = [
     path("", include("django_epfl_entra_id.urls")),
     path("auth/", include("mozilla_django_oidc.urls")),
-    path("admin/", admin.site.urls),
     path("healthz/", healthz, name="healthz"),
     path("i18n/", include("django.conf.urls.i18n")),
 ]
+
+# Language prefix in URL
+urlpatterns += i18n_patterns(
+    path("", include("homepages.urls")),
+    path("admin/", admin.site.urls),
+)
+
 
 if settings.DEBUG:
     from debug_toolbar.toolbar import debug_toolbar_urls

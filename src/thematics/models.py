@@ -13,4 +13,4 @@ class Thematic(LabelModel):
     is_active = models.BooleanField(default=True)
     is_main = models.BooleanField(default=False)
     has_homepage = models.BooleanField(default=False)
-    order = models.PositiveIntegerField(null=True)
+    order = models.PositiveIntegerField(default=0)

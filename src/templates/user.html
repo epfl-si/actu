@@ -23,12 +23,14 @@
       </p>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdown-user">
-      <a href="{% url 'admin:index' %}" class="dropdown-item">
-        <svg aria-hidden="true" class="icon feather mr-1 mb-1">
-          <use xlink:href="#layout"></use>
-        </svg>
-        {% trans "Administration" %}
-      </a>
+      {% if user.is_staff %}
+        <a href="{% url 'admin:index' %}" class="dropdown-item">
+          <svg aria-hidden="true" class="icon feather mr-1 mb-1">
+            <use xlink:href="#layout"></use>
+          </svg>
+          {% trans "Administration" %}
+        </a>
+      {% endif %}
       <form action="{% url 'oidc_logout' %}" method="post">
         {% csrf_token %}
         <button type="submit" class="dropdown-item">

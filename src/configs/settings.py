@@ -49,10 +49,10 @@ INSTALLED_APPS = [
     "mozilla_django_oidc",
     #
     # Applications
-    "homepages",
-    "users",
     "entities",
+    "homepages",
     "thematics",
+    "users",
 ]
 
 MIDDLEWARE = [

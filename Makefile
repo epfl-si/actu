@@ -48,6 +48,22 @@ help:
 	@echo "  make prod-django-exec     — Enter the local production django container"
 	@echo "  make prod-nginx-exec      — Enter the local production nginx container"
 	@echo "  make prod-postgres-exec   — Enter the local production postgres container"
+	@echo "OpenShift:"
+	@echo "  make local-clone          — Clone production database to the local database"
+	@echo "  make dev-clone            — Clone production database to the dev database"
+	@echo "  make staging-clone        — Clone production database to the staging database"
+
+
+CLONE_TARGETS := local-clone db-local-clone dev-clone db-dev-clone staging-clone db-staging-clone
+
+ifneq ($(filter $(CLONE_TARGETS),$(MAKECMDGOALS)),)
+include /keybase/team/epfl_actu/dev/db
+export
+include /keybase/team/epfl_actu/staging/db
+export
+include /keybase/team/epfl_actu/prod/db
+export
+endif
 
 # To add all variable to your shell, use
 # export $(xargs < /keybase/team/epfl_actu/local/env);
@@ -182,3 +198,50 @@ prod-nginx-exec:
 .PHONY: prod-postgres-exec
 prod-postgres-exec:
 	@docker exec -it --user root prod-postgres-actu bash
+
+check-postgres-dump:
+	@type pg_dump > /dev/null 2>&1 || { echo >&2 "Please install postgresql-client-18."; exit 1; }
+
+db-dump: check-postgres-dump
+	@PGPASSWORD="$(P_PGPASSWORD)" pg_dump \
+		-h $(P_PGHOST) \
+		-p $(P_PGPORT) \
+		-U $(P_PGUSER) \
+		-d $(P_PGDATABASE) \
+		--format=custom --file=/tmp/actu.sql
+
+.PHONY: db-local-clone
+db-local-clone: db-dump
+	@PGPASSWORD="$(ACTU_DATABASE_PASSWORD)" pg_restore \
+		-h 127.0.0.1 \
+		-p 25432 \
+		-U $(ACTU_DATABASE_USER) \
+		-d $(ACTU_DATABASE_NAME) \
+		--clean --no-owner --no-privileges /tmp/actu.sql
+
+.PHONY: db-dev-clone
+db-dev-clone: db-dump
+	@PGPASSWORD="$(D_PGPASSWORD)" pg_restore \
+		-h $(D_PGHOST) \
+		-p $(D_PGPORT) \
+		-U $(D_PGUSER) \
+		-d $(D_PGDATABASE) \
+		--clean --no-owner --no-privileges /tmp/actu.sql
+
+.PHONY: db-staging-clone
+db-staging-clone: db-dump
+	@PGPASSWORD="$(S_PGPASSWORD)" pg_restore \
+		-h $(S_PGHOST) \
+		-p $(S_PGPORT) \
+		-U $(S_PGUSER) \
+		-d $(S_PGDATABASE) \
+		--clean --no-owner --no-privileges /tmp/actu.sql
+
+.PHONY:
+local-clone: db-local-clone
+
+.PHONY:
+dev-clone: db-dev-clone
+
+.PHONY:
+staging-clone: db-staging-clone

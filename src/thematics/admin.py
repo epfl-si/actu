@@ -5,7 +5,12 @@ from .models import Thematic
 
 @admin.register(Thematic)
 class ThematicAdmin(admin.ModelAdmin):
-    search_fields = Thematic.search_fields
+    search_fields = [
+        "label_en",
+        "label_fr",
+        "label_de",
+        "label_it",
+    ]
     list_display = (
         "label_en",
         "is_active",

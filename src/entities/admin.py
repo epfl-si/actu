@@ -5,12 +5,8 @@ from .models import Entity
 
 @admin.register(Entity)
 class EntityAdmin(admin.ModelAdmin):
-    search_fields = [
-        "label_en",
-        "label_fr",
-        "label_de",
-        "label_it",
-    ]
+    search_fields = Entity.search_fields
+
     list_display = (
         "label_en",
         "is_active",

@@ -41,7 +41,7 @@ class Entity(LabelModel):
         default=0,
         verbose_name=_("Order"),
         help_text=_(
-            "Defines the display order. A value of 0 means the entity "
-            "is hidden."
+            "Defines the display order. A value of 0 means that the order "
+            "is ignored (for non-main entities)."
         ),
     )

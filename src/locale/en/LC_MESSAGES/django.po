@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-29 09:30+0200\n"
+"POT-Creation-Date: 2026-06-02 13:58+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,6 +26,36 @@ msgstr ""
 msgid "Italian"
 msgstr ""
 
+msgid "Entity"
+msgstr ""
+
+msgid "Entities"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "Designates whether this entity is active and visible in the system."
+msgstr ""
+
+msgid "Main"
+msgstr ""
+
+msgid "Designates whether this entity (School) is displayed on the footer."
+msgstr ""
+
+msgid "Has Homepage"
+msgstr ""
+
+msgid "Designates whether this entity has a dedicated homepage."
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
+msgstr ""
+
 msgid "News"
 msgstr ""
 
@@ -39,4 +69,34 @@ msgid "Logout"
 msgstr ""
 
 msgid "Login"
+msgstr ""
+
+msgid "Thematic"
+msgstr ""
+
+msgid "Thematics"
+msgstr ""
+
+msgid "Designates whether this thematic is active and visible in the system."
+msgstr ""
+
+msgid "Designates whether this thematic is displayed on the main menu."
+msgstr ""
+
+msgid "Designates whether this thematic has a dedicated homepage."
+msgstr ""
+
+msgid "Defines the display order."
+msgstr ""
+
+msgid "Label in French"
+msgstr ""
+
+msgid "Label in English"
+msgstr ""
+
+msgid "Label in German"
+msgstr ""
+
+msgid "Label in Italian"
 msgstr ""

@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     "mozilla_django_oidc",
     #
     # Applications
+    "entities",
     "homepages",
+    "thematics",
     "users",
 ]
 

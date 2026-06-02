@@ -27,7 +27,7 @@ class Thematic(LabelModel):
         default=False,
         verbose_name=_("Main"),
         help_text=_(
-            "Designates whether this thematic is displayed on the main page."
+            "Designates whether this thematic is displayed on the main menu."
         ),
     )
     has_homepage = models.BooleanField(

@@ -27,7 +27,8 @@ class Entity(LabelModel):
         default=False,
         verbose_name=_("Main"),
         help_text=_(
-            "Designates whether this entity is displayed on the main page."
+            "Designates whether this entity (School) is displayed on the "
+            "footer."
         ),
     )
     has_homepage = models.BooleanField(

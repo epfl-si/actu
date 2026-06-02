@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.0.2 / 2026-06-02
+
+- Add models entities and thematics (#30)
+- Add Web2018 templates (#33)
+- Add clone DB (#34)
+- Add german and italian languages (#32)
+
 ## v0.0.1 / 2026-05-22
 
 - [feature] add config as code for deploying on OpenShift with Ansible (#28)

@@ -1,0 +1,20 @@
+{% extends 'web2018/web2018.html' %}
+
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block web2018_app_name %}{% trans "News" %}{% endblock %}
+
+{% block web2018_header %}
+  {% if LANGUAGE_CODE in 'en fr de' %}
+    {% include "web2018/includes/search-"|add:LANGUAGE_CODE|add:".html" %}
+  {% else %}
+    {% include "web2018/includes/search-en.html" %}
+  {% endif %}
+  {% include "user.html" %}
+  {% include "languages.html" %}
+{% endblock %}
+
+{% block web2018_breadcrumb %}
+  {% include "breadcrumb.html" %}
+{% endblock %}

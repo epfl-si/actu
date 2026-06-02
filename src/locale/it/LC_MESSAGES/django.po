@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-28 12:04+0200\n"
+"POT-Creation-Date: 2026-05-29 09:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -25,3 +25,18 @@ msgstr "Tedesco"
 
 msgid "Italian"
 msgstr "Italiano"
+
+msgid "News"
+msgstr "Notizie"
+
+msgid "Language selection"
+msgstr "Selezione della lingua"
+
+msgid "Administration"
+msgstr "Amministrazione"
+
+msgid "Logout"
+msgstr "Annulla l'accesso"
+
+msgid "Login"
+msgstr "Accedi"

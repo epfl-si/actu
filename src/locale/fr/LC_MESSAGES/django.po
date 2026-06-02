@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-29 09:30+0200\n"
+"POT-Creation-Date: 2026-06-02 10:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,6 +26,36 @@ msgstr "Allemand"
 msgid "Italian"
 msgstr "Italien"
 
+msgid "Entity"
+msgstr "Entité"
+
+msgid "Entities"
+msgstr "Entités"
+
+msgid "Active"
+msgstr "Actif"
+
+msgid "Designates whether this entity is active and visible in the system."
+msgstr "Indique si cette entité est active et visible dans le système."
+
+msgid "Main"
+msgstr "Principal"
+
+msgid "Designates whether this entity is displayed on the main page."
+msgstr "Indique si cette entité est affichée sur la page principale."
+
+msgid "Has Homepage"
+msgstr "A une page d'accueil"
+
+msgid "Designates whether this entity has a dedicated homepage."
+msgstr "Indique si cette entité a une page d'accueil dédiée."
+
+msgid "Order"
+msgstr "Ordre"
+
+msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
+msgstr "Définit l'ordre d'affichage. Une valeur de 0 signifie que l'ordre est ignoré (pour les entités non principales)."
+
 msgid "News"
 msgstr "Actualités"
 
@@ -40,3 +70,33 @@ msgstr "Déconnexion"
 
 msgid "Login"
 msgstr "Connexion"
+
+msgid "Thematic"
+msgstr "Thématique"
+
+msgid "Thematics"
+msgstr "Thématique"
+
+msgid "Designates whether this thematic is active and visible in the system."
+msgstr "Indique si ce thème est actif et visible dans le système."
+
+msgid "Designates whether this thematic is displayed on the main page."
+msgstr "Indique si ce thème est affiché sur la page principale."
+
+msgid "Designates whether this thematic has a dedicated homepage."
+msgstr "Indique si ce thème a une page d'accueil dédiée."
+
+msgid "Defines the display order. A value of 0 means the thematic is hidden."
+msgstr "Définit l'ordre d'affichage. Une valeur de 0 signifie que le thème est masqué."
+
+msgid "Label in French"
+msgstr "Label en français"
+
+msgid "Label in English"
+msgstr "Label en anglais"
+
+msgid "Label in German"
+msgstr "Label en allemand"
+
+msgid "Label in Italian"
+msgstr "Label en italien"

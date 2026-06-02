@@ -11,6 +11,10 @@ class Thematic(LabelModel):
     For example : AI, Health, Energy, ...
     """
 
+    class Meta:
+        verbose_name = _("Thematic")
+        verbose_name_plural = _("Thematics")
+
     is_active = models.BooleanField(
         default=True,
         verbose_name=_("Active"),

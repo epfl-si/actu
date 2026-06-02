@@ -40,8 +40,5 @@ class Thematic(LabelModel):
     order = models.PositiveIntegerField(
         default=0,
         verbose_name=_("Order"),
-        help_text=_(
-            "Defines the display order. A value of 0 means the thematic "
-            "is hidden."
-        ),
+        help_text=_("Defines the display order."),
     )

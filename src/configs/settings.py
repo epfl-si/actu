@@ -45,7 +45,7 @@ EMAIL_BACKEND = os.getenv(
 EMAIL_HOST = "mail.epfl.ch"
 EMAIL_PORT = 25
 EMAIL_TIMEOUT = 10
-SERVER_EMAIL = "actu-noreply@epfl.ch"
+SERVER_EMAIL = "news-noreply@epfl.ch"
 
 
 # Application definition

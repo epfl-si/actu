@@ -33,6 +33,20 @@ ACTU_SHOW_DEBUG_TOOLBAR = os.getenv("ACTU_SHOW_DEBUG_TOOLBAR", False)
 
 ALLOWED_HOSTS = []
 
+# A list of all the people who get error notifications.
+ADMINS = [
+    ("Actu Developers", "actu-developers@groupes.epfl.ch"),
+]
+
+EMAIL_BACKEND = os.getenv(
+    "ACTU_DJANGO_EMAIL_BACKEND",
+    "django.core.mail.backends.console.EmailBackend",
+)
+EMAIL_HOST = "mail.epfl.ch"
+EMAIL_PORT = 25
+EMAIL_TIMEOUT = 10
+SERVER_EMAIL = "news-noreply@epfl.ch"
+
 
 # Application definition
 

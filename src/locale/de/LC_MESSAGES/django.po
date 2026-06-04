@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-02 13:58+0200\n"
+"POT-Creation-Date: 2026-06-04 11:28+0200\n"
 "PO-Revision-Date: 2026-06-03 15:29+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -63,6 +63,9 @@ msgstr "Nachrichten"
 msgid "Language selection"
 msgstr "Sprachauswahl"
 
+msgid "Others Thematics"
+msgstr "Andere Themen"
+
 msgid "Administration"
 msgstr "Administration"
 
@@ -101,6 +104,3 @@ msgstr "Label auf Deutsch"
 
 msgid "Label in Italian"
 msgstr "Label auf Italienisch"
-
-msgid "Others Thematics"
-msgstr "Andere Themen"

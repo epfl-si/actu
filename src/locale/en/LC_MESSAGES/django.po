@@ -100,3 +100,6 @@ msgstr ""
 
 msgid "Label in Italian"
 msgstr ""
+
+msgid "Others Thematics"
+msgstr ""

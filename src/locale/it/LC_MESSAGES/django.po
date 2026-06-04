@@ -100,3 +100,6 @@ msgstr "Etichetta in tedesco"
 
 msgid "Label in Italian"
 msgstr "Etichetta in italiano"
+
+msgid "Others Thematics"
+msgstr "Altri temi"

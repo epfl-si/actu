@@ -12,6 +12,7 @@ class Thematic(LabelModel):
     """
 
     class Meta:
+        ordering = ("order",)
         verbose_name = _("Thematic")
         verbose_name_plural = _("Thematics")
 

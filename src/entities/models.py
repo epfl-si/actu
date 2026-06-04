@@ -12,6 +12,7 @@ class Entity(LabelModel):
     """
 
     class Meta:
+        ordering = ("-is_main", "order", "label_en")
         verbose_name = _("Entity")
         verbose_name_plural = _("Entities")
 

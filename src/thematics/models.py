@@ -44,8 +44,9 @@ class Thematic(LabelModel):
     )
 
     users = models.ManyToManyField(
-        'users.User',
+        "users.User",
         related_name="thematics",
         blank=True,
-        verbose_name=_("Users")
+        verbose_name=_("Users"),
+        help_text=_("Defines who have editing access to this Thematic"),
     )

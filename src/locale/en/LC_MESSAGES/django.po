@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-02 13:58+0200\n"
+"POT-Creation-Date: 2026-06-05 14:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -87,6 +87,12 @@ msgid "Designates whether this thematic has a dedicated homepage."
 msgstr ""
 
 msgid "Defines the display order."
+msgstr ""
+
+msgid "Users"
+msgstr ""
+
+msgid "Defines who have editing access to this Thematic"
 msgstr ""
 
 msgid "Label in French"

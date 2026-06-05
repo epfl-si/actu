@@ -7,6 +7,8 @@ from .models import Thematic
 class ThematicAdmin(admin.ModelAdmin):
     search_fields = Thematic.search_fields
 
+    autocomplete_fields = ['users']
+
     list_display = (
         "label_en",
         "is_active",

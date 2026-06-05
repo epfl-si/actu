@@ -42,3 +42,10 @@ class Thematic(LabelModel):
         verbose_name=_("Order"),
         help_text=_("Defines the display order."),
     )
+
+    users = models.ManyToManyField(
+        'users.User',
+        related_name="thematics",
+        blank=True,
+        verbose_name=_("Users")
+    )

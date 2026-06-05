@@ -2,12 +2,10 @@
 
 <ul aria-hidden="true" class="nav-header d-none d-xl-flex">
 
-  {% for thematic in thematics %}
-    {% if thematic.is_main %}
-      <li id="menu-item-{{ thematic.id }}">
-        <a class="nav-item" href="#">{{ thematic }}</a>
-      </li>
-    {% endif %}
+  {% for thematic in main_thematics %}
+    <li id="menu-item-{{ thematic.id }}">
+      <a class="nav-item" href="#">{{ thematic }}</a>
+    </li>
   {% endfor %}
 
   <li class="dropdown">
@@ -16,12 +14,10 @@
     </button>
     <ul id="dropdownSubMenu-1" class="dropdown-menu" aria-labelledby="dropdownMenuButton-1">
 
-      {% for thematic in thematics %}
-        {% if not thematic.is_main %}
-          <li class="dropdown-item">
-            <a href="#">{{ thematic }}</a>
-          </li>
-        {% endif %}
+      {% for thematic in other_thematics %}
+        <li class="dropdown-item">
+          <a href="#">{{ thematic }}</a>
+        </li>
       {% endfor %}
 
     </ul>

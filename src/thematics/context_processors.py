@@ -8,10 +8,8 @@ def global_thematics(request):
         main_thematics = [t for t in qs if t.is_main]
 
         other_thematics = sorted(
-            [t for t in qs if not t.is_main],
-            key=lambda t: str(t).lower()
+            [t for t in qs if not t.is_main], key=lambda t: str(t).lower()
         )
-
 
     except Exception:
         main_thematics = []

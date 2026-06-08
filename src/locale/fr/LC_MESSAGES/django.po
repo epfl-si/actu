@@ -62,8 +62,8 @@ msgstr "Actualités"
 msgid "Language selection"
 msgstr "Choix de la langue"
 
-msgid "Others Thematics"
-msgstr "Autres Thematiques"
+msgid "Others"
+msgstr "Autres"
 
 msgid "Administration"
 msgstr "Administration"

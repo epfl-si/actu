@@ -62,7 +62,7 @@ msgstr ""
 msgid "Language selection"
 msgstr ""
 
-msgid "Others Thematics"
+msgid "Others"
 msgstr ""
 
 msgid "Administration"

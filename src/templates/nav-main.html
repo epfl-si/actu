@@ -1,0 +1,37 @@
+{% load i18n %}
+
+<div class="overlay"></div>
+<nav class="nav-main" id="main-navigation">
+  <div class="nav-wrapper">
+    <div class="nav-container current-menu-parent">
+      <ul class="nav-menu">
+        {% for thematic in main_thematics %}
+          <li id="menu-item-{{ thematic.id }}">
+            <a class="nav-item" href="#">{{ thematic }}</a>
+          </li>
+        {% endfor %}
+        <li class="menu-item-has-children">
+          <a href="#" role="button">{% trans "Others" %}</a>
+          <ul>
+            <li class="nav-back d-xl-none">
+              <a href="#">
+                <svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-left"></use></svg>
+                {% trans "Others" %}
+              </a>
+            </li>
+            {% for thematic in other_thematics %}
+              <li>
+                <a href="#">{{ thematic }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+          <a href="#" role="button" aria-hidden="true" class="nav-arrow">
+            <div class="icon-container">
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-right"></use></svg>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

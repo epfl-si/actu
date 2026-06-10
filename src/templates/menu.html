@@ -1,0 +1,26 @@
+{% load i18n %}
+
+<ul aria-hidden="true" class="nav-header d-none d-xl-flex">
+
+  {% for thematic in main_thematics %}
+    <li id="menu-item-{{ thematic.id }}">
+      <a class="nav-item" href="#">{{ thematic }}</a>
+    </li>
+  {% endfor %}
+
+  <li class="dropdown">
+    <button class="btn btn-link dropdown-toggle nav-item" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-controls="dropdownSubMenu">
+      {% trans "Others" %}
+    </button>
+    <ul id="dropdownSubMenu" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+      {% for thematic in other_thematics %}
+        <li class="dropdown-item">
+          <a href="#">{{ thematic }}</a>
+        </li>
+      {% endfor %}
+
+    </ul>
+  </li>
+
+</ul>

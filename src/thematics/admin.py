@@ -9,6 +9,7 @@ class ThematicAdmin(admin.ModelAdmin):
 
     list_display = (
         "label_en",
+        "slug",
         "is_active",
         "is_main",
         "has_homepage",

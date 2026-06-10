@@ -15,6 +15,11 @@ class Thematic(LabelModel):
         verbose_name = _("Thematic")
         verbose_name_plural = _("Thematics")
 
+    slug = models.SlugField(
+        max_length=200,
+        verbose_name=_("Slug"),
+        help_text=_("Define the Slug of this Thematic"),
+    )
     is_active = models.BooleanField(
         default=True,
         verbose_name=_("Active"),

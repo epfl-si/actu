@@ -25,6 +25,7 @@ class ThematicModelTest(TestCase):
             label_fr="Santé",
             label_de="Gesundheit",
             label_it="Salute",
+            slug="health",
             is_active=False,
             is_main=True,
             has_homepage=True,

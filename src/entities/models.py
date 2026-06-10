@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -14,7 +15,19 @@ class Entity(LabelModel):
     class Meta:
         verbose_name = _("Entity")
         verbose_name_plural = _("Entities")
+        constraints = [
+            models.CheckConstraint(
+                check=models.Q(has_homepage=False) | ~models.Q(slug=''),
+                name='entity_slug_required_if_has_homepage'
+            )
+        ]
 
+    slug = models.SlugField(
+        max_length=200,
+        blank=True,
+        verbose_name=_("Slug"),
+        help_text=_("Define the Slug of this Entity"),
+    )
     is_active = models.BooleanField(
         default=True,
         verbose_name=_("Active"),
@@ -46,3 +59,16 @@ class Entity(LabelModel):
             "is ignored (for non-main entities)."
         ),
     )
+
+    def clean(self):
+        super().clean()
+
+        if self.has_homepage and not self.slug:
+            raise ValidationError({
+                'slug': _("The slug is required when 'Has Homepage' is checked.")
+            })
+
+        if not self.has_homepage and self.slug:
+            raise ValidationError({
+                'slug': _("The slug must be empty if 'Has Homepage' is not checked.")
+            })

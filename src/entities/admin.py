@@ -11,12 +11,10 @@ class EntityAdmin(admin.ModelAdmin):
         "label_en",
         "is_active",
         "is_main",
-        "has_homepage",
         "order",
     )
 
     list_filter = (
         "is_active",
         "is_main",
-        "has_homepage",
     )

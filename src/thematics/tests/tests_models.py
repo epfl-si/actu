@@ -16,7 +16,6 @@ class ThematicModelTest(TestCase):
     def test_thematic_default_values(self):
         self.assertTrue(self.thematic.is_active)
         self.assertFalse(self.thematic.is_main)
-        self.assertFalse(self.thematic.has_homepage)
         self.assertEqual(self.thematic.order, 0)
 
     def test_thematic_custom_values(self):
@@ -27,12 +26,10 @@ class ThematicModelTest(TestCase):
             label_it="Salute",
             is_active=False,
             is_main=True,
-            has_homepage=True,
             order=5,
         )
         self.assertFalse(custom_thematic.is_active)
         self.assertTrue(custom_thematic.is_main)
-        self.assertTrue(custom_thematic.has_homepage)
         self.assertEqual(custom_thematic.order, 5)
 
     def test_inherited_get_label_method(self):

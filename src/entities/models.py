@@ -17,8 +17,8 @@ class Entity(LabelModel):
         verbose_name_plural = _("Entities")
         constraints = [
             models.CheckConstraint(
-                check=models.Q(has_homepage=False) | ~models.Q(slug=''),
-                name='entity_slug_required_if_has_homepage'
+                check=models.Q(has_homepage=False) | ~models.Q(slug=""),
+                name="entity_slug_required_if_has_homepage",
             )
         ]
 
@@ -64,11 +64,20 @@ class Entity(LabelModel):
         super().clean()
 
         if self.has_homepage and not self.slug:
-            raise ValidationError({
-                'slug': _("The slug is required when 'Has Homepage' is checked.")
-            })
+            raise ValidationError(
+                {
+                    "slug": _(
+                        "The slug is required when 'Has Homepage' is checked."
+                    )
+                }
+            )
 
         if not self.has_homepage and self.slug:
-            raise ValidationError({
-                'slug': _("The slug must be empty if 'Has Homepage' is not checked.")
-            })
+            raise ValidationError(
+                {
+                    "slug": _(
+                        "The slug must be empty if 'Has Homepage' "
+                        "is not checked."
+                    )
+                }
+            )

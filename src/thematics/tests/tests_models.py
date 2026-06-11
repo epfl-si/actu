@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 from django.utils import translation
 
@@ -11,6 +12,7 @@ class ThematicModelTest(TestCase):
             label_fr="IA",
             label_de="KI",
             label_it="IA",
+            slug="ai",
         )
 
     def test_thematic_default_values(self):
@@ -48,3 +50,15 @@ class ThematicModelTest(TestCase):
 
         with translation.override("en"):
             self.assertEqual(str(self.thematic), "AI")
+
+    def test_slug_is_always_required(self):
+        """Vérifie que Django bloque la validation si le slug est vide."""
+        custom_thematic = Thematic(
+            label_en="Energy",
+            slug="",
+        )
+
+        with self.assertRaises(ValidationError) as context:
+            custom_thematic.full_clean()
+
+        self.assertIn("slug", context.exception.message_dict)

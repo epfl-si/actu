@@ -50,33 +50,29 @@ msgstr "Reihenfolge"
 msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
 msgstr "Definiert die Anzeige-Reihenfolge. Ein Wert von 0 bedeutet, dass die Reihenfolge ignoriert wird (für nicht-haupt-Entitäten)."
 
-#, fuzzy
-#| msgid "Has Homepage"
 msgid "Homepage"
 msgstr "Hat Startseite"
 
-#, fuzzy
-#| msgid "Has Homepage"
 msgid "Homepages"
 msgstr "Hat Startseite"
 
 msgid "Slug"
-msgstr ""
+msgstr "Slug"
 
 msgid "Define the Slug of this Home page"
-msgstr ""
+msgstr "Definiert den Slug dieser Startseite"
 
 msgid "Thematic"
 msgstr "Thema"
 
 msgid "Users"
-msgstr ""
+msgstr "Benutzer"
 
 msgid "A Homepage cannot be linked to both a thematic and an entity."
-msgstr ""
+msgstr "Eine Startseite kann nicht gleichzeitig mit einem Thema und einer Einheit verknüpft sein."
 
 msgid "A Homepage must be linked to either a thematic or an entity."
-msgstr ""
+msgstr "Eine Startseite muss entweder mit einem Thema oder einer Einheit verknüpft sein."
 
 msgid "News"
 msgstr "Nachrichten"
@@ -119,9 +115,3 @@ msgstr "Label auf Deutsch"
 
 msgid "Label in Italian"
 msgstr "Label auf Italienisch"
-
-#~ msgid "Designates whether this entity has a dedicated homepage."
-#~ msgstr "Gibt an, ob diese Einheit eine eigene Startseite hat."
-
-#~ msgid "Designates whether this thematic has a dedicated homepage."
-#~ msgstr "Gibt an, ob dieses Thema eine eigene Startseite hat."

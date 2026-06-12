@@ -79,19 +79,6 @@ class NewsTranslation(models.Model):
         related_name="translations_published",
         verbose_name=_("Published by"),
     )
-    deleted_at = models.DateTimeField(
-        null=True,
-        blank=True,
-        verbose_name=_("Deleted at"),
-    )
-    deleted_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.PROTECT,
-        null=True,
-        blank=True,
-        related_name="translations_deleted",
-        verbose_name=_("Deleted by"),
-    )
 
     def __str__(self):
         return f"{self.title} [{self.language.code}]"

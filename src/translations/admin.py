@@ -31,8 +31,6 @@ class NewsTranslationAdmin(admin.ModelAdmin):
         "updated_by",
         "published_at",
         "published_by",
-        "deleted_at",
-        "deleted_by",
     ]
 
     def save_model(self, request, obj, form, change):

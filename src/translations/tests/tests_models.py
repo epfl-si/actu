@@ -94,9 +94,3 @@ class NewsTranslationModelTest(TestCase):
 
     def test_published_by_is_none_by_default(self):
         self.assertIsNone(self.translation.published_by)
-
-    def test_deleted_at_is_none_by_default(self):
-        self.assertIsNone(self.translation.deleted_at)
-
-    def test_deleted_by_is_none_by_default(self):
-        self.assertIsNone(self.translation.deleted_by)

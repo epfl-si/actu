@@ -64,29 +64,12 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "deleted_at",
-                    models.DateTimeField(
-                        blank=True, null=True, verbose_name="Deleted at"
-                    ),
-                ),
-                (
                     "created_by",
                     models.ForeignKey(
                         on_delete=django.db.models.deletion.PROTECT,
                         related_name="translations_created",
                         to=settings.AUTH_USER_MODEL,
                         verbose_name="Created by",
-                    ),
-                ),
-                (
-                    "deleted_by",
-                    models.ForeignKey(
-                        blank=True,
-                        null=True,
-                        on_delete=django.db.models.deletion.PROTECT,
-                        related_name="translations_deleted",
-                        to=settings.AUTH_USER_MODEL,
-                        verbose_name="Deleted by",
                     ),
                 ),
                 (

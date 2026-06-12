@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-04 11:28+0200\n"
+"POT-Creation-Date: 2026-06-12 08:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -44,17 +44,39 @@ msgstr "Principal"
 msgid "Designates whether this entity (School) is displayed on the footer."
 msgstr "Indique si cette entité est affichée dans le pied de page."
 
-msgid "Has Homepage"
-msgstr "A une page d'accueil"
-
-msgid "Designates whether this entity has a dedicated homepage."
-msgstr "Indique si cette entité a une page d'accueil dédiée."
-
 msgid "Order"
 msgstr "Ordre"
 
 msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
 msgstr "Définit l'ordre d'affichage. Une valeur de 0 signifie que l'ordre est ignoré (pour les entités non principales)."
+
+#, fuzzy
+#| msgid "Has Homepage"
+msgid "Homepage"
+msgstr "A une page d'accueil"
+
+#, fuzzy
+#| msgid "Has Homepage"
+msgid "Homepages"
+msgstr "A une page d'accueil"
+
+msgid "Slug"
+msgstr ""
+
+msgid "Define the Slug of this Home page"
+msgstr ""
+
+msgid "Thematic"
+msgstr "Thématique"
+
+msgid "Users"
+msgstr ""
+
+msgid "A Homepage cannot be linked to both a thematic and an entity."
+msgstr ""
+
+msgid "A Homepage must be linked to either a thematic or an entity."
+msgstr ""
 
 msgid "News"
 msgstr "Actualités"
@@ -74,9 +96,6 @@ msgstr "Déconnexion"
 msgid "Login"
 msgstr "Connexion"
 
-msgid "Thematic"
-msgstr "Thématique"
-
 msgid "Thematics"
 msgstr "Thématique"
 
@@ -85,9 +104,6 @@ msgstr "Indique si ce thème est actif et visible dans le système."
 
 msgid "Designates whether this thematic is displayed on the main menu."
 msgstr "Indique si ce thème est affiché dans le menu principal."
-
-msgid "Designates whether this thematic has a dedicated homepage."
-msgstr "Indique si ce thème a une page d'accueil dédiée."
 
 msgid "Defines the display order."
 msgstr "Définit l'ordre d'affichage."
@@ -103,3 +119,9 @@ msgstr "Label en allemand"
 
 msgid "Label in Italian"
 msgstr "Label en italien"
+
+#~ msgid "Designates whether this entity has a dedicated homepage."
+#~ msgstr "Indique si cette entité a une page d'accueil dédiée."
+
+#~ msgid "Designates whether this thematic has a dedicated homepage."
+#~ msgstr "Indique si ce thème a une page d'accueil dédiée."

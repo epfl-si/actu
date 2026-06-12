@@ -1,0 +1,81 @@
+from django.contrib.auth import get_user_model
+from django.test import TestCase
+
+from entities.models import Entity
+from languages.models import Language
+from news.models import News
+from thematics.models import Thematic
+
+User = get_user_model()
+
+
+class NewsModelTest(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="niskanen",
+            password="99999999",
+        )
+        self.language_en = Language.objects.create(
+            label_fr="Anglais",
+            label_en="English",
+            label_de="Englisch",
+            label_it="Inglese",
+            code="en",
+        )
+        self.thematic = Thematic.objects.create(
+            label_fr="Ski de fond",
+            label_en="Cross-Country Skiing",
+            label_de="Langlauf",
+            label_it="Sci di fondo",
+        )
+        self.entity = Entity.objects.create(
+            label_fr="Équipe de Finlande",
+            label_en="Team Finland",
+            label_de="Team Finnland",
+            label_it="Team Finlandia",
+        )
+        self.news = News.objects.create(
+            created_by=self.user,
+        )
+
+    def test_str_returns_news_id_when_no_translation(self):
+        self.assertEqual(
+            str(self.news), f"News #{self.news.pk} (no translation in English)"
+        )
+
+    def test_str_returns_english_title_when_translation_exists(self):
+        self.news.translations.create(
+            language=self.language_en,
+            title="Niskanen wins men's 50 km mass start classic",
+            created_by=self.user,
+        )
+        self.assertEqual(
+            str(self.news), "Niskanen wins men's 50 km mass start classic"
+        )
+
+    def test_can_add_thematic(self):
+        self.news.thematics.add(self.thematic)
+        self.assertIn(self.thematic, self.news.thematics.all())
+
+    def test_can_add_entity(self):
+        self.news.entities.add(self.entity)
+        self.assertIn(self.entity, self.news.entities.all())
+
+    def test_entities_is_optional(self):
+        self.assertEqual(self.news.entities.count(), 0)
+
+    def test_thematics_is_optional(self):
+        self.assertEqual(self.news.thematics.count(), 0)
+
+    def test_created_by_is_set(self):
+        self.assertEqual(self.news.created_by, self.user)
+
+    def test_created_at_is_set(self):
+        self.assertIsNotNone(self.news.created_at)
+
+    def test_ordering_is_by_created_at_descending(self):
+        news2 = News.objects.create(created_by=self.user)
+        news_list = list(News.objects.all())
+        self.assertEqual(news_list[0], news2)
+        self.assertEqual(news_list[1], self.news)

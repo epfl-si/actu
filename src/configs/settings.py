@@ -66,7 +66,9 @@ INSTALLED_APPS = [
     "entities",
     "homepages",
     "languages",
+    "news",
     "thematics",
+    "translations",
     "users",
 ]
 

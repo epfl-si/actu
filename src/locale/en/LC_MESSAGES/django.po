@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-04 11:28+0200\n"
+"POT-Creation-Date: 2026-06-12 14:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -59,6 +59,33 @@ msgstr ""
 msgid "News"
 msgstr ""
 
+msgid "Language"
+msgstr ""
+
+msgid "Languages"
+msgstr ""
+
+msgid "Code"
+msgstr ""
+
+msgid "Language code (e.g. 'fr', 'en', 'de', 'it')."
+msgstr ""
+
+msgid "Thematics"
+msgstr ""
+
+msgid "Thematics related to this news."
+msgstr ""
+
+msgid "Entities related to this news."
+msgstr ""
+
+msgid "Created at"
+msgstr ""
+
+msgid "Created by"
+msgstr ""
+
 msgid "Language selection"
 msgstr ""
 
@@ -77,9 +104,6 @@ msgstr ""
 msgid "Thematic"
 msgstr ""
 
-msgid "Thematics"
-msgstr ""
-
 msgid "Designates whether this thematic is active and visible in the system."
 msgstr ""
 
@@ -90,6 +114,39 @@ msgid "Designates whether this thematic has a dedicated homepage."
 msgstr ""
 
 msgid "Defines the display order."
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+msgid "Published"
+msgstr ""
+
+msgid "Archived"
+msgstr ""
+
+msgid "News translation"
+msgstr ""
+
+msgid "News translations"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Updated at"
+msgstr ""
+
+msgid "Updated by"
+msgstr ""
+
+msgid "Published at"
+msgstr ""
+
+msgid "Published by"
 msgstr ""
 
 msgid "Label in French"

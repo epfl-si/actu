@@ -1,6 +1,35 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 
 from .models import User
 
-admin.site.register(User, UserAdmin)
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    fields = (
+        "sciper",
+        "username",
+        "first_name",
+        "last_name",
+        "email",
+        "is_active",
+        "is_staff",
+        "is_superuser",
+        "date_joined",
+        "last_login",
+    )
+
+    readonly_fields = ["last_login", "date_joined"]
+
+    search_fields = ["username", "first_name", "last_name", "email", "sciper"]
+
+    list_display = [
+        "username",
+        "first_name",
+        "last_name",
+        "email",
+        "sciper",
+        "is_active",
+        "is_staff",
+    ]
+
+    list_filter = ["is_active", "is_staff", "is_superuser"]

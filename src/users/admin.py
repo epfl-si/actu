@@ -6,11 +6,11 @@ from .models import User
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     fields = (
-        "sciper",
         "username",
         "first_name",
         "last_name",
         "email",
+        "sciper",
         "is_active",
         "is_staff",
         "is_superuser",

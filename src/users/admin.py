@@ -34,3 +34,5 @@ class UserAdmin(admin.ModelAdmin):
     ]
 
     list_filter = ["is_active", "is_staff", "is_superuser"]
+
+    ordering = ["-date_joined"]

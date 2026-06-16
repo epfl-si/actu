@@ -15,8 +15,14 @@ class EntityAdmin(admin.ModelAdmin):
         "order",
     )
 
+    ordering = ("-is_active", "-is_main", "order", "label_en")
+
     list_filter = (
         "is_active",
         "is_main",
         "has_homepage",
     )
+
+    def delete_queryset(self, request, queryset):
+        super().delete_queryset(request, queryset)
+        Entity.reorder_everything()

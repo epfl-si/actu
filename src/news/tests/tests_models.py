@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 
 from entities.models import Entity
-from languages.models import Language
 from news.models import News
 from thematics.models import Thematic
 
@@ -15,13 +14,6 @@ class NewsModelTest(TestCase):
         self.user = User.objects.create_user(
             username="niskanen",
             password="99999999",
-        )
-        self.language_en = Language.objects.create(
-            label_fr="Anglais",
-            label_en="English",
-            label_de="Englisch",
-            label_it="Inglese",
-            code="en",
         )
         self.thematic = Thematic.objects.create(
             label_fr="Ski de fond",
@@ -46,7 +38,7 @@ class NewsModelTest(TestCase):
 
     def test_str_returns_english_title_when_translation_exists(self):
         self.news.translations.create(
-            language=self.language_en,
+            language="en",
             title="Niskanen wins men's 50 km mass start classic",
             created_by=self.user,
         )

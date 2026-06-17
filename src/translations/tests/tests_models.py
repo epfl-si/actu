@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from languages.models import Language
 from news.models import News
 from translations.models import NewsTranslation
 
@@ -15,26 +14,12 @@ class NewsTranslationModelTest(TestCase):
             username="iivo.niskanen",
             sciper="123456",
         )
-        self.language_en = Language.objects.create(
-            label_fr="Anglais",
-            label_en="English",
-            label_de="Englisch",
-            label_it="Inglese",
-            code="en",
-        )
-        self.language_fr = Language.objects.create(
-            label_fr="Français",
-            label_en="French",
-            label_de="Französisch",
-            label_it="Francese",
-            code="fr",
-        )
         self.news = News.objects.create(
             created_by=self.user,
         )
         self.translation = NewsTranslation.objects.create(
             news=self.news,
-            language=self.language_en,
+            language="en",
             title="Niskanen wins men's 50 km mass start classic",
             status=NewsTranslation.Status.DRAFT,
             created_by=self.user,
@@ -61,7 +46,7 @@ class NewsTranslationModelTest(TestCase):
         with self.assertRaises(Exception):
             NewsTranslation.objects.create(
                 news=self.news,
-                language=self.language_en,
+                language="en",
                 title="Duplicate translation",
                 created_by=self.user,
             )
@@ -69,7 +54,7 @@ class NewsTranslationModelTest(TestCase):
     def test_can_create_different_language_translation(self):
         NewsTranslation.objects.create(
             news=self.news,
-            language=self.language_fr,
+            language="fr",
             title="Niskanen remporte le 50 km classique",
             created_by=self.user,
         )

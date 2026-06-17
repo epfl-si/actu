@@ -2,7 +2,6 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from languages.models import Language
 from news.models import News
 
 
@@ -28,10 +27,9 @@ class NewsTranslation(models.Model):
         related_name="translations",
         verbose_name=_("News"),
     )
-    language = models.ForeignKey(
-        Language,
-        on_delete=models.PROTECT,
-        related_name="news_translations",
+    language = models.CharField(
+        max_length=2,
+        choices=settings.LANGUAGES,
         verbose_name=_("Language"),
     )
     title = models.CharField(
@@ -81,7 +79,7 @@ class NewsTranslation(models.Model):
     )
 
     def __str__(self):
-        return f"{self.title} [{self.language.code}]"
+        return f"{self.title} [{self.language}]"
 
     @property
     def is_published(self):

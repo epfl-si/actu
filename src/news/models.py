@@ -45,6 +45,6 @@ class News(models.Model):
 
     def __str__(self):
         try:
-            return self.translations.get(language__code="en").title
+            return self.translations.get(language="en").title
         except self.translations.model.DoesNotExist:
             return f"News #{self.pk} (no translation in English)"

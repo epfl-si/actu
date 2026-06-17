@@ -22,7 +22,7 @@ class NewsTranslationAdmin(admin.ModelAdmin):
         "language",
     ]
 
-    autocomplete_fields = ["news", "language", "created_by"]
+    autocomplete_fields = ["news", "created_by"]
 
     readonly_fields = [
         "created_at",

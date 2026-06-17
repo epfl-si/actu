@@ -23,7 +23,6 @@ from django.urls import include, path
 from utils.views import healthz
 
 urlpatterns = [
-    path("", include("django_epfl_entra_id.urls")),
     path("auth/", include("mozilla_django_oidc.urls")),
     path("healthz/", healthz, name="healthz"),
     path("i18n/", include("django.conf.urls.i18n")),
@@ -31,6 +30,7 @@ urlpatterns = [
 
 # Language prefix in URL
 urlpatterns += i18n_patterns(
+    path("", include("django_epfl_entra_id.urls")),
     path("", include("homepages.urls")),
     path("admin/", admin.site.urls),
 )

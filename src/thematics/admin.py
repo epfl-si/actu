@@ -23,4 +23,4 @@ class ThematicAdmin(admin.ModelAdmin):
 
     @admin.display(boolean=True, description=_("Has Homepage"))
     def has_homepage_link(self, obj):
-        return hasattr(obj, 'homepage')
+        return hasattr(obj, "homepage")

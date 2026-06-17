@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-12 14:59+0200\n"
+"POT-Creation-Date: 2026-06-17 13:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -58,18 +58,6 @@ msgstr "Definisce l'ordine di visualizzazione. Un valore di 0 significa che l'or
 
 msgid "News"
 msgstr "Notizie"
-
-msgid "Language"
-msgstr "Lingua"
-
-msgid "Languages"
-msgstr "Lingue"
-
-msgid "Code"
-msgstr "Codice"
-
-msgid "Language code (e.g. 'fr', 'en', 'de', 'it')."
-msgstr "Codice della lingua (es. 'fr', 'en', 'de', 'it')."
 
 msgid "Thematics"
 msgstr "Tematiche"
@@ -130,6 +118,9 @@ msgstr "Traduzione della notizia"
 
 msgid "News translations"
 msgstr "Traduzioni delle notizie"
+
+msgid "Language"
+msgstr "Lingua"
 
 msgid "Title"
 msgstr "Titolo"

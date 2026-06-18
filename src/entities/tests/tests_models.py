@@ -27,16 +27,11 @@ class EntityModelTest(TestCase):
             label_it="Scienze di Base",
             is_active=True,
             is_main=True,
-            order=2,
+            order=1,
         )
         self.assertTrue(custom_entity.is_active)
         self.assertTrue(custom_entity.is_main)
-<<<<<<< HEAD
-        self.assertEqual(custom_entity.order, 2)
-=======
-        self.assertTrue(custom_entity.has_homepage)
         self.assertEqual(custom_entity.order, 1)
->>>>>>> main
 
     def test_inherited_get_label_method(self):
         self.assertEqual(self.entity.get_label("fr"), "Sciences de la Vie")

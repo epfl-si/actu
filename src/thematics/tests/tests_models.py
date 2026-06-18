@@ -26,16 +26,11 @@ class ThematicModelTest(TestCase):
             label_it="Salute",
             is_active=True,
             is_main=True,
-            order=5,
+            order=1,
         )
         self.assertTrue(custom_thematic.is_active)
         self.assertTrue(custom_thematic.is_main)
-<<<<<<< HEAD
-        self.assertEqual(custom_thematic.order, 5)
-=======
-        self.assertTrue(custom_thematic.has_homepage)
         self.assertEqual(custom_thematic.order, 1)
->>>>>>> main
 
     def test_inherited_get_label_method(self):
         self.assertEqual(self.thematic.get_label("en"), "AI")

@@ -62,7 +62,7 @@ msgstr ""
 msgid "Slug"
 msgstr ""
 
-msgid "Define the Slug of this Home page"
+msgid "Define the Slug of this Homepage"
 msgstr ""
 
 msgid "Thematic"

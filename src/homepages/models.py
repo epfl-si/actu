@@ -23,7 +23,7 @@ class Homepage(models.Model):
         max_length=200,
         unique=True,
         verbose_name=_("Slug"),
-        help_text=_("Define the Slug of this Home page"),
+        help_text=_("Define the Slug of this Homepage"),
     )
 
     thematic = models.OneToOneField(

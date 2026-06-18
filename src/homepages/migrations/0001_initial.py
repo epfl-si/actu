@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 (
                     "slug",
                     models.SlugField(
-                        help_text="Define the Slug of this Home page",
+                        help_text="Define the Slug of this Homepage",
                         max_length=200,
                         unique=True,
                         verbose_name="Slug",

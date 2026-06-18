@@ -54,15 +54,15 @@ msgid "Defines the display order. A value of 0 means that the order is ignored (
 msgstr "Definisce l'ordine di visualizzazione. Un valore di 0 significa che l'ordine viene ignorato (per le entità non principali)."
 
 msgid "Homepage"
-msgstr "Ha una pagina principale"
+msgstr "Pagina principale"
 
 msgid "Homepages"
-msgstr "Ha una pagina principale"
+msgstr "Pagine principali"
 
 msgid "Slug"
 msgstr "Slug"
 
-msgid "Define the Slug of this Home page"
+msgid "Define the Slug of this Homepage"
 msgstr "Definisci lo Slug di questa pagina principale"
 
 msgid "Thematic"

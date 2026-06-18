@@ -11,7 +11,7 @@ class Homepage(models.Model):
 
         constraints = [
             models.CheckConstraint(
-                check=(
+                condition=(
                     models.Q(thematic__isnull=True, entity__isnull=False)
                     | models.Q(thematic__isnull=False, entity__isnull=True)
                 ),
@@ -21,7 +21,7 @@ class Homepage(models.Model):
 
     slug = models.SlugField(
         max_length=200,
-        blank=True,
+        unique=True,
         verbose_name=_("Slug"),
         help_text=_("Define the Slug of this Home page"),
     )

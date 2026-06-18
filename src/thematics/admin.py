@@ -12,7 +12,7 @@ class ThematicAdmin(admin.ModelAdmin):
         "label_en",
         "is_active",
         "is_main",
-        "has_homepage_link",
+        "has_homepage",
         "order",
     )
 
@@ -22,5 +22,5 @@ class ThematicAdmin(admin.ModelAdmin):
     )
 
     @admin.display(boolean=True, description=_("Has Homepage"))
-    def has_homepage_link(self, obj):
+    def has_homepage(self, obj):
         return hasattr(obj, "homepage")

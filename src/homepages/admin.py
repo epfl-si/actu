@@ -9,6 +9,7 @@ class HomepageAdmin(admin.ModelAdmin):
 
     list_display = (
         "slug",
+        "display_name",
         "thematic",
         "entity",
     )
@@ -17,3 +18,11 @@ class HomepageAdmin(admin.ModelAdmin):
         "thematic",
         "entity",
     )
+
+    @admin.display(description="Name")
+    def display_name(self, obj):
+        if obj.thematic:
+            return str(obj.thematic)
+        if obj.entity:
+            return str(obj.entity)
+        return "-"

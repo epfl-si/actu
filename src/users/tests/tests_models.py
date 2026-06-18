@@ -15,3 +15,12 @@ class UserModelTest(TestCase):
         User.objects.create_user(username="niskanen", sciper="99999999")
         with self.assertRaises(IntegrityError):
             User.objects.create_user(username="tomba", sciper="99999999")
+
+    def test_str_representation(self):
+        user = User.objects.create_user(
+            username="laborde",
+            sciper="99999999",
+            first_name="Issa",
+            last_name="Laborde",
+        )
+        self.assertEqual(str(user), "Issa Laborde (99999999)")

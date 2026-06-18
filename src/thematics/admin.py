@@ -16,6 +16,8 @@ class ThematicAdmin(admin.ModelAdmin):
         "order",
     )
 
+    ordering = ("-is_active", "-is_main", "order", "label_en")
+
     list_filter = (
         "is_active",
         "is_main",
@@ -24,3 +26,7 @@ class ThematicAdmin(admin.ModelAdmin):
     @admin.display(boolean=True, description=_("Has Homepage"))
     def has_homepage(self, obj):
         return hasattr(obj, "homepage")
+
+    def delete_queryset(self, request, queryset):
+        super().delete_queryset(request, queryset)
+        Thematic.reorder_everything()

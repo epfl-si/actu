@@ -24,13 +24,18 @@ class ThematicModelTest(TestCase):
             label_fr="Santé",
             label_de="Gesundheit",
             label_it="Salute",
-            is_active=False,
+            is_active=True,
             is_main=True,
             order=5,
         )
-        self.assertFalse(custom_thematic.is_active)
+        self.assertTrue(custom_thematic.is_active)
         self.assertTrue(custom_thematic.is_main)
+<<<<<<< HEAD
         self.assertEqual(custom_thematic.order, 5)
+=======
+        self.assertTrue(custom_thematic.has_homepage)
+        self.assertEqual(custom_thematic.order, 1)
+>>>>>>> main
 
     def test_inherited_get_label_method(self):
         self.assertEqual(self.thematic.get_label("en"), "AI")
@@ -44,3 +49,52 @@ class ThematicModelTest(TestCase):
 
         with translation.override("en"):
             self.assertEqual(str(self.thematic), "AI")
+
+    def test_inactive_or_not_main_forces_order_to_zero(self):
+        """Verify that the order is forced to 0 if not active or not "
+        "in the main menu."""
+        t1 = Thematic.objects.create(
+            label_en="Energy", is_main=True, is_active=False, order=3
+        )
+        t2 = Thematic.objects.create(
+            label_en="Climate", is_main=False, is_active=True, order=3
+        )
+
+        self.assertEqual(t1.order, 0)
+        self.assertEqual(t2.order, 0)
+
+    def test_reordering_on_insertion(self):
+        """Verify that inserting a thematic properly shifts the others ("
+        "bulk_update logic)."""
+        self.thematic.is_main = True
+        self.thematic.order = 1
+        self.thematic.save()
+
+        t2 = Thematic.objects.create(
+            label_en="Health", is_main=True, is_active=True, order=2
+        )
+
+        t3 = Thematic.objects.create(
+            label_en="Climate", is_main=True, is_active=True, order=2
+        )
+
+        t2.refresh_from_db()
+        self.assertEqual(t3.order, 2)
+        self.assertEqual(t2.order, 3)
+
+    def test_reordering_on_deletion(self):
+        """Verify that deleting a thematic closes the ordering gaps."""
+        self.thematic.is_main = True
+        self.thematic.order = 1
+        self.thematic.save()
+
+        t2 = Thematic.objects.create(
+            label_en="Health", is_main=True, is_active=True, order=2
+        )
+        t3 = Thematic.objects.create(
+            label_en="Climate", is_main=True, is_active=True, order=3
+        )
+
+        t2.delete()
+        t3.refresh_from_db()
+        self.assertEqual(t3.order, 2)

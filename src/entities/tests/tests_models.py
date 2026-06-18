@@ -25,13 +25,18 @@ class EntityModelTest(TestCase):
             label_fr="Sciences de Base",
             label_de="Grundlagenwissenschaften",
             label_it="Scienze di Base",
-            is_active=False,
+            is_active=True,
             is_main=True,
             order=2,
         )
-        self.assertFalse(custom_entity.is_active)
+        self.assertTrue(custom_entity.is_active)
         self.assertTrue(custom_entity.is_main)
+<<<<<<< HEAD
         self.assertEqual(custom_entity.order, 2)
+=======
+        self.assertTrue(custom_entity.has_homepage)
+        self.assertEqual(custom_entity.order, 1)
+>>>>>>> main
 
     def test_inherited_get_label_method(self):
         self.assertEqual(self.entity.get_label("fr"), "Sciences de la Vie")
@@ -45,3 +50,51 @@ class EntityModelTest(TestCase):
 
         with translation.override("en"):
             self.assertEqual(str(self.entity), "Life Sciences")
+
+    def test_inactive_or_not_main_forces_order_to_zero(self):
+        """Verify that the order switches to 0 if the entity is not "
+        "active or not in the main footer."""
+        e1 = Entity.objects.create(
+            label_en="ENAC", is_main=True, is_active=False, order=1
+        )
+        e2 = Entity.objects.create(
+            label_en="SB", is_main=False, is_active=True, order=1
+        )
+
+        self.assertEqual(e1.order, 0)
+        self.assertEqual(e2.order, 0)
+
+    def test_reordering_on_insertion(self):
+        """Verify that creating a new entity properly shifts the "
+        "following ones."""
+        self.entity.is_main = True
+        self.entity.order = 1
+        self.entity.save()
+
+        e2 = Entity.objects.create(
+            label_en="ENAC", is_main=True, is_active=True, order=2
+        )
+        e3 = Entity.objects.create(
+            label_en="SB", is_main=True, is_active=True, order=2
+        )
+
+        e2.refresh_from_db()
+        self.assertEqual(e3.order, 2)
+        self.assertEqual(e2.order, 3)
+
+    def test_reordering_on_deletion(self):
+        """Verify that deleting an entity closes the ordering gaps."""
+        self.entity.is_main = True
+        self.entity.order = 1
+        self.entity.save()
+
+        e2 = Entity.objects.create(
+            label_en="ENAC", is_main=True, is_active=True, order=2
+        )
+        e3 = Entity.objects.create(
+            label_en="SB", is_main=True, is_active=True, order=3
+        )
+
+        e2.delete()
+        e3.refresh_from_db()
+        self.assertEqual(e3.order, 2)

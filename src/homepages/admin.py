@@ -30,11 +30,12 @@ class HomepageAdmin(admin.ModelAdmin):
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name in ["thematic", "entity"]:
-            object_id = request.resolver_match.kwargs.get('object_id')
+            object_id = request.resolver_match.kwargs.get("object_id")
 
             if object_id:
                 kwargs["queryset"] = db_field.related_model.objects.filter(
-                    models.Q(homepage__isnull=True) | models.Q(homepage__id=object_id)
+                    models.Q(homepage__isnull=True)
+                    | models.Q(homepage__id=object_id)
                 )
             else:
                 kwargs["queryset"] = db_field.related_model.objects.filter(

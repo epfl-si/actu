@@ -23,6 +23,10 @@ class EntityAdmin(admin.ModelAdmin):
         "is_main",
     )
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.select_related("homepage")
+
     @admin.display(boolean=True, description=_("Has Homepage"))
     def has_homepage(self, obj):
         return hasattr(obj, "homepage")

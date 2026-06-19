@@ -51,6 +51,12 @@ class Homepage(models.Model):
         verbose_name=_("Users"),
     )
 
+    @property
+    def display_name(self):
+        if self.thematic:
+            return str(self.thematic)
+        return str(self.entity)
+
     def clean(self):
         super().clean()
 

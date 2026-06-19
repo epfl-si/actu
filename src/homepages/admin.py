@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from .models import Homepage
 
@@ -20,13 +21,9 @@ class HomepageAdmin(admin.ModelAdmin):
         "entity",
     )
 
-    @admin.display(description="Name")
+    @admin.display(description=_("Name"))
     def display_name(self, obj):
-        if obj.thematic:
-            return str(obj.thematic)
-        if obj.entity:
-            return str(obj.entity)
-        return "-"
+        return obj.display_name
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name in ["thematic", "entity"]:

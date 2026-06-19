@@ -21,6 +21,10 @@ class HomepageAdmin(admin.ModelAdmin):
         "entity",
     )
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.select_related("thematic", "entity")
+
     @admin.display(description=_("Name"))
     def display_name(self, obj):
         return obj.display_name

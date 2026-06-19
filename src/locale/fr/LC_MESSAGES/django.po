@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-15 15:37+0200\n"
+"POT-Creation-Date: 2026-06-19 12:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -52,6 +52,9 @@ msgstr "Ordre"
 
 msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
 msgstr "Définit l'ordre d'affichage. Une valeur de 0 signifie que l'ordre est ignoré (pour les entités non principales)."
+
+msgid "Name"
+msgstr "Nom"
 
 msgid "Homepage"
 msgstr "Page d'accueil"

@@ -17,7 +17,6 @@ class EntityModelTest(TestCase):
     def test_entity_default_values(self):
         self.assertTrue(self.entity.is_active)
         self.assertFalse(self.entity.is_main)
-        self.assertFalse(self.entity.has_homepage)
         self.assertEqual(self.entity.order, 0)
 
     def test_entity_custom_values(self):
@@ -28,12 +27,10 @@ class EntityModelTest(TestCase):
             label_it="Scienze di Base",
             is_active=True,
             is_main=True,
-            has_homepage=True,
-            order=2,
+            order=1,
         )
         self.assertTrue(custom_entity.is_active)
         self.assertTrue(custom_entity.is_main)
-        self.assertTrue(custom_entity.has_homepage)
         self.assertEqual(custom_entity.order, 1)
 
     def test_inherited_get_label_method(self):

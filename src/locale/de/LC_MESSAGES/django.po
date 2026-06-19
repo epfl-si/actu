@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-04 11:28+0200\n"
+"POT-Creation-Date: 2026-06-19 12:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,6 +26,9 @@ msgstr "Deutsch"
 msgid "Italian"
 msgstr "Italienisch"
 
+msgid "Has Homepage"
+msgstr "Hat Startseite"
+
 msgid "Entity"
 msgstr "Einheit"
 
@@ -44,17 +47,38 @@ msgstr "Haupt"
 msgid "Designates whether this entity (School) is displayed on the footer."
 msgstr "Gibt an, ob diese Einheit (Schule) im Footer angezeigt wird."
 
-msgid "Has Homepage"
-msgstr "Hat Startseite"
-
-msgid "Designates whether this entity has a dedicated homepage."
-msgstr "Gibt an, ob diese Einheit eine eigene Startseite hat."
-
 msgid "Order"
 msgstr "Reihenfolge"
 
 msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
 msgstr "Definiert die Anzeige-Reihenfolge. Ein Wert von 0 bedeutet, dass die Reihenfolge ignoriert wird (für nicht-haupt-Entitäten)."
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Homepage"
+msgstr "Startseite"
+
+msgid "Homepages"
+msgstr "Startseiten"
+
+msgid "Slug"
+msgstr "Slug"
+
+msgid "Define the Slug of this Homepage"
+msgstr "Definiert den Slug dieser Startseite"
+
+msgid "Thematic"
+msgstr "Thema"
+
+msgid "Users"
+msgstr "Benutzer"
+
+msgid "A Homepage cannot be linked to both a thematic and an entity."
+msgstr "Eine Startseite kann nicht gleichzeitig mit einem Thema und einer Einheit verknüpft sein."
+
+msgid "A Homepage must be linked to either a thematic or an entity."
+msgstr "Eine Startseite muss entweder mit einem Thema oder einer Einheit verknüpft sein."
 
 msgid "News"
 msgstr "Nachrichten"
@@ -74,9 +98,6 @@ msgstr "Abmelden"
 msgid "Login"
 msgstr "Anmelden"
 
-msgid "Thematic"
-msgstr "Thema"
-
 msgid "Thematics"
 msgstr "Themen"
 
@@ -85,9 +106,6 @@ msgstr "Gibt an, ob dieses Thema aktiv und im System sichtbar ist."
 
 msgid "Designates whether this thematic is displayed on the main menu."
 msgstr "Gibt an, ob dieses Thema im Hauptmenü angezeigt wird."
-
-msgid "Designates whether this thematic has a dedicated homepage."
-msgstr "Gibt an, ob dieses Thema eine eigene Startseite hat."
 
 msgid "Defines the display order."
 msgstr "Definiert die Anzeige-Reihenfolge."

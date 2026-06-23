@@ -91,7 +91,12 @@ class HomepageTranslation(models.Model):
     class Meta:
         verbose_name = _("Homepage translation")
         verbose_name_plural = _("Homepage translations")
-        unique_together = [("homepage", "language")]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["homepage", "language"],
+                name="unique_homepage_translation_per_language",
+            )
+        ]
         ordering = ["-created_at"]
 
     homepage = models.ForeignKey(

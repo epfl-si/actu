@@ -87,8 +87,8 @@ class HomepageTranslationModelTest(TestCase):
 
     def setUp(self):
         self.user = User.objects.create(
-            username="iivo.niskanen",
-            sciper="123456",
+            username="vonallmen",
+            sciper="99999999",
         )
         self.thematic = Thematic.objects.create(
             label_en="AI",

@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
 
 from .models import Homepage
@@ -22,6 +22,18 @@ class HomepageUsersManageView(UserPassesTestMixin, DetailView):
         context["current_users"] = homepage.users.all()
 
         return context
+
+    def post(self, request, *args, **kwargs):
+        homepage = self.get_object()
+        action = request.POST.get("action")
+        user_id = request.POST.get("user_id")
+
+        if action and user_id:
+            user = get_object_or_404(User, id=user_id)
+
+            homepage.users.remove(user)
+
+        return redirect("manage_homepage_users", pk=homepage.pk)
 
 
 def homepages(request):

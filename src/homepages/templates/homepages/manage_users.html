@@ -29,7 +29,14 @@
                   <tr>
                       <td>{{ user.first_name }} {{ user.last_name }}</td>
                       <td>{{ user.email }}</td>
-                      <td></td>
+                      <td class="text-end">
+                        <form method="POST" style="margin: 0;">
+                            {% csrf_token %}
+                            <input type="hidden" name="action" value="remove">
+                            <input type="hidden" name="user_id" value="{{ user.id }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                        </form>
+                      </td>
                   </tr>
               {% empty %}
                   <tr>

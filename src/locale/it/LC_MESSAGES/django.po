@@ -83,6 +83,21 @@ msgstr "Una pagina principale deve essere collegata a una tematica o a un'entit�
 msgid "News"
 msgstr "Notizie"
 
+msgid "Thematics"
+msgstr "Tematiche"
+
+msgid "Thematics related to this news."
+msgstr "Tematiche relative a questa notizia."
+
+msgid "Entities related to this news."
+msgstr "Entità relative a questa notizia."
+
+msgid "Created at"
+msgstr "Creato il"
+
+msgid "Created by"
+msgstr "Creato da"
+
 msgid "Language selection"
 msgstr "Selezione della lingua"
 
@@ -98,9 +113,6 @@ msgstr "Annulla l'accesso"
 msgid "Login"
 msgstr "Accedi"
 
-msgid "Thematics"
-msgstr "Tematiche"
-
 msgid "Designates whether this thematic is active and visible in the system."
 msgstr "Indica se questa tematica è attiva e visibile nel sistema."
 
@@ -109,6 +121,42 @@ msgstr "Indica se questa tematica viene visualizzata nel menu principale."
 
 msgid "Defines the display order."
 msgstr "Definisce l'ordine di visualizzazione."
+
+msgid "Draft"
+msgstr "Bozza"
+
+msgid "Published"
+msgstr "Pubblicato"
+
+msgid "Archived"
+msgstr "Archiviato"
+
+msgid "News translation"
+msgstr "Traduzione della notizia"
+
+msgid "News translations"
+msgstr "Traduzioni delle notizie"
+
+msgid "Language"
+msgstr "Lingua"
+
+msgid "Title"
+msgstr "Titolo"
+
+msgid "Status"
+msgstr "Stato"
+
+msgid "Updated at"
+msgstr "Aggiornato il"
+
+msgid "Updated by"
+msgstr "Aggiornato da"
+
+msgid "Published at"
+msgstr "Pubblicato il"
+
+msgid "Published by"
+msgstr "Pubblicato da"
 
 msgid "Label in French"
 msgstr "Etichetta in francese"

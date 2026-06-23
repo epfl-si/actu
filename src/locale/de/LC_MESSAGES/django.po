@@ -83,6 +83,21 @@ msgstr "Eine Startseite muss entweder mit einem Thema oder einer Einheit verknü
 msgid "News"
 msgstr "Nachrichten"
 
+msgid "Thematics"
+msgstr "Themen"
+
+msgid "Thematics related to this news."
+msgstr "Themen, die mit dieser Nachricht verbunden sind."
+
+msgid "Entities related to this news."
+msgstr "Einheiten, die mit dieser Nachricht verbunden sind."
+
+msgid "Created at"
+msgstr "Erstellt am"
+
+msgid "Created by"
+msgstr "Erstellt von"
+
 msgid "Language selection"
 msgstr "Sprachauswahl"
 
@@ -98,9 +113,6 @@ msgstr "Abmelden"
 msgid "Login"
 msgstr "Anmelden"
 
-msgid "Thematics"
-msgstr "Themen"
-
 msgid "Designates whether this thematic is active and visible in the system."
 msgstr "Gibt an, ob dieses Thema aktiv und im System sichtbar ist."
 
@@ -109,6 +121,42 @@ msgstr "Gibt an, ob dieses Thema im Hauptmenü angezeigt wird."
 
 msgid "Defines the display order."
 msgstr "Definiert die Anzeige-Reihenfolge."
+
+msgid "Draft"
+msgstr "Entwurf"
+
+msgid "Published"
+msgstr "Veröffentlicht"
+
+msgid "Archived"
+msgstr "Archiviert"
+
+msgid "News translation"
+msgstr "Nachrichtenübersetzung"
+
+msgid "News translations"
+msgstr "Nachrichtenübersetzungen"
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Updated at"
+msgstr "Aktualisiert am"
+
+msgid "Updated by"
+msgstr "Aktualisiert von"
+
+msgid "Published at"
+msgstr "Veröffentlicht am"
+
+msgid "Published by"
+msgstr "Veröffentlicht von"
 
 msgid "Label in French"
 msgstr "Label auf Französisch"

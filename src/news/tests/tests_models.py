@@ -31,20 +31,8 @@ class NewsModelTest(TestCase):
             created_by=self.user,
         )
 
-    def test_str_returns_news_id_when_no_translation(self):
-        self.assertEqual(
-            str(self.news), f"News #{self.news.pk} (no translation in English)"
-        )
-
-    def test_str_returns_english_title_when_translation_exists(self):
-        self.news.translations.create(
-            language="en",
-            title="Niskanen wins men's 50 km mass start classic",
-            created_by=self.user,
-        )
-        self.assertEqual(
-            str(self.news), "Niskanen wins men's 50 km mass start classic"
-        )
+    def test_str_returns_news_id(self):
+        self.assertEqual(str(self.news), f"News #{self.news.pk}")
 
     def test_can_add_thematic(self):
         self.news.thematics.add(self.thematic)

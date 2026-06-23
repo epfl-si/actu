@@ -24,6 +24,19 @@
                     <th class="text-end">Actions</th>
                 </tr>
             </thead>
+            <tbody>
+              {% for user in current_users %}
+                  <tr>
+                      <td>{{ user.first_name }} {{ user.last_name }}</td>
+                      <td>{{ user.email }}</td>
+                      <td></td>
+                  </tr>
+              {% empty %}
+                  <tr>
+                      <td colspan="3" class="text-center text-muted py-3">No user found</td>
+                  </tr>
+              {% endfor %}
+          </tbody>
         </table>
     </div>
 </div>

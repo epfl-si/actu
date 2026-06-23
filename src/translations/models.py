@@ -18,7 +18,12 @@ class NewsTranslation(models.Model):
     class Meta:
         verbose_name = _("News translation")
         verbose_name_plural = _("News translations")
-        unique_together = [("news", "language")]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["news", "language"],
+                name="unique_translation_per_language",
+            )
+        ]
         ordering = ["-created_at"]
 
     news = models.ForeignKey(

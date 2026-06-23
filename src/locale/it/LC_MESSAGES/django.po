@@ -113,9 +113,6 @@ msgstr "Annulla l'accesso"
 msgid "Login"
 msgstr "Accedi"
 
-msgid "Thematic"
-msgstr "Tematica"
-
 msgid "Designates whether this thematic is active and visible in the system."
 msgstr "Indica se questa tematica è attiva e visibile nel sistema."
 

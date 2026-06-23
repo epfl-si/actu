@@ -113,9 +113,6 @@ msgstr "Abmelden"
 msgid "Login"
 msgstr "Anmelden"
 
-msgid "Thematic"
-msgstr "Thema"
-
 msgid "Designates whether this thematic is active and visible in the system."
 msgstr "Gibt an, ob dieses Thema aktiv und im System sichtbar ist."
 

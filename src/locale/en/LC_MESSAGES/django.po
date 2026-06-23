@@ -113,9 +113,6 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-msgid "Thematic"
-msgstr ""
-
 msgid "Designates whether this thematic is active and visible in the system."
 msgstr ""
 

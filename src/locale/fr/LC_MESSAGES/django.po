@@ -113,9 +113,6 @@ msgstr "Déconnexion"
 msgid "Login"
 msgstr "Connexion"
 
-msgid "Thematic"
-msgstr "Thématique"
-
 msgid "Designates whether this thematic is active and visible in the system."
 msgstr "Indique si ce thème est actif et visible dans le système."
 

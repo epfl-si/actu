@@ -31,13 +31,6 @@ class Entity(LabelModel):
             "footer."
         ),
     )
-    has_homepage = models.BooleanField(
-        default=False,
-        verbose_name=_("Has Homepage"),
-        help_text=_(
-            "Designates whether this entity has a dedicated homepage."
-        ),
-    )
     order = models.PositiveIntegerField(
         default=0,
         verbose_name=_("Order"),

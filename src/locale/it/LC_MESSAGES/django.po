@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-17 13:33+0200\n"
+"POT-Creation-Date: 2026-06-19 12:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,6 +26,9 @@ msgstr "Tedesco"
 msgid "Italian"
 msgstr "Italiano"
 
+msgid "Has Homepage"
+msgstr "Ha una pagina principale"
+
 msgid "Entity"
 msgstr "Entità"
 
@@ -44,17 +47,38 @@ msgstr "Principale"
 msgid "Designates whether this entity (School) is displayed on the footer."
 msgstr "Indica se questa entità (Scuola) viene visualizzata nel piè di pagina."
 
-msgid "Has Homepage"
-msgstr "Ha una pagina principale"
-
-msgid "Designates whether this entity has a dedicated homepage."
-msgstr "Indica se questa entità ha una pagina principale dedicata."
-
 msgid "Order"
 msgstr "Ordine"
 
 msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
 msgstr "Definisce l'ordine di visualizzazione. Un valore di 0 significa che l'ordine viene ignorato (per le entità non principali)."
+
+msgid "Name"
+msgstr "Nome"
+
+msgid "Homepage"
+msgstr "Pagina principale"
+
+msgid "Homepages"
+msgstr "Pagine principali"
+
+msgid "Slug"
+msgstr "Slug"
+
+msgid "Define the Slug of this Homepage"
+msgstr "Definisci lo Slug di questa pagina principale"
+
+msgid "Thematic"
+msgstr "Tematica"
+
+msgid "Users"
+msgstr "Utenti"
+
+msgid "A Homepage cannot be linked to both a thematic and an entity."
+msgstr "Una pagina principale non può essere collegata contemporaneamente a una tematica e a un'entità."
+
+msgid "A Homepage must be linked to either a thematic or an entity."
+msgstr "Una pagina principale deve essere collegata a una tematica o a un'entità."
 
 msgid "News"
 msgstr "Notizie"
@@ -97,9 +121,6 @@ msgstr "Indica se questa tematica è attiva e visibile nel sistema."
 
 msgid "Designates whether this thematic is displayed on the main menu."
 msgstr "Indica se questa tematica viene visualizzata nel menu principale."
-
-msgid "Designates whether this thematic has a dedicated homepage."
-msgstr "Indica se questa tematica ha una pagina principale dedicata."
 
 msgid "Defines the display order."
 msgstr "Definisce l'ordine di visualizzazione."

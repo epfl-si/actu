@@ -30,13 +30,6 @@ class Thematic(LabelModel):
             "Designates whether this thematic is displayed on the main menu."
         ),
     )
-    has_homepage = models.BooleanField(
-        default=False,
-        verbose_name=_("Has Homepage"),
-        help_text=_(
-            "Designates whether this thematic has a dedicated homepage."
-        ),
-    )
     order = models.PositiveIntegerField(
         default=0,
         verbose_name=_("Order"),

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-17 13:33+0200\n"
+"POT-Creation-Date: 2026-06-19 12:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,6 +26,9 @@ msgstr ""
 msgid "Italian"
 msgstr ""
 
+msgid "Has Homepage"
+msgstr ""
+
 msgid "Entity"
 msgstr ""
 
@@ -44,16 +47,37 @@ msgstr ""
 msgid "Designates whether this entity (School) is displayed on the footer."
 msgstr ""
 
-msgid "Has Homepage"
-msgstr ""
-
-msgid "Designates whether this entity has a dedicated homepage."
-msgstr ""
-
 msgid "Order"
 msgstr ""
 
 msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Homepage"
+msgstr ""
+
+msgid "Homepages"
+msgstr ""
+
+msgid "Slug"
+msgstr ""
+
+msgid "Define the Slug of this Homepage"
+msgstr ""
+
+msgid "Thematic"
+msgstr ""
+
+msgid "Users"
+msgstr ""
+
+msgid "A Homepage cannot be linked to both a thematic and an entity."
+msgstr ""
+
+msgid "A Homepage must be linked to either a thematic or an entity."
 msgstr ""
 
 msgid "News"
@@ -96,9 +120,6 @@ msgid "Designates whether this thematic is active and visible in the system."
 msgstr ""
 
 msgid "Designates whether this thematic is displayed on the main menu."
-msgstr ""
-
-msgid "Designates whether this thematic has a dedicated homepage."
 msgstr ""
 
 msgid "Defines the display order."

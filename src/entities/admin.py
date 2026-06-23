@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 
 from .models import Entity
 
@@ -20,8 +21,15 @@ class EntityAdmin(admin.ModelAdmin):
     list_filter = (
         "is_active",
         "is_main",
-        "has_homepage",
     )
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.select_related("homepage")
+
+    @admin.display(boolean=True, description=_("Has Homepage"))
+    def has_homepage(self, obj):
+        return hasattr(obj, "homepage")
 
     def delete_queryset(self, request, queryset):
         super().delete_queryset(request, queryset)

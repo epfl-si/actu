@@ -83,6 +83,21 @@ msgstr ""
 msgid "News"
 msgstr ""
 
+msgid "Thematics"
+msgstr ""
+
+msgid "Thematics related to this news."
+msgstr ""
+
+msgid "Entities related to this news."
+msgstr ""
+
+msgid "Created at"
+msgstr ""
+
+msgid "Created by"
+msgstr ""
+
 msgid "Language selection"
 msgstr ""
 
@@ -98,9 +113,6 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-msgid "Thematics"
-msgstr ""
-
 msgid "Designates whether this thematic is active and visible in the system."
 msgstr ""
 
@@ -108,6 +120,42 @@ msgid "Designates whether this thematic is displayed on the main menu."
 msgstr ""
 
 msgid "Defines the display order."
+msgstr ""
+
+msgid "Draft"
+msgstr ""
+
+msgid "Published"
+msgstr ""
+
+msgid "Archived"
+msgstr ""
+
+msgid "News translation"
+msgstr ""
+
+msgid "News translations"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Updated at"
+msgstr ""
+
+msgid "Updated by"
+msgstr ""
+
+msgid "Published at"
+msgstr ""
+
+msgid "Published by"
 msgstr ""
 
 msgid "Label in French"

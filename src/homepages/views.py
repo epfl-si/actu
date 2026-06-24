@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView
 
@@ -8,12 +8,18 @@ from .models import Homepage
 User = get_user_model()
 
 
-class HomepageUsersManageView(UserPassesTestMixin, DetailView):
+class HomepageUsersManageView(
+    LoginRequiredMixin, UserPassesTestMixin, DetailView
+):
     model = Homepage
     template_name = "homepages/manage_users.html"
 
     def test_func(self):
-        return self.request.user.is_staff
+        homepage = self.get_object()
+        is_attach = homepage.users.filter(id=self.request.user.id).exists()
+        is_admin = self.request.user.is_superuser
+
+        return is_attach or is_admin
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

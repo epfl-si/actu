@@ -5,7 +5,7 @@ from .views import HomepageUsersManageView, homepages
 urlpatterns = [
     path("", homepages, name="homepages"),
     path(
-        "admin/homepage/<int:pk>/manage/",
+        "homepages/manage/<int:pk>/permissions/",
         HomepageUsersManageView.as_view(),
         name="manage_homepage_users",
     ),

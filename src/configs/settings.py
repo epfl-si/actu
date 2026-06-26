@@ -144,6 +144,7 @@ OIDC_RP_SIGN_ALGO = "RS256"
 LOGIN_URL = "/auth/authenticate"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL_FAILURE = "/forbidden"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

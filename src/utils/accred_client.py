@@ -12,8 +12,9 @@ class AccredServiceClient:
         self.username = settings.ACTU_API_USERNAME
         self.password = settings.ACTU_API_PASSWORD
         self.api_url = settings.ACTU_API_BASE_URL
+        self.right_id = settings.ACTU_API_RIGHT_ID
 
-    def search_persons_by_right(self, right_id, search_query):
+    def search_persons_by_right(self, search_query):
         if not self.username or not self.password:
             logger.error("[AccredServiceClient] Missing service credentials.")
             return []
@@ -25,7 +26,7 @@ class AccredServiceClient:
         url = f"{self.api_url}/v1/authorizations"
         is_numeric = clean_query.isdigit()
 
-        params = {"type": "right", "authid": right_id, "alldata": 1}
+        params = {"type": "right", "authid": self.right_id, "alldata": 1}
         query_parts = []
 
         if is_numeric:

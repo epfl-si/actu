@@ -148,6 +148,7 @@ LOGOUT_REDIRECT_URL = "/"
 LOGIN_REDIRECT_URL_FAILURE = "/forbidden"
 
 # Accred API (https://api.epfl.ch)
+ACTU_API_RIGHT_ID = os.getenv("ACTU_API_RIGHT_ID")
 ACTU_API_USERNAME = os.getenv("ACTU_API_USERNAME")
 ACTU_API_PASSWORD = os.getenv("ACTU_API_PASSWORD")
 ACTU_API_BASE_URL = "https://api.epfl.ch"

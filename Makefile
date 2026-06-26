@@ -89,6 +89,7 @@ print-env: check-env
 	@echo "ACTU_OIDC_RP_CLIENT_SECRET=${ACTU_OIDC_RP_CLIENT_SECRET}"
 	@echo "ACTU_API_USERNAME=${ACTU_API_USERNAME}"
 	@echo "ACTU_API_PASSWORD=${ACTU_API_PASSWORD}"
+	@echo "ACTU_API_RIGHT_ID=${ACTU_API_RIGHT_ID}"
 
 .PHONY: create-venv
 create-venv:

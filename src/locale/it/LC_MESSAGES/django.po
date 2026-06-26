@@ -131,6 +131,36 @@ msgstr "Tematiche relative a questa notizia."
 msgid "Entities related to this news."
 msgstr "Entità relative a questa notizia."
 
+msgid "Search for a user"
+msgstr "Cerca un utente"
+
+msgid "Type a name or a SCIPER..."
+msgstr "Digita un nome o un SCIPER..."
+
+msgid "Add"
+msgstr "Aggiungi"
+
+msgid "No result found or the person is already added..."
+msgstr "Nessun risultato trovato o la persona è già stata aggiunta..."
+
+msgid "Add this user"
+msgstr "Aggiungi questo utente"
+
+msgid "Authorized users"
+msgstr "Utenti autorizzati"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Actions"
+msgstr "Azioni"
+
+msgid "Remove"
+msgstr "Rimuovi"
+
+msgid "No user is currently linked to this Homepage."
+msgstr "Nessun utente è attualmente collegato a questa Homepage."
+
 msgid "Language selection"
 msgstr "Selezione della lingua"
 

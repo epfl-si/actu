@@ -131,6 +131,36 @@ msgstr ""
 msgid "Entities related to this news."
 msgstr ""
 
+msgid "Search for a user"
+msgstr ""
+
+msgid "Type a name or a SCIPER..."
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "No result found or the person is already added..."
+msgstr ""
+
+msgid "Add this user"
+msgstr ""
+
+msgid "Authorized users"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "No user is currently linked to this Homepage."
+msgstr ""
+
 msgid "Language selection"
 msgstr ""
 

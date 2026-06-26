@@ -6,15 +6,20 @@
 <link rel="stylesheet" href="{% static 'homepages/css/manage_users.css' %}">
 
 <div class="container py-4">
-    <h1>Homepage : {{ object.display_name }}</h1>
+    <h1>{% trans "Homepage" %} : {{ object.display_name }}</h1>
     <hr class="mb-4">
 
     <div class="card mb-5" style="border-top: 4px solid #FF0000;">
         <div class="card-body">
-            <label for="ajaxSearchInput" class="form-label font-weight-bold">Rechercher une personne à ajouter</label>
+            <label for="ajaxSearchInput" class="form-label font-weight-bold">
+                {% trans "Search for a user" %}
+            </label>
 
             <div class="position-relative">
-                <input type="text" id="ajaxSearchInput" class="form-control" style="padding-right: 40px;" placeholder="Tapez un nom ou un SCIPER..." autocomplete="off">
+                <input type="text" id="ajaxSearchInput" class="form-control" style="padding-right: 40px;"
+                  placeholder="{% trans 'Type a name or a SCIPER...' %}" autocomplete="off"
+                  data-trans-add="{% trans 'Add' %}"
+                  data-trans-no-results="{% trans 'No result found or the person is already added...' %}">
 
                 <div id="input-spinner"></div>
 
@@ -22,7 +27,9 @@
                 </ul>
             </div>
 
-            <button id="add-btn" class="btn mt-3 w-100 fw-bold py-2">Ajouter cette personne</button>
+            <button id="add-btn" class="btn mt-3 w-100 fw-bold py-2">
+                {% trans "Add this user" %}
+            </button>
         </div>
     </div>
 
@@ -32,14 +39,17 @@
         <input type="hidden" name="sciper" id="addSciper" value="">
     </form>
 
-    <h3 class="mb-3">Personnes autorisé ({{ current_users|length }})</h3>
+    <h3 class="mb-3">
+        {% trans "Authorized users" %} ({{ current_users|length }})
+    </h3>
+
     <div class="table-responsive">
         <table class="table table-striped table-hover align-middle">
             <thead class="table-light">
                 <tr>
-                    <th>Nom</th>
-                    <th>Email</th>
-                    <th class="text-end">Actions</th>
+                    <th>{% trans "Name" %}</th>
+                    <th>{% trans "Email" %}</th>
+                    <th class="text-end">{% trans "Actions" %}</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,13 +62,17 @@
                             {% csrf_token %}
                             <input type="hidden" name="action" value="remove">
                             <input type="hidden" name="user_id" value="{{ user.id }}">
-                            <button type="submit" class="btn btn-outline-danger btn-sm">Retirer</button>
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                {% trans "Remove" %}
+                            </button>
                         </form>
                       </td>
                   </tr>
               {% empty %}
                   <tr>
-                      <td colspan="3" class="text-center text-muted py-3">Aucune personne n'est reliée à cette Homepage pour le moment.</td>
+                      <td colspan="3" class="text-center text-muted py-3">
+                          {% trans "No user is currently linked to this Homepage." %}
+                      </td>
                   </tr>
               {% endfor %}
           </tbody>

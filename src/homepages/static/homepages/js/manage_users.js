@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const addForm = document.getElementById('addForm');
     const addSciperInput = document.getElementById('addSciper');
 
+    const transAdd = searchInput.dataset.transAdd;
+    const transNoResults = searchInput.dataset.transNoResults;
+
     let debounceTimer;
     let selectedSciper = null;
 
@@ -47,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                             dropdown.style.display = 'none';
                             addBtn.style.display = 'block';
-                            addBtn.textContent = `Ajouter ${user.text}`;
+                            addBtn.textContent = `${transAdd} ${user.text}`;
                         });
 
                         dropdown.appendChild(li);
@@ -57,7 +60,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     const li = document.createElement('li');
                     li.className = 'list-group-item text-muted';
                     li.style.cursor = 'default';
-                    li.innerHTML = '<i>Aucun résultat trouvé ou la personne est déjà ajoutée...</i>';
+
+                    li.innerHTML = `<i>${transNoResults}</i>`;
+
                     dropdown.appendChild(li);
                     dropdown.style.display = 'block';
                 }

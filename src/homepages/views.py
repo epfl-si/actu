@@ -37,11 +37,8 @@ class HomepageUsersManageView(
 
             if query:
                 client = AccredServiceClient()
-                right_id = 103
 
-                external_results = client.search_persons_by_right(
-                    right_id, query
-                )
+                external_results = client.search_persons_by_right(query)
 
                 attached_scipers = [
                     str(s)

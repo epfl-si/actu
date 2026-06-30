@@ -51,7 +51,7 @@
                         </a>
                       {% endif %}
                     {% else %}
-                      <a class="text-base" href="#" title="{% trans 'Create' %}">
+                      <a class="text-base" href="{% url 'create_homepage_translation' row.homepage.id lang_code %}" title="{% trans 'Create' %}">
                         <svg class="icon feather" aria-hidden="true"><use xlink:href="#plus-square"></use></svg>
                       </a>
                     {% endif %}

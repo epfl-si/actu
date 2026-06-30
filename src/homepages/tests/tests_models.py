@@ -1,10 +1,13 @@
+from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db.utils import IntegrityError
 from django.test import TestCase
 
 from entities.models import Entity
-from homepages.models import Homepage
+from homepages.models import Homepage, HomepageTranslation
 from thematics.models import Thematic
+
+User = get_user_model()
 
 
 class HomepageModelTest(TestCase):
@@ -78,3 +81,82 @@ class HomepageModelTest(TestCase):
     def test_db_constraint_blocks_no_relation(self):
         with self.assertRaises(IntegrityError):
             Homepage.objects.create(slug="invalid-home")
+
+
+class HomepageTranslationModelTest(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create(
+            username="vonallmen",
+            sciper="99999999",
+        )
+        self.thematic = Thematic.objects.create(
+            label_en="AI",
+            label_fr="IA",
+        )
+        self.homepage = Homepage.objects.create(
+            slug="ai",
+            thematic=self.thematic,
+        )
+        self.translation = HomepageTranslation.objects.create(
+            homepage=self.homepage,
+            language="en",
+            status=HomepageTranslation.Status.DRAFT,
+            created_by=self.user,
+        )
+
+    def test_str(self):
+        self.assertEqual(
+            str(self.translation),
+            "AI [en]",
+        )
+
+    def test_default_status_is_draft(self):
+        self.assertEqual(
+            self.translation.status, HomepageTranslation.Status.DRAFT
+        )
+
+    def test_is_published_false_when_draft(self):
+        self.assertFalse(self.translation.is_published)
+
+    def test_is_published_true_when_published(self):
+        self.translation.status = HomepageTranslation.Status.PUBLISHED
+        self.translation.save()
+        self.assertTrue(self.translation.is_published)
+
+    def test_unique_together_homepage_and_language(self):
+        with self.assertRaises(Exception):
+            HomepageTranslation.objects.create(
+                homepage=self.homepage,
+                language="en",
+                created_by=self.user,
+            )
+
+    def test_can_create_different_language_translation(self):
+        HomepageTranslation.objects.create(
+            homepage=self.homepage,
+            language="fr",
+            created_by=self.user,
+        )
+        self.assertEqual(
+            HomepageTranslation.objects.filter(homepage=self.homepage).count(),
+            2,
+        )
+
+    def test_created_at_is_set(self):
+        self.assertIsNotNone(self.translation.created_at)
+
+    def test_created_by_is_set(self):
+        self.assertEqual(self.translation.created_by, self.user)
+
+    def test_updated_at_is_set(self):
+        self.assertIsNotNone(self.translation.updated_at)
+
+    def test_updated_by_is_none_by_default(self):
+        self.assertIsNone(self.translation.updated_by)
+
+    def test_published_at_is_none_by_default(self):
+        self.assertIsNone(self.translation.published_at)
+
+    def test_published_by_is_none_by_default(self):
+        self.assertIsNone(self.translation.published_by)

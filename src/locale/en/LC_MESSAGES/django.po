@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 12:04+0200\n"
+"POT-Creation-Date: 2026-06-23 15:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -80,6 +80,45 @@ msgstr ""
 msgid "A Homepage must be linked to either a thematic or an entity."
 msgstr ""
 
+msgid "Draft"
+msgstr ""
+
+msgid "Published"
+msgstr ""
+
+msgid "Archived"
+msgstr ""
+
+msgid "Homepage translation"
+msgstr ""
+
+msgid "Homepage translations"
+msgstr ""
+
+msgid "Language"
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Created at"
+msgstr ""
+
+msgid "Created by"
+msgstr ""
+
+msgid "Updated at"
+msgstr ""
+
+msgid "Updated by"
+msgstr ""
+
+msgid "Published at"
+msgstr ""
+
+msgid "Published by"
+msgstr ""
+
 msgid "News"
 msgstr ""
 
@@ -90,12 +129,6 @@ msgid "Thematics related to this news."
 msgstr ""
 
 msgid "Entities related to this news."
-msgstr ""
-
-msgid "Created at"
-msgstr ""
-
-msgid "Created by"
 msgstr ""
 
 msgid "Language selection"
@@ -122,40 +155,13 @@ msgstr ""
 msgid "Defines the display order."
 msgstr ""
 
-msgid "Draft"
-msgstr ""
-
-msgid "Published"
-msgstr ""
-
-msgid "Archived"
-msgstr ""
-
 msgid "News translation"
 msgstr ""
 
 msgid "News translations"
 msgstr ""
 
-msgid "Language"
-msgstr ""
-
 msgid "Title"
-msgstr ""
-
-msgid "Status"
-msgstr ""
-
-msgid "Updated at"
-msgstr ""
-
-msgid "Updated by"
-msgstr ""
-
-msgid "Published at"
-msgstr ""
-
-msgid "Published by"
 msgstr ""
 
 msgid "Label in French"

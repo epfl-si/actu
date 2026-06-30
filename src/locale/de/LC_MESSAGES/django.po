@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 12:04+0200\n"
+"POT-Creation-Date: 2026-06-23 15:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -80,6 +80,45 @@ msgstr "Eine Startseite kann nicht gleichzeitig mit einem Thema und einer Einhei
 msgid "A Homepage must be linked to either a thematic or an entity."
 msgstr "Eine Startseite muss entweder mit einem Thema oder einer Einheit verknüpft sein."
 
+msgid "Draft"
+msgstr "Entwurf"
+
+msgid "Published"
+msgstr "Veröffentlicht"
+
+msgid "Archived"
+msgstr "Archiviert"
+
+msgid "Homepage translation"
+msgstr "Startseitenübersetzung"
+
+msgid "Homepage translations"
+msgstr "Startseitenübersetzungen"
+
+msgid "Language"
+msgstr "Sprache"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Created at"
+msgstr "Erstellt am"
+
+msgid "Created by"
+msgstr "Erstellt von"
+
+msgid "Updated at"
+msgstr "Aktualisiert am"
+
+msgid "Updated by"
+msgstr "Aktualisiert von"
+
+msgid "Published at"
+msgstr "Veröffentlicht am"
+
+msgid "Published by"
+msgstr "Veröffentlicht von"
+
 msgid "News"
 msgstr "Nachrichten"
 
@@ -91,12 +130,6 @@ msgstr "Themen, die mit dieser Nachricht verbunden sind."
 
 msgid "Entities related to this news."
 msgstr "Einheiten, die mit dieser Nachricht verbunden sind."
-
-msgid "Created at"
-msgstr "Erstellt am"
-
-msgid "Created by"
-msgstr "Erstellt von"
 
 msgid "Language selection"
 msgstr "Sprachauswahl"
@@ -122,41 +155,14 @@ msgstr "Gibt an, ob dieses Thema im Hauptmenü angezeigt wird."
 msgid "Defines the display order."
 msgstr "Definiert die Anzeige-Reihenfolge."
 
-msgid "Draft"
-msgstr "Entwurf"
-
-msgid "Published"
-msgstr "Veröffentlicht"
-
-msgid "Archived"
-msgstr "Archiviert"
-
 msgid "News translation"
 msgstr "Nachrichtenübersetzung"
 
 msgid "News translations"
 msgstr "Nachrichtenübersetzungen"
 
-msgid "Language"
-msgstr "Sprache"
-
 msgid "Title"
 msgstr "Titel"
-
-msgid "Status"
-msgstr "Status"
-
-msgid "Updated at"
-msgstr "Aktualisiert am"
-
-msgid "Updated by"
-msgstr "Aktualisiert von"
-
-msgid "Published at"
-msgstr "Veröffentlicht am"
-
-msgid "Published by"
-msgstr "Veröffentlicht von"
 
 msgid "Label in French"
 msgstr "Label auf Französisch"

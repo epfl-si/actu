@@ -7,6 +7,7 @@ logger = logging.getLogger("django")
 
 
 class AccredServiceClient:
+    REQUEST_TIMEOUT = 10
 
     def __init__(self):
         self.username = settings.ACTU_API_USERNAME
@@ -24,31 +25,29 @@ class AccredServiceClient:
             return []
 
         url = f"{self.api_url}/v1/authorizations"
-        is_numeric = clean_query.isdigit()
+        query_parts = clean_query.split()
+        api_search_term = max(query_parts, key=len)
 
-        params = {"type": "right", "authid": self.right_id, "alldata": 1}
-        query_parts = []
-
-        if is_numeric:
-            params["persid"] = clean_query
-        else:
-            query_parts = clean_query.split()
-            api_search_term = max(query_parts, key=len)
-            params["searchperson"] = api_search_term
+        params = {
+            "type": "right",
+            "authid": self.right_id,
+            "alldata": 1,
+            "searchperson": api_search_term,
+        }
 
         try:
             response = requests.get(
                 url,
                 auth=(self.username, self.password),
                 params=params,
-                timeout=10,
+                timeout=self.REQUEST_TIMEOUT,
             )
             response.raise_for_status()
             data = response.json()
             authorizations_list = data.get("authorizations", [])
 
             return self._filter_persons(
-                authorizations_list, clean_query, is_numeric, query_parts
+                authorizations_list, clean_query, query_parts
             )
 
         except requests.RequestException as e:
@@ -58,9 +57,7 @@ class AccredServiceClient:
             )
             return []
 
-    def _filter_persons(
-        self, authorizations_list, clean_query, is_numeric, query_parts
-    ):
+    def _filter_persons(self, authorizations_list, clean_query, query_parts):
         unique_persons = {}
 
         for auth in authorizations_list:
@@ -75,10 +72,9 @@ class AccredServiceClient:
             last_name = person_data.get("lastname", "")
             full_name = f"{first_name} {last_name}".lower()
 
-            if is_numeric:
-                match = sciper_str == clean_query
-            else:
-                match = all(part.lower() in full_name for part in query_parts)
+            match = sciper_str == clean_query or all(
+                part.lower() in full_name for part in query_parts
+            )
 
             if match and sciper_str not in unique_persons:
                 unique_persons[sciper_str] = {
@@ -100,7 +96,9 @@ class AccredServiceClient:
 
         try:
             response = requests.get(
-                url, auth=(self.username, self.password), timeout=10
+                url,
+                auth=(self.username, self.password),
+                timeout=self.REQUEST_TIMEOUT,
             )
             response.raise_for_status()
             person_data = response.json()

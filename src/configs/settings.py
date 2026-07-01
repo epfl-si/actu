@@ -140,10 +140,12 @@ OIDC_OP_TOKEN_ENDPOINT = f"{AUTH_DOMAIN}/oauth2/v2.0/token"
 OIDC_OP_JWKS_ENDPOINT = f"{AUTH_DOMAIN}/discovery/v2.0/keys"
 OIDC_OP_USER_ENDPOINT = "https://graph.microsoft.com/oidc/userinfo"
 OIDC_RP_SIGN_ALGO = "RS256"
+OIDC_REQUIRE_AUTHORIZATIONS = True
 
 LOGIN_URL = "/auth/authenticate"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL_FAILURE = "/forbidden"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

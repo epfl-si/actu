@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-19 12:04+0200\n"
+"POT-Creation-Date: 2026-06-23 15:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -80,6 +80,45 @@ msgstr "Une page d'accueil ne peut pas être liée à la fois à une thématique
 msgid "A Homepage must be linked to either a thematic or an entity."
 msgstr "Une page d'accueil doit être liée soit à une thématique, soit à une entité."
 
+msgid "Draft"
+msgstr "Brouillon"
+
+msgid "Published"
+msgstr "Publié"
+
+msgid "Archived"
+msgstr "Archivé"
+
+msgid "Homepage translation"
+msgstr "Traduction de page d'accueil"
+
+msgid "Homepage translations"
+msgstr "Traductions de pages d'accueil"
+
+msgid "Language"
+msgstr "Langue"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Created at"
+msgstr "Créé le"
+
+msgid "Created by"
+msgstr "Créé par"
+
+msgid "Updated at"
+msgstr "Modifié le"
+
+msgid "Updated by"
+msgstr "Modifié par"
+
+msgid "Published at"
+msgstr "Publié le"
+
+msgid "Published by"
+msgstr "Publié par"
+
 msgid "News"
 msgstr "Actualités"
 
@@ -91,12 +130,6 @@ msgstr "Thématiques liées à cette actualité."
 
 msgid "Entities related to this news."
 msgstr "Entités liées à cette actualité."
-
-msgid "Created at"
-msgstr "Créé le"
-
-msgid "Created by"
-msgstr "Créé par"
 
 msgid "Language selection"
 msgstr "Choix de la langue"
@@ -122,41 +155,14 @@ msgstr "Indique si ce thème est affiché dans le menu principal."
 msgid "Defines the display order."
 msgstr "Définit l'ordre d'affichage."
 
-msgid "Draft"
-msgstr "Brouillon"
-
-msgid "Published"
-msgstr "Publié"
-
-msgid "Archived"
-msgstr "Archivé"
-
 msgid "News translation"
 msgstr "Traduction d'actualité"
 
 msgid "News translations"
 msgstr "Traductions d'actualités"
 
-msgid "Language"
-msgstr "Langue"
-
 msgid "Title"
 msgstr "Titre"
-
-msgid "Status"
-msgstr "Statut"
-
-msgid "Updated at"
-msgstr "Modifié le"
-
-msgid "Updated by"
-msgstr "Modifié par"
-
-msgid "Published at"
-msgstr "Publié le"
-
-msgid "Published by"
-msgstr "Publié par"
 
 msgid "Label in French"
 msgstr "Label en français"

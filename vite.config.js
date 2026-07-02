@@ -20,6 +20,12 @@ export default defineConfig({
     // Required by django-vite. The manifest maps entry names to hashed
     // output filenames so templates can resolve the correct URLs.
     manifest: 'manifest.json',
+
+    rollupOptions: {
+      input: {
+        'index': './assets/components/homepages/index.js',
+      }
+    },
   },
 
   server: {

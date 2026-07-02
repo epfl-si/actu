@@ -23,7 +23,7 @@ export default defineConfig({
 
     rollupOptions: {
       input: {
-        'index': './assets/components/homepages/index.js',
+        homepages: './assets/components/homepages/index.js',
       }
     },
   },

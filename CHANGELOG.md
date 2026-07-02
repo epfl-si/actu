@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.0.3 / 2026-07-02
+
+- Add Homepage model (#40)
+- Add HomepageTranslation model (#45)
+- Add News and NewsTranslation models (#41)
+- Add entity and thematic order management (#37)
+- Add email configuration (#36)
+- Show thematics in header (#38)
+- Implement strict access control based on Entra ID authorization (#47)
+- Improve User admin and display (#42)
+- Fix admin login redirect with language prefix (#43)
+- Show deprecated APIs/symbols as warnings in VS Code (#46)
+
 ## v0.0.2 / 2026-06-02
 
 - Add models entities and thematics (#30)

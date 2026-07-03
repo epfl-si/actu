@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
 
@@ -19,14 +20,17 @@ def homepages(request):
 @login_required
 def manage_homepages(request):
 
+    translations_qs = HomepageTranslation.objects.select_related(
+        "created_by",
+        "updated_by",
+        "published_by",
+    )
+
     homepages = (
         Homepage.objects.filter(users=request.user)
-        .prefetch_related(
-            "translations",
-            "translations__created_by",
-            "translations__published_by",
-        )
         .select_related("thematic", "entity")
+        .prefetch_related(Prefetch("translations", queryset=translations_qs))
+        .order_by("thematic__order", "entity__order")
     )
 
     languages = settings.LANGUAGES

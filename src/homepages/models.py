@@ -169,26 +169,22 @@ class HomepageTranslation(models.Model):
         if self.status == self.Status.PUBLISHED:
             user = self.published_by
             date = self.published_at
-            verb = _("Published")
+            verb = _("Published on")
         elif self.status == self.Status.ARCHIVED:
             user = self.updated_by
             date = self.updated_at
-            verb = _("Archived")
+            verb = _("Archived on")
         else:
             if self.updated_by:
                 user = self.updated_by
                 date = self.updated_at
-                verb = _("Updated")
+                verb = _("Updated on")
             else:
                 user = self.created_by
                 date = self.created_at
-                verb = _("Created")
+                verb = _("Created on")
 
         date = localtime(date)
         user_name = f"{user.first_name} {user.last_name}" if user else ""
 
-        return _("{verb} {date} ({user})").format(
-            verb=verb,
-            date=date.strftime("%d.%m.%Y %H:%M"),
-            user=user_name,
-        )
+        return f"{verb} {date.strftime('%d.%m.%Y %H:%M')} ({user_name})"

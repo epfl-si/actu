@@ -44,7 +44,7 @@
                           <a href="#" title="{% trans "Edit" %}">
                             <svg class="icon feather text-tertiary" aria-hidden="true"><use xlink:href="#edit-2"></use>
                             </svg></a>
-                          <a href="{% url 'delete_homepage_translation' row.homepage.id lang_code %}" title="{% trans "Move to trash" %}">
+                          <a href="{% url 'delete_homepage_translation' row.homepage.id lang_code %}" title="{% trans "Delete" %}">
                             <svg class="icon feather text-danger" aria-hidden="true"><use xlink:href="#trash-2"></use></svg>
                           </a>
                         {% else %}

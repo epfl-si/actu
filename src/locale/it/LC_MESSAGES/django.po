@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-23 15:50+0200\n"
+"POT-Creation-Date: 2026-07-03 12:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -119,8 +119,71 @@ msgstr "Pubblicato il"
 msgid "Published by"
 msgstr "Pubblicato da"
 
+msgid "Published on"
+msgstr "Pubblicato il"
+
+msgid "Archived on"
+msgstr "Archiviato il"
+
+msgid "Updated on"
+msgstr "Aggiornato il"
+
+msgid "Created on"
+msgstr "Creato il"
+
 msgid "News"
 msgstr "Notizie"
+
+msgid "Manage Homepages"
+msgstr "Gestisci le pagine iniziali"
+
+msgid "You don't have permission to manage any homepage."
+msgstr "Non hai l'autorizzazione per gestire alcuna pagina iniziale."
+
+msgid "Actions"
+msgstr "Azioni"
+
+msgid "Preview and publish"
+msgstr "Anteprima e pubblica"
+
+msgid "Edit"
+msgstr "Modifica"
+
+msgid "Delete"
+msgstr "Elimina"
+
+msgid "Restore"
+msgstr "Ripristina"
+
+msgid "Create"
+msgstr "Crea"
+
+msgid "Edit permissions"
+msgstr "Modifica le autorizzazioni"
+
+msgid "Permissions"
+msgstr "Autorizzazioni"
+
+msgid "Invalid language."
+msgstr "Lingua non valida."
+
+msgid "A translation for this language already exists."
+msgstr "Una traduzione per questa lingua esiste già."
+
+msgid "Translation created successfully."
+msgstr "Traduzione creata con successo."
+
+msgid "This translation is already archived."
+msgstr "Questa traduzione è già archiviata."
+
+msgid "Translation archived successfully."
+msgstr "Traduzione archiviata con successo."
+
+msgid "This translation is not archived."
+msgstr "Questa traduzione non è archiviata."
+
+msgid "Translation restored successfully."
+msgstr "Traduzione ripristinata con successo."
 
 msgid "Thematics"
 msgstr "Tematiche"
@@ -175,3 +238,7 @@ msgstr "Etichetta in tedesco"
 
 msgid "Label in Italian"
 msgstr "Etichetta in italiano"
+
+#, python-brace-format
+#~ msgid "{verb} {date} ({user})"
+#~ msgstr "{verb} il {date} ({user})"

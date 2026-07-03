@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db.utils import IntegrityError
 from django.test import TestCase
+from django.utils.timezone import localtime, now
 
 from entities.models import Entity
 from homepages.models import Homepage, HomepageTranslation
@@ -89,6 +90,8 @@ class HomepageTranslationModelTest(TestCase):
         self.user = User.objects.create(
             username="vonallmen",
             sciper="99999999",
+            first_name="Franjo",
+            last_name="Von Allmen",
         )
         self.thematic = Thematic.objects.create(
             label_en="AI",
@@ -160,3 +163,49 @@ class HomepageTranslationModelTest(TestCase):
 
     def test_published_by_is_none_by_default(self):
         self.assertIsNone(self.translation.published_by)
+
+    def test_last_activity_label_for_draft_without_update(self):
+        label = self.translation.last_activity_label
+        expected_date = localtime(self.translation.created_at).strftime(
+            "%d.%m.%Y %H:%M"
+        )
+        self.assertIn("Created", label)
+        self.assertIn(expected_date, label)
+        self.assertIn("vonallmen", label) if False else None
+        self.assertIn(f"{self.user.first_name} {self.user.last_name}", label)
+
+    def test_last_activity_label_for_draft_with_update(self):
+        other_user = User.objects.create(
+            username="niskanen",
+            sciper="88888888",
+            first_name="Iivo",
+            last_name="Niskanen",
+        )
+        self.translation.updated_by = other_user
+        self.translation.save()
+
+        label = self.translation.last_activity_label
+
+        self.assertIn("Updated", label)
+        self.assertIn("Iivo Niskanen", label)
+
+    def test_last_activity_label_for_published(self):
+        self.translation.status = HomepageTranslation.Status.PUBLISHED
+        self.translation.published_at = now()
+        self.translation.published_by = self.user
+        self.translation.save()
+
+        label = self.translation.last_activity_label
+
+        self.assertIn("Published", label)
+        self.assertIn(f"{self.user.first_name} {self.user.last_name}", label)
+
+    def test_last_activity_label_for_archived(self):
+        self.translation.status = HomepageTranslation.Status.ARCHIVED
+        self.translation.updated_by = self.user
+        self.translation.save()
+
+        label = self.translation.last_activity_label
+
+        self.assertIn("Archived", label)
+        self.assertIn(f"{self.user.first_name} {self.user.last_name}", label)

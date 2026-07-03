@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load i18n %}
 
 {% block web2018_title %}{% trans 'News' %} · {% trans "Manage Homepages" %}{% endblock %}
+
+{% block web2018_extra_link %}
+  <link rel="stylesheet" href="{% static 'css/components/status-badge.css' %}">
+{% endblock %}
 
 {% block web2018_content %}
   <main id="main" class="content">
@@ -11,14 +16,14 @@
       {% if not homepage_rows %}
         <p>{% trans "You don't have permission to manage any homepage." %}</p>
       {% else %}
-        <table class="table table-boxed" data-tablesaw-mode="stack">
+        <table class="table table-boxed table-sortable" data-tablesaw-mode="stack" data-tablesaw-sortable>
           <thead>
             <tr>
-              <th>{% trans "Homepage" %}</th>
+              <th data-tablesaw-sortable-col>{% trans "Homepage" %}</th>
               {% for lang_code, lang_label in languages %}
-                <th>{{ lang_code|upper }}</th>
+                <th data-tablesaw-sortable-col>{{ lang_code|upper }}</th>
               {% endfor %}
-              <th>{% trans "Actions" %}</th>
+              <th data-tablesaw-sortable-col>{% trans "Actions" %}</th>
             </tr>
           </thead>
           <tbody>
@@ -27,42 +32,38 @@
                 <td>{{ row.homepage.display_name }}</td>
 
                 {% for lang_code, lang_label, translation in row.lang_cells %}
-                  <td>
-                    {% if translation %}
-                      {% if translation.status == 'published' %}
-                        <span title="{{ translation.last_activity_label }}">🟢</span>
-                      {% elif translation.status == 'draft' %}
-                        <span title="{{ translation.last_activity_label }}">🟡</span>
-                      {% elif translation.status == 'archived' %}
-                        <span title="{{ translation.last_activity_label }}">🔴</span>
-                        <a class="text-lg" href="#" title="{% trans "Restore" %}">
-                          <svg class="icon feather" aria-hidden="true"><use xlink:href="#corner-up-left"></use></svg>
+                  <td class="align-baseline">
+                    <div class="text-lg">
+                      {% if translation %}
+                        <span class="badge {{ translation.status }} text-sm" title="{{ translation.last_activity_label }}">
+                          {{ translation.get_status_display }}
+                        </span><br>
+                        {% if translation.status == 'published' or translation.status == 'draft' %}
+                          <a href="#" title="{% trans "Preview and publish" %}">
+                            <svg class="icon feather" aria-hidden="true"><use xlink:href="#eye"></use></svg></a>
+                          <a href="#" title="{% trans "Edit" %}">
+                            <svg class="icon feather text-tertiary" aria-hidden="true"><use xlink:href="#edit-2"></use>
+                            </svg></a>
+                          <a href="#" title="{% trans "Move to trash" %}">
+                            <svg class="icon feather text-danger" aria-hidden="true"><use xlink:href="#trash-2"></use></svg>
+                          </a>
+                        {% else %}
+                          <a class="text-lg" href="#" title="{% trans "Restore" %}">
+                            <svg class="icon feather" aria-hidden="true"><use xlink:href="#rotate-ccw"></use></svg>
+                          </a>
+                        {% endif %}
+                      {% else %}
+                        <a class="btn btn-secondary btn-sm p-1 text-nowrap" href="{% url 'create_homepage_translation' row.homepage.id lang_code %}">
+                          <svg class="icon feather mr-1" aria-hidden="true"><use xlink:href="#plus"></use></svg>{% trans 'Create' %}
                         </a>
                       {% endif %}
-
-                      {% if translation.status == 'published' or translation.status == 'draft' %}
-                        <a class="text-lg" href="#" title="{% trans "Preview and publish" %}">
-                          <svg class="icon feather" aria-hidden="true"><use xlink:href="#eye"></use></svg></a>
-                        <a class="text-lg" href="#" title="{% trans "Edit" %}">
-                          <svg class="icon feather text-tertiary" aria-hidden="true"><use xlink:href="#edit-2"></use>
-                          </svg></a>
-                        <a class="text-lg" href="#" title="{% trans "Move to trash" %}">
-                          <svg class="icon feather text-danger" aria-hidden="true"><use xlink:href="#trash-2"></use></svg>
-                        </a>
-                      {% endif %}
-                    {% else %}
-                      <a class="text-base" href="{% url 'create_homepage_translation' row.homepage.id lang_code %}" title="{% trans 'Create' %}">
-                        <svg class="icon feather" aria-hidden="true"><use xlink:href="#plus-square"></use></svg>
-                      </a>
-                    {% endif %}
+                      </div>
                   </td>
                 {% endfor %}
 
-                <td>
-                  <a class="text-base" href="#" title="{% trans 'Edit permissions' %}">
-                    <svg class="icon feather" aria-hidden="true">
-                      <use xlink:href="#key"></use>
-                    </svg>
+                <td class="align-baseline">
+                  <a class="btn btn-secondary btn-sm p-1 text-nowrap" href="#" title="{% trans 'Edit permissions' %}">
+                    <svg class="icon feather mr-1" aria-hidden="true"><use xlink:href="#key"></use></svg>{% trans "Permissions" %}
                   </a>
                 </td>
               </tr>

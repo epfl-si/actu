@@ -10,4 +10,14 @@ urlpatterns = [
         views.create_homepage_translation,
         name="create_homepage_translation",
     ),
+    path(
+        "homepages/manage/<int:homepage_id>/<str:lang>/delete/",
+        views.delete_homepage_translation,
+        name="delete_homepage_translation",
+    ),
+    path(
+        "homepages/manage/<int:homepage_id>/<str:lang>/restore/",
+        views.restore_homepage_translation,
+        name="restore_homepage_translation",
+    ),
 ]

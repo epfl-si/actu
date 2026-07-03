@@ -91,3 +91,55 @@ def create_homepage_translation(request, homepage_id, lang):
     messages.success(request, _("Translation created successfully."))
 
     return redirect("manage_homepages")
+
+
+@login_required
+def delete_homepage_translation(request, homepage_id, lang):
+    homepage = get_object_or_404(
+        Homepage.objects.filter(users=request.user),
+        pk=homepage_id,
+    )
+
+    translation = get_object_or_404(
+        HomepageTranslation,
+        homepage=homepage,
+        language=lang,
+    )
+
+    if translation.status == HomepageTranslation.Status.ARCHIVED:
+        messages.warning(request, _("This translation is already archived."))
+        return redirect("manage_homepages")
+
+    translation.status = HomepageTranslation.Status.ARCHIVED
+    translation.updated_by = request.user
+    translation.save()
+
+    messages.success(request, _("Translation archived successfully."))
+
+    return redirect("manage_homepages")
+
+
+@login_required
+def restore_homepage_translation(request, homepage_id, lang):
+    homepage = get_object_or_404(
+        Homepage.objects.filter(users=request.user),
+        pk=homepage_id,
+    )
+
+    translation = get_object_or_404(
+        HomepageTranslation,
+        homepage=homepage,
+        language=lang,
+    )
+
+    if translation.status != HomepageTranslation.Status.ARCHIVED:
+        messages.warning(request, _("This translation is not archived."))
+        return redirect("manage_homepages")
+
+    translation.status = HomepageTranslation.Status.DRAFT
+    translation.updated_by = request.user
+    translation.save()
+
+    messages.success(request, _("Translation restored successfully."))
+
+    return redirect("manage_homepages")

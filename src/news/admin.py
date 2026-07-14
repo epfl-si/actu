@@ -5,7 +5,7 @@ from .models import News
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "created_at", "created_by"]
+    list_display = ["__str__", "format", "created_at", "created_by"]
     search_fields = ["translations__title"]
     readonly_fields = ["created_by"]
 

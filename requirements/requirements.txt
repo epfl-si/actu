@@ -1,5 +1,5 @@
 django==5.2.13
-django-debug-toolbar==6.3.0
+django-debug-toolbar==7.0.0
 django-epfl-entra-id==0.0.9
 django-epfl-web2018==0.0.6
 gunicorn==26.0.0

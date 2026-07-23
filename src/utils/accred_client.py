@@ -82,7 +82,7 @@ class AccredServiceClient:
                     "first_name": first_name,
                     "last_name": last_name,
                     "email": person_data.get("email", ""),
-                    "displayName": f"{first_name} {last_name} ({sciper_str})",
+                    "display_name": f"{first_name} {last_name} ({sciper_str})",
                 }
 
         return list(unique_persons.values())

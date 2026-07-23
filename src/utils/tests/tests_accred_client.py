@@ -19,14 +19,14 @@ class TestAccredServiceClient(TestCase):
     def test_aborts_without_credentials(self):
         """Both methods must abort early if credentials are missing."""
         self.client.username = None
-        self.assertEqual(self.client.search_persons_by_right("Alice"), [])
-        self.assertIsNone(self.client.get_person_details("111111"))
+        self.assertEqual(self.client.search_persons_by_right("Iivo"), [])
+        self.assertIsNone(self.client.get_person_details("99999996"))
 
     @patch("requests.get", side_effect=requests.RequestException("Down"))
     def test_handles_network_crashes(self, mock_get):
         """Both methods must catch network exceptions gracefully."""
-        self.assertEqual(self.client.search_persons_by_right("Alice"), [])
-        self.assertIsNone(self.client.get_person_details("111111"))
+        self.assertEqual(self.client.search_persons_by_right("Iivo"), [])
+        self.assertIsNone(self.client.get_person_details("99999996"))
 
     def test_search_empty_query(self):
         """Search must abort if query is empty."""
@@ -40,52 +40,51 @@ class TestAccredServiceClient(TestCase):
             "authorizations": [
                 {
                     "person": {
-                        "sciper": 111111,
-                        "firstname": "Alice",
-                        "lastname": "Dupont",
+                        "sciper": 99999996,
+                        "firstname": "Iivo",
+                        "lastname": "Niskanen",
                     }
                 },
                 {
                     "person": {
-                        "id": 111110,
-                        "firstname": "Ali",
-                        "lastname": "Dupont",
+                        "id": 99999997,
+                        "firstname": "Kerttu",
+                        "lastname": "Niskanen",
                     }
                 },
                 {
                     "person": {
-                        "sciper": 222222,
-                        "firstname": "Bob",
-                        "lastname": "Martin",
+                        "sciper": 99999998,
+                        "firstname": "Alberto",
+                        "lastname": "Tomba",
                     }
                 },
-                {"person": {"firstname": "Charlie"}},
+                {"person": {"firstname": "Issa", "lastname": "Laborde"}},
             ]
         }
         mock_get.return_value = mock_response
 
-        res_name = self.client.search_persons_by_right("alice dupont")
+        res_name = self.client.search_persons_by_right("Iivo niskanen")
         self.assertEqual(len(res_name), 1)
-        self.assertEqual(res_name[0]["sciper"], "111111")
+        self.assertEqual(res_name[0]["sciper"], "99999996")
 
-        res_sciper = self.client.search_persons_by_right("222222")
+        res_sciper = self.client.search_persons_by_right("99999997")
         self.assertEqual(len(res_sciper), 1)
-        self.assertEqual(res_sciper[0]["sciper"], "222222")
+        self.assertEqual(res_sciper[0]["sciper"], "99999997")
 
     @patch("requests.get")
     def test_get_details_username_extraction(self, mock_get):
         """Tests the 3 fallback strategies for username extraction."""
         mock_get.side_effect = [
-            MagicMock(json=lambda: {"username": "adupont"}),
-            MagicMock(json=lambda: {"account": {"username": "bmartin"}}),
-            MagicMock(json=lambda: {"firstname": "Charlie"}),
+            MagicMock(json=lambda: {"username": "iniskanen"}),
+            MagicMock(json=lambda: {"account": {"username": "atomba"}}),
+            MagicMock(
+                json=lambda: {"firstname": "Issa", "lastname": "Laborde"}
+            ),
         ]
 
-        res_root = self.client.get_person_details("111111")
-        self.assertEqual(res_root["username"], "adupont")
+        res_root = self.client.get_person_details("99999996")
+        self.assertEqual(res_root["username"], "iniskanen")
 
-        res_nested = self.client.get_person_details("222222")
-        self.assertEqual(res_nested["username"], "bmartin")
-
-        res_fallback = self.client.get_person_details("333333")
-        self.assertEqual(res_fallback["username"], "333333")
+        res_nested = self.client.get_person_details("99999998")
+        self.assertEqual(res_nested["username"], "atomba")

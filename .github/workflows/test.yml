@@ -71,6 +71,6 @@ jobs:
           docker cp local-django-actu:/app/coverage.xml .
 
       - name: Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

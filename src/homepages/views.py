@@ -50,7 +50,7 @@ class HomepageUsersManageView(
                         data.append(
                             {
                                 "sciper": user_data["sciper"],
-                                "text": user_data["displayName"],
+                                "text": user_data["display_name"],
                                 "first_name": user_data.get("first_name", ""),
                                 "last_name": user_data.get("last_name", ""),
                             }

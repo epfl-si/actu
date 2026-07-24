@@ -65,7 +65,7 @@ jobs:
       - name: Stylelint
         run: |
           docker compose -f docker-compose-dev.yml exec \
-            assets npm run styelint
+            assets npm run stylelint
 
       - name: Coverage
         run: |

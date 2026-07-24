@@ -75,12 +75,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = "configs.urls"
@@ -98,6 +98,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "thematics.context_processors.global_thematics",
+                "entities.context_processors.footer_entities",
             ],
         },
     },
@@ -147,6 +148,12 @@ LOGIN_URL = "/auth/authenticate"
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 LOGIN_REDIRECT_URL_FAILURE = "/forbidden"
+
+# Accred API (https://api.epfl.ch)
+ACTU_API_RIGHT_ID = os.getenv("ACTU_API_RIGHT_ID")
+ACTU_API_USERNAME = os.getenv("ACTU_API_USERNAME")
+ACTU_API_PASSWORD = os.getenv("ACTU_API_PASSWORD")
+ACTU_API_BASE_URL = "https://api.epfl.ch"
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/

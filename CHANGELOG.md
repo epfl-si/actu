@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.0.4 / 2026-07-24
+
+- Update django-debug-toolbar to 7.0.0 (#57)
+- Fix order of LocaleMiddleware (#59)
+- Improve CONTRIBUTING.md (#55)
+- Add .dockerignore (#53)
+- Update codecov/codecov-action to v7 (#52)
+- Integrate EPFL API communication (#44)
+- Feature/entities footer (#60)
+- Add ViteJS to Django (#49)
+
 ## v0.0.3 / 2026-07-02
 
 - Add Homepage model (#40)

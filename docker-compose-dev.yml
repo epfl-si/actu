@@ -36,6 +36,9 @@ services:
       - ACTU_TENANT_ID=${ACTU_TENANT_ID}
       - ACTU_OIDC_RP_CLIENT_ID=${ACTU_OIDC_RP_CLIENT_ID}
       - ACTU_OIDC_RP_CLIENT_SECRET=${ACTU_OIDC_RP_CLIENT_SECRET}
+      - ACTU_API_USERNAME=${ACTU_API_USERNAME}
+      - ACTU_API_PASSWORD=${ACTU_API_PASSWORD}
+      - ACTU_API_RIGHT_ID=${ACTU_API_RIGHT_ID}
     volumes:
       - ./src:/app/src
       - ./docker:/app/docker

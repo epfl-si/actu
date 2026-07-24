@@ -39,6 +39,7 @@ help:
 	@echo "  make local-build          — Build actu for local development"
 	@echo "  make local-build-force    — Force build actu for local development"
 	@echo "  make local-up             — Brings up actu for local development"
+	@echo "  make local-assets-exec    — Enter the local development assets container"
 	@echo "  make local-django-exec    — Enter the local development django container"
 	@echo "  make local-postgres-exec  — Enter the local development postgres container"
 	@echo "Local production:"
@@ -169,6 +170,10 @@ local-build-force:
 .PHONY: local-up
 local-up:
 	@docker compose -f docker-compose-dev.yml up
+
+.PHONY: local-assets-exec
+local-assets-exec:
+	@docker exec -it --user root local-assets-actu sh
 
 .PHONY: local-django-exec
 local-django-exec:

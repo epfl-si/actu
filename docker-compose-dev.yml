@@ -1,4 +1,18 @@
 services:
+  assets:
+    build:
+      context: .
+      dockerfile: docker/nodejs/Dockerfile
+    image: local-assets-actu
+    container_name: local-assets-actu
+    volumes:
+      - ./src:/assets/src
+      - ./vite.config.js:/assets/vite.config.js
+      - ./package.json:/assets/package.json
+      - ./package-lock.json:/assets/package-lock.json
+    ports:
+      - "5173:5173"
+
   django:
     build:
       context: .

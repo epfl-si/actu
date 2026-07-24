@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     #
     # Packages
     "django_epfl_web2018",
+    "django_vite",
     "mozilla_django_oidc",
     #
     # Applications
@@ -180,7 +181,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+STATIC_ROOT = BASE_DIR / "static_root"
+
 STATIC_URL = "static/"
+
+DJANGO_VITE = {
+    "default": {
+        "dev_mode": DEBUG,
+    }
+}
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

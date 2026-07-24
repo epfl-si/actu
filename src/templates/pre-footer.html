@@ -1,0 +1,14 @@
+{% load i18n %}
+
+<div class="bg-gray-200">
+  <div class="container py-4">
+    <h6 class="mb-1">{% trans "News by entity" %}</h6>
+    <div>
+      {% for entity in footer_entities %}
+        <a href="#" class="tag tag-primary mt-2 mr-1">
+          {{ entity }}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>

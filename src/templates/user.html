@@ -23,7 +23,11 @@
       </p>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdown-user">
+<<<<<<< HEAD
       {% if user.is_staff and user.homepages.exists %}
+=======
+      {% if user.is_staff and user.homepages.exists > 0 %}
+>>>>>>> 96aad06 (refactor replacing with faster methods)
         <a href="#" class="dropdown-item">
           <svg aria-hidden="true" class="icon feather mr-1 mb-1">
             <use xlink:href="#home"></use>

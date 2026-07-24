@@ -1,0 +1,9 @@
+@use '../../variables';
+
+.badge {
+  border-radius: variables.$bdg-border-radius;
+
+  &.draft {
+    color: variables.$bdg-gray;
+  }
+}

@@ -1,7 +1,12 @@
 {% extends 'web2018/web2018.html' %}
 
 {% load i18n %}
+{% load django_vite %}
 {% get_current_language as LANGUAGE_CODE %}
+
+{% block web2018_extra_link %}
+  {% vite_asset './assets/entrypoint.scss' %}
+{% endblock %}
 
 {% block web2018_app_name %}{% trans "News" %}{% endblock %}
 

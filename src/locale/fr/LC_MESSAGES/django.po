@@ -122,15 +122,6 @@ msgstr "Publié par"
 msgid "News"
 msgstr "Actualités"
 
-msgid "Thematics"
-msgstr "Thématiques"
-
-msgid "Thematics related to this news."
-msgstr "Thématiques liées à cette actualité."
-
-msgid "Entities related to this news."
-msgstr "Entités liées à cette actualité."
-
 msgid "Search for a user"
 msgstr "Chercher un utilisateur"
 
@@ -160,6 +151,15 @@ msgstr "Supprimer"
 
 msgid "No user is currently linked to this Homepage."
 msgstr "Aucun utilisateur n'est relié à cette homepage."
+
+msgid "Thematics"
+msgstr "Thématiques"
+
+msgid "Thematics related to this news."
+msgstr "Thématiques liées à cette actualité."
+
+msgid "Entities related to this news."
+msgstr "Entités liées à cette actualité."
 
 msgid "Language selection"
 msgstr "Choix de la langue"

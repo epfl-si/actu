@@ -122,15 +122,6 @@ msgstr ""
 msgid "News"
 msgstr ""
 
-msgid "Thematics"
-msgstr ""
-
-msgid "Thematics related to this news."
-msgstr ""
-
-msgid "Entities related to this news."
-msgstr ""
-
 msgid "Search for a user"
 msgstr ""
 
@@ -159,6 +150,15 @@ msgid "Remove"
 msgstr ""
 
 msgid "No user is currently linked to this Homepage."
+msgstr ""
+
+msgid "Thematics"
+msgstr ""
+
+msgid "Thematics related to this news."
+msgstr ""
+
+msgid "Entities related to this news."
 msgstr ""
 
 msgid "Language selection"

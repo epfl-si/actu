@@ -24,6 +24,25 @@ export default defineConfig({
     rollupOptions: {
       input: {
         homepages: './assets/components/homepages/index.js',
+        actu: './assets/entrypoint.scss',
+      },
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+            return 'css/[name][extname]'
+          }
+        },
+      },
+    },
+  },
+
+  css: {
+    devSourcemap: true,
+
+    preprocessorOptions: {
+      scss: {
+        api: 'modern-compiler',
+        loadPaths: [path.resolve(__dirname, './src/assets')],
       },
     },
   },

@@ -137,16 +137,14 @@ msgstr "Choix de la langue"
 msgid "Others"
 msgstr "Autres"
 
-<<<<<<< HEAD
 msgid "News by entity"
 msgstr "Les actualités par faculté"
-=======
+
 msgid "My Homepages"
 msgstr "Mes pages d'accueil"
 
 msgid "My News"
 msgstr "Mes Actualités"
->>>>>>> 89ad8cb (feature: links to homepages and news in user menu (POC))
 
 msgid "Administration"
 msgstr "Administration"

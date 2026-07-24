@@ -137,14 +137,13 @@ msgstr ""
 msgid "Others"
 msgstr ""
 
-<<<<<<< HEAD
 msgid "News by entity"
-=======
+msgstr ""
+
 msgid "My Homepages"
 msgstr ""
 
 msgid "My News"
->>>>>>> 89ad8cb (feature: links to homepages and news in user menu (POC))
 msgstr ""
 
 msgid "Administration"

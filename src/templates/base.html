@@ -4,6 +4,10 @@
 {% load django_vite %}
 {% get_current_language as LANGUAGE_CODE %}
 
+{% block web2018_extra_link %}
+  <link rel="stylesheet" href="{% vite_asset_url 'assets/entrypoint.scss' %}">
+{% endblock %}
+
 {% block web2018_app_name %}{% trans "News" %}{% endblock %}
 
 {% block web2018_header %}

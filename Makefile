@@ -33,6 +33,7 @@ help:
 	@echo "  make lint                 — Lint code"
 	@echo "  make print-env            — Print environment variables"
 	@echo "  make scan                 — Scan latest app image"
+	@echo "  make stylelint            — Lint SCSS code with stylelint"
 	@echo "  make test                 — Run test suite"
 	@echo "  make translation          — Update translation files"
 	@echo "Local development:"
@@ -125,8 +126,13 @@ isort:
 	@docker exec -it --user root local-django-actu bash -c \
 		"isort --check-only --diff ."
 
+.PHONY: stylelint
+stylelint:
+	@docker exec -it --user root local-assets-actu sh -c \
+		"npm run lint"
+
 .PHONY: lint
-lint: hadolint black isort flake8
+lint: hadolint black isort flake8 stylelint
 
 .PHONY: test
 test: lint

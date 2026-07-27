@@ -62,6 +62,11 @@ jobs:
           docker compose -f docker-compose-dev.yml exec \
             django flake8
 
+      - name: Stylelint
+        run: |
+          docker compose -f docker-compose-dev.yml exec \
+            assets npm run stylelint
+
       - name: Coverage
         run: |
           docker compose -f docker-compose-dev.yml exec \

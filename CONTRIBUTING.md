@@ -17,6 +17,8 @@ Optionally, for better integration with IDEs:
 
 1. Install [pyenv](https://github.com/pyenv/pyenv).
 1. `make create-venv`.
+1. Install [nvm](https://github.com/nvm-sh/nvm).
+1. `npm install`.
 
 ## Help
 

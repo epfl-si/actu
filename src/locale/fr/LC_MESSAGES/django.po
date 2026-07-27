@@ -140,6 +140,12 @@ msgstr "Autres"
 msgid "News by entity"
 msgstr "Les actualités par faculté"
 
+msgid "My Homepages"
+msgstr "Mes pages d'accueil"
+
+msgid "My News"
+msgstr "Mes Actualités"
+
 msgid "Administration"
 msgstr "Administration"
 

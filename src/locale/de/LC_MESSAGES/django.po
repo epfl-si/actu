@@ -140,6 +140,12 @@ msgstr "Andere"
 msgid "News by entity"
 msgstr "Aktuelles nach Einheit"
 
+msgid "My Homepages"
+msgstr "My Startseiten"
+
+msgid "My News"
+msgstr "Meine Neuigkeiten"
+
 msgid "Administration"
 msgstr "Administration"
 

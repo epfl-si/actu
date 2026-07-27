@@ -140,6 +140,12 @@ msgstr "Altri"
 msgid "News by entity"
 msgstr "Notizie per entità"
 
+msgid "My Homepages"
+msgstr "Le mie Pagine principali"
+
+msgid "My News"
+msgstr "Le mie Notizie"
+
 msgid "Administration"
 msgstr "Amministrazione"
 

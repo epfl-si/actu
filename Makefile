@@ -33,12 +33,14 @@ help:
 	@echo "  make lint                 — Lint code"
 	@echo "  make print-env            — Print environment variables"
 	@echo "  make scan                 — Scan latest app image"
+	@echo "  make stylelint            — Lint SCSS code with stylelint"
 	@echo "  make test                 — Run test suite"
 	@echo "  make translation          — Update translation files"
 	@echo "Local development:"
 	@echo "  make local-build          — Build actu for local development"
 	@echo "  make local-build-force    — Force build actu for local development"
 	@echo "  make local-up             — Brings up actu for local development"
+	@echo "  make local-assets-exec    — Enter the local development assets container"
 	@echo "  make local-django-exec    — Enter the local development django container"
 	@echo "  make local-postgres-exec  — Enter the local development postgres container"
 	@echo "Local production:"
@@ -87,6 +89,9 @@ print-env: check-env
 	@echo "ACTU_TENANT_ID=${ACTU_TENANT_ID}"
 	@echo "ACTU_OIDC_RP_CLIENT_ID=${ACTU_OIDC_RP_CLIENT_ID}"
 	@echo "ACTU_OIDC_RP_CLIENT_SECRET=${ACTU_OIDC_RP_CLIENT_SECRET}"
+	@echo "ACTU_API_USERNAME=${ACTU_API_USERNAME}"
+	@echo "ACTU_API_PASSWORD=${ACTU_API_PASSWORD}"
+	@echo "ACTU_API_RIGHT_ID=${ACTU_API_RIGHT_ID}"
 
 .PHONY: create-venv
 create-venv:
@@ -121,8 +126,13 @@ isort:
 	@docker exec -it --user root local-django-actu bash -c \
 		"isort --check-only --diff ."
 
+.PHONY: stylelint
+stylelint:
+	@docker exec -it --user root local-assets-actu sh -c \
+		"npm run lint"
+
 .PHONY: lint
-lint: hadolint black isort flake8
+lint: hadolint black isort flake8 stylelint
 
 .PHONY: test
 test: lint
@@ -166,6 +176,10 @@ local-build-force:
 .PHONY: local-up
 local-up:
 	@docker compose -f docker-compose-dev.yml up
+
+.PHONY: local-assets-exec
+local-assets-exec:
+	@docker exec -it --user root local-assets-actu sh
 
 .PHONY: local-django-exec
 local-django-exec:

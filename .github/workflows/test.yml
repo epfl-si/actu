@@ -62,6 +62,11 @@ jobs:
           docker compose -f docker-compose-dev.yml exec \
             django flake8
 
+      - name: Stylelint
+        run: |
+          docker compose -f docker-compose-dev.yml exec \
+            assets npm run stylelint
+
       - name: Coverage
         run: |
           docker compose -f docker-compose-dev.yml exec \
@@ -71,6 +76,6 @@ jobs:
           docker cp local-django-actu:/app/coverage.xml .
 
       - name: Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

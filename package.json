@@ -1,0 +1,27 @@
+{
+  "name": "actu",
+  "private": true,
+  "version": "0.0.3",
+  "description": "Actu",
+  "homepage": "https://github.com/epfl-si/actu#readme",
+  "bugs": {
+    "url": "https://github.com/epfl-si/actu/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/epfl-si/actu.git"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "npm run stylelint",
+    "stylelint": "stylelint 'src/assets/**/*.scss'"
+  },
+  "devDependencies": {
+    "sass": "^1.86.2",
+    "stylelint": "^17.14.0",
+    "stylelint-config-recommended-scss": "^17.0.1",
+    "stylelint-order": "^8.1.1",
+    "vite": "^8.0.11"
+  }
+}

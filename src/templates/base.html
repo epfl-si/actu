@@ -1,7 +1,12 @@
 {% extends 'web2018/web2018.html' %}
 
 {% load i18n %}
+{% load django_vite %}
 {% get_current_language as LANGUAGE_CODE %}
+
+{% block web2018_extra_link %}
+  <link rel="stylesheet" href="{% vite_asset_url 'assets/entrypoint.scss' %}">
+{% endblock %}
 
 {% block web2018_app_name %}{% trans "News" %}{% endblock %}
 
@@ -20,6 +25,14 @@
   {% include "breadcrumb.html" %}
 {% endblock %}
 
+{% block web2018_pre_footer %}
+  {% include "pre-footer.html" %}
+{% endblock %}
+
 {% block web2018_nav_main %}
   {% include "nav-main.html" %}
+{% endblock %}
+
+{% block web2018_extra_js %}
+  {% vite_hmr_client %}
 {% endblock %}

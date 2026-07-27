@@ -49,6 +49,23 @@ CMD ["python", "src/manage.py", "runserver", "0.0.0.0:8000"]
 
 
 
+FROM node:26-alpine AS vite-build
+
+WORKDIR /assets
+
+COPY package.json package-lock.json ./
+
+RUN \
+  npm ci --no-audit --no-fund
+
+COPY vite.config.js ./
+COPY src ./src
+
+RUN \
+  npm run build
+
+
+
 FROM compile AS assets
 
 ENV ACTU_SECRET_KEY="UNUSED" \
@@ -60,6 +77,7 @@ ENV ACTU_SECRET_KEY="UNUSED" \
     ACTU_DATABASE_PASSWORD="UNUSED"
 
 COPY ./src /app/src
+COPY --from=vite-build /assets/src/static /app/src/static
 RUN \
   python src/manage.py collectstatic --noinput && \
   python src/manage.py compilemessages

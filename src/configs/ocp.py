@@ -11,6 +11,10 @@ ALLOWED_HOSTS = ["*"]
 
 STATIC_ROOT = "/public/static"
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # noqa: F405
+]
+
 
 # Enable hashing for static files
 # This generates a staticfiles.json manifest that maps original filenames

@@ -222,3 +222,6 @@ __marimo__/
 
 # Ansible cache
 ansible-deps-cache
+
+# Dependency directories
+node_modules/

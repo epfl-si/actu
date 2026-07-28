@@ -244,7 +244,3 @@ msgstr "Etichetta in tedesco"
 
 msgid "Label in Italian"
 msgstr "Etichetta in italiano"
-
-#, python-brace-format
-#~ msgid "{verb} {date} ({user})"
-#~ msgstr "{verb} il {date} ({user})"

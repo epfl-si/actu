@@ -1,9 +1,8 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static django_vite %}
 {% load i18n %}
 
 {% block web2018_content %}
-<link rel="stylesheet" href="{% static 'homepages/css/manage_users.css' %}">
 
 <div class="container py-4">
     <h1>{% trans "Homepage" %} : {{ object.display_name }}</h1>
@@ -80,5 +79,5 @@
     </div>
 </div>
 
-<script src="{% static 'homepages/js/manage_users.js' %}"></script>
+{% vite_asset 'homepages/assets/js/manage_users.js' %}
 {% endblock %}

@@ -25,6 +25,7 @@ export default defineConfig({
       input: {
         homepages: './assets/components/homepages/index.js',
         actu: './assets/entrypoint.scss',
+        manage_users: './homepages/assets/js/manage_users.js'
       },
       output: {
         assetFileNames: (assetInfo) => {

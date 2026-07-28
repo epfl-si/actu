@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
+import '../css/manage_users.css'
+
+document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById('ajaxSearchInput');
     const dropdown = document.getElementById('searchResultsDropdown');
     const addBtn = document.getElementById('add-btn');

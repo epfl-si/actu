@@ -2,12 +2,12 @@
 {% load static %}
 {% load i18n %}
 
-{% block web2018_title %}{% trans 'News' %} · {% trans "Manage Homepages" %}{% endblock %}
+{% block web2018_title %}{% trans 'News' %} · {% trans "My Homepages" %}{% endblock %}
 
 {% block web2018_content %}
   <main id="main" class="content">
     <div class="container-lg">
-      <h1 class="h2 my-5">{% trans "Manage Homepages" %}</h1>
+      <h1 class="h2 my-5">{% trans "My Homepages" %}</h1>
 
       {% if not homepage_rows %}
         <p>{% trans "You don't have permission to manage any homepage." %}</p>

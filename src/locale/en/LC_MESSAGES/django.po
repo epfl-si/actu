@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-22 14:02+0200\n"
+"POT-Creation-Date: 2026-07-28 10:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -134,7 +134,7 @@ msgstr ""
 msgid "News"
 msgstr ""
 
-msgid "Manage Homepages"
+msgid "My Homepages"
 msgstr ""
 
 msgid "You don't have permission to manage any homepage."
@@ -201,9 +201,6 @@ msgid "Others"
 msgstr ""
 
 msgid "News by entity"
-msgstr ""
-
-msgid "My Homepages"
 msgstr ""
 
 msgid "My News"

@@ -27,6 +27,7 @@ help:
 	@echo "  make coverage-html        — Run test suite with html coverage"
 	@echo "  make create-venv          — Create Python venv with Pyenv"
 	@echo "  make delete-venv          — Delete Python venv"
+	@echo "  make eslint               — Lint JS code with eslint"
 	@echo "  make flake8               — Lint Python code with flake8"
 	@echo "  make hadolint             — Lint Dockerfile with hadolint"
 	@echo "  make isort                — Lint Python code with isort"
@@ -126,13 +127,18 @@ isort:
 	@docker exec -it --user root local-django-actu bash -c \
 		"isort --check-only --diff ."
 
+.PHONY: eslint
+eslint:
+	@docker exec -it --user root local-assets-actu sh -c \
+		"npm run eslint"
+
 .PHONY: stylelint
 stylelint:
 	@docker exec -it --user root local-assets-actu sh -c \
-		"npm run lint"
+		"npm run stylelint"
 
 .PHONY: lint
-lint: hadolint black isort flake8 stylelint
+lint: hadolint black isort flake8 stylelint eslint
 
 .PHONY: test
 test: lint

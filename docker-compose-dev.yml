@@ -7,6 +7,7 @@ services:
     container_name: local-assets-actu
     volumes:
       - ./src:/assets/src
+      - ./eslint.config.js:/assets/eslint.config.js
       - ./stylelint.config.js:/assets/stylelint.config.js
       - ./vite.config.js:/assets/vite.config.js
       - ./package.json:/assets/package.json

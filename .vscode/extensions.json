@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "batisteo.vscode-django",
+    "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
     "exiasr.hadolint",
     "mrorz.language-gettext",

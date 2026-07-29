@@ -5,7 +5,9 @@
 {% block web2018_content %}
 
 <div class="container py-4">
-  <h1>{% trans "Homepage" %} : {{ homepage.display_name }}</h1>
+  {% block web2018_title %}
+    <h1>{% trans "Homepage" %} : {{ homepage.display_name }}</h1>
+  {% endblock %}
   <hr class="mb-4">
 
   <div class="card mb-5 card-homepage-search">

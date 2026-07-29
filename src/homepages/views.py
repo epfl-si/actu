@@ -2,6 +2,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Prefetch
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
@@ -72,8 +73,7 @@ def create_homepage_translation(request, homepage_id, lang):
 
     valid_lang_codes = [code for code, _ in settings.LANGUAGES]
     if lang not in valid_lang_codes:
-        messages.error(request, _("Invalid language."))
-        return redirect("manage_homepages")
+        raise Http404
 
     if HomepageTranslation.objects.filter(
         homepage=homepage, language=lang

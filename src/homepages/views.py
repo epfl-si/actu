@@ -25,12 +25,14 @@ def _handle_post_action(request, homepage):
             person_details = client.get_person_details(sciper)
 
             if person_details:
-                user = User.objects.create(
+                user, created = User.objects.get_or_create(
                     sciper=person_details["sciper"],
-                    username=person_details["username"],
-                    first_name=person_details["first_name"],
-                    last_name=person_details["last_name"],
-                    email=person_details["email"],
+                    defaults={
+                        "username": person_details["username"],
+                        "first_name": person_details["first_name"],
+                        "last_name": person_details["last_name"],
+                        "email": person_details["email"],
+                    },
                 )
 
         if user:

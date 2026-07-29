@@ -96,7 +96,7 @@ def manage_homepage_users(request, pk):
         "homepage": homepage,
         "current_users": homepage.users.all(),
     }
-    return render(request, "homepages/manage_users.html", context)
+    return render(request, "manage_users.html", context)
 
 
 def homepages(request):

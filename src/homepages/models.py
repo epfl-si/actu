@@ -184,7 +184,10 @@ class HomepageTranslation(models.Model):
                 date = self.created_at
                 verb = _("Created on")
 
-        date = localtime(date)
         user_name = f"{user.first_name} {user.last_name}" if user else ""
+
+        if date is None:
+            return f"{verb} — ({user_name})"
+        date = localtime(date)
 
         return f"{verb} {date.strftime('%d.%m.%Y %H:%M')} ({user_name})"

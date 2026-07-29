@@ -47,7 +47,8 @@ def _handle_post_action(request, homepage):
 
 def _get_ajax_search_results(request, homepage):
     query = request.GET.get("q", "").strip()
-    if not query:
+
+    if len(query) < 3:
         return JsonResponse({"results": []})
 
     client = AccredServiceClient()

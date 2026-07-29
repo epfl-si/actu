@@ -85,10 +85,8 @@ def manage_homepage_users(request, pk):
         _handle_post_action(request, homepage)
         return redirect("manage_homepage_users", pk=homepage.pk)
 
-    is_ajax = (
-        request.headers.get("x-requested-with") == "XMLHttpRequest"
-        or request.META.get("HTTP_X_REQUESTED_WITH") == "XMLHttpRequest"
-    )
+    is_ajax = request.headers.get("x-requested-with") == "XMLHttpRequest"
+
     if is_ajax:
         return _get_ajax_search_results(request, homepage)
 

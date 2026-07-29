@@ -25,40 +25,49 @@
           <tbody>
             {% for row in homepage_rows %}
               <tr>
-                <td>{{ row.homepage.display_name }}</td>
+                <td class="p-2">{{ row.homepage.display_name }}</td>
 
                 {% for lang_code, lang_label, translation in row.lang_cells %}
-                  <td class="align-baseline">
-                    <div class="text-lg">
-                      {% if translation %}
-                        <span class="badge {{ translation.status }} text-sm" title="{{ translation.last_activity_label }}">
-                          {{ translation.get_status_display }}
-                        </span><br>
+                  <td class="p-2">
+                    {% if translation %}
+                      <span class="badge {{ translation.status }} text-sm" title="{{ translation.last_activity_label }}">
+                        {{ translation.get_status_display }}
+                      </span>
+                      <div class="mt-2 text-nowrap">
                         {% if translation.status == 'published' or translation.status == 'draft' %}
-                          <a href="#" title="{% trans "Preview and publish" %}">
+                          <a href="#" class="btn btn-sm btn-actions btn-outline-dark p-1" title="{% trans "Preview and publish" %}">
                             <svg class="icon feather" aria-hidden="true"><use xlink:href="#eye"></use></svg></a>
-                          <a href="#" title="{% trans "Edit" %}">
-                            <svg class="icon feather text-tertiary" aria-hidden="true"><use xlink:href="#edit-2"></use>
+                          <a href="#" class="btn btn-sm btn-actions btn-outline-tertiary p-1" title="{% trans "Edit" %}">
+                            <svg class="icon feather" aria-hidden="true"><use xlink:href="#edit-2"></use>
                             </svg></a>
-                          <a href="{% url 'delete_homepage_translation' row.homepage.id lang_code %}" title="{% trans "Delete" %}">
-                            <svg class="icon feather text-danger" aria-hidden="true"><use xlink:href="#trash-2"></use></svg>
-                          </a>
+                          <form method="post" action="{% url 'delete_homepage_translation' row.homepage.id lang_code %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-actions btn-outline-danger p-1" title="{% trans "Delete" %}">
+                              <svg class="icon feather" aria-hidden="true"><use xlink:href="#trash-2"></use></svg>
+                            </button>
+                          </form>
                         {% else %}
-                          <a class="text-lg" href="{% url 'restore_homepage_translation' row.homepage.id lang_code %}" title="{% trans "Restore" %}">
-                            <svg class="icon feather" aria-hidden="true"><use xlink:href="#rotate-ccw"></use></svg>
-                          </a>
+                          <form method="post" action="{% url 'restore_homepage_translation' row.homepage.id lang_code %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-actions btn-outline-dark p-1" title="{% trans "Restore" %}">
+                              <svg class="icon feather" aria-hidden="true"><use xlink:href="#rotate-ccw"></use></svg>
+                            </button>
+                          </form>
                         {% endif %}
-                      {% else %}
-                        <a class="btn btn-secondary btn-sm p-1 text-nowrap" href="{% url 'create_homepage_translation' row.homepage.id lang_code %}">
-                          <svg class="icon feather mr-1" aria-hidden="true"><use xlink:href="#plus"></use></svg>{% trans 'Create' %}
-                        </a>
-                      {% endif %}
                       </div>
+                    {% else %}
+                      <form method="post" action="{% url 'create_homepage_translation' row.homepage.id lang_code %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-secondary btn-sm btn-actions p-1">
+                          <svg class="icon feather" aria-hidden="true"><use xlink:href="#plus"></use></svg>{% trans 'Create' %}
+                        </button>
+                      </form>
+                    {% endif %}
                   </td>
                 {% endfor %}
 
-                <td class="align-baseline">
-                  <a class="btn btn-secondary btn-sm p-1 text-nowrap" href="#" title="{% trans 'Edit permissions' %}">
+                <td class="p-2 align-baseline">
+                  <a class="btn btn-secondary btn-sm btn-actions p-1 text-nowrap" href="#" title="{% trans 'Edit permissions' %}">
                     <svg class="icon feather mr-1" aria-hidden="true"><use xlink:href="#key"></use></svg>{% trans "Permissions" %}
                   </a>
                 </td>

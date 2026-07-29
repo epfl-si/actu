@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
+from django.views.decorators.http import require_POST
 
 from .models import Homepage, HomepageTranslation
 
@@ -62,6 +63,7 @@ def manage_homepages(request):
 
 
 @login_required
+@require_POST
 def create_homepage_translation(request, homepage_id, lang):
     homepage = get_object_or_404(
         Homepage.objects.filter(users=request.user),
@@ -94,6 +96,7 @@ def create_homepage_translation(request, homepage_id, lang):
 
 
 @login_required
+@require_POST
 def delete_homepage_translation(request, homepage_id, lang):
     homepage = get_object_or_404(
         Homepage.objects.filter(users=request.user),
@@ -120,6 +123,7 @@ def delete_homepage_translation(request, homepage_id, lang):
 
 
 @login_required
+@require_POST
 def restore_homepage_translation(request, homepage_id, lang):
     homepage = get_object_or_404(
         Homepage.objects.filter(users=request.user),

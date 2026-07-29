@@ -48,3 +48,14 @@
     background-color: #cc0000;
     color: white;
 }
+
+.card-homepage-search {
+    border-top: 4px solid #FF0000;
+}
+
+.search-dropdown {
+    z-index: 1000;
+    max-height: 250px;
+    overflow-y: auto;
+    margin-top: 2px;
+}

@@ -8,21 +8,21 @@
   <h1>{% trans "Homepage" %} : {{ homepage.display_name }}</h1>
   <hr class="mb-4">
 
-  <div class="card mb-5" style="border-top: 4px solid #FF0000;">
+  <div class="card mb-5 card-homepage-search">
     <div class="card-body">
       <label for="ajaxSearchInput" class="form-label font-weight-bold">
         {% trans "Search for a user" %}
       </label>
 
       <div class="position-relative">
-        <input type="text" id="ajaxSearchInput" class="form-control" style="padding-right: 40px;"
+        <input type="text" id="ajaxSearchInput" class="form-control pe-5"
           placeholder="{% trans 'Type a name or a SCIPER...' %}" autocomplete="off"
           data-trans-add="{% trans 'Add' %}"
           data-trans-no-results="{% trans 'No result found or the person is already added...' %}">
 
         <div id="input-spinner"></div>
 
-        <ul id="searchResultsDropdown" class="list-group position-absolute w-100" style="display: none; z-index: 1000; max-height: 250px; overflow-y: auto; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 2px;">
+        <ul id="searchResultsDropdown" class="list-group position-absolute w-100 shadow search-dropdown" style="display: none;">
         </ul>
       </div>
 
@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  <form id="addForm" method="POST" style="display: none;">
+  <form id="addForm" method="POST" class="d-none">
     {% csrf_token %}
     <input type="hidden" name="action" value="add">
     <input type="hidden" name="sciper" id="addSciper" value="">
@@ -57,7 +57,7 @@
             <td>{{ user.first_name }} {{ user.last_name }}</td>
             <td>{{ user.email }}</td>
             <td class="text-end">
-              <form method="POST" style="margin: 0;">
+              <form method="POST" class="m-0">
                 {% csrf_token %}
                 <input type="hidden" name="action" value="remove">
                 <input type="hidden" name="user_id" value="{{ user.id }}">

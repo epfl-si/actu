@@ -1,9 +1,9 @@
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.contrib import messages
 from django.utils.translation import gettext as _
 
 from utils.accred_client import AccredServiceClient
@@ -38,17 +38,17 @@ def _handle_post_action(request, homepage):
                     },
                 )
             else:
-                messages.error(request, _("Failed to add user, please try again."))
+                messages.error(
+                    request, _("Failed to add user, please try again.")
+                )
                 return
 
         if user:
             homepage.users.add(user)
             messages.success(
                 request,
-                _("The user %(first)s %(last)s has been added successfully.") % {
-                    'first': user.first_name,
-                    'last': user.last_name
-                }
+                _("The user %(first)s %(last)s has been added successfully.")
+                % {"first": user.first_name, "last": user.last_name},
             )
 
     elif action == "remove":
@@ -58,10 +58,8 @@ def _handle_post_action(request, homepage):
             homepage.users.remove(user)
             messages.success(
                 request,
-                _("The user %(first)s %(last)s has been removed successfully.") % {
-                    'first': user.first_name,
-                    'last': user.last_name
-                }
+                _("The user %(first)s %(last)s has been removed successfully.")
+                % {"first": user.first_name, "last": user.last_name},
             )
 
 

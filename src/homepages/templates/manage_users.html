@@ -81,5 +81,9 @@
   </div>
 </div>
 
-{% vite_asset 'homepages/assets/js/manage_users.js' %}
+{% endblock %}
+
+{% block web2018_extra_js %}
+  {{ block.super }}
+  {% vite_asset 'homepages/assets/js/manage_users.js' %}
 {% endblock %}

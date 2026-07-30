@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib import messages
+from django.utils.translation import gettext as _
 
 from utils.accred_client import AccredServiceClient
 
@@ -17,6 +19,7 @@ def _handle_post_action(request, homepage):
     if action == "add":
         sciper = request.POST.get("sciper")
         if not sciper:
+            messages.error(request, _("No SCIPER provided."))
             return
 
         user = User.objects.filter(sciper=sciper).first()
@@ -34,15 +37,32 @@ def _handle_post_action(request, homepage):
                         "email": person_details["email"],
                     },
                 )
+            else:
+                messages.error(request, _("Failed to add user, please try again."))
+                return
 
         if user:
             homepage.users.add(user)
+            messages.success(
+                request,
+                _("The user %(first)s %(last)s has been added successfully.") % {
+                    'first': user.first_name,
+                    'last': user.last_name
+                }
+            )
 
     elif action == "remove":
         user_id = request.POST.get("user_id")
         if user_id:
             user = get_object_or_404(User, id=user_id)
             homepage.users.remove(user)
+            messages.success(
+                request,
+                _("The user %(first)s %(last)s has been removed successfully.") % {
+                    'first': user.first_name,
+                    'last': user.last_name
+                }
+            )
 
 
 def _get_ajax_search_results(request, homepage):

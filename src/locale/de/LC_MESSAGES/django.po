@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-22 14:02+0200\n"
+"POT-Creation-Date: 2026-07-30 14:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -151,6 +151,20 @@ msgstr "Entfernen"
 
 msgid "No user is currently linked to this Homepage."
 msgstr "Derzeit ist kein Benutzer mit dieser Homepage verknüpft."
+
+msgid "No SCIPER provided."
+msgstr "Keine SCIPER-Nummer angegeben."
+
+msgid "Failed to add user, please try again."
+msgstr "Fehler beim Hinzufügen des Benutzers, bitte versuchen Sie es erneut."
+
+#, python-format
+msgid "The user %(first)s %(last)s has been added successfully."
+msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich hinzugefügt."
+
+#, python-format
+msgid "The user %(first)s %(last)s has been removed successfully."
+msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich entfernt."
 
 msgid "Thematics"
 msgstr "Themen"

@@ -47,7 +47,7 @@ class CreateHomepageTranslationViewTest(TestCase):
             "create_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 302)
 
     def test_creates_translation_successfully(self):
@@ -56,7 +56,7 @@ class CreateHomepageTranslationViewTest(TestCase):
             "create_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 302)
         self.assertTrue(
             HomepageTranslation.objects.filter(
@@ -77,19 +77,17 @@ class CreateHomepageTranslationViewTest(TestCase):
             "create_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 404)
 
-    def test_invalid_language_shows_error_message(self):
+    def test_invalid_language_gets_404(self):
         self.client.force_login(self.user)
         url = reverse(
             "create_homepage_translation",
             args=[self.homepage.id, "fi"],
         )
-        response = self.client.get(url, follow=True)
-        messages = list(response.context["messages"])
-        self.assertEqual(len(messages), 1)
-        self.assertIn("Invalid language", str(messages[0]))
+        response = self.client.post(url, follow=True)
+        self.assertEqual(response.status_code, 404)
 
     def test_existing_translation_shows_warning_message(self):
         HomepageTranslation.objects.create(
@@ -102,7 +100,7 @@ class CreateHomepageTranslationViewTest(TestCase):
             "create_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url, follow=True)
+        response = self.client.post(url, follow=True)
         messages = list(response.context["messages"])
         self.assertEqual(len(messages), 1)
         self.assertIn("already exists", str(messages[0]))
@@ -146,7 +144,7 @@ class DeleteHomepageTranslationViewTest(TestCase):
             "delete_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 302)
 
     def test_archives_translation_successfully(self):
@@ -155,7 +153,7 @@ class DeleteHomepageTranslationViewTest(TestCase):
             "delete_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 302)
         self.translation.refresh_from_db()
         self.assertEqual(
@@ -170,7 +168,7 @@ class DeleteHomepageTranslationViewTest(TestCase):
             "delete_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 404)
 
     def test_already_archived_shows_warning(self):
@@ -182,7 +180,7 @@ class DeleteHomepageTranslationViewTest(TestCase):
             "delete_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url, follow=True)
+        response = self.client.post(url, follow=True)
         messages = list(response.context["messages"])
         self.assertEqual(len(messages), 1)
         self.assertIn("already archived", str(messages[0]))
@@ -193,7 +191,7 @@ class DeleteHomepageTranslationViewTest(TestCase):
             "delete_homepage_translation",
             args=[self.homepage.id, "fr"],
         )
-        response = self.client.get(url)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 404)
 
     def test_success_message_shown(self):
@@ -202,7 +200,7 @@ class DeleteHomepageTranslationViewTest(TestCase):
             "delete_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url, follow=True)
+        response = self.client.post(url, follow=True)
         messages = list(response.context["messages"])
         self.assertEqual(len(messages), 1)
         self.assertIn("archived successfully", str(messages[0]))
@@ -249,7 +247,7 @@ class RestoreHomepageTranslationViewTest(TestCase):
             "restore_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 302)
         self.translation.refresh_from_db()
         self.assertEqual(
@@ -264,7 +262,7 @@ class RestoreHomepageTranslationViewTest(TestCase):
             "restore_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 404)
 
     def test_not_archived_shows_warning(self):
@@ -276,7 +274,7 @@ class RestoreHomepageTranslationViewTest(TestCase):
             "restore_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url, follow=True)
+        response = self.client.post(url, follow=True)
 
         messages = list(response.context["messages"])
         self.assertEqual(len(messages), 1)
@@ -288,7 +286,7 @@ class RestoreHomepageTranslationViewTest(TestCase):
             "restore_homepage_translation",
             args=[self.homepage.id, "fr"],
         )
-        response = self.client.get(url)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 404)
 
     def test_success_message_shown(self):
@@ -297,7 +295,7 @@ class RestoreHomepageTranslationViewTest(TestCase):
             "restore_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url, follow=True)
+        response = self.client.post(url, follow=True)
         messages = list(response.context["messages"])
         self.assertEqual(len(messages), 1)
         self.assertIn("restored successfully", str(messages[0]))

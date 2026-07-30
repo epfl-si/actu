@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-29 16:27+0200\n"
+"POT-Creation-Date: 2026-07-30 09:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -163,6 +163,15 @@ msgstr "Modifica le autorizzazioni"
 
 msgid "Permissions"
 msgstr "Autorizzazioni"
+
+msgid "Delete translation"
+msgstr "Elimina traduzione"
+
+msgid "Do you really want to delete the '<strong id=\"confirm-delete-lang\"></strong>' version of the homepage '<strong id=\"confirm-delete-homepage\"></strong>'?"
+msgstr "Vuoi davvero eliminare la versione '<strong id=\"confirm-delete-lang\"></strong>' della homepage '<strong id=\"confirm-delete-homepage\"></strong>'?"
+
+msgid "Cancel"
+msgstr "Annulla"
 
 msgid "A translation for this language already exists."
 msgstr "Una traduzione per questa lingua esiste già."

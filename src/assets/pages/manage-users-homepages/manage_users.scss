@@ -1,0 +1,67 @@
+@use 'variables';
+
+.card-homepage-search {
+  border-top: 4px solid variables.$red;
+}
+
+#ajaxSearchInput {
+  &:focus {
+    outline: none;
+    border-color: variables.$red;
+    box-shadow: 0 0 0 1px variables.$red;
+  }
+}
+
+#input-spinner {
+  display: none;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  border: 3px solid variables.$gray-100;
+  border-top: 3px solid variables.$red;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  z-index: 10;
+}
+
+@keyframes spin {
+  0% { transform: translateY(-50%) rotate(0deg); }
+  100% { transform: translateY(-50%) rotate(360deg); }
+}
+
+#searchResultsDropdown {
+  li {
+    cursor: pointer;
+    transition: all 0.1s;
+    border-left: 4px solid transparent;
+
+    &:hover {
+      background-color: variables.$gray-100;
+      color: variables.$red;
+      border-left: 4px solid variables.$red;
+    }
+  }
+}
+
+.search-dropdown {
+  z-index: 1000;
+  max-height: 250px;
+  overflow-y: auto;
+  margin-top: 2px;
+}
+
+#add-btn {
+  display: none;
+  background-color: variables.$red;
+  color: variables.$white;
+  border: none;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: variables.$red-dark;
+    color: variables.$white;
+  }
+}

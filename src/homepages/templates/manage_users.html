@@ -16,28 +16,25 @@
           </label>
 
           <div class="position-relative">
-            <input type="text" id="ajaxSearchInput" class="form-control pe-5"
-              placeholder="{% trans 'Type a name or a SCIPER...' %}" autocomplete="off"
+            <select id="ajaxSearchInput"
+              placeholder="{% trans 'Type a name or a SCIPER...' %}"
               data-trans-add="{% trans 'Add' %}"
               data-trans-no-results="{% trans 'No result found or the person is already added...' %}">
-
-              <div id="input-spinner"></div>
-
-              <ul id="searchResultsDropdown" class="list-group position-absolute w-100 shadow search-dropdown" style="display: none;">
-              </ul>
+              <option value=""></option>
+            </select>
           </div>
 
           <button id="add-btn" class="btn mt-3 w-100 fw-bold py-2">
             {% trans "Add this user" %}
           </button>
+
+          <form id="addForm" method="POST" class="d-none">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="add">
+            <input type="hidden" name="sciper" id="addSciper" value="">
+          </form>
         </div>
       </div>
-
-      <form id="addForm" method="POST" class="d-none">
-        {% csrf_token %}
-        <input type="hidden" name="action" value="add">
-        <input type="hidden" name="sciper" id="addSciper" value="">
-      </form>
 
       <h3 class="mb-3">
         {% trans "Authorized users" %} ({{ current_users|length }})
@@ -84,5 +81,5 @@
 
 {% block web2018_extra_js %}
   {{ block.super }}
-  {% vite_asset 'homepages/assets/js/manage_users.js' %}
+  {% vite_asset 'assets/pages/manage-users-homepages/manage_users.js' %}
 {% endblock %}

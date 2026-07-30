@@ -23,7 +23,7 @@ export default defineConfig({
 
     rollupOptions: {
       input: {
-        homepages: './assets/components/homepages/index.js',
+        'manage-homepages': './assets/pages/manage-homepages/manage-homepages.js',
         actu: './assets/entrypoint.scss',
       },
       output: {

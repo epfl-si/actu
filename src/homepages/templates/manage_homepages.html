@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load django_vite %}
 {% load static %}
 {% load i18n %}
 
@@ -28,7 +29,7 @@
                 <td class="p-2">{{ row.homepage.display_name }}</td>
 
                 {% for lang_code, lang_label, translation in row.lang_cells %}
-                  <td class="p-2">
+                  <td class="p-2 align-baseline">
                     {% if translation %}
                       <span class="badge {{ translation.status }} text-sm" title="{{ translation.last_activity_label }}">
                         {{ translation.get_status_display }}
@@ -42,7 +43,10 @@
                             </svg></a>
                           <form method="post" action="{% url 'delete_homepage_translation' row.homepage.id lang_code %}" class="d-inline">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-sm btn-actions btn-outline-danger p-1" title="{% trans "Delete" %}">
+                            <button type="button" class="btn btn-sm btn-actions btn-outline-danger p-1" title="{% trans "Delete" %}"
+                              data-toggle="modal" data-target="#confirm_delete"
+                              data-homepage="{{ row.homepage.display_name }}"
+                              data-lang="{{ lang_label }}">
                               <svg class="icon feather" aria-hidden="true"><use xlink:href="#trash-2"></use></svg>
                             </button>
                           </form>
@@ -75,8 +79,33 @@
             {% endfor %}
           </tbody>
         </table>
+        <!-- Confirm delete modal -->
+        <div class="modal fade" id="confirm_delete" tabindex="-1" role="dialog" aria-labelledby="confirm_delete_label" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirm_delete_label">{% trans "Delete translation" %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>
+                  {% blocktrans %}Do you really want to delete the '<strong id="confirm-delete-lang"></strong>' version of the homepage '<strong id="confirm-delete-homepage"></strong>'?{% endblocktrans %}
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Cancel" %}</button>
+                <button type="button" class="btn btn-danger" id="confirm-delete-submit">{% trans "Delete" %}</button>
+              </div>
+            </div>
+          </div>
+        </div>
       {% endif %}
     </div>
   </main>
 {% endblock %}
 
+{% block web2018_extra_js %}
+  {% vite_asset 'assets/pages/manage-homepages/manage-homepages.js' %}
+{% endblock %}

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-30 14:31+0200\n"
+"POT-Creation-Date: 2026-07-31 07:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -121,6 +121,9 @@ msgstr "Veröffentlicht von"
 
 msgid "News"
 msgstr "Nachrichten"
+
+msgid "Manage permissions for homepage"
+msgstr "Berechtigungen für die Startseite verwalten"
 
 msgid "Search for a user"
 msgstr "Benutzer suchen"

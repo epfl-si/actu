@@ -6,6 +6,14 @@ from .settings import *  # noqa
 
 DEBUG = False
 
+DJANGO_VITE = {
+    "default": {
+        "dev_mode": True,
+        "dev_server_host": "assets",
+        "dev_server_port": 5173,
+    }
+}
+
 # Django Debug Toolbar can't be used with tests
 DEBUG_TOOLBAR_CONFIG = {}
 

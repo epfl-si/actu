@@ -15,12 +15,12 @@
 #input-spinner {
   display: none;
   position: absolute;
-  right: 15px;
   top: 50%;
-  transform: translateY(-50%);
+  right: 15px;
   width: 18px;
   height: 18px;
   border: 3px solid variables.$gray-100;
+  transform: translateY(-50%);
   border-top: 3px solid variables.$red;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
@@ -56,8 +56,8 @@
 #add-btn {
   display: none;
   background-color: variables.$red;
-  color: variables.$white;
   border: none;
+  color: variables.$white;
   transition: background-color 0.2s;
 
   &:hover {

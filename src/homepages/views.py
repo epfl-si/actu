@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError, transaction
 from django.db.models import Prefetch
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
@@ -75,22 +76,20 @@ def create_homepage_translation(request, homepage_id, lang):
     if lang not in valid_lang_codes:
         raise Http404
 
-    if HomepageTranslation.objects.filter(
-        homepage=homepage, language=lang
-    ).exists():
+    try:
+        with transaction.atomic():
+            HomepageTranslation.objects.create(
+                homepage=homepage,
+                language=lang,
+                status=HomepageTranslation.Status.DRAFT,
+                created_by=request.user,
+            )
+    except IntegrityError:
         messages.warning(
             request, _("A translation for this language already exists.")
         )
-        return redirect("manage_homepages")
-
-    HomepageTranslation.objects.create(
-        homepage=homepage,
-        language=lang,
-        status=HomepageTranslation.Status.DRAFT,
-        created_by=request.user,
-    )
-
-    messages.success(request, _("Translation created successfully."))
+    else:
+        messages.success(request, _("Translation created successfully."))
 
     return redirect("manage_homepages")
 

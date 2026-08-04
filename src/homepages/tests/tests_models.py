@@ -171,7 +171,6 @@ class HomepageTranslationModelTest(TestCase):
         )
         self.assertIn("Created", label)
         self.assertIn(expected_date, label)
-        self.assertIn("vonallmen", label) if False else None
         self.assertIn(f"{self.user.first_name} {self.user.last_name}", label)
 
     def test_last_activity_label_for_draft_with_update(self):

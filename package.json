@@ -11,13 +11,17 @@
     "type": "git",
     "url": "git+https://github.com/epfl-si/actu.git"
   },
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "npm run stylelint",
+    "eslint": "eslint '*.js' 'src/assets'",
+    "lint": "npm run stylelint && npm run eslint",
     "stylelint": "stylelint 'src/assets/**/*.scss'"
   },
   "devDependencies": {
+    "eslint": "^9.39.5",
+    "neostandard": "^0.13.0",
     "sass": "^1.86.2",
     "stylelint": "^17.14.0",
     "stylelint-config-recommended-scss": "^17.0.1",

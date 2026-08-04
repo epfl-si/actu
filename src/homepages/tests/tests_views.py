@@ -238,7 +238,7 @@ class RestoreHomepageTranslationViewTest(TestCase):
             "restore_homepage_translation",
             args=[self.homepage.id, "en"],
         )
-        response = self.client.get(url)
+        response = self.client.post(url)
         self.assertEqual(response.status_code, 302)
 
     def test_restores_translation_to_draft(self):

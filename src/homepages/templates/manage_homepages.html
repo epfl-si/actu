@@ -91,7 +91,10 @@
               </div>
               <div class="modal-body">
                 <p>
-                  {% blocktrans %}Do you really want to delete the '<strong id="confirm-delete-lang"></strong>' version of the homepage '<strong id="confirm-delete-homepage"></strong>'?{% endblocktrans %}
+                  {% trans "Do you really want to delete this homepage translation?" %}
+                </p>
+                <p>
+                  <strong id="confirm-delete-homepage"></strong> (<span id="confirm-delete-lang"></span>)
                 </p>
               </div>
               <div class="modal-footer">

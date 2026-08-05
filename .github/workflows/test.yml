@@ -72,6 +72,11 @@ jobs:
           docker compose -f docker-compose-dev.yml exec \
             assets npm run eslint
 
+      - name: Build assets
+        run: |
+          docker compose -f docker-compose-dev.yml exec --user root \
+            assets npm run build
+
       - name: Coverage
         run: |
           docker compose -f docker-compose-dev.yml exec \

@@ -55,12 +55,26 @@ def _handle_post_action(request, homepage):
         user_id = request.POST.get("user_id")
         if user_id:
             user = get_object_or_404(User, id=user_id)
-            homepage.users.remove(user)
-            messages.success(
-                request,
-                _("The user %(first)s %(last)s has been removed successfully.")
-                % {"first": user.first_name, "last": user.last_name},
-            )
+
+            if homepage.users.filter(id=user.id).exists():
+                homepage.users.remove(user)
+                messages.success(
+                    request,
+                    _(
+                        "The user %(first)s %(last)s has been removed"
+                        "successfully."
+                    )
+                    % {"first": user.first_name, "last": user.last_name},
+                )
+            else:
+                messages.warning(
+                    request,
+                    _(
+                        "The user %(first)s %(last)s is not attached to this"
+                        "homepage."
+                    )
+                    % {"first": user.first_name, "last": user.last_name},
+                )
 
 
 def _get_ajax_search_results(request, homepage):

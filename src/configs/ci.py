@@ -6,11 +6,14 @@ from .settings import *  # noqa
 
 DEBUG = False
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # noqa: F405
+]
+
 DJANGO_VITE = {
     "default": {
-        "dev_mode": True,
-        "dev_server_host": "assets",
-        "dev_server_port": 5173,
+        "dev_mode": DEBUG,
+        "manifest_path": BASE_DIR / "static" / "manifest.json",  # noqa: F405
     }
 }
 

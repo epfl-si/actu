@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-31 08:57+0200\n"
+"POT-Creation-Date: 2026-08-05 15:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -165,9 +165,13 @@ msgstr "Impossible d'ajouter un utilisateur, veuillez réessayer."
 msgid "The user %(first)s %(last)s has been added successfully."
 msgstr "L'utilisateur %(first)s %(last)s a été ajouté avec succès."
 
-#, python-format
-msgid "The user %(first)s %(last)s has been removed successfully."
+#, fuzzy, python-format
+msgid "The user %(first)s %(last)s has been removedsuccessfully."
 msgstr "L'utilisateur %(first)s %(last)s a été retiré avec succès."
+
+#, fuzzy, python-format
+msgid "The user %(first)s %(last)s is not attached to thishomepage."
+msgstr "L'utilisateur %(first)s %(last)s a été ajouté avec succès."
 
 msgid "Thematics"
 msgstr "Thématiques"

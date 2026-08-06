@@ -28,30 +28,30 @@ class HomepagesViewsTests(TestCase):
 class HomepageUsersManageViewTests(TestCase):
     def setUp(self):
         self.admin = User.objects.create_superuser(
-            username="admin_sys",
+            username="cnoel",
             sciper="99999991",
-            email="admin.systeme@epfl.ch",
+            email="clement.noel@epfl.ch",
         )
         self.attached_user = User.objects.create_user(
-            username="jdupont",
+            username="stawk",
             sciper="99999992",
-            first_name="Jean",
-            last_name="Dupont",
-            email="jean.dupont@epfl.ch",
+            first_name="Samer",
+            last_name="Tawk",
+            email="samer.tawk@epfl.ch",
         )
         self.unattached_user = User.objects.create_user(
-            username="mcurie",
+            username="ngreene",
             sciper="99999993",
-            first_name="Marie",
-            last_name="Curie",
-            email="marie.curie@epfl.ch",
+            first_name="Nancy",
+            last_name="Greene",
+            email="nancy.greene@epfl.ch",
         )
         self.target_user = User.objects.create_user(
-            username="pblanc",
+            username="eledecka",
             sciper="99999994",
-            first_name="Pierre",
-            last_name="Blanc",
-            email="pierre.blanc@epfl.ch",
+            first_name="Ester",
+            last_name="Ledecka",
+            email="ester.ledecka@epfl.ch",
         )
 
         self.thematic = Thematic.objects.create()
@@ -104,15 +104,15 @@ class HomepageUsersManageViewTests(TestCase):
         mock_instance.search_persons_by_right.return_value = [
             {
                 "sciper": "99999992",
-                "display_name": "Jean Dupont",
-                "first_name": "Jean",
-                "last_name": "Dupont",
+                "display_name": "Alexis Pinturault",
+                "first_name": "Alexis",
+                "last_name": "Pinturault",
             },
             {
                 "sciper": "99999995",
-                "display_name": "Alice Martin",
-                "first_name": "Alice",
-                "last_name": "Martin",
+                "display_name": "mhirscher",
+                "first_name": "Marcel",
+                "last_name": "Hirscher",
             },
         ]
 
@@ -150,10 +150,10 @@ class HomepageUsersManageViewTests(TestCase):
         mock_instance = MockClient.return_value
         mock_instance.get_person_details.return_value = {
             "sciper": "99999996",
-            "username": "lpetit",
-            "first_name": "Luc",
-            "last_name": "Petit",
-            "email": "luc.petit@epfl.ch",
+            "username": "lbianchi",
+            "first_name": "Lara",
+            "last_name": "Bianchi",
+            "email": ".bianchi@epfl.ch",
         }
 
         self.client.force_login(self.admin)

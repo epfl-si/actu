@@ -142,12 +142,12 @@ stylelint:
 lint: hadolint black isort flake8 stylelint eslint
 
 .PHONY: assets-build
-assets-build: lint
+assets-build:
 	@docker exec -it --user root local-assets-actu sh -c \
 		"npm run build"
 
 .PHONY: test
-test: assets-build
+test: lint assets-build
 	@docker exec -it --user root local-django-actu bash -c \
 		"DJANGO_SETTINGS_MODULE='configs.ci' python src/manage.py test"
 

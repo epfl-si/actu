@@ -131,7 +131,9 @@ def manage_homepage_users(request, pk):
 
     context = {
         "homepage": homepage,
-        "current_users": homepage.users.all(),
+        "current_users": homepage.users.all().order_by(
+            "last_name", "first_name"
+        ),
     }
     return render(request, "manage_users.html", context)
 

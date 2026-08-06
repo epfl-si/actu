@@ -4,33 +4,26 @@
   border-top: 4px solid variables.$red;
 }
 
-#ajaxSearchInput {
-  &:focus {
-    outline: none;
-    border-color: variables.$red;
-    box-shadow: 0 0 0 1px variables.$red;
-  }
+.selectize-input.focus {
+  outline: none;
+  border-color: variables.$red;
+  box-shadow: 0 0 0 1px variables.$red;
 }
 
-#searchResultsDropdown {
-  li {
-    cursor: pointer;
+.selectize-dropdown {
+  z-index: 1000;
+
+  .list-group-item {
     transition: all 0.1s;
     border-left: 4px solid transparent;
+    margin-bottom: 0;
 
-    &:hover {
+    &:hover, &.active {
       background-color: variables.$gray-100;
       color: variables.$red;
       border-left: 4px solid variables.$red;
     }
   }
-}
-
-.search-dropdown {
-  z-index: 1000;
-  max-height: 250px;
-  overflow-y: auto;
-  margin-top: 2px;
 }
 
 #add-btn {

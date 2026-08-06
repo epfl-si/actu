@@ -55,11 +55,11 @@
               <td>{{ user.first_name }} {{ user.last_name }}</td>
               <td>{{ user.email }}</td>
               <td class="text-end">
-                <form method="POST" class="m-0">
+                <form method="POST" class="m-0 remove-user-form">
                   {% csrf_token %}
                   <input type="hidden" name="action" value="remove">
                   <input type="hidden" name="user_id" value="{{ user.id }}">
-                  <button type="submit" class="btn btn-secondary btn-sm">
+                  <button type="button" class="btn btn-secondary btn-sm btn-remove-user" data-user-name="{{ user.first_name }} {{ user.last_name }}">
                     {% trans "Remove" %}
                   </button>
                 </form>
@@ -74,6 +74,31 @@
             {% endfor %}
           </tbody>
         </table>
+        <!-- Confirm delete modal -->
+        <div class="modal fade" id="confirm_remove" tabindex="-1" role="dialog" aria-labelledby="confirm_remove_label" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirm_remove_label">{% trans "Remove user" %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="{% trans 'Close' %}">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>
+                  {% trans "Are you sure you want to remove permissions for this user ?" %}
+                </p>
+                <p class="text-center h5 mt-3">
+                  <strong id="confirm-remove-user-name"></strong>
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Cancel" %}</button>
+                <button type="button" class="btn btn-danger" id="confirm-remove-submit">{% trans "Remove" %}</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </main>

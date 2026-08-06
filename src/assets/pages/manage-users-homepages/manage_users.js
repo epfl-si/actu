@@ -98,4 +98,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     addForm.submit()
   })
+
+  const removeButtons = document.querySelectorAll('.btn-remove-user')
+  const confirmModal = $('#confirm_remove')
+  const confirmUserNameDisplay = document.getElementById('confirm-remove-user-name')
+  const confirmSubmitBtn = document.getElementById('confirm-remove-submit')
+  let currentFormToSubmit = null
+
+  removeButtons.forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault()
+
+      currentFormToSubmit = this.closest('form')
+
+      const userName = this.getAttribute('data-user-name')
+      confirmUserNameDisplay.textContent = userName
+
+      confirmModal.modal('show')
+    })
+  })
+
+  confirmSubmitBtn.addEventListener('click', function () {
+    if (currentFormToSubmit) {
+      currentFormToSubmit.submit()
+    }
+  })
 })

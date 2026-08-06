@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-05 15:02+0200\n"
+"POT-Creation-Date: 2026-08-06 14:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -154,6 +154,18 @@ msgstr "Supprimer"
 
 msgid "Nobody has permission to manage this homepage."
 msgstr "Personne n'a la permission de gérer cette page d'accueil."
+
+msgid "Remove user"
+msgstr "Supprimer"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Are you sure you want to remove permissions for this user ?"
+msgstr "Etes vous sur d'enlever la permission à cet utilisateur ?"
+
+msgid "Cancel"
+msgstr "Annuler"
 
 msgid "No SCIPER provided."
 msgstr "Aucun SCIPER n'a été fourni"

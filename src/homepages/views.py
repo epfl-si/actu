@@ -109,9 +109,9 @@ def _get_ajax_search_results(request, homepage):
 def manage_homepage_users(request, pk):
     homepage = get_object_or_404(Homepage, pk=pk)
 
-    is_attach = homepage.users.filter(id=request.user.id).exists()
+    is_attached = homepage.users.filter(id=request.user.id).exists()
     is_admin = request.user.is_staff
-    if not (is_attach or is_admin):
+    if not (is_attached or is_admin):
         raise PermissionDenied
 
     if request.method == "POST":

@@ -92,11 +92,17 @@ def _get_ajax_search_results(request, homepage):
     data = []
 
     for user_data in external_results:
-        if str(user_data["sciper"]) not in attached_scipers:
+        sciper = user_data.get("sciper")
+        display_name = user_data.get("display_name")
+
+        if not sciper or not display_name:
+            continue
+
+        if str(sciper) not in attached_scipers:
             data.append(
                 {
-                    "sciper": user_data["sciper"],
-                    "text": user_data["display_name"],
+                    "sciper": sciper,
+                    "text": display_name,
                     "first_name": user_data.get("first_name", ""),
                     "last_name": user_data.get("last_name", ""),
                 }

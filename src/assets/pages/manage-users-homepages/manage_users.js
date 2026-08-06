@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const addSciperInput = document.getElementById('addSciper')
 
   const transAdd = searchInput.dataset.transAdd
-  const transNoResults = searchInput.dataset.transNoResults
 
   const errorFeedback = document.createElement('div')
   errorFeedback.className = 'text-danger mt-1 small'
@@ -69,11 +68,6 @@ document.addEventListener('DOMContentLoaded', function () {
       option: function (item, escape) {
         return `<div class="list-group-item list-group-item-action border-0" style="cursor: pointer;">
                   ${escape(item.text)}
-                </div>`
-      },
-      not_found: function (data, escape) {
-        return `<div class="list-group-item border-0 text-muted" style="cursor: default;">
-                  <i>${escape(transNoResults)}</i>
                 </div>`
       },
     },

@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     labelField: 'text',
     searchField: 'text',
     maxItems: 1,
-    loadThrottle: 800,
+    loadThrottle: 300,
     create: false,
     placeholder: searchInput.getAttribute('placeholder'),
 

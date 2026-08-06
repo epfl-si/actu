@@ -22,6 +22,7 @@ help:
 	@echo "Main:"
 	@echo "  make help                 — Display this help"
 	@echo "Utilities:"
+	@echo "  make assets-build         — Build assets with Vite"
 	@echo "  make black                — Lint Python code with black"
 	@echo "  make coverage             — Run test suite with text coverage"
 	@echo "  make coverage-html        — Run test suite with html coverage"
@@ -140,8 +141,13 @@ stylelint:
 .PHONY: lint
 lint: hadolint black isort flake8 stylelint eslint
 
+.PHONY: assets-build
+assets-build:
+	@docker exec -it --user root local-assets-actu sh -c \
+		"npm run build"
+
 .PHONY: test
-test: lint
+test: lint assets-build
 	@docker exec -it --user root local-django-actu bash -c \
 		"DJANGO_SETTINGS_MODULE='configs.ci' python src/manage.py test"
 

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-22 14:02+0200\n"
+"POT-Creation-Date: 2026-08-04 16:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -119,7 +119,76 @@ msgstr ""
 msgid "Published by"
 msgstr ""
 
+msgid "Published on"
+msgstr ""
+
+msgid "Archived on"
+msgstr ""
+
+msgid "Updated on"
+msgstr ""
+
+msgid "Created on"
+msgstr ""
+
 msgid "News"
+msgstr ""
+
+msgid "My Homepages"
+msgstr ""
+
+msgid "You don't have permission to manage any homepage."
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "Preview and publish"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Restore"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Edit permissions"
+msgstr ""
+
+msgid "Permissions"
+msgstr ""
+
+msgid "Delete translation"
+msgstr ""
+
+msgid "Do you really want to delete this homepage translation?"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "A translation for this language already exists."
+msgstr ""
+
+msgid "Translation created successfully."
+msgstr ""
+
+msgid "This translation is already archived."
+msgstr ""
+
+msgid "Translation archived successfully."
+msgstr ""
+
+msgid "This translation is not archived."
+msgstr ""
+
+msgid "Translation restored successfully."
 msgstr ""
 
 msgid "Thematics"
@@ -138,9 +207,6 @@ msgid "Others"
 msgstr ""
 
 msgid "News by entity"
-msgstr ""
-
-msgid "My Homepages"
 msgstr ""
 
 msgid "My News"

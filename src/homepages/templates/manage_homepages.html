@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load django_vite %}
+{% load static %}
+{% load i18n %}
+
+{% block web2018_title %}{% trans 'News' %} · {% trans "My Homepages" %}{% endblock %}
+
+{% block web2018_content %}
+  <main id="main" class="content">
+    <div class="container-lg">
+      <h1 class="h2 my-5">{% trans "My Homepages" %}</h1>
+
+      {% if not homepage_rows %}
+        <p>{% trans "You don't have permission to manage any homepage." %}</p>
+      {% else %}
+        <table class="table table-boxed table-sortable" data-tablesaw-mode="stack" data-tablesaw-sortable>
+          <thead>
+            <tr>
+              <th data-tablesaw-sortable-col>{% trans "Homepage" %}</th>
+              {% for lang_code, lang_label in languages %}
+                <th data-tablesaw-sortable-col>{{ lang_code|upper }}</th>
+              {% endfor %}
+              <th data-tablesaw-sortable-col>{% trans "Actions" %}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in homepage_rows %}
+              <tr>
+                <td class="p-2">{{ row.homepage.display_name }}</td>
+
+                {% for lang_code, lang_label, translation in row.lang_cells %}
+                  <td class="p-2 align-baseline">
+                    {% if translation %}
+                      <span class="badge {{ translation.status }} text-sm" title="{{ translation.last_activity_label }}">
+                        {{ translation.get_status_display }}
+                      </span>
+                      <div class="mt-2 text-nowrap">
+                        {% if translation.status == 'published' or translation.status == 'draft' %}
+                          <a href="#" class="btn btn-sm btn-actions btn-outline-dark p-1" title="{% trans "Preview and publish" %}">
+                            <svg class="icon feather" aria-hidden="true"><use xlink:href="#eye"></use></svg></a>
+                          <a href="#" class="btn btn-sm btn-actions btn-outline-tertiary p-1" title="{% trans "Edit" %}">
+                            <svg class="icon feather" aria-hidden="true"><use xlink:href="#edit-2"></use>
+                            </svg></a>
+                          <form method="post" action="{% url 'delete_homepage_translation' row.homepage.id lang_code %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="button" class="btn btn-sm btn-actions btn-outline-danger p-1" title="{% trans "Delete" %}"
+                              data-toggle="modal" data-target="#confirm_delete"
+                              data-homepage="{{ row.homepage.display_name }}"
+                              data-lang="{{ lang_label }}">
+                              <svg class="icon feather" aria-hidden="true"><use xlink:href="#trash-2"></use></svg>
+                            </button>
+                          </form>
+                        {% else %}
+                          <form method="post" action="{% url 'restore_homepage_translation' row.homepage.id lang_code %}" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-actions btn-outline-dark p-1" title="{% trans "Restore" %}">
+                              <svg class="icon feather" aria-hidden="true"><use xlink:href="#rotate-ccw"></use></svg>
+                            </button>
+                          </form>
+                        {% endif %}
+                      </div>
+                    {% else %}
+                      <form method="post" action="{% url 'create_homepage_translation' row.homepage.id lang_code %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-secondary btn-sm btn-actions p-1">
+                          <svg class="icon feather" aria-hidden="true"><use xlink:href="#plus"></use></svg>{% trans 'Create' %}
+                        </button>
+                      </form>
+                    {% endif %}
+                  </td>
+                {% endfor %}
+
+                <td class="p-2 align-baseline">
+                  <a class="btn btn-secondary btn-sm btn-actions p-1 text-nowrap" href="#" title="{% trans 'Edit permissions' %}">
+                    <svg class="icon feather mr-1" aria-hidden="true"><use xlink:href="#key"></use></svg>{% trans "Permissions" %}
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <!-- Confirm delete modal -->
+        <div class="modal fade" id="confirm_delete" tabindex="-1" role="dialog" aria-labelledby="confirm_delete_label" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirm_delete_label">{% trans "Delete translation" %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>
+                  {% trans "Do you really want to delete this homepage translation?" %}
+                </p>
+                <p>
+                  <strong id="confirm-delete-homepage"></strong> (<span id="confirm-delete-lang"></span>)
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Cancel" %}</button>
+                <button type="button" class="btn btn-danger" id="confirm-delete-submit">{% trans "Delete" %}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </main>
+{% endblock %}
+
+{% block web2018_extra_js %}
+  {% vite_asset 'assets/pages/manage-homepages/manage-homepages.js' %}
+{% endblock %}

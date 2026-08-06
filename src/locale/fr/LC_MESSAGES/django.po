@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-22 14:02+0200\n"
+"POT-Creation-Date: 2026-08-04 16:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -119,8 +119,77 @@ msgstr "Publié le"
 msgid "Published by"
 msgstr "Publié par"
 
+msgid "Published on"
+msgstr "Publié le"
+
+msgid "Archived on"
+msgstr "Archivé le"
+
+msgid "Updated on"
+msgstr "Modifié le"
+
+msgid "Created on"
+msgstr "Créé le"
+
 msgid "News"
 msgstr "Actualités"
+
+msgid "My Homepages"
+msgstr "Mes pages d'accueil"
+
+msgid "You don't have permission to manage any homepage."
+msgstr "Vous n'avez pas l'autorisation de gérer une page d'accueil."
+
+msgid "Actions"
+msgstr "Actions"
+
+msgid "Preview and publish"
+msgstr "Prévisualiser et publier"
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Restore"
+msgstr "Restaurer"
+
+msgid "Create"
+msgstr "Créer"
+
+msgid "Edit permissions"
+msgstr "Modifier les autorisations"
+
+msgid "Permissions"
+msgstr "Autorisations"
+
+msgid "Delete translation"
+msgstr "Supprimer la traduction"
+
+msgid "Do you really want to delete this homepage translation?"
+msgstr "Voulez-vous vraiment supprimer cette traduction de page d'accueil?"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "A translation for this language already exists."
+msgstr "Une traduction pour cette langue existe déjà."
+
+msgid "Translation created successfully."
+msgstr "Traduction créée avec succès."
+
+msgid "This translation is already archived."
+msgstr "Cette traduction est déjà archivée."
+
+msgid "Translation archived successfully."
+msgstr "Traduction archivée avec succès."
+
+msgid "This translation is not archived."
+msgstr "Cette traduction n'est pas archivée."
+
+msgid "Translation restored successfully."
+msgstr "Traduction restaurée avec succès."
 
 msgid "Thematics"
 msgstr "Thématiques"
@@ -139,9 +208,6 @@ msgstr "Autres"
 
 msgid "News by entity"
 msgstr "Les actualités par faculté"
-
-msgid "My Homepages"
-msgstr "Mes pages d'accueil"
 
 msgid "My News"
 msgstr "Mes Actualités"

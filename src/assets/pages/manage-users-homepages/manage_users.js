@@ -1,5 +1,4 @@
 /* global $ */
-import './manage_users.scss'
 
 document.addEventListener('DOMContentLoaded', function () {
   const searchInput = document.getElementById('ajaxSearchInput')

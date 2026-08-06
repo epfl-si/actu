@@ -116,7 +116,7 @@ def manage_homepage_users(request, pk):
     homepage = get_object_or_404(Homepage, pk=pk)
 
     is_attached = homepage.users.filter(id=request.user.id).exists()
-    is_admin = request.user.is_staff
+    is_admin = request.user.is_superuser
     if not (is_attached or is_admin):
         raise PermissionDenied
 

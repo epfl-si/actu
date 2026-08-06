@@ -9,6 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const transAdd = searchInput.dataset.transAdd;
   const transNoResults = searchInput.dataset.transNoResults;
 
+  const errorFeedback = document.createElement('div');
+  errorFeedback.className = 'text-danger mt-1 small';
+  errorFeedback.style.display = 'none';
+
+  searchInput.parentNode.insertBefore(errorFeedback, searchInput.nextSibling);
+
   $(searchInput).selectize({
     valueField: 'sciper',
     labelField: 'text',
@@ -20,13 +26,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     load: function (query, callback) {
       addBtn.style.display = 'none';
+      errorFeedback.style.display = 'none';
+      errorFeedback.innerText = '';
+
+      const selectizeInput = this.$wrapper[0].querySelector('.selectize-input');
+      selectizeInput.classList.remove('border-danger');
 
       if (query.length < 3) return callback();
 
       fetch(`?q=${encodeURIComponent(query)}`, {
         headers: { 'X-Requested-With': 'XMLHttpRequest' }
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+            throw new Error(`Server error (${response.status})`);
+        }
+        return response.json();
+      })
       .then(data => {
         if (data.results && data.results.length > 0) {
           callback(data.results);
@@ -35,7 +51,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       })
       .catch(error => {
-        console.error('Erreur AJAX:', error);
+        let errorMessage = "Unable to contact the server.";
+        if (error.message) {
+            errorMessage = error.message;
+        }
+        errorFeedback.innerText = `AJAX Error: ${errorMessage}`;
+        errorFeedback.style.display = 'block';
+
+        const selectizeInput = this.$wrapper[0].querySelector('.selectize-input');
+        selectizeInput.classList.add('border-danger');
+
         callback();
       });
     },

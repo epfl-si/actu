@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-04 16:39+0200\n"
+"POT-Creation-Date: 2026-08-07 14:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -171,6 +171,63 @@ msgid "Do you really want to delete this homepage translation?"
 msgstr ""
 
 msgid "Cancel"
+msgstr ""
+
+msgid "Manage permissions for homepage"
+msgstr ""
+
+msgid "Search for a user"
+msgstr ""
+
+msgid "Type a name or a SCIPER..."
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Add this user"
+msgstr ""
+
+msgid "Authorized users"
+msgstr ""
+
+msgid "Email"
+msgstr ""
+
+msgid "Remove"
+msgstr ""
+
+msgid "Nobody has permission to manage this homepage."
+msgstr ""
+
+msgid "Remove user"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Are you sure you want to remove permissions for this user?"
+msgstr ""
+
+msgid "No SCIPER provided."
+msgstr ""
+
+msgid "This person can't be added."
+msgstr ""
+
+msgid "Failed to add user, please try again."
+msgstr ""
+
+#, python-format
+msgid "The user %(first)s %(last)s has been added successfully."
+msgstr ""
+
+#, python-format
+msgid "The user %(first)s %(last)s has been removed successfully."
+msgstr ""
+
+#, python-format
+msgid "The user %(first)s %(last)s has no permission to this homepage."
 msgstr ""
 
 msgid "A translation for this language already exists."

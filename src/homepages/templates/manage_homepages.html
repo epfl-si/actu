@@ -71,7 +71,7 @@
                 {% endfor %}
 
                 <td class="p-2 align-baseline">
-                  <a class="btn btn-secondary btn-sm btn-actions p-1 text-nowrap" href="#" title="{% trans 'Edit permissions' %}">
+                  <a class="btn btn-secondary btn-sm btn-actions p-1 text-nowrap" href="{% url 'manage_homepage_users' row.homepage.id %}" title="{% trans 'Edit permissions' %}">
                     <svg class="icon feather mr-1" aria-hidden="true"><use xlink:href="#key"></use></svg>{% trans "Permissions" %}
                   </a>
                 </td>

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-04 16:39+0200\n"
+"POT-Creation-Date: 2026-08-07 14:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -172,6 +172,63 @@ msgstr "Möchten Sie diese Version der Startseite wirklich löschen?"
 
 msgid "Cancel"
 msgstr "Abbrechen"
+
+msgid "Manage permissions for homepage"
+msgstr "Berechtigungen für die Startseite verwalten"
+
+msgid "Search for a user"
+msgstr "Benutzer suchen"
+
+msgid "Type a name or a SCIPER..."
+msgstr "Name oder SCIPER eingeben..."
+
+msgid "Add"
+msgstr "Hinzufügen"
+
+msgid "Add this user"
+msgstr "Diesen Benutzer hinzufügen"
+
+msgid "Authorized users"
+msgstr "Berechtigte Benutzer"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Nobody has permission to manage this homepage."
+msgstr "Niemand hat die Berechtigung, diese Startseite zu verwalten."
+
+msgid "Remove user"
+msgstr "Benutzer entfernen"
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Are you sure you want to remove permissions for this user?"
+msgstr "Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen möchten?"
+
+msgid "No SCIPER provided."
+msgstr "Keine SCIPER-Nummer angegeben."
+
+msgid "This person can't be added."
+msgstr "Diese Person kann nicht hinzugefügt werden."
+
+msgid "Failed to add user, please try again."
+msgstr "Fehler beim Hinzufügen des Benutzers, bitte versuchen Sie es erneut."
+
+#, python-format
+msgid "The user %(first)s %(last)s has been added successfully."
+msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich hinzugefügt."
+
+#, python-format
+msgid "The user %(first)s %(last)s has been removed successfully."
+msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich entfernt."
+
+#, python-format
+msgid "The user %(first)s %(last)s has no permission to this homepage."
+msgstr "Der Benutzer %(first)s %(last)s hat keine Berechtigung für diese Startseite."
 
 msgid "A translation for this language already exists."
 msgstr "Für diese Sprache existiert bereits eine Übersetzung."

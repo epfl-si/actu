@@ -1,0 +1,40 @@
+@use 'variables';
+
+.card-homepage-search {
+  border-top: 4px solid variables.$red;
+}
+
+.selectize-input.focus {
+  outline: none;
+  border-color: variables.$red;
+  box-shadow: 0 0 0 1px variables.$red;
+}
+
+.selectize-dropdown {
+  z-index: 1000;
+
+  .list-group-item {
+    transition: all 0.1s;
+    border-left: 4px solid transparent;
+    margin-bottom: 0;
+
+    &:hover, &.active {
+      background-color: variables.$gray-100;
+      color: variables.$red;
+      border-left: 4px solid variables.$red;
+    }
+  }
+}
+
+#add-btn {
+  display: none;
+  background-color: variables.$red;
+  border: none;
+  color: variables.$white;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: variables.$red-dark;
+    color: variables.$white;
+  }
+}

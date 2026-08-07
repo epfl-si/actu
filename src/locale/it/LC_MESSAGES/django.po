@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-04 16:39+0200\n"
+"POT-Creation-Date: 2026-08-07 14:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -172,6 +172,63 @@ msgstr "Vuoi davvero eliminare questa versione della homepage?"
 
 msgid "Cancel"
 msgstr "Annulla"
+
+msgid "Manage permissions for homepage"
+msgstr "Gestire i permessi della homepage"
+
+msgid "Search for a user"
+msgstr "Cerca un utente"
+
+msgid "Type a name or a SCIPER..."
+msgstr "Digita un nome o un SCIPER..."
+
+msgid "Add"
+msgstr "Aggiungi"
+
+msgid "Add this user"
+msgstr "Aggiungi questo utente"
+
+msgid "Authorized users"
+msgstr "Utenti autorizzati"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Remove"
+msgstr "Rimuovi"
+
+msgid "Nobody has permission to manage this homepage."
+msgstr "Nessuno ha il permesso di gestire questa homepage."
+
+msgid "Remove user"
+msgstr "Rimuovi utente"
+
+msgid "Close"
+msgstr "Chiudi"
+
+msgid "Are you sure you want to remove permissions for this user?"
+msgstr "Sei sicuro di voler rimuovere le autorizzazioni per questo utente?"
+
+msgid "No SCIPER provided."
+msgstr "Nessun SCIPER fornito."
+
+msgid "This person can't be added."
+msgstr "Questa persona non può essere aggiunta."
+
+msgid "Failed to add user, please try again."
+msgstr "Impossibile aggiungere l'utente, per favore riprova."
+
+#, python-format
+msgid "The user %(first)s %(last)s has been added successfully."
+msgstr "L'utente %(first)s %(last)s è stato aggiunto con successo."
+
+#, python-format
+msgid "The user %(first)s %(last)s has been removed successfully."
+msgstr "L'utente %(first)s %(last)s è stato rimosso con successo."
+
+#, python-format
+msgid "The user %(first)s %(last)s has no permission to this homepage."
+msgstr "L'utente %(first)s %(last)s non ha i permessi per questa homepage."
 
 msgid "A translation for this language already exists."
 msgstr "Una traduzione per questa lingua esiste già."

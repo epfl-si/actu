@@ -20,4 +20,9 @@ urlpatterns = [
         views.restore_homepage_translation,
         name="restore_homepage_translation",
     ),
+    path(
+        "homepages/manage/<int:pk>/permissions/",
+        views.manage_homepage_users,
+        name="manage_homepage_users",
+    ),
 ]

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-04 16:39+0200\n"
+"POT-Creation-Date: 2026-08-07 14:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -172,6 +172,63 @@ msgstr "Voulez-vous vraiment supprimer cette traduction de page d'accueil?"
 
 msgid "Cancel"
 msgstr "Annuler"
+
+msgid "Manage permissions for homepage"
+msgstr "Gérer les permissions de la page d'accueil"
+
+msgid "Search for a user"
+msgstr "Chercher un utilisateur"
+
+msgid "Type a name or a SCIPER..."
+msgstr "Ecrire un nom ou un SCIPER..."
+
+msgid "Add"
+msgstr "Ajouter"
+
+msgid "Add this user"
+msgstr "Ajouter cet utilisateur"
+
+msgid "Authorized users"
+msgstr "Utilisateurs autorisés"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Remove"
+msgstr "Supprimer"
+
+msgid "Nobody has permission to manage this homepage."
+msgstr "Personne n'a la permission de gérer cette page d'accueil."
+
+msgid "Remove user"
+msgstr "Supprimer"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Are you sure you want to remove permissions for this user?"
+msgstr "Etes-vous sûr d'enlever la permission à cet utilisateur ?"
+
+msgid "No SCIPER provided."
+msgstr "Aucun SCIPER n'a été fourni"
+
+msgid "This person can't be added."
+msgstr "Cette personne ne peut pas être ajouté."
+
+msgid "Failed to add user, please try again."
+msgstr "Impossible d'ajouter un utilisateur, veuillez réessayer."
+
+#, python-format
+msgid "The user %(first)s %(last)s has been added successfully."
+msgstr "L'utilisateur %(first)s %(last)s a été ajouté avec succès."
+
+#, python-format
+msgid "The user %(first)s %(last)s has been removed successfully."
+msgstr "L'utilisateur %(first)s %(last)s a été retiré avec succès."
+
+#, python-format
+msgid "The user %(first)s %(last)s has no permission to this homepage."
+msgstr "L'utilisateur %(first)s %(last)s n'a pas d'autorisation sur cette homepage."
 
 msgid "A translation for this language already exists."
 msgstr "Une traduction pour cette langue existe déjà."

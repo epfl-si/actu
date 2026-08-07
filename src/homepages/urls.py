@@ -1,6 +1,6 @@
-from . import views
+from django.urls import path
 
-from .views import homepages, manage_homepage_users
+from . import views
 
 urlpatterns = [
     path("", views.homepages, name="homepages"),
@@ -19,6 +19,7 @@ urlpatterns = [
         "homepages/manage/<int:homepage_id>/<str:lang>/restore/",
         views.restore_homepage_translation,
         name="restore_homepage_translation",
+    ),
     path(
         "homepages/manage/<int:pk>/permissions/",
         views.manage_homepage_users,

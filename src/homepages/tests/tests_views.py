@@ -4,7 +4,6 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.messages import get_messages
 from django.shortcuts import resolve_url
-from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import translation
@@ -207,6 +206,8 @@ class HomepageUsersManageViewTests(TestCase):
             self.url, {"action": "remove", "user_id": 9999}
         )
         self.assertEqual(response.status_code, 404)
+
+
 class CreateHomepageTranslationViewTest(TestCase):
 
     def setUp(self):

@@ -65,6 +65,7 @@ make staging-clone    # Clones production database to the staging environment.
    - `ansible/inventory/dev.yml`
    - `ansible/inventory/test.yml`
    - `ansible/inventory/prod.yml`
+1. Update new version in the `package.json`.
 1. Push and merge to `main` branch.
 1. Create and push a new tag:  
    `git tag -a <version_number> -m "Actu - <version_number>"`  

@@ -1,5 +1,3 @@
-/* global $ */
-
 document.addEventListener('DOMContentLoaded', function () {
   const searchInput = document.getElementById('ajaxSearchInput')
   const addBtn = document.getElementById('add-btn')

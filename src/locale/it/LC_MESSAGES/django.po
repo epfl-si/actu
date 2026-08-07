@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 09:47+0200\n"
+"POT-Creation-Date: 2026-08-07 13:30+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -209,7 +209,7 @@ msgstr "Rimuovi utente"
 msgid "Close"
 msgstr "Chiudi"
 
-msgid "Are you sure you want to remove permissions for this user ?"
+msgid "Are you sure you want to remove permissions for this user?"
 msgstr "Sei sicuro di voler rimuovere le autorizzazioni per questo utente?"
 
 msgid "No SCIPER provided."
@@ -222,13 +222,13 @@ msgstr "Impossibile aggiungere l'utente, per favore riprova."
 msgid "The user %(first)s %(last)s has been added successfully."
 msgstr "L'utente %(first)s %(last)s è stato aggiunto con successo."
 
-#, fuzzy, python-format
-msgid "The user %(first)s %(last)s has been removedsuccessfully."
+#, python-format
+msgid "The user %(first)s %(last)s has been removed successfully."
 msgstr "L'utente %(first)s %(last)s è stato rimosso con successo."
 
-#, fuzzy, python-format
-msgid "The user %(first)s %(last)s is not attached to thishomepage."
-msgstr "L'utente %(first)s %(last)s è stato aggiunto con successo."
+#, python-format
+msgid "The user %(first)s %(last)s has no permission to this homepage."
+msgstr "L'utente %(first)s %(last)s non ha i permessi per questa homepage."
 
 msgid "A translation for this language already exists."
 msgstr "Una traduzione per questa lingua esiste già."

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load static django_vite %}
+{% load django_vite %}
 {% load i18n %}
 
 {% block web2018_title %}{% trans "Manage permissions for homepage" %} · {{ homepage.display_name }}{% endblock %}
@@ -87,7 +87,7 @@
                 <p>
                   {% trans "Are you sure you want to remove permissions for this user?" %}
                 </p>
-                <p class="text-center h5 mt-3">
+                <p>
                   <strong id="confirm-remove-user-name"></strong>
                 </p>
               </div>

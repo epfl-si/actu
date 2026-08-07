@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 13:30+0200\n"
+"POT-Creation-Date: 2026-08-07 13:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -184,9 +184,6 @@ msgstr "Digita un nome o un SCIPER..."
 
 msgid "Add"
 msgstr "Aggiungi"
-
-msgid "No result found or the person is already added..."
-msgstr "Nessun risultato trovato o la persona è già stata aggiunta..."
 
 msgid "Add this user"
 msgstr "Aggiungi questo utente"

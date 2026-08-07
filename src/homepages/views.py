@@ -74,8 +74,8 @@ def _handle_post_action(request, homepage):
                 messages.warning(
                     request,
                     _(
-                        "The user %(first)s %(last)s has no permission to this "
-                        "homepage."
+                        "The user %(first)s %(last)s has no permission to this"
+                        " homepage."
                     )
                     % {"first": user.first_name, "last": user.last_name},
                 )

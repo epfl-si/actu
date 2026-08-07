@@ -26,6 +26,13 @@ def _handle_post_action(request, homepage):
             messages.error(request, _("No SCIPER provided."))
             return
 
+        client = AccredServiceClient()
+        result = client.search_persons_by_right(sciper)
+
+        if not result:
+            messages.error(request, _("This person can't be added."))
+            return
+
         user = User.objects.filter(sciper=sciper).first()
         if not user:
             client = AccredServiceClient()

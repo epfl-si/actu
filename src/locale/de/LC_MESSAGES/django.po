@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 13:42+0200\n"
+"POT-Creation-Date: 2026-08-07 14:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -211,6 +211,9 @@ msgstr "Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfer
 
 msgid "No SCIPER provided."
 msgstr "Keine SCIPER-Nummer angegeben."
+
+msgid "This person can't be added."
+msgstr "Diese Person kann nicht hinzugefügt werden."
 
 msgid "Failed to add user, please try again."
 msgstr "Fehler beim Hinzufügen des Benutzers, bitte versuchen Sie es erneut."

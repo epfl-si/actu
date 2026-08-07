@@ -135,7 +135,18 @@ class HomepageUsersManageViewTests(TestCase):
         self.assertEqual(len(messages), 1)
         self.assertEqual(messages[0].level_tag, "error")
 
-    def test_post_add_existing_local_user(self):
+    @patch("homepages.views.AccredServiceClient")
+    def test_post_add_existing_local_user(self, MockClient):
+        mock_instance = MockClient.return_value
+        mock_instance.search_persons_by_right.return_value = [
+            {
+                "sciper": "99999993",
+                "display_name": "Alexis Pinturault",
+                "first_name": "Alexis",
+                "last_name": "Pinturault",
+            },
+        ]
+
         self.client.force_login(self.admin)
         response = self.client.post(
             self.url, {"action": "add", "sciper": "99999993"}, follow=True
@@ -144,6 +155,19 @@ class HomepageUsersManageViewTests(TestCase):
         self.assertTrue(self.homepage.users.filter(sciper="99999993").exists())
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(messages[0].level_tag, "success")
+
+    @patch("homepages.views.AccredServiceClient")
+    def test_post_add_user_not_permited(self, MockClient):
+        mock_instance = MockClient.return_value
+        mock_instance.search_persons_by_right.return_value = []
+
+        self.client.force_login(self.admin)
+        response = self.client.post(
+            self.url, {"action": "add", "sciper": "99999998"}, follow=True
+        )
+
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(messages[0].level_tag, "error")
 
     @patch("homepages.views.AccredServiceClient")
     def test_post_add_new_user_via_api(self, MockClient):

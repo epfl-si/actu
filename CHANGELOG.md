@@ -1,5 +1,14 @@
 # Changelog
 
+## v0.0.5 / 2026-08-07
+
+- Add homepage permission page (#51)
+- Add Manage homepages page (#50)
+- Add eslint (#63)
+- Add sass pipeline (#54)
+- feature: links to homepages and news in user menu (POC) (#61)
+- Configure hot module replacement (HMR) with django-vite (#58)
+
 ## v0.0.4 / 2026-07-24
 
 - Update django-debug-toolbar to 7.0.0 (#57)

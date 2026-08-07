@@ -1,7 +1,7 @@
 {
   "name": "actu",
   "private": true,
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Actu",
   "homepage": "https://github.com/epfl-si/actu#readme",
   "bugs": {

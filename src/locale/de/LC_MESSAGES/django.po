@@ -119,6 +119,18 @@ msgstr "Veröffentlicht am"
 msgid "Published by"
 msgstr "Veröffentlicht von"
 
+msgid "Published on"
+msgstr "Veröffentlicht am"
+
+msgid "Archived on"
+msgstr "Archiviert am"
+
+msgid "Updated on"
+msgstr "Aktualisiert am"
+
+msgid "Created on"
+msgstr "Erstellt am"
+
 msgid "News"
 msgstr "Nachrichten"
 
@@ -146,6 +158,12 @@ msgstr "Berechtigte Benutzer"
 msgid "Email"
 msgstr "E-Mail"
 
+msgid "My Homepages"
+msgstr "My Startseiten"
+
+msgid "You don't have permission to manage any homepage."
+msgstr "Sie haben keine Berechtigung, eine Startseite zu verwalten."
+
 msgid "Actions"
 msgstr "Aktionen"
 
@@ -163,6 +181,33 @@ msgstr "Schließen"
 
 msgid "Are you sure you want to remove permissions for this user ?"
 msgstr "Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen möchten?"
+
+msgid "Preview and publish"
+msgstr "Vorschau und veröffentlichen"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Restore"
+msgstr "Wiederherstellen"
+
+msgid "Create"
+msgstr "Erstellen"
+
+msgid "Edit permissions"
+msgstr "Berechtigungen bearbeiten"
+
+msgid "Permissions"
+msgstr "Berechtigungen"
+
+msgid "Delete translation"
+msgstr "Übersetzung löschen"
+
+msgid "Do you really want to delete this homepage translation?"
+msgstr "Möchten Sie diese Version der Startseite wirklich löschen?"
 
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -185,6 +230,24 @@ msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich entfernt."
 msgid "The user %(first)s %(last)s is not attached to thishomepage."
 msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich hinzugefügt."
 
+msgid "A translation for this language already exists."
+msgstr "Für diese Sprache existiert bereits eine Übersetzung."
+
+msgid "Translation created successfully."
+msgstr "Übersetzung erfolgreich erstellt."
+
+msgid "This translation is already archived."
+msgstr "Diese Übersetzung ist bereits archiviert."
+
+msgid "Translation archived successfully."
+msgstr "Übersetzung erfolgreich archiviert."
+
+msgid "This translation is not archived."
+msgstr "Diese Übersetzung ist nicht archiviert."
+
+msgid "Translation restored successfully."
+msgstr "Übersetzung erfolgreich wiederhergestellt."
+
 msgid "Thematics"
 msgstr "Themen"
 
@@ -202,9 +265,6 @@ msgstr "Andere"
 
 msgid "News by entity"
 msgstr "Aktuelles nach Einheit"
-
-msgid "My Homepages"
-msgstr "My Startseiten"
 
 msgid "My News"
 msgstr "Meine Neuigkeiten"

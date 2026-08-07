@@ -119,6 +119,18 @@ msgstr ""
 msgid "Published by"
 msgstr ""
 
+msgid "Published on"
+msgstr ""
+
+msgid "Archived on"
+msgstr ""
+
+msgid "Updated on"
+msgstr ""
+
+msgid "Created on"
+msgstr ""
+
 msgid "News"
 msgstr ""
 
@@ -146,6 +158,12 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
+msgid "My Homepages"
+msgstr ""
+
+msgid "You don't have permission to manage any homepage."
+msgstr ""
+
 msgid "Actions"
 msgstr ""
 
@@ -162,6 +180,33 @@ msgid "Close"
 msgstr ""
 
 msgid "Are you sure you want to remove permissions for this user ?"
+msgstr ""
+
+msgid "Preview and publish"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Restore"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Edit permissions"
+msgstr ""
+
+msgid "Permissions"
+msgstr ""
+
+msgid "Delete translation"
+msgstr ""
+
+msgid "Do you really want to delete this homepage translation?"
 msgstr ""
 
 msgid "Cancel"
@@ -185,6 +230,24 @@ msgstr ""
 msgid "The user %(first)s %(last)s is not attached to thishomepage."
 msgstr ""
 
+msgid "A translation for this language already exists."
+msgstr ""
+
+msgid "Translation created successfully."
+msgstr ""
+
+msgid "This translation is already archived."
+msgstr ""
+
+msgid "Translation archived successfully."
+msgstr ""
+
+msgid "This translation is not archived."
+msgstr ""
+
+msgid "Translation restored successfully."
+msgstr ""
+
 msgid "Thematics"
 msgstr ""
 
@@ -201,9 +264,6 @@ msgid "Others"
 msgstr ""
 
 msgid "News by entity"
-msgstr ""
-
-msgid "My Homepages"
 msgstr ""
 
 msgid "My News"

@@ -2,6 +2,7 @@ import socket
 
 from django.conf import settings
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.test import Client
 from playwright.sync_api import sync_playwright
 
 
@@ -29,3 +30,20 @@ class PlaywrightTestCase(StaticLiveServerTestCase):
 
     def tearDown(self):
         self.context.close()
+
+    def login_as(self, user):
+        client = Client()
+        client.force_login(user)
+        sessionid = client.cookies["sessionid"]
+
+        self.page.goto(self.live_server_url)
+
+        self.context.add_cookies(
+            [
+                {
+                    "name": "sessionid",
+                    "value": sessionid.value,
+                    "url": self.live_server_url,
+                }
+            ]
+        )

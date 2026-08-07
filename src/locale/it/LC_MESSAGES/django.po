@@ -119,6 +119,18 @@ msgstr "Pubblicato il"
 msgid "Published by"
 msgstr "Pubblicato da"
 
+msgid "Published on"
+msgstr "Pubblicato il"
+
+msgid "Archived on"
+msgstr "Archiviato il"
+
+msgid "Updated on"
+msgstr "Aggiornato il"
+
+msgid "Created on"
+msgstr "Creato il"
+
 msgid "News"
 msgstr "Notizie"
 
@@ -146,6 +158,12 @@ msgstr "Utenti autorizzati"
 msgid "Email"
 msgstr "Email"
 
+msgid "My Homepages"
+msgstr "Le mie Pagine principali"
+
+msgid "You don't have permission to manage any homepage."
+msgstr "Non hai l'autorizzazione per gestire alcuna pagina iniziale."
+
 msgid "Actions"
 msgstr "Azioni"
 
@@ -163,6 +181,33 @@ msgstr "Chiudi"
 
 msgid "Are you sure you want to remove permissions for this user ?"
 msgstr "Sei sicuro di voler rimuovere le autorizzazioni per questo utente?"
+
+msgid "Preview and publish"
+msgstr "Anteprima e pubblica"
+
+msgid "Edit"
+msgstr "Modifica"
+
+msgid "Delete"
+msgstr "Elimina"
+
+msgid "Restore"
+msgstr "Ripristina"
+
+msgid "Create"
+msgstr "Crea"
+
+msgid "Edit permissions"
+msgstr "Modifica le autorizzazioni"
+
+msgid "Permissions"
+msgstr "Autorizzazioni"
+
+msgid "Delete translation"
+msgstr "Elimina traduzione"
+
+msgid "Do you really want to delete this homepage translation?"
+msgstr "Vuoi davvero eliminare questa versione della homepage?"
 
 msgid "Cancel"
 msgstr "Annulla"
@@ -185,6 +230,24 @@ msgstr "L'utente %(first)s %(last)s è stato rimosso con successo."
 msgid "The user %(first)s %(last)s is not attached to thishomepage."
 msgstr "L'utente %(first)s %(last)s è stato aggiunto con successo."
 
+msgid "A translation for this language already exists."
+msgstr "Una traduzione per questa lingua esiste già."
+
+msgid "Translation created successfully."
+msgstr "Traduzione creata con successo."
+
+msgid "This translation is already archived."
+msgstr "Questa traduzione è già archiviata."
+
+msgid "Translation archived successfully."
+msgstr "Traduzione archiviata con successo."
+
+msgid "This translation is not archived."
+msgstr "Questa traduzione non è archiviata."
+
+msgid "Translation restored successfully."
+msgstr "Traduzione ripristinata con successo."
+
 msgid "Thematics"
 msgstr "Tematiche"
 
@@ -202,9 +265,6 @@ msgstr "Altri"
 
 msgid "News by entity"
 msgstr "Notizie per entità"
-
-msgid "My Homepages"
-msgstr "Le mie Pagine principali"
 
 msgid "My News"
 msgstr "Le mie Notizie"

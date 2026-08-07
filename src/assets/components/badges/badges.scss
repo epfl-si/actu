@@ -4,6 +4,20 @@
   border-radius: variables.$bdg-border-radius;
 
   &.draft {
+    background-color: variables.$bdg-gray-bg;
+    border: 1px solid variables.$bdg-gray-border;
     color: variables.$bdg-gray;
+  }
+
+  &.published {
+    background-color: variables.$bdg-green-bg;
+    border: 1px solid variables.$bdg-green-border;
+    color: variables.$bdg-green;
+  }
+
+  &.archived {
+    background-color: variables.$bdg-red-bg;
+    border: 1px solid variables.$bdg-red-border;
+    color: variables.$bdg-red;
   }
 }

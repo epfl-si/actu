@@ -119,6 +119,18 @@ msgstr "Publié le"
 msgid "Published by"
 msgstr "Publié par"
 
+msgid "Published on"
+msgstr "Publié le"
+
+msgid "Archived on"
+msgstr "Archivé le"
+
+msgid "Updated on"
+msgstr "Modifié le"
+
+msgid "Created on"
+msgstr "Créé le"
+
 msgid "News"
 msgstr "Actualités"
 
@@ -146,6 +158,12 @@ msgstr "Utilisateurs autorisés"
 msgid "Email"
 msgstr "Email"
 
+msgid "My Homepages"
+msgstr "Mes pages d'accueil"
+
+msgid "You don't have permission to manage any homepage."
+msgstr "Vous n'avez pas l'autorisation de gérer une page d'accueil."
+
 msgid "Actions"
 msgstr "Actions"
 
@@ -163,6 +181,33 @@ msgstr "Fermer"
 
 msgid "Are you sure you want to remove permissions for this user ?"
 msgstr "Etes vous sur d'enlever la permission à cet utilisateur ?"
+
+msgid "Preview and publish"
+msgstr "Prévisualiser et publier"
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Restore"
+msgstr "Restaurer"
+
+msgid "Create"
+msgstr "Créer"
+
+msgid "Edit permissions"
+msgstr "Modifier les autorisations"
+
+msgid "Permissions"
+msgstr "Autorisations"
+
+msgid "Delete translation"
+msgstr "Supprimer la traduction"
+
+msgid "Do you really want to delete this homepage translation?"
+msgstr "Voulez-vous vraiment supprimer cette traduction de page d'accueil?"
 
 msgid "Cancel"
 msgstr "Annuler"
@@ -185,6 +230,24 @@ msgstr "L'utilisateur %(first)s %(last)s a été retiré avec succès."
 msgid "The user %(first)s %(last)s is not attached to thishomepage."
 msgstr "L'utilisateur %(first)s %(last)s a été ajouté avec succès."
 
+msgid "A translation for this language already exists."
+msgstr "Une traduction pour cette langue existe déjà."
+
+msgid "Translation created successfully."
+msgstr "Traduction créée avec succès."
+
+msgid "This translation is already archived."
+msgstr "Cette traduction est déjà archivée."
+
+msgid "Translation archived successfully."
+msgstr "Traduction archivée avec succès."
+
+msgid "This translation is not archived."
+msgstr "Cette traduction n'est pas archivée."
+
+msgid "Translation restored successfully."
+msgstr "Traduction restaurée avec succès."
+
 msgid "Thematics"
 msgstr "Thématiques"
 
@@ -202,9 +265,6 @@ msgstr "Autres"
 
 msgid "News by entity"
 msgstr "Les actualités par faculté"
-
-msgid "My Homepages"
-msgstr "Mes pages d'accueil"
 
 msgid "My News"
 msgstr "Mes Actualités"

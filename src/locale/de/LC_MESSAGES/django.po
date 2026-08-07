@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-06 14:45+0200\n"
+"POT-Creation-Date: 2026-08-07 09:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -134,30 +134,6 @@ msgstr "Erstellt am"
 msgid "News"
 msgstr "Nachrichten"
 
-msgid "Manage permissions for homepage"
-msgstr "Berechtigungen für die Startseite verwalten"
-
-msgid "Search for a user"
-msgstr "Benutzer suchen"
-
-msgid "Type a name or a SCIPER..."
-msgstr "Name oder SCIPER eingeben..."
-
-msgid "Add"
-msgstr "Hinzufügen"
-
-msgid "No result found or the person is already added..."
-msgstr "Kein Ergebnis gefunden oder die Person wurde bereits hinzugefügt..."
-
-msgid "Add this user"
-msgstr "Diesen Benutzer hinzufügen"
-
-msgid "Authorized users"
-msgstr "Berechtigte Benutzer"
-
-msgid "Email"
-msgstr "E-Mail"
-
 msgid "My Homepages"
 msgstr "My Startseiten"
 
@@ -166,21 +142,6 @@ msgstr "Sie haben keine Berechtigung, eine Startseite zu verwalten."
 
 msgid "Actions"
 msgstr "Aktionen"
-
-msgid "Remove"
-msgstr "Entfernen"
-
-msgid "Nobody has permission to manage this homepage."
-msgstr "Niemand hat die Berechtigung, diese Startseite zu verwalten."
-
-msgid "Remove user"
-msgstr "Benutzer entfernen"
-
-msgid "Close"
-msgstr "Schließen"
-
-msgid "Are you sure you want to remove permissions for this user ?"
-msgstr "Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen möchten?"
 
 msgid "Preview and publish"
 msgstr "Vorschau und veröffentlichen"
@@ -211,6 +172,45 @@ msgstr "Möchten Sie diese Version der Startseite wirklich löschen?"
 
 msgid "Cancel"
 msgstr "Abbrechen"
+
+msgid "Manage permissions for homepage"
+msgstr "Berechtigungen für die Startseite verwalten"
+
+msgid "Search for a user"
+msgstr "Benutzer suchen"
+
+msgid "Type a name or a SCIPER..."
+msgstr "Name oder SCIPER eingeben..."
+
+msgid "Add"
+msgstr "Hinzufügen"
+
+msgid "No result found or the person is already added..."
+msgstr "Kein Ergebnis gefunden oder die Person wurde bereits hinzugefügt..."
+
+msgid "Add this user"
+msgstr "Diesen Benutzer hinzufügen"
+
+msgid "Authorized users"
+msgstr "Berechtigte Benutzer"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Remove"
+msgstr "Entfernen"
+
+msgid "Nobody has permission to manage this homepage."
+msgstr "Niemand hat die Berechtigung, diese Startseite zu verwalten."
+
+msgid "Remove user"
+msgstr "Benutzer entfernen"
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Are you sure you want to remove permissions for this user ?"
+msgstr "Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen möchten?"
 
 msgid "No SCIPER provided."
 msgstr "Keine SCIPER-Nummer angegeben."

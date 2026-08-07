@@ -1,17 +1,39 @@
-{% extends 'base.html' %}
-{% load django_vite %}
-{% load static %}
-{% load i18n %}
-
-{% block web2018_title %}{% trans 'News' %} · {% trans "My Homepages" %}{% endblock %}
-
-{% block web2018_content %}
-  <main id="main" class="content">
-    <div class="container-lg">
-      <h1 class="h2 my-5">{% trans "Edit News" %} {{ news_var }}</h1>
-
+{% extends 'base.html' %} {% load django_vite %} {% load static %} {% load i18n %} {% block web2018_title %}{% trans 'News' %} · {% trans "My Homepages" %}{%endblock %} {% block web2018_content %}
+<main id="main" class="content">
+  <div class="container-lg">
+    <h1 class="h2 my-5">{% trans "Edit News" %} {{ news_var }}</h1>
+    <div class="mt-2 text-nowrap">
+      <div class="form-group">
+        <label>{% trans "Select thematics" %}</label>
+        <select
+          multiple
+          class="select-multiple"
+          name="thematics"
+          id="pet-select"
+        >
+          {% for thematic in thematics %}
+          <option class="" value="{{thematic.current_label}}">
+            {{thematic.current_label}}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label>{% trans "Select entities" %}</label>
+        <select
+          multiple
+          class="select-multiple"
+          name="entities"
+          id="pet-select"
+        >
+          {% for entity in entities %}
+          <option class="" value="{{entity.current_label}}">
+            {{entity.current_label}}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
     </div>
-  </main>
+  </div>
+</main>
 {% endblock %}
-
-

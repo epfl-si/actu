@@ -451,3 +451,27 @@ msgstr "Label auf Deutsch"
 
 msgid "Label in Italian"
 msgstr "Label auf Italienisch"
+
+msgid "French version"
+msgstr "Version auf Französisch"
+
+msgid "English version"
+msgstr "Version auf Englisch"
+
+msgid "German version"
+msgstr "Version auf Deutsch"
+
+msgid "Italian version"
+msgstr "Version auf Italienisch"
+
+msgid "Edit News"
+msgstr "Nachrichten bearbeiten"
+
+msgid "Select thematics"
+msgstr "Themen auswählen"
+
+msgid "Select entities"
+msgstr "Entitäten auswählen"
+
+msgid "Select type"
+msgstr "Typ auswählen"

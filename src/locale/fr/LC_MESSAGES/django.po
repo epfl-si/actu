@@ -337,3 +337,27 @@ msgstr "Label en allemand"
 
 msgid "Label in Italian"
 msgstr "Label en italien"
+
+msgid "French version"
+msgstr "Version en français"
+
+msgid "English version"
+msgstr "Version en anglais"
+
+msgid "German version"
+msgstr "Version en allemand"
+
+msgid "Italian version"
+msgstr "Version en italien"
+
+msgid "Edit News"
+msgstr "Éditer l'actualité"
+
+msgid "Select thematics"
+msgstr "Selectionner la thématique"
+
+msgid "Select entities"
+msgstr "Selectionner l'entité"
+
+msgid "Select type"
+msgstr "Selectionner le type"

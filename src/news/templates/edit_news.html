@@ -5,66 +5,83 @@
 
 {% block web2018_title %}{% trans 'News' %} · {% trans "My Homepages" %}{%endblock %} {% block web2018_content %}
 <main id="main" class="content">
-  <div class="container-lg">
-    <h1 class="h2 my-5">{% trans "Edit News" %} {{ news_var }}</h1>
-    <div class="row mt-2">
-      <div class="form-group col-md-4">
-        <label>{% trans "Select thematics" %}</label>
-        <select
-          multiple
-          class="select-multiple"
-          name="thematics"
-          id="thematic-select"
-        >
-          {% for thematic in thematics %}
-          <option class="" value="{{thematic.current_label}}">
-            {{thematic.current_label}}
-          </option>
-          {% endfor %}
-        </select>
-      </div>
-      <div class="form-group col-md-4">
-        <label>{% trans "Select entities" %}</label>
-        <select
-          multiple
-          class="select-multiple"
-          name="entities"
-          id="entite-select"
-        >
-          {% for entity in entities %}
-          <option class="" value="{{entity.current_label}}">
-            {{entity.current_label}}
-          </option>
-          {% endfor %}
-        </select>
-      </div>
-      <div class="form-group col-md-4">
-        <label>{% trans "Select type" %}</label>
-        <select
-          multiple
-          class="select-multiple"
-          name="types"
-          id="type-select"
-        >
+  <form id="addFormNews" method="POST">
+    {% csrf_token %}
+    <div class="container-lg">
+      <h1 class="h2 my-5">{% trans "Edit News" %} {{ news_var }}</h1>
 
-        </select>
+      <div class="row mt-2">
+        <div class="form-group col-md-4">
+          <label>{% trans "Select thematics" %}</label>
+          <select
+            multiple
+            class="select-multiple"
+            name="thematics"
+            id="thematic-select"
+          >
+            {% for thematic in thematics %}
+            <option class="" value="{{thematic.id}}">
+              {{thematic.current_label}}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>{% trans "Select entities" %}</label>
+          <select
+            multiple
+            class="select-multiple"
+            name="entities"
+            id="entite-select"
+          >
+            {% for entity in entities %}
+            <option class="" value="{{entity.id}}">
+              {{entity.current_label}}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label>{% trans "Select type" %}</label>
+          <select
+            multiple
+            class="select-multiple"
+            name="types"
+            id="type-select"
+          >
+
+          </select>
+        </div>
+      </div>
+
+      <ul class="nav nav-tabs" role="tablist">
+        {% for lang in languages %}
+        <li class="nav-item">
+          <a class="nav-link {% if lang.active %}active{% endif %}" id="{{ lang.code }}-tab" data-toggle="tab" href="#{{ lang.code }}" role="tab" aria-controls="{{ lang.code }}" aria-selected="true">{% trans lang.label %}</a>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <div class="tab-content p-4">
+        {% for lang in languages %}
+        <div class="tab-pane fade {% if lang.active %}show active{% endif %}" id="{{ lang.code }}" role="tabpanel" aria-labelledby="{{ lang.code }}-tab">
+          <div class="form-group">
+            <span class="text-danger">*</span>
+            <label for="title-{{ lang.code }}">
+              {% trans "Title" %}
+            </label>
+            <input type="text" id="title-{{ lang.code }}" class="form-control"
+                   name="title-{{ lang.code }}"
+                   value="">
+          </div>
+        </div>
+        {% endfor %}
       </div>
     </div>
-    <ul class="nav nav-tabs" role="tablist">
-      {% for lang in languages %}
-      <li class="nav-item">
-        <a class="nav-link {% if lang.active %}active{% endif %}" id="{{ lang.code }}-tab" data-toggle="tab" href="#{{ lang.code }}" role="tab" aria-controls="{{ lang.code }}" aria-selected="true">{% trans lang.label %}</a>
-      </li>
-      {% endfor %}
-    </ul>
-
-    <div class="tab-content p-4">
-      {% for lang in languages %}
-      <div class="tab-pane fade {% if lang.active %}show active{% endif %}" id="{{ lang.code }}" role="tabpanel" aria-labelledby="{{ lang.code }}-tab">
-        {{ lang.code }}
-      </div>
-      {% endfor %}
-    </div>
-  </div>
+    <input type="hidden" name="action" value="add">
+    <button id="add-btn-news" class="btn mt-3 w-100 fw-bold py-2" type="submit">
+      {% trans "Add" %}
+    </button>
+  </form>
 </main>
 {% endblock %}

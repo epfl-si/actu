@@ -37,7 +37,9 @@ class News(models.Model):
         NewsFormat,
         on_delete=models.PROTECT,
         related_name="news",
-        verbose_name="Format",
+        verbose_name=_("Format"),
+        null=True,
+        blank=True,
     )
     created_at = models.DateTimeField(
         auto_now_add=True,

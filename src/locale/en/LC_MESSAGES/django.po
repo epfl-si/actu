@@ -263,6 +263,9 @@ msgstr ""
 msgid "Entities related to this news."
 msgstr ""
 
+msgid "Format"
+msgstr ""
+
 msgid "News Format"
 msgstr ""
 

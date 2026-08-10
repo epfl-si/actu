@@ -15,10 +15,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Block Type"
-msgstr ""
+msgstr "Blocktyp"
 
 msgid "Block Types"
-msgstr ""
+msgstr "Blocktypen"
 
 msgid "English"
 msgstr "Englisch"
@@ -263,13 +263,14 @@ msgstr "Themen, die mit dieser Nachricht verbunden sind."
 msgid "Entities related to this news."
 msgstr "Einheiten, die mit dieser Nachricht verbunden sind."
 
-msgid "News Format"
-msgstr ""
+msgid "Format"
+msgstr "Format"
 
-#, fuzzy
-#| msgid "News translations"
+msgid "News Format"
+msgstr "Nachrichtenformat"
+
 msgid "News Formats"
-msgstr "Nachrichtenübersetzungen"
+msgstr "Nachrichtenformate"
 
 msgid "Language selection"
 msgstr "Sprachauswahl"

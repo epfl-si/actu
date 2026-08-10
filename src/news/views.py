@@ -35,10 +35,18 @@ def create_news(request):
     for entity in entities:
         entity.current_label = getattr(entity, f"label_{lang}")
 
+    languages = [
+        { 'code': 'en', 'label': 'English version', 'active': True },
+        { 'code': 'fr', 'label': 'French version', 'active': False },
+        { 'code': 'de', 'label': 'German version', 'active': False },
+        { 'code': 'it', 'label': 'Italian version', 'active': False }
+    ]
+
     context = {
         "news_var": news_var,
         "thematics": thematics,
-        "entities": entities
+        "entities": entities,
+        "languages": languages
     }
     return render(request, "edit_news.html", context)
 

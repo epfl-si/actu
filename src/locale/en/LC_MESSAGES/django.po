@@ -352,3 +352,6 @@ msgstr ""
 
 msgid "Select type"
 msgstr ""
+
+msgid "Save"
+msgstr ""

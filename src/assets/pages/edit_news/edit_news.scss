@@ -1,0 +1,16 @@
+@use 'variables';
+
+#add-btn-news-en,
+#add-btn-news-fr,
+#add-btn-news-de,
+#add-btn-news-it {
+  background-color: variables.$red;
+  border: none;
+  color: variables.$white;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: variables.$red-dark;
+    color: variables.$white;
+  }
+}

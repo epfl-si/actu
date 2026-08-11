@@ -10,4 +10,4 @@ class NewsForm(forms.ModelForm):
 class NewsTranslationForm(forms.ModelForm):
     class Meta:
         model = NewsTranslation
-        fields = ['title', 'language']
+        fields = ['title']

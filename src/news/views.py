@@ -19,7 +19,7 @@ from .forms import NewsTranslationForm
 
 User = get_user_model()
 
-def _handle_post_action(request, news=None):
+def _handle_post_action(request, language, news=None):
     thematic = request.POST.getlist("thematics")
     if not thematic:
         messages.error(request, _("No thematic provided."))
@@ -40,34 +40,34 @@ def _handle_post_action(request, news=None):
         news_saved.save()
         news_form.save_m2m()
 
-        print("rosajlsdkf")
-        print(news_saved.id)
-        print("end rosa")
         try:
             translation_from_db = NewsTranslation.objects.get(
                 news_id=news_saved.id,
-                language=request.POST.get("language")
+                language=language
             )
         except NewsTranslation.DoesNotExist:
             translation_from_db = None
-        print("rosa 8734682346837")
         translation_form = NewsTranslationForm(request.POST, instance=translation_from_db)
         if translation_form.is_valid():
             is_new_translation = translation_form.instance.pk is None
             translation = translation_form.save(commit=False)
             if is_new_translation:
                 translation.created_by = request.user
-            translation.news_id = news_saved.id
+                translation.language = language
+                translation.news_id = news_saved.id
             translation.save()
+        else:
+            print(translation_form.errors.as_data())
         messages.success(
             request,
             _("The news %(title)s has been added successfully.")
-            % {"title": translation.title},
+            % {"title": "translation.title"},
             )
         url_to_redirect = reverse(
             'edit_news',
             kwargs={
-                'news_id': news_saved.id
+                'news_id': news_saved.id,
+                "language": language
             })
         return HttpResponseRedirect(url_to_redirect)
     else:
@@ -101,11 +101,11 @@ def _initialize_view(news=None):
 
 
 @login_required
-def create_news(request):
+def create_news(request, language):
     thematics, entities, languages = _initialize_view()
 
     if request.method == "POST":
-        return _handle_post_action(request)
+        return _handle_post_action(request, language)
     else:
         form = NewsForm()
 
@@ -118,12 +118,12 @@ def create_news(request):
     return render(request, "edit_news.html", context)
 
 @login_required
-def edit_news(request, news_id):
+def edit_news(request, news_id, language):
     news = get_object_or_404(News, id=news_id)
     thematics, entities, languages = _initialize_view(news)
 
     if request.method == "POST":
-        response = _handle_post_action(request, news=news)
+        response = _handle_post_action(request, news=news, language=language)
         if response:
             return response
         news_form = NewsForm(request.POST, instance=news)

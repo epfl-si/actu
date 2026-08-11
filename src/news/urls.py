@@ -5,12 +5,12 @@ from . import views
 urlpatterns = [
     path("news/manage/", views.manage_news, name="manage_news"),
     path(
-        "news/create/",
+        "news/<str:language>/create/",
         views.create_news,
         name="create_news",
     ),
     path(
-        "news/<int:news_id>/edit/",
+        "news/<int:news_id>/<str:language>/edit/",
         views.edit_news,
         name="edit_news",
     ),

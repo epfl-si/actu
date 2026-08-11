@@ -1,23 +1,17 @@
 from django import utils
-from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import PermissionDenied
-from django.db import IntegrityError, transaction
-from django.db.models import Prefetch
-from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
-
-from utils.accred_client import AccredServiceClient
 
 from .models import News
 from translations.models import NewsTranslation
 from thematics.models import Thematic
 from entities.models import Entity
 from .forms import NewsForm
+from .forms import NewsTranslationForm
 
 
 User = get_user_model()
@@ -35,14 +29,18 @@ def _handle_post_action(request):
             messages.error(request, _("No entity provided."))
             return
 
-        print(entity)
         news_form = NewsForm(request.POST)
+        translation_form = NewsTranslationForm(request.POST)
 
-        if news_form.is_valid():
+        if news_form.is_valid() and translation_form.is_valid():
             news = news_form.save(commit=False)
             news.created_by = request.user
             news.save()
             news_form.save_m2m()
+            translation = translation_form.save(commit=False)
+            translation.created_by = request.user
+            translation.news_id = news.id
+            translation.save()
             messages.success(
                 request,
                 _("The news %(title) has been added successfully.")
@@ -50,7 +48,6 @@ def _handle_post_action(request):
                 )
             return True
         else:
-            logger.error("error saving")
             return False
 
 

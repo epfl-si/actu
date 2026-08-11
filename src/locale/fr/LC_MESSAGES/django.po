@@ -361,3 +361,6 @@ msgstr "Selectionner l'entité"
 
 msgid "Select type"
 msgstr "Selectionner le type"
+
+msgid "Save"
+msgstr "Enregistrer"

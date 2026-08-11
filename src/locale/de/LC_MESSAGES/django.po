@@ -361,3 +361,6 @@ msgstr "Entitäten auswählen"
 
 msgid "Select type"
 msgstr "Typ auswählen"
+
+msgid "Save"
+msgstr "Speichern"

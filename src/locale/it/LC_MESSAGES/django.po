@@ -505,3 +505,6 @@ msgstr "Selezionare l'entità"
 
 msgid "Select type"
 msgstr "Selezionare il tipo"
+
+msgid "Save"
+msgstr "Salva"

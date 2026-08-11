@@ -511,5 +511,5 @@ msgstr "Entitäten auswählen"
 msgid "Select type"
 msgstr "Typ auswählen"
 
-#~ msgid "Display order of the thematic among main thematics."
-#~ msgstr "Anzeigereihenfolge des Themas unter den Hauptthemen."
+msgid "Save"
+msgstr "Speichern"

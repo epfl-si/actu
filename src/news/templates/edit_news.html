@@ -6,7 +6,7 @@
 {% block web2018_title %}{% trans 'News' %} · {% trans "My Homepages" %}{%endblock %} {% block web2018_content %}
 <main id="main" class="content">
     <div class="container-lg">
-      <h1 class="h2 my-5">{% trans "Edit News" %} {{ news_var }}</h1>
+      <h1 class="h2 my-5">{% trans "Edit News" %}</h1>
 
         <ul class="nav nav-tabs" role="tablist">
           {% for lang in languages %}
@@ -31,7 +31,7 @@
                     id="thematic-select-{{ lang.code }}"
                   >
                     {% for thematic in thematics %}
-                    <option class="" value="{{thematic.id}}">
+                    <option class="" value="{{thematic.id}}" {% if thematic.is_selected %}selected{% endif %}>
                       {{thematic.current_label}}
                     </option>
                     {% endfor %}
@@ -46,7 +46,7 @@
                     id="entite-select-{{ lang.code }}"
                   >
                     {% for entity in entities %}
-                    <option class="" value="{{entity.id}}">
+                    <option class="" value="{{entity.id}}" {% if entity.is_selected %}selected{% endif %}>
                       {{entity.current_label}}
                     </option>
                     {% endfor %}
@@ -70,10 +70,9 @@
                   {% trans "Title" %}
                 </label>
                 <input type="text" id="title-{{ lang.code }}" class="form-control"
-                       name="title" >
+                       name="title" value="{{ translation_form.title.value }}">
               </div>
               <input type="hidden" name="language" value="{{ lang.code }}">
-              <input type="hidden" name="action" value="add">
               <button id="add-btn-news-{{ lang.code }}" class="btn mt-3 w-100 fw-bold py-2" type="submit">
                 {% trans "Add" %}
               </button>

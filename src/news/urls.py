@@ -10,6 +10,11 @@ urlpatterns = [
         name="create_news",
     ),
     path(
+        "news/<int:news_id>/edit/",
+        views.edit_news,
+        name="edit_news",
+    ),
+    path(
         "news/manage/<int:news_id>/<str:lang>/delete/",
         views.delete_news_translation,
         name="delete_news_translation",

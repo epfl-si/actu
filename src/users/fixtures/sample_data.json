@@ -1,0 +1,21 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "password": "!somethingsomething",
+      "last_login": "2026-08-11T09:54:18.177Z",
+      "is_superuser": false,
+      "username": "laborde",
+      "first_name": "Issa",
+      "last_name": "Laborde",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2026-08-10T10:34:04.901Z",
+      "sciper": "99999999",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

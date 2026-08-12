@@ -21,7 +21,7 @@
           <div class="tab-pane fade {% if lang.active %}show active{% endif %}" id="{{ lang.code }}" role="tabpanel" aria-labelledby="{{ lang.code }}-tab">
             <form id="addFormNews-{{ lang.code }}" method="POST">
               {% csrf_token %}
-              <div class="row mt-2">
+              <div class="row mt-2 bg-gray-100">
                 <div class="form-group col-md-4">
                   <label>{% trans "Select thematics" %}</label>
                   <select
@@ -72,9 +72,13 @@
                 <input type="text" id="title-{{ lang.code }}" class="form-control"
                        name="title" value="{{ translation_form.title.value }}">
               </div>
-              <button id="add-btn-news-{{ lang.code }}" class="btn mt-3 w-100 fw-bold py-2" type="submit">
-                {% trans "Save" %}
-              </button>
+               <div class="d-flex flex-wrap align-items-start">
+                <div class="d-flex flex-wrap">
+                  <button id="add-btn-news-{{ lang.code }}" class="btn btn-primary btn-sm mr-2 mb-2" type="submit">
+                    {% trans "Save" %}
+                  </button>
+                </div>
+              </div>
             </form>
           </div>
           {% endfor %}

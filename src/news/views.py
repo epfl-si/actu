@@ -41,21 +41,23 @@ def _handle_post_action(request, language, news=None):
         news_form.save_m2m()
 
         try:
-            translation_from_db = NewsTranslation.objects.get(
+            news_translation = NewsTranslation.objects.get(
                 news_id=news_saved.id,
                 language=language
             )
         except NewsTranslation.DoesNotExist:
-            translation_from_db = None
-        translation_form = NewsTranslationForm(request.POST, instance=translation_from_db)
+            news_translation = None
+
+
+        translation_form = NewsTranslationForm(request.POST, instance=news_translation)
         if translation_form.is_valid():
             is_new_translation = translation_form.instance.pk is None
-            translation = translation_form.save(commit=False)
+            translation_saved = translation_form.save(commit=False)
             if is_new_translation:
-                translation.created_by = request.user
-                translation.language = language
-                translation.news_id = news_saved.id
-            translation.save()
+                translation_saved.created_by = request.user
+                translation_saved.language = language
+                translation_saved.news_id = news_saved.id
+            translation_saved.save()
         else:
             print(translation_form.errors.as_data())
         messages.success(

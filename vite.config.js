@@ -21,13 +21,19 @@ export default defineConfig({
     // output filenames so templates can resolve the correct URLs.
     manifest: 'manifest.json',
 
-    rollupOptions: {
+    rolldownOptions: {
       input: {
         'manage-homepages': './assets/pages/manage-homepages/manage-homepages.js',
         actu: './assets/entrypoint.scss',
         manage_users: './assets/pages/manage-users-homepages/manage_users.js',
       },
       output: {
+        minify: {
+          compress: {
+            dropConsole: true,
+            dropDebugger: true,
+          },
+        },
         assetFileNames: (assetInfo) => {
           if (assetInfo.name && assetInfo.name.endsWith('.css')) {
             return 'css/[name][extname]'

@@ -75,7 +75,7 @@ def create_news(request, language):
 
     if request.method == "POST":
         result = _handle_post_action(request, language)
-        if isinstance(result, HttpResponseRedirect):
+        if result:
             return result
 
         form = NewsWithTranslationForm(request.POST)
@@ -99,9 +99,9 @@ def edit_news(request, news_id, language):
     thematics, entities, languages = _initialize_view(news)
 
     if request.method == "POST":
-        response = _handle_post_action(request, language, news, translation)
-        if response:
-            return response
+        result = _handle_post_action(request, language, news, translation)
+        if result:
+            return result
 
         form = NewsWithTranslationForm(request.POST, news, translation)
 

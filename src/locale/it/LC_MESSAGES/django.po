@@ -358,3 +358,6 @@ msgstr "Formato"
 
 msgid "Save"
 msgstr "Salva"
+
+msgid "The news %(title)s has been added successfully."
+msgstr "La notizia %(title)s é stata salvata correttamente"

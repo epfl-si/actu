@@ -358,3 +358,6 @@ msgstr "Format"
 
 msgid "Save"
 msgstr "Enregistrer"
+
+msgid "The news %(title)s has been added successfully."
+msgstr "L'actialité %(title)s a été sauvegardée correctement"

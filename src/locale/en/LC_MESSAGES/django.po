@@ -358,3 +358,6 @@ msgstr ""
 
 msgid "Save"
 msgstr ""
+
+msgid "The news %(title)s has been added successfully."
+msgstr ""

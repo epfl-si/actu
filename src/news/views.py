@@ -54,10 +54,10 @@ def _initialize_view(news=None):
         entity.is_selected = entity.id in selected_entity_ids
 
     languages = [
-        { 'code': 'en', 'label': 'English version' },
-        { 'code': 'fr', 'label': 'French version' },
-        { 'code': 'de', 'label': 'German version' },
-        { 'code': 'it', 'label': 'Italian version' }
+        { 'code': 'en', 'label': _('English version') },
+        { 'code': 'fr', 'label': _('French version') },
+        { 'code': 'de', 'label': _('German version') },
+        { 'code': 'it', 'label': _('Italian version') }
     ]
 
     return thematics, entities, languages

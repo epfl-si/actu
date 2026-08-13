@@ -472,3 +472,18 @@ msgstr ""
 
 msgid "Label in Italian"
 msgstr ""
+
+msgid "Hat"
+msgstr ""
+
+msgid "Extract"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Funding"
+msgstr ""
+
+msgid "References"
+msgstr ""

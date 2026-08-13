@@ -472,3 +472,18 @@ msgstr "Etichetta in tedesco"
 
 msgid "Label in Italian"
 msgstr "Etichetta in italiano"
+
+msgid "Hat"
+msgstr "Intestazione"
+
+msgid "Extract"
+msgstr "Estratto"
+
+msgid "Author"
+msgstr "Autore"
+
+msgid "Funding"
+msgstr "Finanziamento"
+
+msgid "References"
+msgstr "Referenze"

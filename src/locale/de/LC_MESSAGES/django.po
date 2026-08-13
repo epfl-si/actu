@@ -502,14 +502,8 @@ msgstr "Version auf Italienisch"
 msgid "Edit News"
 msgstr "Nachrichten bearbeiten"
 
-msgid "Select thematics"
-msgstr "Themen auswählen"
-
-msgid "Select entities"
-msgstr "Entitäten auswählen"
-
-msgid "Select type"
-msgstr "Typ auswählen"
+msgid "Format"
+msgstr "Format"
 
 msgid "Save"
 msgstr "Speichern"

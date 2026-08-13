@@ -95,3 +95,14 @@ class NewsTranslation(AuditModelMixin, models.Model):
     @property
     def last_activity_label(self):
         return get_last_activity_label(instance=self)
+
+    @classmethod
+    def get(cls, news_id, language):
+        try:
+            news_translation = NewsTranslation.objects.get(
+                news_id=news_id,
+                language=language
+            )
+        except NewsTranslation.DoesNotExist:
+            news_translation = None
+        return news_translation

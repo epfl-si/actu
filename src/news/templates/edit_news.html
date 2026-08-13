@@ -123,10 +123,8 @@
                 <label class="{% if form.translation.hat.errors %}invalid-label{% endif %}" for="hat-{{ lang.code }}">
                   {% trans "Hat" %}
                 </label>
-                <textarea type="text" id="hat-{{ lang.code }}" class="form-control {% if form.translation.hat.errors %}is-invalid{% endif %}"
-                       name="hat" >
-                  {% if form.translation.title.value %}{{ form.translation.hat.value }}{% endif %}
-                </textarea>
+                {{ form.translation.hat }}
+                {{ form.translation.media }}
                 {% for error in form.translation.hat.errors %}
                 <small class="form-text invalid-feedback">
                   <ul class="errorlist" id="id_hat_error"><li>{{ error }}</li></ul>

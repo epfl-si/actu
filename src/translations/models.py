@@ -89,3 +89,14 @@ class NewsTranslation(models.Model):
     @property
     def is_published(self):
         return self.status == self.Status.PUBLISHED
+
+    @classmethod
+    def get(cls, news_id, language):
+        try:
+            news_translation = NewsTranslation.objects.get(
+                news_id=news_id,
+                language=language
+            )
+        except NewsTranslation.DoesNotExist:
+            news_translation = None
+        return news_translation

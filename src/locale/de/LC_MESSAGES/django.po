@@ -356,3 +356,18 @@ msgstr "Label auf Deutsch"
 
 msgid "Label in Italian"
 msgstr "Label auf Italienisch"
+
+msgid "Hat"
+msgstr "Hut"
+
+msgid "Extract"
+msgstr "Auszug"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Funding"
+msgstr "Finanzierung"
+
+msgid "References"
+msgstr "Literaturverzeichnis"

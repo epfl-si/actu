@@ -47,6 +47,8 @@ class NewsTranslationForm(forms.ModelForm):
             translation.created_by = request.user
             translation.language = language
             translation.news_id = news_id
+        else:
+            translation.updated_by = request.user
         translation.save()
         return translation
 

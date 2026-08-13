@@ -43,6 +43,24 @@ class NewsTranslation(AuditModelMixin, models.Model):
         max_length=90,
         verbose_name=_("Title"),
     )
+    hat = models.TextField(
+        verbose_name=_("Hat"),
+    )
+    extract = models.TextField(
+        verbose_name=_("Extract"),
+        null=True
+    )
+    author = models.TextField(
+        verbose_name=_("Author"),
+    )
+    funding = models.TextField(
+        verbose_name=_("Funding"),
+        null=True
+    )
+    references = models.TextField(
+        verbose_name=_("References"),
+        null=True
+    )
     status = models.CharField(
         max_length=20,
         choices=Status.choices,

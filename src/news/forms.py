@@ -33,7 +33,7 @@ class NewsForm(forms.ModelForm):
 class NewsTranslationForm(forms.ModelForm):
     class Meta:
         model = NewsTranslation
-        fields = ["title"]
+        fields = ['title', 'hat']
 
     def save(self, request, language, news_id):
         is_new = self.instance.pk is None

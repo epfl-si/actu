@@ -120,7 +120,22 @@
             </small>
             {% endfor %}
           </div>
-          <div class="d-flex flex-wrap align-items-start">
+          <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="{% if form.translation.hat.errors %}invalid-label{% endif %}" for="hat-{{ lang.code }}">
+                  {% trans "Hat" %}
+                </label>
+                <textarea type="text" id="hat-{{ lang.code }}" class="form-control {% if form.translation.hat.errors %}is-invalid{% endif %}"
+                       name="hat" >
+                  {% if form.translation.title.value %}{{ form.translation.hat.value }}{% endif %}
+                </textarea>
+                {% for error in form.translation.hat.errors %}
+                <small class="form-text invalid-feedback">
+                  <ul class="errorlist" id="id_hat_error"><li>{{ error }}</li></ul>
+                </small>
+                {% endfor %}
+              </div>
+              <div class="d-flex flex-wrap align-items-start">
             <div class="d-flex flex-wrap">
               <button id="add-btn-news-{{ lang.code }}" class="btn btn-primary btn-sm mr-2 mb-2" type="submit">
                 {% trans "Save" %}

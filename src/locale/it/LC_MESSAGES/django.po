@@ -353,14 +353,8 @@ msgstr "Versione in italiano"
 msgid "Edit News"
 msgstr "Modificare la notizia"
 
-msgid "Select thematics"
-msgstr "Selezionare la tematica"
-
-msgid "Select entities"
-msgstr "Selezionare l'entità"
-
-msgid "Select type"
-msgstr "Selezionare il tipo"
+msgid "Format"
+msgstr "Formato"
 
 msgid "Save"
 msgstr "Salva"

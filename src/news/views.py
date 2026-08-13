@@ -20,50 +20,20 @@ from .forms import NewsTranslationForm
 User = get_user_model()
 
 def _handle_post_action(request, language, news=None):
-    thematic = request.POST.getlist("thematics")
-    if not thematic:
-        messages.error(request, _("No thematic provided."))
-        return
-    entity = request.POST.getlist("entities")
-    if not entity:
-        messages.error(request, _("No entity provided."))
-        return
-
     news_form = NewsForm(request.POST, instance=news)
-
+    translation_form = NewsTranslationForm(request.POST)
     if news_form.is_valid():
-        is_new = news_form.instance.pk is None
-
-        news_saved = news_form.save(commit=False)
-        if is_new:
-            news_saved.created_by = request.user
-        news_saved.save()
-        news_form.save_m2m()
-
-        try:
-            news_translation = NewsTranslation.objects.get(
-                news_id=news_saved.id,
-                language=language
-            )
-        except NewsTranslation.DoesNotExist:
-            news_translation = None
-
-
-        translation_form = NewsTranslationForm(request.POST, instance=news_translation)
+        news_saved = news_form.save(request)
+        translation = NewsTranslation.get(news_saved.id, language)
+        translation_form = NewsTranslationForm(request.POST, instance=translation)
         if translation_form.is_valid():
-            is_new_translation = translation_form.instance.pk is None
-            translation_saved = translation_form.save(commit=False)
-            if is_new_translation:
-                translation_saved.created_by = request.user
-                translation_saved.language = language
-                translation_saved.news_id = news_saved.id
-            translation_saved.save()
+            translation_saved = translation_form.save(request, language, news_saved.id)
         else:
-            print(translation_form.errors.as_data())
+            return news_form, translation_form
         messages.success(
             request,
             _("The news %(title)s has been added successfully.")
-            % {"title": "translation.title"},
+            % {"title": translation_saved.title},
             )
         url_to_redirect = reverse(
             'edit_news',
@@ -73,8 +43,7 @@ def _handle_post_action(request, language, news=None):
             })
         return HttpResponseRedirect(url_to_redirect)
     else:
-        print(news_form.errors.as_data())
-        print(translation_form.errors.as_data())
+        return news_form, translation_form
 
 def _initialize_view(news=None):
     lang = utils.translation.get_language()
@@ -84,12 +53,12 @@ def _initialize_view(news=None):
 
     thematics = Thematic.objects.all()
     for thematic in thematics:
-        thematic.current_label = getattr(thematic, f"label_{lang}")
-        thematic.is_selected = thematic.id in selected_thematic_ids
+        thematic.current_label = thematic.get_label(lang)
+        thematic.is_selected = thematic.id in selected_thematic_ids # TODO fix
 
     entities = Entity.objects.all()
     for entity in entities:
-        entity.current_label = getattr(entity, f"label_{lang}")
+        entity.current_label = entity.get_label(lang)
         entity.is_selected = entity.id in selected_entity_ids
 
     languages = [
@@ -101,18 +70,24 @@ def _initialize_view(news=None):
 
     return thematics, entities, languages
 
-
 @login_required
 def create_news(request, language):
     thematics, entities, languages = _initialize_view()
 
     if request.method == "POST":
-        return _handle_post_action(request, language)
+        result = _handle_post_action(request, language)
+        if isinstance(result, HttpResponseRedirect):
+            return result
+
+        news_form = NewsForm(request.POST)
+        translation_form = NewsTranslationForm(request.POST)
     else:
-        form = NewsForm()
+        news_form = NewsForm() # TODO fix with parent form
+        translation_form = NewsTranslationForm()
 
     context = {
-        "form": form,
+        "news_form": news_form,
+        "translation_form": translation_form,
         "thematics": thematics,
         "entities": entities,
         "languages": languages
@@ -129,6 +104,8 @@ def edit_news(request, news_id, language):
         if response:
             return response
         news_form = NewsForm(request.POST, instance=news)
+        translation = get_object_or_404(NewsTranslation, news_id=news_id, language="en")
+        translation_form = NewsTranslationForm(quest.POST, instance=translation)
     else:
         news_form = NewsForm(instance=news)
         translation = get_object_or_404(NewsTranslation, news_id=news_id, language="en")

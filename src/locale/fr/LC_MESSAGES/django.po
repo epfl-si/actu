@@ -344,14 +344,8 @@ msgstr "Version en italien"
 msgid "Edit News"
 msgstr "Éditer l'actualité"
 
-msgid "Select thematics"
-msgstr "Selectionner la thématique"
-
-msgid "Select entities"
-msgstr "Selectionner l'entité"
-
-msgid "Select type"
-msgstr "Selectionner le type"
+msgid "Format"
+msgstr "Format"
 
 msgid "Save"
 msgstr "Enregistrer"

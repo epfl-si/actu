@@ -344,13 +344,7 @@ msgstr ""
 msgid "Edit News"
 msgstr ""
 
-msgid "Select thematics"
-msgstr ""
-
-msgid "Select entities"
-msgstr ""
-
-msgid "Select type"
+msgid "Format"
 msgstr ""
 
 msgid "Save"

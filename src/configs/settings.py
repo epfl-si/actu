@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "mozilla_django_oidc",
     "rest_framework",
+    "tinymce",
     #
     # Applications
     "audit_log",

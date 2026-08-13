@@ -33,13 +33,6 @@ class NewsTranslationForm(forms.ModelForm):
         model = NewsTranslation
         fields = ['title']
 
-    def clean(self):
-        cleaned_data = super().clean()
-        title = cleaned_data.get("title")
-        if not title or title == '':
-            self.add_error("title", "No title provided.")
-        return self.cleaned_data
-
     def save(self, request, language, news_id):
         is_new = self.instance.pk is None
         translation = super().save(commit=False)

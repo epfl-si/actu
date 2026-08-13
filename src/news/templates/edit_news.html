@@ -11,14 +11,20 @@
         <ul class="nav nav-tabs" role="tablist">
           {% for lang in languages %}
           <li class="nav-item">
-            <a class="nav-link {% if lang.active %}active{% endif %}" id="{{ lang.code }}-tab" data-toggle="tab" href="#{{ lang.code }}" role="tab" aria-controls="{{ lang.code }}" aria-selected="true">{% trans lang.label %}</a>
+            <a class="nav-link {% if current_language == lang.code %}active{% endif %}"
+               id="{{ lang.code }}-tab"
+               href="{% if current_path == 'edit_news' %}{% url 'edit_news' news_id=form.news.instance.pk language=lang.code %}
+               {% elif current_path == 'create_news' %}{% url 'create_news' language=lang.code %}{% endif %}"
+               role="tab"
+               aria-controls="{{ lang.code }}"
+               aria-selected="true">{% trans lang.label %}</a>
           </li>
           {% endfor %}
         </ul>
 
         <div class="tab-content p-4">
           {% for lang in languages %}
-          <div class="tab-pane fade {% if lang.active %}show active{% endif %}" id="{{ lang.code }}" role="tabpanel" aria-labelledby="{{ lang.code }}-tab">
+          <div class="tab-pane fade {% if current_language == lang.code %}show active{% endif %}" id="{{ lang.code }}" role="tabpanel" aria-labelledby="{{ lang.code }}-tab">
             <form id="addFormNews-{{ lang.code }}" method="POST">
               {% csrf_token %}
               <div class="row mt-2 bg-gray-100">
@@ -89,14 +95,14 @@
                   {% trans "Title" %}
                 </label>
                 <input type="text" id="title-{{ lang.code }}" class="form-control {% if form.translation.title.errors %}is-invalid{% endif %}"
-                       name="title" value="{{ form.translation.title.value }}">
+                       name="title" value="{% if form.translation.title.value %}{{ form.translation.title.value }}{% endif %}">
                 {% for error in form.translation.title.errors %}
                 <small class="form-text invalid-feedback">
                   <ul class="errorlist" id="id_title_error"><li>{{ error }}</li></ul>
                 </small>
                 {% endfor %}
               </div>
-               <div class="d-flex flex-wrap align-items-start">
+              <div class="d-flex flex-wrap align-items-start">
                 <div class="d-flex flex-wrap">
                   <button id="add-btn-news-{{ lang.code }}" class="btn btn-primary btn-sm mr-2 mb-2" type="submit">
                     {% trans "Save" %}

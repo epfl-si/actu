@@ -59,10 +59,10 @@ def _initialize_view(news=None):
         entity.is_selected = entity.id in selected_entity_ids
 
     languages = [
-        { 'code': 'en', 'label': 'English version', 'active': True },
-        { 'code': 'fr', 'label': 'French version', 'active': False },
-        { 'code': 'de', 'label': 'German version', 'active': False },
-        { 'code': 'it', 'label': 'Italian version', 'active': False }
+        { 'code': 'en', 'label': 'English version' },
+        { 'code': 'fr', 'label': 'French version' },
+        { 'code': 'de', 'label': 'German version' },
+        { 'code': 'it', 'label': 'Italian version' }
     ]
 
     return thematics, entities, languages
@@ -84,7 +84,9 @@ def create_news(request, language):
         "form": form,
         "thematics": thematics,
         "entities": entities,
-        "languages": languages
+        "languages": languages,
+        "current_language": language,
+        "current_path": 'create_news'
     }
     return render(request, "edit_news.html", context)
 
@@ -107,7 +109,9 @@ def edit_news(request, news_id, language):
         "form": form,
         "thematics": thematics,
         "entities": entities,
-        "languages": languages
+        "languages": languages,
+        "current_language": language,
+        "current_path": 'edit_news'
     }
     return render(request, "edit_news.html", context)
 

@@ -24,11 +24,11 @@
               <div class="row mt-2 bg-gray-100">
                 <div class="form-group col-md-4">
                   <span class="text-danger">*</span>
-                  <label class="{% if news_form.thematics.errors %}invalid-label{% endif %}">{% trans "Thematics" %}</label>
+                  <label class="{% if form.news.thematics.errors %}invalid-label{% endif %}">{% trans "Thematics" %}</label>
                   <select
                     multiple
                     data-filter="True"
-                    class="select-multiple {% if news_form.thematics.errors %}is-invalid{% endif %}"
+                    class="select-multiple {% if form.news.thematics.errors %}is-invalid{% endif %}"
                     name="thematics"
                     id="thematic-select-{{ lang.code }}"
                   >
@@ -38,7 +38,7 @@
                     </option>
                     {% endfor %}
                   </select>
-                  {% for error in news_form.thematics.errors %}
+                  {% for error in form.news.thematics.errors %}
                   <small class="form-text invalid-feedback">
                     <ul class="errorlist" id="id_thematics_error"><li>{{ error }}</li></ul>
                   </small>
@@ -46,11 +46,11 @@
                 </div>
                 <div class="form-group col-md-4">
                   <span class="text-danger">*</span>
-                  <label class="{% if news_form.entities.errors %}invalid-label{% endif %}">{% trans "Entities" %}</label>
+                  <label class="{% if form.news.entities.errors %}invalid-label{% endif %}">{% trans "Entities" %}</label>
                   <select
                     multiple
                     data-filter="True"
-                    class="select-multiple {% if news_form.entities.errors %}is-invalid{% endif %}"
+                    class="select-multiple {% if form.news.entities.errors %}is-invalid{% endif %}"
                     name="entities"
                     id="entite-select-{{ lang.code }}"
                   >
@@ -60,7 +60,7 @@
                     </option>
                     {% endfor %}
                   </select>
-                  {% for error in news_form.entities.errors %}
+                  {% for error in form.news.entities.errors %}
                   <small class="form-text invalid-feedback">
                     <ul class="errorlist" id="id_entities_error"><li>{{ error }}</li></ul>
                   </small>
@@ -68,15 +68,15 @@
                 </div>
                 <div class="form-group col-md-4">
                   <span class="text-danger">*</span>
-                  <label class="{% if news_form.format.errors %}invalid-label{% endif %}">{% trans "Format" %}</label>
+                  <label class="{% if form.news.format.errors %}invalid-label{% endif %}">{% trans "Format" %}</label>
                   <select
-                    class="custom-select {% if news_form.format.errors %}is-invalid{% endif %}"
+                    class="custom-select {% if form.news.format.errors %}is-invalid{% endif %}"
                     name="format"
                     id="format-select-{{ lang.code }}"
                   >
 
                   </select>
-                  {% for error in news_form.format.errors %}
+                  {% for error in form.news.format.errors %}
                   <small class="form-text invalid-feedback">
                     <ul class="errorlist" id="id_format_error"><li>{{ error }}</li></ul>
                   </small>
@@ -85,12 +85,12 @@
               </div>
               <div class="form-group">
                 <span class="text-danger">*</span>
-                <label class="{% if translation_form.title.errors %}invalid-label{% endif %}" for="title-{{ lang.code }}">
+                <label class="{% if form.translation.title.errors %}invalid-label{% endif %}" for="title-{{ lang.code }}">
                   {% trans "Title" %}
                 </label>
-                <input type="text" id="title-{{ lang.code }}" class="form-control {% if translation_form.title.errors %}is-invalid{% endif %}"
-                       name="title" value="{{ translation_form.title.value }}">
-                {% for error in translation_form.title.errors %}
+                <input type="text" id="title-{{ lang.code }}" class="form-control {% if form.translation.title.errors %}is-invalid{% endif %}"
+                       name="title" value="{{ form.translation.title.value }}">
+                {% for error in form.translation.title.errors %}
                 <small class="form-text invalid-feedback">
                   <ul class="errorlist" id="id_title_error"><li>{{ error }}</li></ul>
                 </small>

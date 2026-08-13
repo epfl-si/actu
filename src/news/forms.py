@@ -50,3 +50,11 @@ class NewsTranslationForm(forms.ModelForm):
         translation.save()
         return translation
 
+class NewsWithTranslationForm:
+    def __init__(self,
+                 post_data=None,
+                 news_instance=None,
+                 translation_instance=None
+                 ):
+        self.news = NewsForm(post_data, instance=news_instance)
+        self.translation = NewsTranslationForm(post_data, instance=translation_instance)

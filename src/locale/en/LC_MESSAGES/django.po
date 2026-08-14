@@ -418,6 +418,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+#, python-format
 msgid "The news %(title)s has been added successfully."
 msgstr ""
 

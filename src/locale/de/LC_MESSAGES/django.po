@@ -392,6 +392,7 @@ msgstr "Titel"
 msgid "Save"
 msgstr "Speichern"
 
+#, python-format
 msgid "The news %(title)s has been added successfully."
 msgstr "Die Nachricht %(title)s wurde erfolgreich hinzugefügt."
 

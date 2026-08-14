@@ -269,6 +269,9 @@ msgstr "Themen, die mit dieser Nachricht verbunden sind."
 msgid "Entities related to this news."
 msgstr "Einheiten, die mit dieser Nachricht verbunden sind."
 
+msgid "Edit News"
+msgstr "Nachrichten bearbeiten"
+
 msgid "Format"
 msgstr "Format"
 
@@ -323,6 +326,27 @@ msgstr "Nachrichtenformat"
 
 msgid "News Formats"
 msgstr "Nachrichtenformate"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "The news %(title)s has been added successfully."
+msgstr "Die Nachricht %(title)s wurde erfolgreich hinzugefügt."
+
+msgid "English version"
+msgstr "Version auf Englisch"
+
+msgid "French version"
+msgstr "Version auf Französisch"
+
+msgid "German version"
+msgstr "Version auf Deutsch"
+
+msgid "Italian version"
+msgstr "Version auf Italienisch"
 
 msgid "Language selection"
 msgstr "Sprachauswahl"

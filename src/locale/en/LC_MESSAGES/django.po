@@ -269,6 +269,9 @@ msgstr ""
 msgid "Entities related to this news."
 msgstr ""
 
+msgid "Edit News"
+msgstr ""
+
 msgid "Format"
 msgstr ""
 
@@ -322,6 +325,27 @@ msgid "News Format"
 msgstr ""
 
 msgid "News Formats"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "The news %(title)s has been added successfully."
+msgstr ""
+
+msgid "English version"
+msgstr ""
+
+msgid "French version"
+msgstr ""
+
+msgid "German version"
+msgstr ""
+
+msgid "Italian version"
 msgstr ""
 
 msgid "Language selection"

@@ -269,6 +269,9 @@ msgstr "Thématiques liées à cette actualité."
 msgid "Entities related to this news."
 msgstr "Entités liées à cette actualité."
 
+msgid "Edit News"
+msgstr "Éditer l'actualité"
+
 msgid "Format"
 msgstr "Format"
 
@@ -323,6 +326,28 @@ msgstr "Format d'actualités"
 
 msgid "News Formats"
 msgstr "Formats d'actualités"
+
+msgid "Title"
+msgstr "Titre"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+#, python-format
+msgid "The news %(title)s has been added successfully."
+msgstr "L'actualité %(title)s a été sauvegardée correctement"
+
+msgid "English version"
+msgstr "Version en anglais"
+
+msgid "French version"
+msgstr "Version en français"
+
+msgid "German version"
+msgstr "Version en allemand"
+
+msgid "Italian version"
+msgstr "Version en italien"
 
 msgid "Language selection"
 msgstr "Choix de la langue"

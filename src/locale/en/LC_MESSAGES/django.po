@@ -362,6 +362,9 @@ msgstr ""
 msgid "Entities related to this news."
 msgstr ""
 
+msgid "Edit News"
+msgstr ""
+
 msgid "Format"
 msgstr ""
 
@@ -381,6 +384,27 @@ msgid "News Format"
 msgstr ""
 
 msgid "News Formats"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "The news %(title)s has been added successfully."
+msgstr ""
+
+msgid "English version"
+msgstr ""
+
+msgid "French version"
+msgstr ""
+
+msgid "German version"
+msgstr ""
+
+msgid "Italian version"
 msgstr ""
 
 msgid "Language selection"
@@ -425,9 +449,6 @@ msgstr ""
 msgid "News translations"
 msgstr ""
 
-msgid "Title"
-msgstr ""
-
 msgid "Published on"
 msgstr ""
 
@@ -450,28 +471,4 @@ msgid "Label in German"
 msgstr ""
 
 msgid "Label in Italian"
-msgstr ""
-
-msgid "French version"
-msgstr ""
-
-msgid "English version"
-msgstr ""
-
-msgid "German version"
-msgstr ""
-
-msgid "Italian version"
-msgstr ""
-
-msgid "Edit News"
-msgstr ""
-
-msgid "Format"
-msgstr ""
-
-msgid "Save"
-msgstr ""
-
-msgid "The news %(title)s has been added successfully."
 msgstr ""

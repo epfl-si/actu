@@ -392,6 +392,9 @@ msgstr "Tematiche relative a questa notizia."
 msgid "Entities related to this news."
 msgstr "Entità relative a questa notizia."
 
+msgid "Edit News"
+msgstr "Modificare la notizia"
+
 msgid "Format"
 msgstr "Formato"
 
@@ -412,6 +415,28 @@ msgstr "Formato notizia"
 
 msgid "News Formats"
 msgstr "Formati notizia"
+
+msgid "Title"
+msgstr "Titolo"
+
+msgid "Save"
+msgstr "Salva"
+
+#, python-format
+msgid "The news %(title)s has been added successfully."
+msgstr "La notizia %(title)s é stata salvata correttamente"
+
+msgid "English version"
+msgstr "Versione in inglese"
+
+msgid "French version"
+msgstr "Versione in francese"
+
+msgid "German version"
+msgstr "Versione in tedesco"
+
+msgid "Italian version"
+msgstr "Versione in italiano"
 
 msgid "Language selection"
 msgstr "Selezione della lingua"
@@ -455,9 +480,6 @@ msgstr "Traduzione della notizia"
 msgid "News translations"
 msgstr "Traduzioni delle notizie"
 
-msgid "Title"
-msgstr "Titolo"
-
 msgid "Published on"
 msgstr "Pubblicato il"
 
@@ -481,27 +503,3 @@ msgstr "Etichetta in tedesco"
 
 msgid "Label in Italian"
 msgstr "Etichetta in italiano"
-
-msgid "French version"
-msgstr "Versione in francese"
-
-msgid "English version"
-msgstr "Versione in inglese"
-
-msgid "German version"
-msgstr "Versione in tedesco"
-
-msgid "Italian version"
-msgstr "Versione in italiano"
-
-msgid "Edit News"
-msgstr "Modificare la notizia"
-
-msgid "Format"
-msgstr "Formato"
-
-msgid "Save"
-msgstr "Salva"
-
-msgid "The news %(title)s has been added successfully."
-msgstr "La notizia %(title)s é stata salvata correttamente"

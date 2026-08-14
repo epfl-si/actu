@@ -42,21 +42,16 @@ def _handle_post_action(request, language, news=None, translation=None):
                 })
             return HttpResponseRedirect(url_to_redirect)
 
-def _initialize_view(news=None):
+def _initialize_view():
     lang = utils.translation.get_language()
-
-    selected_thematic_ids = set(news.thematics.values_list("id", flat=True)) if news else set()
-    selected_entity_ids = set(news.entities.values_list("id", flat=True)) if news else set()
 
     thematics = Thematic.objects.all()
     for thematic in thematics:
         thematic.current_label = thematic.get_label(lang)
-        thematic.is_selected = thematic.id in selected_thematic_ids
 
     entities = Entity.objects.all()
     for entity in entities:
         entity.current_label = entity.get_label(lang)
-        entity.is_selected = entity.id in selected_entity_ids
 
     languages = [
         { 'code': 'en', 'label': _('English version') },
@@ -67,11 +62,27 @@ def _initialize_view(news=None):
 
     return thematics, entities, languages
 
+def _initialize_selected_values(request=None, news=None):
+    if request is not None and request.method == "POST":
+        # Re-rendering after a failed submission: reflect what the user picked
+        selected_thematic_ids = set(map(int, request.POST.getlist("thematics")))
+        selected_entity_ids = set(map(int, request.POST.getlist("entities")))
+    elif news and news.pk:
+        # Initial load of an existing News
+        selected_thematic_ids = set(news.thematics.values_list("id", flat=True))
+        selected_entity_ids = set(news.entities.values_list("id", flat=True))
+    else:
+        # Initial load of a new News (create_news)
+        selected_thematic_ids = set()
+        selected_entity_ids = set()
+    return selected_thematic_ids, selected_entity_ids
+
 @login_required
 def create_news(request, language):
-    form = NewsWithTranslationForm()
-
     thematics, entities, languages = _initialize_view()
+
+    form = NewsWithTranslationForm()
+    selected_thematic_ids, selected_entity_ids = _initialize_selected_values(request)
 
     if request.method == "POST":
         result = _handle_post_action(request, language)
@@ -86,17 +97,21 @@ def create_news(request, language):
         "entities": entities,
         "languages": languages,
         "current_language": language,
+        "selected_thematic_ids": selected_thematic_ids,
+        "selected_entity_ids": selected_entity_ids,
         "current_path": 'create_news'
     }
     return render(request, "edit_news.html", context)
 
 @login_required
 def edit_news(request, news_id, language):
+    thematics, entities, languages = _initialize_view()
+
     news = get_object_or_404(News, id=news_id)
     translation = NewsTranslation.get(news_id, language)
     form = NewsWithTranslationForm(post_data=None, news_instance=news, translation_instance=translation)
 
-    thematics, entities, languages = _initialize_view(news)
+    selected_thematic_ids, selected_entity_ids = _initialize_selected_values(request, news)
 
     if request.method == "POST":
         result = _handle_post_action(request, language, news, translation)
@@ -111,6 +126,8 @@ def edit_news(request, news_id, language):
         "entities": entities,
         "languages": languages,
         "current_language": language,
+        "selected_thematic_ids": selected_thematic_ids,
+        "selected_entity_ids": selected_entity_ids,
         "current_path": 'edit_news'
     }
     return render(request, "edit_news.html", context)

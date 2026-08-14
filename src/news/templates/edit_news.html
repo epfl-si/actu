@@ -39,7 +39,7 @@
                     id="thematic-select-{{ lang.code }}"
                   >
                     {% for thematic in thematics %}
-                    <option class="" value="{{thematic.id}}" {% if thematic.is_selected %}selected{% endif %}>
+                    <option class="" value="{{thematic.id}}" {% if thematic.id in selected_thematic_ids %}selected{% endif %}>
                       {{thematic.current_label}}
                     </option>
                     {% endfor %}
@@ -61,7 +61,7 @@
                     id="entite-select-{{ lang.code }}"
                   >
                     {% for entity in entities %}
-                    <option class="" value="{{entity.id}}" {% if entity.is_selected %}selected{% endif %}>
+                    <option class="" value="{{entity.id}}" {% if entity.id in selected_entity_ids %}selected{% endif %}>
                       {{entity.current_label}}
                     </option>
                     {% endfor %}

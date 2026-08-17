@@ -178,9 +178,6 @@ msgstr "Definiert den Slug dieser Startseite"
 msgid "Thematic"
 msgstr "Thema"
 
-msgid "Users"
-msgstr "Benutzer"
-
 msgid "A Homepage cannot be linked to both a thematic and an entity."
 msgstr "Eine Startseite kann nicht gleichzeitig mit einem Thema und einer Einheit verknüpft sein."
 
@@ -253,17 +250,8 @@ msgstr "Aktion"
 msgid "Preview and publish"
 msgstr "Vorschau und veröffentlichen"
 
-msgid "Edit"
-msgstr "Bearbeiten"
-
-msgid "Delete"
-msgstr "Löschen"
-
 msgid "Restore"
 msgstr "Wiederherstellen"
-
-msgid "Create"
-msgstr "Erstellen"
 
 msgid "Edit permissions"
 msgstr "Berechtigungen bearbeiten"
@@ -305,55 +293,55 @@ msgid "Remove"
 msgstr "Entfernen"
 
 msgid "Nobody has permission to manage this homepage."
-msgstr "Niemand hat die Berechtigung, diese Startseite zu verwalten."
+msgstr ""
 
 msgid "Remove user"
-msgstr "Benutzer entfernen"
+msgstr ""
 
 msgid "Close"
-msgstr "Schließen"
+msgstr ""
 
 msgid "Are you sure you want to remove permissions for this user?"
-msgstr "Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen möchten?"
+msgstr ""
 
 msgid "No SCIPER provided."
-msgstr "Keine SCIPER-Nummer angegeben."
+msgstr ""
 
 msgid "This person can't be added."
-msgstr "Diese Person kann nicht hinzugefügt werden."
+msgstr ""
 
 msgid "Failed to add user, please try again."
-msgstr "Fehler beim Hinzufügen des Benutzers, bitte versuchen Sie es erneut."
+msgstr ""
 
 #, python-format
 msgid "The user %(first)s %(last)s has been added successfully."
-msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich hinzugefügt."
+msgstr ""
 
 #, python-format
 msgid "The user %(first)s %(last)s has been removed successfully."
-msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich entfernt."
+msgstr ""
 
 #, python-format
 msgid "The user %(first)s %(last)s has no permission to this homepage."
-msgstr "Der Benutzer %(first)s %(last)s hat keine Berechtigung für diese Startseite."
+msgstr ""
 
 msgid "A translation for this language already exists."
-msgstr "Für diese Sprache existiert bereits eine Übersetzung."
+msgstr ""
 
 msgid "Translation created successfully."
-msgstr "Übersetzung erfolgreich erstellt."
+msgstr ""
 
 msgid "This translation is already archived."
-msgstr "Diese Übersetzung ist bereits archiviert."
+msgstr ""
 
 msgid "Translation archived successfully."
-msgstr "Übersetzung erfolgreich archiviert."
+msgstr ""
 
 msgid "This translation is not archived."
-msgstr "Diese Übersetzung ist nicht archiviert."
+msgstr ""
 
 msgid "Translation restored successfully."
-msgstr "Übersetzung erfolgreich wiederhergestellt."
+msgstr ""
 
 msgid "Thematics"
 msgstr "Themen"
@@ -371,10 +359,12 @@ msgid "Others"
 msgstr "Andere"
 
 msgid "News by entity"
-msgstr "Aktuelles nach Einheit"
+msgstr ""
 
+#, fuzzy
+#| msgid "News"
 msgid "My News"
-msgstr "Meine Neuigkeiten"
+msgstr "Nachrichten"
 
 msgid "Administration"
 msgstr "Administration"
@@ -414,3 +404,6 @@ msgstr "Label auf Deutsch"
 
 msgid "Label in Italian"
 msgstr "Label auf Italienisch"
+
+#~ msgid "User"
+#~ msgstr "Benutzer"

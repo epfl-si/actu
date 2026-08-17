@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 14:11+0200\n"
+"POT-Creation-Date: 2026-08-17 15:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -96,24 +96,22 @@ msgid "No result"
 msgstr "Kein Ergebnis"
 
 msgid "Go to first page"
-msgstr ""
+msgstr "Zur ersten Seite gehen"
 
 msgid "Go to previous page"
-msgstr ""
+msgstr "Zur vorherigen Seite gehen"
 
 msgid "Previous"
-msgstr ""
+msgstr "Vorherige"
 
 msgid "Current page"
-msgstr ""
+msgstr "Aktuelle Seite"
 
 msgid "Next"
-msgstr ""
+msgstr "Nächste"
 
-#, fuzzy
-#| msgid "Has Homepage"
 msgid "Last page"
-msgstr "Hat Startseite"
+msgstr "Letzte Seite"
 
 msgid "Empty"
 msgstr "Leer"
@@ -393,6 +391,9 @@ msgstr "Nachrichtenübersetzungen"
 msgid "Title"
 msgstr "Titel"
 
+msgid "User"
+msgstr "Benutzer"
+
 msgid "Label in French"
 msgstr "Label auf Französisch"
 
@@ -404,6 +405,3 @@ msgstr "Label auf Deutsch"
 
 msgid "Label in Italian"
 msgstr "Label auf Italienisch"
-
-#~ msgid "User"
-#~ msgstr "Benutzer"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 14:11+0200\n"
+"POT-Creation-Date: 2026-08-17 15:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,6 +13,111 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "History"
+msgstr "Historique"
+
+msgid "History of edition"
+msgstr "Historique des modifications"
+
+msgid "Search (keyword, ID)"
+msgstr "Recherche (mot-clé, ID)"
+
+msgid "Search a detail..."
+msgstr "Rechercher un détail..."
+
+msgid "Table"
+msgstr "Table"
+
+msgid "All tables"
+msgstr "Toutes les tables"
+
+msgid "Users"
+msgstr "Utilisateurs"
+
+msgid "All authors"
+msgstr "Tous les auteurs"
+
+msgid "Actions type"
+msgstr "Type d'actions"
+
+msgid "All actions"
+msgstr "Toutes les actions"
+
+msgid "Create"
+msgstr "Créer"
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Date (from)"
+msgstr "Date (de)"
+
+msgid "Date (to)"
+msgstr "Date (à)"
+
+msgid "Empty filters"
+msgstr "Vider les filtres"
+
+msgid "Apply filters"
+msgstr "Appliquer les filtres"
+
+msgid "result(s) found"
+msgstr "résultat(s) trouvé(s)"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Modified Objects"
+msgstr "Objets modifiés"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Details"
+msgstr "Détails"
+
+msgid "ID:"
+msgstr "ID :"
+
+msgid "View details"
+msgstr "Voir les détails"
+
+msgid "No details"
+msgstr "Aucun détail"
+
+msgid "No result"
+msgstr "Aucun résultat"
+
+msgid "Go to first page"
+msgstr "Aller à la première page"
+
+msgid "Go to previous page"
+msgstr "Aller à la page précédente"
+
+msgid "Previous"
+msgstr "Précédent"
+
+msgid "Current page"
+msgstr "Page actuelle"
+
+msgid "Next"
+msgstr "Suivant"
+
+msgid "Last page"
+msgstr "Dernière page"
+
+msgid "Empty"
+msgstr "Vide"
+
+msgid "System"
+msgstr "Système"
 
 msgid "English"
 msgstr "Anglais"
@@ -70,9 +175,6 @@ msgstr "Définit le slug de cette page d'accueil"
 
 msgid "Thematic"
 msgstr "Thématique"
-
-msgid "Users"
-msgstr "Utilisateurs"
 
 msgid "A Homepage cannot be linked to both a thematic and an entity."
 msgstr "Une page d'accueil ne peut pas être liée à la fois à une thématique et à une entité."
@@ -146,17 +248,8 @@ msgstr "Actions"
 msgid "Preview and publish"
 msgstr "Prévisualiser et publier"
 
-msgid "Edit"
-msgstr "Modifier"
-
-msgid "Delete"
-msgstr "Supprimer"
-
 msgid "Restore"
 msgstr "Restaurer"
-
-msgid "Create"
-msgstr "Créer"
 
 msgid "Edit permissions"
 msgstr "Modifier les autorisations"
@@ -296,6 +389,9 @@ msgstr "Traductions d'actualités"
 msgid "Title"
 msgstr "Titre"
 
+msgid "User"
+msgstr "Utilisateur"
+
 msgid "Label in French"
 msgstr "Label en français"
 
@@ -307,81 +403,3 @@ msgstr "Label en allemand"
 
 msgid "Label in Italian"
 msgstr "Label en italien"
-
-msgid "History"
-msgstr "Historique"
-
-msgid "History of edition"
-msgstr "Historique des modifications"
-
-msgid "Search (keyword, ID)"
-msgstr "Recherche (mot-clé, ID)"
-
-msgid "Search a detail..."
-msgstr "Rechercher un détail..."
-
-msgid "Table"
-msgstr "Table"
-
-msgid "All tables"
-msgstr "Toutes les tables"
-
-msgid "All authors"
-msgstr "Tous les auteurs"
-
-msgid "Actions type"
-msgstr "Type d'actions"
-
-msgid "All actions"
-msgstr "Toutes les actions"
-
-msgid "Date (from)"
-msgstr "Date (de)"
-
-msgid "Date (to)"
-msgstr "Date (à)"
-
-msgid "Empty filters"
-msgstr "Vider les filtres"
-
-msgid "Apply filters"
-msgstr "Appliquer les filtres"
-
-msgid "Date"
-msgstr "Date"
-
-msgid "Author"
-msgstr "Auteur"
-
-msgid "Modified Objects"
-msgstr "Objets modifiés"
-
-msgid "Action"
-msgstr "Action"
-
-msgid "Details"
-msgstr "Détails"
-
-msgid "ID:"
-msgstr "ID :"
-
-msgid "No details"
-msgstr "Aucun détail"
-
-msgid "No result"
-msgstr "Aucun résultat"
-
-msgid "System"
-msgstr "Système"
-
-msgid "Empty"
-msgstr "Vide"
-
-msgid "View details"
-msgstr "Voir les détails"
-
-msgid "result(s) found"
-msgstr "résultat(s) trouvé(s)"
-
-msgid "User"
-msgstr "Utilisateur"

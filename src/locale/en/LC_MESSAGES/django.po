@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 14:11+0200\n"
+"POT-Creation-Date: 2026-08-17 15:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,6 +13,111 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "History"
+msgstr ""
+
+msgid "History of edition"
+msgstr ""
+
+msgid "Search (keyword, ID)"
+msgstr ""
+
+msgid "Search a detail..."
+msgstr ""
+
+msgid "Table"
+msgstr ""
+
+msgid "All tables"
+msgstr ""
+
+msgid "Users"
+msgstr ""
+
+msgid "All authors"
+msgstr ""
+
+msgid "Actions type"
+msgstr ""
+
+msgid "All actions"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Date (from)"
+msgstr ""
+
+msgid "Date (to)"
+msgstr ""
+
+msgid "Empty filters"
+msgstr ""
+
+msgid "Apply filters"
+msgstr ""
+
+msgid "result(s) found"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Modified Objects"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "ID:"
+msgstr ""
+
+msgid "View details"
+msgstr ""
+
+msgid "No details"
+msgstr ""
+
+msgid "No result"
+msgstr ""
+
+msgid "Go to first page"
+msgstr ""
+
+msgid "Go to previous page"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Current page"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Last page"
+msgstr ""
+
+msgid "Empty"
+msgstr ""
+
+msgid "System"
+msgstr ""
 
 msgid "English"
 msgstr ""
@@ -69,9 +174,6 @@ msgid "Define the Slug of this Homepage"
 msgstr ""
 
 msgid "Thematic"
-msgstr ""
-
-msgid "Users"
 msgstr ""
 
 msgid "A Homepage cannot be linked to both a thematic and an entity."
@@ -146,16 +248,7 @@ msgstr ""
 msgid "Preview and publish"
 msgstr ""
 
-msgid "Edit"
-msgstr ""
-
-msgid "Delete"
-msgstr ""
-
 msgid "Restore"
-msgstr ""
-
-msgid "Create"
 msgstr ""
 
 msgid "Edit permissions"
@@ -296,6 +389,9 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+msgid "User"
+msgstr ""
+
 msgid "Label in French"
 msgstr ""
 
@@ -306,82 +402,4 @@ msgid "Label in German"
 msgstr ""
 
 msgid "Label in Italian"
-msgstr ""
-
-msgid "History"
-msgstr ""
-
-msgid "History of edition"
-msgstr ""
-
-msgid "Search (keyword, ID)"
-msgstr ""
-
-msgid "Search a detail..."
-msgstr ""
-
-msgid "Table"
-msgstr ""
-
-msgid "All tables"
-msgstr ""
-
-msgid "All authors"
-msgstr ""
-
-msgid "Actions type"
-msgstr ""
-
-msgid "All actions"
-msgstr ""
-
-msgid "Date (from)"
-msgstr ""
-
-msgid "Date (to)"
-msgstr ""
-
-msgid "Empty filters"
-msgstr ""
-
-msgid "Apply filters"
-msgstr ""
-
-msgid "Date"
-msgstr ""
-
-msgid "Author"
-msgstr ""
-
-msgid "Modified Objects"
-msgstr ""
-
-msgid "Action"
-msgstr ""
-
-msgid "Details"
-msgstr ""
-
-msgid "ID:"
-msgstr ""
-
-msgid "No details"
-msgstr ""
-
-msgid "No result"
-msgstr ""
-
-msgid "System"
-msgstr ""
-
-msgid "Empty"
-msgstr ""
-
-msgid "View details"
-msgstr ""
-
-msgid "result(s) found"
-msgstr ""
-
-msgid "User"
 msgstr ""

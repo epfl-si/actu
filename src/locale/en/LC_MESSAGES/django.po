@@ -266,7 +266,7 @@ msgstr ""
 msgid "News by entity"
 msgstr ""
 
-msgid "My News"
+msgid "Manage News"
 msgstr ""
 
 msgid "Administration"

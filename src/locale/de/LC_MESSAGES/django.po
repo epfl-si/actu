@@ -266,8 +266,8 @@ msgstr "Andere"
 msgid "News by entity"
 msgstr "Aktuelles nach Einheit"
 
-msgid "My News"
-msgstr "Meine Neuigkeiten"
+msgid "Manage News"
+msgstr "Nachrichten verwalten"
 
 msgid "Administration"
 msgstr "Administration"

@@ -32,11 +32,11 @@
         </a>
       {% endif %}
       {% if user.is_staff and user.news_created.exists %}
-        <a href="#" class="dropdown-item">
+        <a href="{% url 'manage_news' %}" class="dropdown-item">
           <svg aria-hidden="true" class="icon feather mr-1 mb-1">
             <use xlink:href="#file-text"></use>
           </svg>
-          {% trans "My News" %}
+          {% trans "Manage News" %}
         </a>
       {% endif %}
       {% if user.is_staff %}

@@ -4,8 +4,10 @@ from django.db import models
 from django.utils.timezone import localtime
 from django.utils.translation import gettext_lazy as _
 
+from audit_log.models import AuditModelMixin
 
-class Homepage(models.Model):
+
+class Homepage(AuditModelMixin, models.Model):
 
     class Meta:
         verbose_name = _("Homepage")

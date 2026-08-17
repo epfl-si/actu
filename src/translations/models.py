@@ -2,10 +2,11 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from audit_log.models import AuditModelMixin
 from news.models import News
 
 
-class NewsTranslation(models.Model):
+class NewsTranslation(AuditModelMixin, models.Model):
     """
     Translations of a news item.
     """

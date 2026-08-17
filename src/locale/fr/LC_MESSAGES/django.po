@@ -307,3 +307,81 @@ msgstr "Label en allemand"
 
 msgid "Label in Italian"
 msgstr "Label en italien"
+
+msgid "History"
+msgstr "Historique"
+
+msgid "History of edition"
+msgstr "Historique des modifications"
+
+msgid "Search (keyword, ID)"
+msgstr "Recherche (mot-clé, ID)"
+
+msgid "Search a detail..."
+msgstr "Rechercher un détail..."
+
+msgid "Table"
+msgstr "Table"
+
+msgid "All tables"
+msgstr "Toutes les tables"
+
+msgid "All authors"
+msgstr "Tous les auteurs"
+
+msgid "Actions type"
+msgstr "Type d'actions"
+
+msgid "All actions"
+msgstr "Toutes les actions"
+
+msgid "Date (from)"
+msgstr "Date (de)"
+
+msgid "Date (to)"
+msgstr "Date (à)"
+
+msgid "Empty filters"
+msgstr "Vider les filtres"
+
+msgid "Apply filters"
+msgstr "Appliquer les filtres"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Modified Objects"
+msgstr "Objets modifiés"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Details"
+msgstr "Détails"
+
+msgid "ID:"
+msgstr "ID :"
+
+msgid "No details"
+msgstr "Aucun détail"
+
+msgid "No result"
+msgstr "Aucun résultat"
+
+msgid "System"
+msgstr "Système"
+
+msgid "Empty"
+msgstr "Vide"
+
+msgid "View details"
+msgstr "Voir les détails"
+
+msgid "result(s) found"
+msgstr "résultat(s) trouvé(s)"
+
+msgid "User"
+msgstr "Utilisateur"

@@ -14,6 +14,113 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "History"
+msgstr "Verlauf"
+
+msgid "History of edition"
+msgstr "Bearbeitungsverlauf"
+
+msgid "Search (keyword, ID)"
+msgstr "Suche (Schlüsselwort, ID)"
+
+msgid "Search a detail..."
+msgstr "Nach einem Detail suchen..."
+
+msgid "Table"
+msgstr "Tabelle"
+
+msgid "All tables"
+msgstr "Alle Tabellen"
+
+msgid "Users"
+msgstr "Benutzer"
+
+msgid "All authors"
+msgstr "Alle Autoren"
+
+msgid "Actions type"
+msgstr "Aktionstyp"
+
+msgid "All actions"
+msgstr "Alle Aktionen"
+
+msgid "Create"
+msgstr "Erstellen"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "Date (from)"
+msgstr "Datum (von)"
+
+msgid "Date (to)"
+msgstr "Datum (bis)"
+
+msgid "Empty filters"
+msgstr "Filter leeren"
+
+msgid "Apply filters"
+msgstr "Filter anwenden"
+
+msgid "result(s) found"
+msgstr "Ergebnis(se) gefunden"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Modified Objects"
+msgstr "Geänderte Objekte"
+
+msgid "Action"
+msgstr "Aktion"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "ID:"
+msgstr "ID:"
+
+msgid "View details"
+msgstr "Details anzeigen"
+
+msgid "No details"
+msgstr "Keine Details"
+
+msgid "No result"
+msgstr "Kein Ergebnis"
+
+msgid "Go to first page"
+msgstr ""
+
+msgid "Go to previous page"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Current page"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+#, fuzzy
+#| msgid "Has Homepage"
+msgid "Last page"
+msgstr "Hat Startseite"
+
+msgid "Empty"
+msgstr "Leer"
+
+msgid "System"
+msgstr "System"
+
 msgid "English"
 msgstr "Englisch"
 
@@ -141,7 +248,7 @@ msgid "You don't have permission to manage any homepage."
 msgstr "Sie haben keine Berechtigung, eine Startseite zu verwalten."
 
 msgid "Actions"
-msgstr "Aktionen"
+msgstr "Aktion"
 
 msgid "Preview and publish"
 msgstr "Vorschau und veröffentlichen"

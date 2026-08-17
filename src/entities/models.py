@@ -1,10 +1,11 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from audit_log.models import AuditModelMixin
 from utils.models import LabelModel
 
 
-class Entity(LabelModel):
+class Entity(AuditModelMixin, LabelModel):
     """
     Entity is a first-level LDAP group at EPFL
 

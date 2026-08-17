@@ -307,3 +307,81 @@ msgstr ""
 
 msgid "Label in Italian"
 msgstr ""
+
+msgid "History"
+msgstr ""
+
+msgid "History of edition"
+msgstr ""
+
+msgid "Search (keyword, ID)"
+msgstr ""
+
+msgid "Search a detail..."
+msgstr ""
+
+msgid "Table"
+msgstr ""
+
+msgid "All tables"
+msgstr ""
+
+msgid "All authors"
+msgstr ""
+
+msgid "Actions type"
+msgstr ""
+
+msgid "All actions"
+msgstr ""
+
+msgid "Date (from)"
+msgstr ""
+
+msgid "Date (to)"
+msgstr ""
+
+msgid "Empty filters"
+msgstr ""
+
+msgid "Apply filters"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Modified Objects"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "ID:"
+msgstr ""
+
+msgid "No details"
+msgstr ""
+
+msgid "No result"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "Empty"
+msgstr ""
+
+msgid "View details"
+msgstr ""
+
+msgid "result(s) found"
+msgstr ""
+
+msgid "User"
+msgstr ""

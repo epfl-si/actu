@@ -1,0 +1,228 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block web2018_title %}{% trans 'History' %}{% endblock %}
+
+{% block web2018_content %}
+<style>
+  .audit-toggle-btn[aria-expanded="true"] .audit-chevron { transform: rotate(90deg); }
+  .audit-chevron { display: inline-block; transition: transform 0.2s ease-in-out; font-size: 0.8em; margin-right: 4px; }
+</style>
+<main id="main" class="content mt-4">
+    <div class="full-container pr-6 pl-6">
+
+        <h1 class="mb-4">{% trans "History of edition" %}</h1>
+
+        <div class="bg-light p-4 mb-5 rounded border">
+            <form method="GET" action="">
+                <div class="row">
+
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label for="search" class="font-weight-bold">{% trans "Search (keyword, ID)" %}</label>
+                            <input type="text" id="search" name="search" class="form-control" value="{{ filters.search }}" placeholder="{% trans 'Search a detail...' %}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label for="type" class="font-weight-bold">{% trans "Table" %}</label>
+                            <select id="type" name="type" class="form-control custom-select">
+                                <option value="">{% trans "All tables" %}</option>
+                                {% for ctype in active_types %}
+                                    <option value="{{ ctype.model }}" {% if filters.type == ctype.model %}selected{% endif %}>
+                                        {{ ctype.name|capfirst }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label for="user" class="font-weight-bold">{% trans "Users" %}</label>
+                            <select id="user" name="user" class="form-control custom-select">
+                                <option value="">{% trans "All authors" %}</option>
+                                {% for usr in active_users %}
+                                    <option value="{{ usr.id }}" {% if filters.user|add:"0" == usr.id %}selected{% endif %}>
+                                        {{ usr }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label for="action" class="font-weight-bold">{% trans "Actions type" %}</label>
+                            <select id="action" name="action" class="form-control custom-select">
+                                <option value="">{% trans "All actions" %}</option>
+                                <option value="Create" {% if filters.action == "Create" %}selected{% endif %}>{% trans "Create" %}</option>
+                                <option value="Edit" {% if filters.action == "Edit" %}selected{% endif %}>{% trans "Edit" %}</option>
+                                <option value="Delete" {% if filters.action == "Delete" %}selected{% endif %}>{% trans "Delete" %}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label for="date_from" class="font-weight-bold">{% trans "Date (from)" %}</label>
+                            <input type="date" id="date_from" name="date_from" class="form-control" value="{{ filters.date_from }}">
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div class="form-group">
+                            <label for="date_to" class="font-weight-bold">{% trans "Date (to)" %}</label>
+                            <input type="date" id="date_to" name="date_to" class="form-control" value="{{ filters.date_to }}">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="d-flex justify-content-end align-items-center mt-2 border-top pt-3">
+                    <a href="?" class="btn btn-link text-muted mr-3 font-weight-bold">{% trans "Empty filters" %}</a>
+                    <button type="submit" class="btn btn-primary">{% trans "Apply filters" %}</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="d-flex justify-content-end mb-2">
+          <span class="text-muted font-weight-bold">
+            {{ page_obj.paginator.count }} {% trans "result(s) found" %}
+          </span>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover border-bottom">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col" class="text-uppercase small">{% trans "Date" %}</th>
+                        <th scope="col" class="text-uppercase small">{% trans "Author" %}</th>
+                        <th scope="col" class="text-uppercase small">{% trans "Modified Objects" %}</th>
+                        <th scope="col" class="text-uppercase small">{% trans "Action" %}</th>
+                        <th scope="col" class="text-uppercase small" style="width: 25%;">{% trans "Details" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for event in timeline %}
+                      <tr>
+                          <td class="text-muted text-nowrap align-middle">{{ event.date }}</td>
+                          <td class="align-middle"><strong>{{ event.user }}</strong></td>
+
+                          <td class="align-middle">
+                              <span class="d-block font-weight-bold">{{ event.object_label }}</span>
+                              <small class="text-muted text-uppercase">
+                                  {{ event.target_table }}
+                                  <span>({% trans "ID:" %} {{ event.object_id }})</span>
+                              </small>
+                          </td>
+
+                          <td class="align-middle">
+                              <span class="badge text-sm
+                                  {% if 'Create' in event.action %}badge-success
+                                  {% elif 'Edit' in event.action %}badge-tertiary
+                                  {% elif 'Delete' in event.action %}badge-danger
+                                  {% else %}badge-secondary{% endif %}">
+                                  {{ event.action_label }}
+                              </span>
+                          </td>
+
+                          <td class="align-left">
+                            {% if event.changes.items %}
+
+                                <button class="btn btn-link btn-sm p-0 text-dark font-weight-bold text-decoration-none audit-toggle-btn"
+                                        type="button"
+                                        data-toggle="collapse"
+                                        data-target="#details-{{ forloop.counter }}"
+                                        aria-expanded="false">
+                                    <span class="audit-chevron">▶</span> {% trans "View details" %}
+                                </button>
+
+                                <div class="collapse mt-2" id="details-{{ forloop.counter }}">
+                                    <ul class="list-unstyled mb-0" style="font-family: monospace; font-size: 0.85rem;">
+                                    {% for field, values in event.changes.items %}
+                                        <li class="p-2 mb-1 bg-light rounded border">
+                                            <strong>{{ field|capfirst }} :</strong>
+
+                                            {% if values.0 %}
+                                                <del class="text-danger ml-2">{{ values.0 }}</del>
+                                                <span class="text-muted font-weight-bold mx-1">➔</span>
+                                            {% else %}
+                                                <span class="ml-2"></span>
+                                            {% endif %}
+
+                                            <span class="text-success font-weight-bold">{{ values.1 }}</span>
+                                        </li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+
+                              {% else %}
+                                  <span class="text-muted font-italic">{% trans "No details" %}</span>
+                              {% endif %}
+                          </td>
+                      </tr>
+                  {% empty %}
+                      <tr>
+                          <td colspan="5" class="text-center text-muted font-italic py-5">
+                              {% trans "No result" %}
+                          </td>
+                      </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% if page_obj.has_other_pages %}
+        <nav aria-label="Page navigation" class="mt-4 mb-5">
+            <ul class="pagination justify-content-center">
+
+                <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                    <a class="page-link" href="{% if page_obj.has_previous %}?{{ query_string }}&page=1{% else %}#{% endif %}" aria-label="{% trans 'Go to first page' %}">
+                        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-last-left"></use></svg>
+                    </a>
+                </li>
+
+                <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                    <a class="page-link" href="{% if page_obj.has_previous %}?{{ query_string }}&page={{ page_obj.previous_page_number }}{% else %}#{% endif %}" aria-label="{% trans 'Go to previous page' %}">
+                        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-left"></use></svg>
+                        <span class="sr-only">{% trans "Previous" %}</span>
+                    </a>
+                </li>
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                        <li class="page-item active">
+                            <a class="page-link" href="#" aria-current="page">
+                                {{ num }}
+                                <span class="sr-only">({% trans "Current page" %})</span>
+                            </a>
+                        </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{{ query_string }}&page={{ num }}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                    <a class="page-link" href="{% if page_obj.has_next %}?{{ query_string }}&page={{ page_obj.next_page_number }}{% else %}#{% endif %}" aria-label="{% trans 'Next' %}">
+                        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-right"></use></svg>
+                        <span class="sr-only">{% trans "Next" %}</span>
+                    </a>
+                </li>
+
+                <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                    <a class="page-link" href="{% if page_obj.has_next %}?{{ query_string }}&page={{ page_obj.paginator.num_pages }}{% else %}#{% endif %}" aria-label="{% trans 'Last page' %}">
+                        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-last-right"></use></svg>
+                        <span class="sr-only">{% trans "Last page" %}</span>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+        {% endif %}
+
+    </div>
+  </main>
+  {% endblock %}

@@ -7,6 +7,7 @@ from .models import News
 class NewsAdmin(admin.ModelAdmin):
     list_display = ["__str__", "format", "created_at", "created_by"]
     search_fields = ["translations__title"]
+    list_select_related = ["format", "created_by"]
     readonly_fields = ["created_by"]
 
     def save_model(self, request, obj, form, change):

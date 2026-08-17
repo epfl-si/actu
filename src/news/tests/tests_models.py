@@ -16,9 +16,7 @@ class NewsModelTest(TestCase):
             username="niskanen",
             password="99999999",
         )
-        self.format, _ = NewsFormat.objects.get_or_create(
-            id=1, defaults={"label_fr": "News de test"}
-        )
+        self.format = NewsFormat.objects.get(id=1)
         self.thematic = Thematic.objects.create(
             label_fr="Ski de fond",
             label_en="Cross-Country Skiing",

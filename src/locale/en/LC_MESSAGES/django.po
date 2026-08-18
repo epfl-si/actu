@@ -383,6 +383,21 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+msgid "Hat"
+msgstr ""
+
+msgid "Extract"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Funding"
+msgstr ""
+
+msgid "References"
+msgstr ""
+
 msgid "Save"
 msgstr ""
 
@@ -471,19 +486,4 @@ msgid "Label in German"
 msgstr ""
 
 msgid "Label in Italian"
-msgstr ""
-
-msgid "Hat"
-msgstr ""
-
-msgid "Extract"
-msgstr ""
-
-msgid "Author"
-msgstr ""
-
-msgid "Funding"
-msgstr ""
-
-msgid "References"
 msgstr ""

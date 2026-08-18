@@ -13,6 +13,7 @@ from .models import News
 from translations.models import NewsTranslation
 from thematics.models import Thematic
 from entities.models import Entity
+from news_formats.models import NewsFormat
 from .forms import NewsWithTranslationForm
 
 
@@ -48,6 +49,10 @@ def _initialize_view():
     for entity in entities:
         entity.current_label = entity.get_label(lang)
 
+    formats = NewsFormat.objects.all()
+    for format in formats:
+        format.current_label = format.get_label(lang)
+
     languages = [
         { 'code': 'en', 'label': _('English version') },
         { 'code': 'fr', 'label': _('French version') },
@@ -55,29 +60,32 @@ def _initialize_view():
         { 'code': 'it', 'label': _('Italian version') }
     ]
 
-    return thematics, entities, languages
+    return thematics, entities, formats, languages
 
 def _initialize_selected_values(request=None, news=None):
     if request is not None and request.method == "POST":
         # Re-rendering after a failed submission: reflect what the user picked
         selected_thematic_ids = set(map(int, request.POST.getlist("thematics")))
         selected_entity_ids = set(map(int, request.POST.getlist("entities")))
+        selected_format_id = int(request.POST.get("format"))
     elif news and news.pk:
         # Initial load of an existing News
         selected_thematic_ids = set(news.thematics.values_list("id", flat=True))
         selected_entity_ids = set(news.entities.values_list("id", flat=True))
+        selected_format_id = news.format_id
     else:
         # Initial load of a new News (create_news)
         selected_thematic_ids = set()
         selected_entity_ids = set()
-    return selected_thematic_ids, selected_entity_ids
+        selected_format_id = None
+    return selected_thematic_ids, selected_entity_ids, selected_format_id
 
 @login_required
 def create_news(request, language):
-    thematics, entities, languages = _initialize_view()
+    thematics, entities, formats, languages = _initialize_view()
 
     form = NewsWithTranslationForm()
-    selected_thematic_ids, selected_entity_ids = _initialize_selected_values(request)
+    selected_thematic_ids, selected_entity_ids, selected_format_id = _initialize_selected_values(request)
 
     if request.method == "POST":
         result = _handle_post_action(request, language)
@@ -90,23 +98,25 @@ def create_news(request, language):
         "form": form,
         "thematics": thematics,
         "entities": entities,
+        "formats": formats,
         "languages": languages,
         "current_language": language,
         "selected_thematic_ids": selected_thematic_ids,
         "selected_entity_ids": selected_entity_ids,
+        "selected_format_id": selected_format_id,
         "current_path": 'create_news'
     }
     return render(request, "edit_news.html", context)
 
 @login_required
 def edit_news(request, news_id, language):
-    thematics, entities, languages = _initialize_view()
+    thematics, entities, formats, languages = _initialize_view()
 
     news = get_object_or_404(News, id=news_id)
     translation = NewsTranslation.get(news_id, language)
     form = NewsWithTranslationForm(post_data=None, news_instance=news, translation_instance=translation)
 
-    selected_thematic_ids, selected_entity_ids = _initialize_selected_values(request, news)
+    selected_thematic_ids, selected_entity_ids, selected_format_id = _initialize_selected_values(request, news)
 
     if request.method == "POST":
         result = _handle_post_action(request, language, news, translation)
@@ -119,10 +129,12 @@ def edit_news(request, news_id, language):
         "form": form,
         "thematics": thematics,
         "entities": entities,
+        "formats": formats,
         "languages": languages,
         "current_language": language,
         "selected_thematic_ids": selected_thematic_ids,
         "selected_entity_ids": selected_entity_ids,
+        "selected_format_id": selected_format_id,
         "current_path": 'edit_news'
     }
     return render(request, "edit_news.html", context)

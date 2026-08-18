@@ -362,9 +362,6 @@ msgstr "Themen, die mit dieser Nachricht verbunden sind."
 msgid "Entities related to this news."
 msgstr "Einheiten, die mit dieser Nachricht verbunden sind."
 
-msgid "Edit News"
-msgstr "Nachrichten bearbeiten"
-
 msgid "Format"
 msgstr "Format"
 
@@ -380,11 +377,8 @@ msgstr "Keine Nachrichten verfügbar."
 msgid "Do you really want to delete this news translation?"
 msgstr "Möchten Sie diese Version der Nachrichtenübersetzung wirklich löschen?"
 
-msgid "News Format"
-msgstr "Nachrichtenformat"
-
-msgid "News Formats"
-msgstr "Nachrichtenformate"
+msgid "Edit News"
+msgstr "Nachrichten bearbeiten"
 
 msgid "Title"
 msgstr "Titel"
@@ -407,6 +401,12 @@ msgstr "Version auf Deutsch"
 
 msgid "Italian version"
 msgstr "Version auf Italienisch"
+
+msgid "News Format"
+msgstr "Nachrichtenformat"
+
+msgid "News Formats"
+msgstr "Nachrichtenformate"
 
 msgid "Language selection"
 msgstr "Sprachauswahl"

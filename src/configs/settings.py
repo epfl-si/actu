@@ -67,9 +67,11 @@ INSTALLED_APPS = [
     #
     # Applications
     "api",
+    "block_types",
     "entities",
     "homepages",
     "news",
+    "news_formats",
     "thematics",
     "translations",
     "users",

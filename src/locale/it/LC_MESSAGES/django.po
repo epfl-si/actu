@@ -14,6 +14,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Block Type"
+msgstr "Tipo di blocco"
+
+msgid "Block Types"
+msgstr "Tipi di blocco"
+
 msgid "English"
 msgstr "Inglese"
 
@@ -262,6 +268,15 @@ msgstr "Tematiche relative a questa notizia."
 
 msgid "Entities related to this news."
 msgstr "Entità relative a questa notizia."
+
+msgid "Format"
+msgstr "Formato"
+
+msgid "News Format"
+msgstr "Formato notizia"
+
+msgid "News Formats"
+msgstr "Formati notizia"
 
 msgid "Language selection"
 msgstr "Selezione della lingua"

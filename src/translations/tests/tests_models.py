@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 
 from news.models import News
+from news_formats.models import NewsFormat
 from translations.models import NewsTranslation
 
 User = get_user_model()
@@ -14,8 +15,12 @@ class NewsTranslationModelTest(TestCase):
             username="iivo.niskanen",
             sciper="123456",
         )
+        self.format, _ = NewsFormat.objects.get_or_create(
+            id=1, defaults={"label_fr": "News de test"}
+        )
         self.news = News.objects.create(
             created_by=self.user,
+            format=self.format,
         )
         self.translation = NewsTranslation.objects.create(
             news=self.news,

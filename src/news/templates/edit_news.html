@@ -131,6 +131,58 @@
                 </small>
                 {% endfor %}
               </div>
+              <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="{% if form.translation.extract.errors %}invalid-label{% endif %}" for="extract-{{ lang.code }}">
+                  {% trans "extract" %}
+                </label>
+                {{ form.translation.extract }}
+                {{ form.translation.media }}
+                {% for error in form.translation.extract.errors %}
+                <small class="form-text invalid-feedback">
+                  <ul class="errorlist" id="id_extract_error"><li>{{ error }}</li></ul>
+                </small>
+                {% endfor %}
+              </div>
+              <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="{% if form.translation.author.errors %}invalid-label{% endif %}" for="author-{{ lang.code }}">
+                  {% trans "author" %}
+                </label>
+                {{ form.translation.author }}
+                {{ form.translation.media }}
+                {% for error in form.translation.author.errors %}
+                <small class="form-text invalid-feedback">
+                  <ul class="errorlist" id="id_author_error"><li>{{ error }}</li></ul>
+                </small>
+                {% endfor %}
+              </div>
+              <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="{% if form.translation.funding.errors %}invalid-label{% endif %}" for="funding-{{ lang.code }}">
+                  {% trans "funding" %}
+                </label>
+                {{ form.translation.funding }}
+                {{ form.translation.media }}
+                {% for error in form.translation.funding.errors %}
+                <small class="form-text invalid-feedback">
+                  <ul class="errorlist" id="id_funding_error"><li>{{ error }}</li></ul>
+                </small>
+                {% endfor %}
+              </div>
+              <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="{% if form.translation.references.errors %}invalid-label{% endif %}" for="references-{{ lang.code }}">
+                  {% trans "references" %}
+                </label>
+                {{ form.translation.references }}
+                {{ form.translation.media }}
+                {% for error in form.translation.references.errors %}
+                <small class="form-text invalid-feedback">
+                  <ul class="errorlist" id="id_references_error"><li>{{ error }}</li></ul>
+                </small>
+                {% endfor %}
+              </div>
               <div class="d-flex flex-wrap align-items-start">
             <div class="d-flex flex-wrap">
               <button id="add-btn-news-{{ form.language }}" class="btn btn-primary btn-sm mr-2 mb-2" type="submit">

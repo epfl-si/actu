@@ -3,6 +3,7 @@ from django.test import TestCase
 
 from entities.models import Entity
 from news.models import News
+from news_formats.models import NewsFormat
 from thematics.models import Thematic
 
 User = get_user_model()
@@ -15,6 +16,7 @@ class NewsModelTest(TestCase):
             username="niskanen",
             password="99999999",
         )
+        self.format = NewsFormat.objects.get(id=1)
         self.thematic = Thematic.objects.create(
             label_fr="Ski de fond",
             label_en="Cross-Country Skiing",
@@ -29,6 +31,7 @@ class NewsModelTest(TestCase):
         )
         self.news = News.objects.create(
             created_by=self.user,
+            format=self.format,
         )
 
     def test_str_returns_news_id(self):
@@ -55,7 +58,10 @@ class NewsModelTest(TestCase):
         self.assertIsNotNone(self.news.created_at)
 
     def test_ordering_is_by_created_at_descending(self):
-        news2 = News.objects.create(created_by=self.user)
+        news2 = News.objects.create(
+            created_by=self.user,
+            format=self.format,
+        )
         news_list = list(News.objects.all())
         self.assertEqual(news_list[0], news2)
         self.assertEqual(news_list[1], self.news)

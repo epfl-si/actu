@@ -284,6 +284,21 @@ msgstr "Commun"
 msgid "Title"
 msgstr "Titre"
 
+msgid "Hat"
+msgstr "Chapeau"
+
+msgid "Extract"
+msgstr "Extrait"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Funding"
+msgstr "Financement"
+
+msgid "References"
+msgstr "Références"
+
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -356,18 +371,3 @@ msgstr "Label en allemand"
 
 msgid "Label in Italian"
 msgstr "Label en italien"
-
-msgid "Hat"
-msgstr "Chapeau"
-
-msgid "Extract"
-msgstr "Extrait"
-
-msgid "Author"
-msgstr "Auteur"
-
-msgid "Funding"
-msgstr "Financement"
-
-msgid "References"
-msgstr "Références"

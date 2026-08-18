@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-18 17:27+0200\n"
+"POT-Creation-Date: 2026-08-18 18:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -255,55 +255,55 @@ msgid "Remove"
 msgstr "Entfernen"
 
 msgid "Nobody has permission to manage this homepage."
-msgstr ""
+msgstr "Niemand hat die Berechtigung, diese Startseite zu verwalten."
 
 msgid "Remove user"
-msgstr ""
+msgstr "Benutzer entfernen"
 
 msgid "Close"
-msgstr ""
+msgstr "Schließen"
 
 msgid "Are you sure you want to remove permissions for this user?"
-msgstr ""
+msgstr "Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen möchten?"
 
 msgid "No SCIPER provided."
-msgstr ""
+msgstr "Keine SCIPER-Nummer angegeben."
 
 msgid "This person can't be added."
-msgstr ""
+msgstr "Diese Person kann nicht hinzugefügt werden."
 
 msgid "Failed to add user, please try again."
-msgstr ""
+msgstr "Fehler beim Hinzufügen des Benutzers, bitte versuchen Sie es erneut."
 
 #, python-format
 msgid "The user %(first)s %(last)s has been added successfully."
-msgstr ""
+msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich hinzugefügt."
 
 #, python-format
 msgid "The user %(first)s %(last)s has been removed successfully."
-msgstr ""
+msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich entfernt."
 
 #, python-format
 msgid "The user %(first)s %(last)s has no permission to this homepage."
-msgstr ""
+msgstr "Der Benutzer %(first)s %(last)s hat keine Berechtigung für diese Startseite."
 
 msgid "A translation for this language already exists."
-msgstr ""
+msgstr "Für diese Sprache existiert bereits eine Übersetzung."
 
 msgid "Translation created successfully."
-msgstr ""
+msgstr "Übersetzung erfolgreich erstellt."
 
 msgid "This translation is already archived."
-msgstr ""
+msgstr "Diese Übersetzung ist bereits archiviert."
 
 msgid "Translation archived successfully."
-msgstr ""
+msgstr "Übersetzung erfolgreich archiviert."
 
 msgid "This translation is not archived."
-msgstr ""
+msgstr "Diese Übersetzung ist nicht archiviert."
 
 msgid "Translation restored successfully."
-msgstr ""
+msgstr "Übersetzung erfolgreich wiederhergestellt."
 
 msgid "Thematics"
 msgstr "Themen"
@@ -330,12 +330,10 @@ msgid "Next"
 msgstr "Nächste"
 
 msgid "News by entity"
-msgstr ""
+msgstr "Aktuelles nach Einheit"
 
-#, fuzzy
-#| msgid "News"
 msgid "My News"
-msgstr "Nachrichten"
+msgstr "Meine Neuigkeiten"
 
 msgid "Administration"
 msgstr "Administration"
@@ -375,36 +373,3 @@ msgstr "Label auf Deutsch"
 
 msgid "Label in Italian"
 msgstr "Label auf Italienisch"
-
-#~ msgid "All types"
-#~ msgstr "Alle typen"
-
-#~ msgid "All authors"
-#~ msgstr "Alle Autoren"
-
-#~ msgid "Actions type"
-#~ msgstr "Aktionstyp"
-
-#~ msgid "All actions"
-#~ msgstr "Alle Aktionen"
-
-#~ msgid "Author"
-#~ msgstr "Autor"
-
-#~ msgid "Modified Objects"
-#~ msgstr "Geänderte Objekte"
-
-#~ msgid "ID:"
-#~ msgstr "ID:"
-
-#~ msgid "Go to first page"
-#~ msgstr "Zur ersten Seite gehen"
-
-#~ msgid "Go to previous page"
-#~ msgstr "Zur vorherigen Seite gehen"
-
-#~ msgid "Last page"
-#~ msgstr "Letzte Seite"
-
-#~ msgid "System"
-#~ msgstr "System"

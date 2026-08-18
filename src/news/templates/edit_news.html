@@ -80,7 +80,11 @@
                     name="format"
                     id="format-select-{{ lang.code }}"
                   >
-
+                    {% for format in formats %}
+                    <option class="" value="{{format.id}}" {% if format.id == selected_format_id %}selected{% endif %}>
+                      {{format.current_label}}
+                    </option>
+                    {% endfor %}
                   </select>
                   {% for error in form.news.format.errors %}
                   <small class="form-text invalid-feedback">

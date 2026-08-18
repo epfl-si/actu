@@ -7,16 +7,19 @@ from django.core.exceptions import ValidationError
 class NewsForm(forms.ModelForm):
     class Meta:
         model = News
-        fields = ['thematics', 'entities']
+        fields = ['thematics', 'entities', 'format']
 
     def clean(self):
         cleaned_data = super().clean()
         thematics = cleaned_data.get("thematics")
         entities = cleaned_data.get("entities")
+        format = cleaned_data.get("format")
         if not thematics:
             self.add_error("thematics", "No thematic provided.")
         if not entities:
             self.add_error("entities", "No entity provided.")
+        if not format:
+            self.add_error("format", "No format provided.")
         return self.cleaned_data
 
     def save(self, request):

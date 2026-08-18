@@ -132,17 +132,11 @@
                 {% endfor %}
               </div>
               <div class="form-group">
-                <span class="text-danger">*</span>
-                <label class="{% if form.translation.extract.errors %}invalid-label{% endif %}" for="extract-{{ lang.code }}">
+                <label for="extract-{{ lang.code }}">
                   {% trans "Extract" %}
                 </label>
                 {{ form.translation.extract }}
                 {{ form.translation.media }}
-                {% for error in form.translation.extract.errors %}
-                <small class="form-text invalid-feedback">
-                  <ul class="errorlist" id="id_extract_error"><li>{{ error }}</li></ul>
-                </small>
-                {% endfor %}
               </div>
               <div class="form-group">
                 <span class="text-danger">*</span>
@@ -158,30 +152,18 @@
                 {% endfor %}
               </div>
               <div class="form-group">
-                <span class="text-danger">*</span>
-                <label class="{% if form.translation.funding.errors %}invalid-label{% endif %}" for="funding-{{ lang.code }}">
+                <label for="funding-{{ lang.code }}">
                   {% trans "Funding" %}
                 </label>
                 {{ form.translation.funding }}
                 {{ form.translation.media }}
-                {% for error in form.translation.funding.errors %}
-                <small class="form-text invalid-feedback">
-                  <ul class="errorlist" id="id_funding_error"><li>{{ error }}</li></ul>
-                </small>
-                {% endfor %}
               </div>
               <div class="form-group">
-                <span class="text-danger">*</span>
-                <label class="{% if form.translation.references.errors %}invalid-label{% endif %}" for="references-{{ lang.code }}">
+                <label for="references-{{ lang.code }}">
                   {% trans "References" %}
                 </label>
                 {{ form.translation.references }}
                 {{ form.translation.media }}
-                {% for error in form.translation.references.errors %}
-                <small class="form-text invalid-feedback">
-                  <ul class="errorlist" id="id_references_error"><li>{{ error }}</li></ul>
-                </small>
-                {% endfor %}
               </div>
               <div class="d-flex flex-wrap align-items-start">
             <div class="d-flex flex-wrap">

@@ -24,6 +24,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         'manage-homepages': './assets/pages/manage-homepages/manage-homepages.js',
+        'manage-news': './assets/pages/manage-news/manage-news.js',
         actu: './assets/entrypoint.scss',
         manage_users: './assets/pages/manage-users-homepages/manage_users.js',
       },

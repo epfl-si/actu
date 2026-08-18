@@ -1,37 +1,37 @@
 import json
 
-from django.contrib.auth import get_user_model
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render
+from django.utils import timezone
 from django.utils.translation import gettext as _
 
 from .models import GlobalAuditLog
 
-User = get_user_model()
-
 
 def _apply_filters(logs, request):
-    filter_type = request.GET.get("type", "")
-    filter_user = request.GET.get("user", "")
-    filter_action = request.GET.get("action", "")
-    filter_search = request.GET.get("search", "")
-    date_from = request.GET.get("date_from", "")
-    date_to = request.GET.get("date_to", "")
+    filter_type = request.GET.getlist("type")
+    filter_user = request.GET.getlist("user")
+    filter_action = request.GET.getlist("action")
+    filter_search = request.GET.get("search", "").strip()
+    date_from = request.GET.get("from", "")
+    date_to = request.GET.get("to", "")
 
     if filter_type:
-        logs = logs.filter(content_type__model=filter_type)
+        logs = logs.filter(content_type__model__in=filter_type)
     if filter_user:
-        logs = logs.filter(user__id=filter_user)
+        logs = logs.filter(user__in=filter_user)
     if filter_action:
-        logs = logs.filter(action__icontains=filter_action)
+        logs = logs.filter(action__in=filter_action)
+
     if filter_search:
         logs = logs.filter(
             Q(details__icontains=filter_search)
             | Q(object_repr__icontains=filter_search)
-            | Q(object_id__icontains=filter_search)
+            | Q(user__icontains=filter_search)
         )
+
     if date_from:
         logs = logs.filter(created_at__date__gte=date_from)
     if date_to:
@@ -67,30 +67,31 @@ def _format_single_log(log):
             except Exception:
                 pass
 
-        val_0 = _("Empty") if values[0] in ["Empty", "Vide"] else values[0]
-        val_1 = _("Empty") if values[1] in ["Empty", "Vide"] else values[1]
+        val_0 = _("Empty") if values[0] == "Empty" else values[0]
+        val_1 = _("Empty") if values[1] == "Empty" else values[1]
         translated_changes[field_name] = [val_0, val_1]
 
     return {
-        "date": log.created_at.strftime("%d/%m/%Y at %H:%M"),
+        "date": timezone.localtime(log.created_at).strftime("%d/%m/%Y %H:%M"),
+        "user": log.user,
         "action": log.action,
         "action_label": _(log.action),
-        "target_table": target_table,
-        "object_id": log.object_id,
-        "object_label": log.object_repr,
+        "type": target_table,
+        "subject": log.object_repr,
         "changes": translated_changes,
-        "user": str(log.user) if log.user else _("System"),
     }
 
 
 def global_history_view(request):
-    logs = GlobalAuditLog.objects.all().select_related("content_type", "user")
-
+    logs = GlobalAuditLog.objects.all().select_related("content_type")
     logs = _apply_filters(logs, request)
 
     paginator = Paginator(logs, 10)
-    page_number = request.GET.get("page")
+    page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
+    page_range = paginator.get_elided_page_range(
+        page_obj.number, on_each_side=1, on_ends=1
+    )
 
     timeline = [_format_single_log(log) for log in page_obj]
 
@@ -110,8 +111,11 @@ def global_history_view(request):
             {"model": ctype.model, "name": _(model_name)}
         )
 
-    active_users = User.objects.filter(
-        id__in=GlobalAuditLog.objects.values("user").distinct()
+    active_users = (
+        GlobalAuditLog.objects.exclude(user="")
+        .order_by("user")
+        .values_list("user", flat=True)
+        .distinct()
     )
 
     query_dict = request.GET.copy()
@@ -121,16 +125,18 @@ def global_history_view(request):
     context = {
         "timeline": timeline,
         "page_obj": page_obj,
+        "page_range": page_range,
+        "paginator": paginator,
         "query_string": query_dict.urlencode(),
         "active_types": active_content_types,
         "active_users": active_users,
         "filters": {
-            "type": request.GET.get("type", ""),
-            "user": request.GET.get("user", ""),
-            "action": request.GET.get("action", ""),
+            "type": request.GET.getlist("type"),
+            "user": request.GET.getlist("user"),
+            "action": request.GET.getlist("action"),
             "search": request.GET.get("search", ""),
-            "date_from": request.GET.get("date_from", ""),
-            "date_to": request.GET.get("date_to", ""),
+            "from": request.GET.get("from", ""),
+            "to": request.GET.get("to", ""),
         },
     }
 

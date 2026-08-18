@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 15:18+0200\n"
+"POT-Creation-Date: 2026-08-18 17:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,29 +20,20 @@ msgstr "Cronologia"
 msgid "History of edition"
 msgstr "Cronologia delle modifiche"
 
-msgid "Search (keyword, ID)"
-msgstr "Cerca (parola chiave, ID)"
+msgid "Search"
+msgstr "Cerca"
 
 msgid "Search a detail..."
 msgstr "Cerca un dettaglio..."
 
-msgid "Table"
-msgstr "Tabella"
+msgid "Type"
+msgstr "Tipo"
 
-msgid "All tables"
-msgstr "Tutte le tabelle"
+msgid "User"
+msgstr "Utente"
 
-msgid "Users"
-msgstr "Utenti"
-
-msgid "All authors"
-msgstr "Tutti gli autori"
-
-msgid "Actions type"
-msgstr "Tipo di azioni"
-
-msgid "All actions"
-msgstr "Tutte le azioni"
+msgid "Action"
+msgstr "Azione"
 
 msgid "Create"
 msgstr "Crea"
@@ -53,17 +44,17 @@ msgstr "Modifica"
 msgid "Delete"
 msgstr "Elimina"
 
-msgid "Date (from)"
-msgstr "Data (da)"
+msgid "From"
+msgstr "Da"
 
-msgid "Date (to)"
-msgstr "Data (a)"
+msgid "To"
+msgstr "A"
 
-msgid "Empty filters"
-msgstr "Svuota i filtri"
+msgid "Reset"
+msgstr "Resetta"
 
-msgid "Apply filters"
-msgstr "Applica filtri"
+msgid "Apply"
+msgstr "Applica"
 
 msgid "result(s) found"
 msgstr "risultato/i trovato/i"
@@ -71,20 +62,11 @@ msgstr "risultato/i trovato/i"
 msgid "Date"
 msgstr "Data"
 
-msgid "Author"
-msgstr "Autore"
-
-msgid "Modified Objects"
-msgstr "Oggetti modificati"
-
-msgid "Action"
-msgstr "Azione"
+msgid "Subject"
+msgstr "Soggetto"
 
 msgid "Details"
 msgstr "Dettagli"
-
-msgid "ID:"
-msgstr "ID:"
 
 msgid "View details"
 msgstr "Vedi dettagli"
@@ -95,29 +77,8 @@ msgstr "Nessun dettaglio"
 msgid "No result"
 msgstr "Nessun risultato"
 
-msgid "Go to first page"
-msgstr "Vai alla prima pagina"
-
-msgid "Go to previous page"
-msgstr "Vai alla pagina precedente"
-
-msgid "Previous"
-msgstr "Precedente"
-
-msgid "Current page"
-msgstr "Pagina corrente"
-
-msgid "Next"
-msgstr "Successiva"
-
-msgid "Last page"
-msgstr "Ultima pagina"
-
 msgid "Empty"
 msgstr "Vuoto"
-
-msgid "System"
-msgstr "Sistema"
 
 msgid "English"
 msgstr "Inglese"
@@ -175,6 +136,9 @@ msgstr "Definisci lo Slug di questa pagina principale"
 
 msgid "Thematic"
 msgstr "Tematica"
+
+msgid "Users"
+msgstr "Utenti"
 
 msgid "A Homepage cannot be linked to both a thematic and an entity."
 msgstr "Una pagina principale non può essere collegata contemporaneamente a una tematica e a un'entità."
@@ -356,6 +320,15 @@ msgstr "Selezione della lingua"
 msgid "Others"
 msgstr "Altri"
 
+msgid "Previous"
+msgstr "Precedente"
+
+msgid "Current page"
+msgstr "Pagina corrente"
+
+msgid "Next"
+msgstr "Successiva"
+
 msgid "News by entity"
 msgstr "Notizie per entità"
 
@@ -389,9 +362,6 @@ msgstr "Traduzioni delle notizie"
 msgid "Title"
 msgstr "Titolo"
 
-msgid "User"
-msgstr "Utente"
-
 msgid "Label in French"
 msgstr "Etichetta in francese"
 
@@ -403,3 +373,36 @@ msgstr "Etichetta in tedesco"
 
 msgid "Label in Italian"
 msgstr "Etichetta in italiano"
+
+#~ msgid "All types"
+#~ msgstr "Tutti i Tipi"
+
+#~ msgid "All authors"
+#~ msgstr "Tutti gli autori"
+
+#~ msgid "Actions type"
+#~ msgstr "Tipo di azioni"
+
+#~ msgid "All actions"
+#~ msgstr "Tutte le azioni"
+
+#~ msgid "Author"
+#~ msgstr "Autore"
+
+#~ msgid "Modified Objects"
+#~ msgstr "Oggetti modificati"
+
+#~ msgid "ID:"
+#~ msgstr "ID:"
+
+#~ msgid "Go to first page"
+#~ msgstr "Vai alla prima pagina"
+
+#~ msgid "Go to previous page"
+#~ msgstr "Vai alla pagina precedente"
+
+#~ msgid "Last page"
+#~ msgstr "Ultima pagina"
+
+#~ msgid "System"
+#~ msgstr "Sistema"

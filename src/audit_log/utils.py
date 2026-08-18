@@ -11,14 +11,14 @@ def log_action(user, obj, action, details_dict=None):
     details_dict must be a dictionary: {"Title": ["Old", "New"]}
     """
     ctype = ContentType.objects.get_for_model(obj)
-
     details_json = json.dumps(details_dict) if details_dict else "{}"
+    user_str = str(user) if user and user.is_authenticated else "System"
 
     GlobalAuditLog.objects.create(
         content_type=ctype,
         object_id=obj.pk,
         object_repr=str(obj),
         action=action,
-        user=user if user.is_authenticated else None,
+        user=user_str,
         details=details_json,
     )

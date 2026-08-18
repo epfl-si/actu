@@ -1,7 +1,5 @@
 import json
 
-from django.conf import settings
-from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models, transaction
 from django.db.models.signals import m2m_changed, pre_delete
@@ -15,18 +13,14 @@ class GlobalAuditLog(models.Model):
         ContentType, on_delete=models.CASCADE, verbose_name="Object Type"
     )
     object_id = models.CharField(max_length=255, verbose_name="Object ID")
-    content_object = GenericForeignKey("content_type", "object_id")
 
     object_repr = models.CharField(
         max_length=255, verbose_name="Object Name", default="Not defined"
     )
 
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Date")
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
+    user = models.CharField(
+        max_length=255, verbose_name="User", default="System"
     )
 
     action = models.CharField(max_length=100)
@@ -56,14 +50,14 @@ class AuditModelMixin(models.Model):
                 continue
             try:
                 val = getattr(self, field.name)
-                state[field.name] = str(val) if val is not None else "Vide"
+                state[field.name] = str(val) if val is not None else "Empty"
             except Exception:
-                state[field.name] = "Erreur"
+                state[field.name] = "Error"
         return state
 
     def save(self, *args, **kwargs):
         is_new = self.pk is None
-        user = current_user.get()
+        user_str = _get_user_str()
 
         super().save(*args, **kwargs)
 
@@ -76,7 +70,7 @@ class AuditModelMixin(models.Model):
                 modifs = {}
                 new_state = self._get_current_state()
                 for k, v in new_state.items():
-                    if v != "Vide":
+                    if v != "Empty":
                         modifs[k] = ["", v]
 
                 for m2m_field in self._meta.many_to_many:
@@ -90,7 +84,7 @@ class AuditModelMixin(models.Model):
                     object_id=self.pk,
                     object_repr=str(self),
                     action="Create",
-                    user=user,
+                    user=user_str,
                     details=json.dumps(modifs),
                 )
 
@@ -111,11 +105,16 @@ class AuditModelMixin(models.Model):
                     object_id=self.pk,
                     object_repr=str(self),
                     action="Edit",
-                    user=user,
+                    user=user_str,
                     details=json.dumps(modifs),
                 )
 
         self._initial_state = self._get_current_state()
+
+
+def _get_user_str():
+    user = current_user.get()
+    return str(user) if user and user.is_authenticated else "System"
 
 
 def _get_m2m_field_name(instance, sender):
@@ -131,7 +130,7 @@ def _save_m2m_audit_log(instance, field_name):
     old_names = instance._m2m_memory.get(field_name, "Empty")
 
     if old_names != new_names:
-        user = current_user.get()
+        user_str = _get_user_str()
         ctype = ContentType.objects.get_for_model(instance)
         modifs = {field_name: [old_names, new_names]}
 
@@ -140,7 +139,7 @@ def _save_m2m_audit_log(instance, field_name):
             object_id=instance.pk,
             object_repr=str(instance),
             action="Edit",
-            user=user,
+            user=user_str,
             details=json.dumps(modifs),
         )
 
@@ -180,7 +179,7 @@ def audit_m2m_changed(
 @receiver(pre_delete)
 def audit_delete_log(sender, instance, **kwargs):
     if isinstance(instance, AuditModelMixin):
-        user = current_user.get()
+        user_str = _get_user_str()
         ctype = ContentType.objects.get_for_model(instance)
 
         GlobalAuditLog.objects.create(
@@ -188,6 +187,6 @@ def audit_delete_log(sender, instance, **kwargs):
             object_id=instance.pk,
             object_repr=str(instance),
             action="Delete",
-            user=user,
+            user=user_str,
             details="{}",
         )

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 15:18+0200\n"
+"POT-Creation-Date: 2026-08-18 17:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,28 +20,19 @@ msgstr ""
 msgid "History of edition"
 msgstr ""
 
-msgid "Search (keyword, ID)"
+msgid "Search"
 msgstr ""
 
 msgid "Search a detail..."
 msgstr ""
 
-msgid "Table"
+msgid "Type"
 msgstr ""
 
-msgid "All tables"
+msgid "User"
 msgstr ""
 
-msgid "Users"
-msgstr ""
-
-msgid "All authors"
-msgstr ""
-
-msgid "Actions type"
-msgstr ""
-
-msgid "All actions"
+msgid "Action"
 msgstr ""
 
 msgid "Create"
@@ -53,16 +44,16 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-msgid "Date (from)"
+msgid "From"
 msgstr ""
 
-msgid "Date (to)"
+msgid "To"
 msgstr ""
 
-msgid "Empty filters"
+msgid "Reset"
 msgstr ""
 
-msgid "Apply filters"
+msgid "Apply"
 msgstr ""
 
 msgid "result(s) found"
@@ -71,19 +62,10 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-msgid "Author"
-msgstr ""
-
-msgid "Modified Objects"
-msgstr ""
-
-msgid "Action"
+msgid "Subject"
 msgstr ""
 
 msgid "Details"
-msgstr ""
-
-msgid "ID:"
 msgstr ""
 
 msgid "View details"
@@ -95,28 +77,7 @@ msgstr ""
 msgid "No result"
 msgstr ""
 
-msgid "Go to first page"
-msgstr ""
-
-msgid "Go to previous page"
-msgstr ""
-
-msgid "Previous"
-msgstr ""
-
-msgid "Current page"
-msgstr ""
-
-msgid "Next"
-msgstr ""
-
-msgid "Last page"
-msgstr ""
-
 msgid "Empty"
-msgstr ""
-
-msgid "System"
 msgstr ""
 
 msgid "English"
@@ -174,6 +135,9 @@ msgid "Define the Slug of this Homepage"
 msgstr ""
 
 msgid "Thematic"
+msgstr ""
+
+msgid "Users"
 msgstr ""
 
 msgid "A Homepage cannot be linked to both a thematic and an entity."
@@ -356,6 +320,15 @@ msgstr ""
 msgid "Others"
 msgstr ""
 
+msgid "Previous"
+msgstr ""
+
+msgid "Current page"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
 msgid "News by entity"
 msgstr ""
 
@@ -387,9 +360,6 @@ msgid "News translations"
 msgstr ""
 
 msgid "Title"
-msgstr ""
-
-msgid "User"
 msgstr ""
 
 msgid "Label in French"

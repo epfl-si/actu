@@ -388,9 +388,6 @@ msgstr ""
 msgid "Entities related to this news."
 msgstr ""
 
-msgid "Edit News"
-msgstr ""
-
 msgid "Format"
 msgstr ""
 
@@ -406,10 +403,7 @@ msgstr ""
 msgid "Do you really want to delete this news translation?"
 msgstr ""
 
-msgid "News Format"
-msgstr ""
-
-msgid "News Formats"
+msgid "Edit News"
 msgstr ""
 
 msgid "Title"
@@ -432,6 +426,12 @@ msgid "German version"
 msgstr ""
 
 msgid "Italian version"
+msgstr ""
+
+msgid "News Format"
+msgstr ""
+
+msgid "News Formats"
 msgstr ""
 
 msgid "Language selection"

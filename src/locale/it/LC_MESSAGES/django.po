@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 14:11+0200\n"
+"POT-Creation-Date: 2026-08-18 09:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -266,6 +266,15 @@ msgstr "Entità relative a questa notizia."
 msgid "Format"
 msgstr "Formato"
 
+msgid "Manage News"
+msgstr "Gestire le notizie"
+
+msgid "No news available."
+msgstr "Nessuna notizia disponibile."
+
+msgid "Do you really want to delete this news translation?"
+msgstr "Vuoi davvero eliminare questa traduzione della notizia?"
+
 msgid "News Format"
 msgstr "Formato notizia"
 
@@ -280,9 +289,6 @@ msgstr "Altri"
 
 msgid "News by entity"
 msgstr "Notizie per entità"
-
-msgid "Manage News"
-msgstr "Gestire le notizie"
 
 msgid "Administration"
 msgstr "Amministrazione"

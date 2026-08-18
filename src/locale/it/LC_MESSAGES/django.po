@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 12:41+0200\n"
+"POT-Creation-Date: 2026-08-18 12:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -269,17 +269,11 @@ msgstr "Tematiche relative a questa notizia."
 msgid "Entities related to this news."
 msgstr "Entità relative a questa notizia."
 
-msgid "Edit News"
-msgstr "Modificare la notizia"
-
 msgid "Format"
 msgstr "Formato"
 
-msgid "News Format"
-msgstr "Formato notizia"
-
-msgid "News Formats"
-msgstr "Formati notizia"
+msgid "Edit News"
+msgstr "Modificare la notizia"
 
 msgid "Title"
 msgstr "Titolo"
@@ -302,6 +296,12 @@ msgstr "Versione in tedesco"
 
 msgid "Italian version"
 msgstr "Versione in italiano"
+
+msgid "News Format"
+msgstr "Formato notizia"
+
+msgid "News Formats"
+msgstr "Formati notizia"
 
 msgid "Language selection"
 msgstr "Selezione della lingua"

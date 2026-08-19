@@ -380,6 +380,9 @@ msgstr "Vuoi davvero eliminare questa traduzione della notizia?"
 msgid "Edit News"
 msgstr "Modificare la notizia"
 
+msgid "Create News"
+msgstr "Creare una notizia"
+
 msgid "Title"
 msgstr "Titolo"
 

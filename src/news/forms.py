@@ -7,6 +7,8 @@ from translations.models import NewsTranslation
 from django.core.exceptions import ValidationError
 from tinymce.widgets import TinyMCE
 
+from translations.models import NewsTranslation
+
 from .models import News
 
 
@@ -38,18 +40,19 @@ class NewsForm(forms.ModelForm):
 class NewsTranslationForm(forms.ModelForm):
     class Meta:
         model = NewsTranslation
-        fields = ['title', 'hat', 'extract', 'author', 'funding', 'references']
+        fields = ["title", "hat", "extract", "author", "funding", "references"]
         widgets = {
-            'author': TinyMCE(mce_attrs={
-                'height': 130
-            }),
-            'extract': TinyMCE(mce_attrs={
-                'height': 250,
-                'menubar': False,
-                'plugins': 'lists link anchor code',
-                'toolbar': 'bold italic underline | bullist numlist indent outdent  | subscript superscript | '
-                           'blocks | link anchor | undo redo | fullscreen | code',
-            }),
+            "author": TinyMCE(mce_attrs={"height": 130}),
+            "extract": TinyMCE(
+                mce_attrs={
+                    "height": 250,
+                    "menubar": False,
+                    "plugins": "lists link anchor code",
+                    "toolbar": "bold italic underline | bullist numlist indent"
+                    " outdent  | subscript superscript | blocks | link anchor"
+                    " | undo redo | fullscreen | code",
+                }
+            ),
         }
 
     def save(self, user, language, news):

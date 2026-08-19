@@ -30,7 +30,7 @@
       <div class="tab-pane fade show active" id="{{ form.language }}" role="tabpanel" aria-labelledby="{{ form.language }}-tab">
         <form id="addFormNews-{{ form.language }}" method="POST">
           {% csrf_token %}
-          <div class="row">
+          <div class="row ">
             <div class="form-group col-md-3">
               <span class="text-danger">*</span>
               <label for="format-select-{{ form.language }}" class="{% if form.news.format.errors %}invalid-label{% endif %}">{% trans "Format" %}</label>
@@ -39,14 +39,14 @@
                   <use xlink:href="#crosshair"></use>
                 </svg>
               </span>
-              <select
+                <select
                 class="custom-select {% if form.news.format.errors %}is-invalid{% endif %}"
                 name="format"
                 id="format-select-{{ form.language }}"
               >
                 {% for format in formats %}
-                <option class="" value="{{ format.id }}" {% if format.id == selected_format_id %}selected{% endif %}>
-                  {{ format|label_for }}
+                <option class="" value="{{format.id }}" {% if format.id == selected_format_id %}selected{% endif %}>
+                  {{format|label_for }}
                 </option>
                 {% endfor %}
               </select>
@@ -58,7 +58,7 @@
             </div>
             <div class="form-group col-md-3">
               <span class="text-danger">*</span>
-              <label for="thematic-select-{{ form.language }}" class="{% if form.news.thematics.errors %}invalid-label{% endif %}">{% trans "Thematics" %}</label>
+              <labelfor="thematic-select-{{ form.language }}" class="{% if form.news.thematics.errors %}invalid-label{% endif %}">{% trans "Thematics" %}</label>
               <span class="float-right" title="{% trans "Common" %}">
                 <svg class="icon feather" aria-hidden="true">
                   <use xlink:href="#crosshair"></use>
@@ -72,37 +72,36 @@
                 id="thematic-select-{{ form.language }}"
               >
                 {% for thematic in thematics %}
-                <option class="" value="{{ thematic.id }}" {% if thematic.id in selected_thematic_ids %}selected{% endif %}>
-                  {{ thematic|label_for }}
+                <option class="" value="{{thematic.id }}" {% if thematic.id in selected_thematic_ids %}selected{% endif %}>
+                  {{thematic|label_for}}
                 </option>
                 {% endfor %}
               </select>
-              {% for error in form.news.thematics.errors %}
+            {% for error in form.news.thematics.errors %}
               <small class="form-text invalid-feedback">
                 <ul class="errorlist" id="id_thematics_error"><li>{{ error }}</li></ul>
               </small>
-              {% endfor %}
-            </div>
+              {% endfor %}</div>
             <div class="form-group col-md-6">
               <label for="entite-select-{{ form.language }}">{% trans "Entities" %}</label>
               <span class="float-right" title="{% trans "Common" %}">
-                <svg class="icon feather" aria-hidden="true">
+              <svg class="icon feather" aria-hidden="true">
                   <use xlink:href="#crosshair"></use>
                 </svg>
               </span>
-              <select
-                multiple
+              <selectmultiple
                 data-filter="True"
                 class="select-multiple {% if form.news.entities.errors %}is-invalid{% endif %}"
                 name="entities"
                 id="entite-select-{{ form.language }}"
               >
                 {% for entity in entities %}
-                <option class="" value="{{ entity.id }}" {% if entity.id in selected_entity_ids %}selected{% endif %}>
-                  {{ entity|label_for }}
+                <option class="" value="{{entity.id }}" {% if entity.id in selected_entity_ids %}selected{% endif %}>
+                  {{entity|label_for }}
                 </option>
                 {% endfor %}
               </select>
+
             </div>
           </div>
           <div class="form-group">

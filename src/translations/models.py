@@ -47,24 +47,12 @@ class NewsTranslation(AuditModelMixin, models.Model):
     hat = HTMLField(
         verbose_name=_("Hat"),
     )
-    extract = HTMLField(
-        verbose_name=_("Extract"),
-        null=True,
-        blank=True
-    )
+    extract = HTMLField(verbose_name=_("Extract"), null=True, blank=True)
     author = HTMLField(
         verbose_name=_("Author"),
     )
-    funding = HTMLField(
-        verbose_name=_("Funding"),
-        null=True,
-        blank=True
-    )
-    references = HTMLField(
-        verbose_name=_("References"),
-        null=True,
-        blank=True
-    )
+    funding = HTMLField(verbose_name=_("Funding"), null=True, blank=True)
+    references = HTMLField(verbose_name=_("References"), null=True, blank=True)
     status = models.CharField(
         max_length=20,
         choices=Status.choices,

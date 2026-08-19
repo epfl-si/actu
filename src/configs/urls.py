@@ -30,7 +30,7 @@ urlpatterns = [
     path("auth/", include("mozilla_django_oidc.urls")),
     path("healthz/", healthz, name="healthz"),
     path("i18n/", include("django.conf.urls.i18n")),
-    path('tinymce/', include('tinymce.urls')),
+    path("tinymce/", include("tinymce.urls")),
 ]
 
 # Language prefix in URL

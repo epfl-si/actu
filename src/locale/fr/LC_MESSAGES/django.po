@@ -414,6 +414,9 @@ msgstr "Voulez-vous vraiment supprimer cette traduction de l'actualité?"
 msgid "Edit News"
 msgstr "Éditer l'actualité"
 
+msgid "Create News"
+msgstr "Créer une actualité"
+
 msgid "Title"
 msgstr "Titre"
 

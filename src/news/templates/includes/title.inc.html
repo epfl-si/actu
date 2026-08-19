@@ -1,0 +1,6 @@
+{% load i18n %}
+
+<h1 class="h2 my-5">
+  {% if current_path == 'edit_news' %}{% trans "Edit News" %}: {{form.translation.title.value}}
+  {% elif current_path == 'create_news' %}{% trans "Create News" %}{% endif %}
+</h1>

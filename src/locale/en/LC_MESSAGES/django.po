@@ -406,6 +406,9 @@ msgstr ""
 msgid "Edit News"
 msgstr ""
 
+msgid "Create News"
+msgstr ""
+
 msgid "Title"
 msgstr ""
 

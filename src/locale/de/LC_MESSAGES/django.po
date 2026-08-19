@@ -415,6 +415,9 @@ msgstr "Möchten Sie diese Version der Nachrichtenübersetzung wirklich löschen
 msgid "Edit News"
 msgstr "Nachrichten bearbeiten"
 
+msgid "Create News"
+msgstr "Nachricht erstellen"
+
 msgid "Title"
 msgstr "Titel"
 

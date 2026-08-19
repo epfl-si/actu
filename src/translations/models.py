@@ -100,8 +100,7 @@ class NewsTranslation(AuditModelMixin, models.Model):
     def get(cls, news_id, language):
         try:
             news_translation = NewsTranslation.objects.get(
-                news_id=news_id,
-                language=language
+                news_id=news_id, language=language
             )
         except NewsTranslation.DoesNotExist:
             news_translation = None

@@ -1,13 +1,14 @@
 from django import forms
-from .models import News
-from django.contrib import messages
+
 from translations.models import NewsTranslation
-from django.core.exceptions import ValidationError
+
+from .models import News
+
 
 class NewsForm(forms.ModelForm):
     class Meta:
         model = News
-        fields = ['thematics', 'entities', 'format']
+        fields = ["thematics", "entities", "format"]
 
     def clean(self):
         cleaned_data = super().clean()
@@ -31,10 +32,11 @@ class NewsForm(forms.ModelForm):
         self.save_m2m()
         return news
 
+
 class NewsTranslationForm(forms.ModelForm):
     class Meta:
         model = NewsTranslation
-        fields = ['title']
+        fields = ["title"]
 
     def save(self, request, language, news_id):
         is_new = self.instance.pk is None
@@ -48,11 +50,12 @@ class NewsTranslationForm(forms.ModelForm):
         translation.save()
         return translation
 
+
 class NewsWithTranslationForm:
-    def __init__(self,
-                 post_data=None,
-                 news_instance=None,
-                 translation_instance=None
-                 ):
+    def __init__(
+        self, post_data=None, news_instance=None, translation_instance=None
+    ):
         self.news = NewsForm(post_data, instance=news_instance)
-        self.translation = NewsTranslationForm(post_data, instance=translation_instance)
+        self.translation = NewsTranslationForm(
+            post_data, instance=translation_instance
+        )

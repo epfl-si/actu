@@ -1,8 +1,4 @@
 from django import forms
-
-from translations.models import NewsTranslation
-
-from django.core.exceptions import ValidationError
 from tinymce.widgets import TinyMCE
 
 from translations.models import NewsTranslation

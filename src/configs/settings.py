@@ -64,10 +64,10 @@ INSTALLED_APPS = [
     "mozilla_django_oidc",
     #
     # Applications
+    "audit_log",
     "entities",
     "homepages",
     "news",
-    "audit_log",
     "thematics",
     "translations",
     "users",

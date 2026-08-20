@@ -55,6 +55,9 @@ class Homepage(AuditModelMixin, models.Model):
         verbose_name=_("Users"),
     )
 
+    def __str__(self):
+        return f"{self.slug}"
+
     @property
     def display_name(self):
         if self.thematic:
@@ -81,7 +84,7 @@ class Homepage(AuditModelMixin, models.Model):
             )
 
 
-class HomepageTranslation(models.Model):
+class HomepageTranslation(AuditModelMixin, models.Model):
     """
     Translations of a homepage item.
     """

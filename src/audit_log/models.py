@@ -4,6 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models, transaction
 from django.db.models.signals import m2m_changed, pre_delete
 from django.dispatch import receiver
+from django.utils.translation import override
 
 from .middleware import current_user
 
@@ -45,14 +46,17 @@ class AuditModelMixin(models.Model):
 
     def _get_current_state(self):
         state = {}
-        for field in self._meta.fields:
-            if field.name == "id" or "password" in field.name.lower():
-                continue
-            try:
-                val = getattr(self, field.name)
-                state[field.name] = str(val) if val is not None else "Empty"
-            except Exception:
-                state[field.name] = "Error"
+        with override("en"):
+            for field in self._meta.fields:
+                if field.name == "id" or "password" in field.name.lower():
+                    continue
+                try:
+                    val = getattr(self, field.name)
+                    state[field.name] = (
+                        str(val) if val is not None else "Empty"
+                    )
+                except Exception:
+                    state[field.name] = "Error"
         return state
 
     def save(self, *args, **kwargs):
@@ -67,26 +71,27 @@ class AuditModelMixin(models.Model):
             self._just_created = True
 
             def make_create_log():
-                modifs = {}
-                new_state = self._get_current_state()
-                for k, v in new_state.items():
-                    if v != "Empty":
-                        modifs[k] = ["", v]
+                with override("en"):
+                    modifs = {}
+                    new_state = self._get_current_state()
+                    for k, v in new_state.items():
+                        if v != "Empty":
+                            modifs[k] = ["", v]
 
-                for m2m_field in self._meta.many_to_many:
-                    m2m_objs = getattr(self, m2m_field.name).all()
-                    if m2m_objs:
-                        names = ", ".join(str(o) for o in m2m_objs)
-                        modifs[m2m_field.name] = ["", names]
+                    for m2m_field in self._meta.many_to_many:
+                        m2m_objs = getattr(self, m2m_field.name).all()
+                        if m2m_objs:
+                            names = ", ".join(str(o) for o in m2m_objs)
+                            modifs[m2m_field.name] = ["", names]
 
-                GlobalAuditLog.objects.create(
-                    content_type=ctype,
-                    object_id=self.pk,
-                    object_repr=str(self),
-                    action="Create",
-                    user=user_str,
-                    details=json.dumps(modifs),
-                )
+                    GlobalAuditLog.objects.create(
+                        content_type=ctype,
+                        object_id=self.pk,
+                        object_repr=str(self),
+                        action="Create",
+                        user=user_str,
+                        details=json.dumps(modifs),
+                    )
 
             transaction.on_commit(make_create_log)
 
@@ -100,14 +105,15 @@ class AuditModelMixin(models.Model):
                     modifs[field] = [old_val, new_val]
 
             if modifs:
-                GlobalAuditLog.objects.create(
-                    content_type=ctype,
-                    object_id=self.pk,
-                    object_repr=str(self),
-                    action="Edit",
-                    user=user_str,
-                    details=json.dumps(modifs),
-                )
+                with override("en"):
+                    GlobalAuditLog.objects.create(
+                        content_type=ctype,
+                        object_id=self.pk,
+                        object_repr=str(self),
+                        action="Edit",
+                        user=user_str,
+                        details=json.dumps(modifs),
+                    )
 
         self._initial_state = self._get_current_state()
 
@@ -125,23 +131,24 @@ def _get_m2m_field_name(instance, sender):
 
 
 def _save_m2m_audit_log(instance, field_name):
-    new_objects = list(getattr(instance, field_name).all())
-    new_names = ", ".join(str(o) for o in new_objects) or "Empty"
-    old_names = instance._m2m_memory.get(field_name, "Empty")
+    with override("en"):
+        new_objects = list(getattr(instance, field_name).all())
+        new_names = ", ".join(str(o) for o in new_objects) or "Empty"
+        old_names = instance._m2m_memory.get(field_name, "Empty")
 
-    if old_names != new_names:
-        user_str = _get_user_str()
-        ctype = ContentType.objects.get_for_model(instance)
-        modifs = {field_name: [old_names, new_names]}
+        if old_names != new_names:
+            user_str = _get_user_str()
+            ctype = ContentType.objects.get_for_model(instance)
+            modifs = {field_name: [old_names, new_names]}
 
-        GlobalAuditLog.objects.create(
-            content_type=ctype,
-            object_id=instance.pk,
-            object_repr=str(instance),
-            action="Edit",
-            user=user_str,
-            details=json.dumps(modifs),
-        )
+            GlobalAuditLog.objects.create(
+                content_type=ctype,
+                object_id=instance.pk,
+                object_repr=str(instance),
+                action="Edit",
+                user=user_str,
+                details=json.dumps(modifs),
+            )
 
     if field_name in instance._m2m_memory:
         del instance._m2m_memory[field_name]
@@ -166,10 +173,11 @@ def audit_m2m_changed(
         instance._m2m_memory = {}
 
     if field_name not in instance._m2m_memory:
-        old_objects = list(getattr(instance, field_name).all())
-        instance._m2m_memory[field_name] = (
-            ", ".join(str(o) for o in old_objects) or "Empty"
-        )
+        with override("en"):
+            old_objects = list(getattr(instance, field_name).all())
+            instance._m2m_memory[field_name] = (
+                ", ".join(str(o) for o in old_objects) or "Empty"
+            )
 
         transaction.on_commit(
             lambda: _save_m2m_audit_log(instance, field_name)
@@ -182,11 +190,12 @@ def audit_delete_log(sender, instance, **kwargs):
         user_str = _get_user_str()
         ctype = ContentType.objects.get_for_model(instance)
 
-        GlobalAuditLog.objects.create(
-            content_type=ctype,
-            object_id=instance.pk,
-            object_repr=str(instance),
-            action="Delete",
-            user=user_str,
-            details="{}",
-        )
+        with override("en"):
+            GlobalAuditLog.objects.create(
+                content_type=ctype,
+                object_id=instance.pk,
+                object_repr=str(instance),
+                action="Delete",
+                user=user_str,
+                details="{}",
+            )

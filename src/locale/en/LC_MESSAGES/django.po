@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-18 17:27+0200\n"
+"POT-Creation-Date: 2026-08-20 17:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,10 +14,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "History"
+msgid "News"
 msgstr ""
 
-msgid "History of edition"
+msgid "Audit Logs"
 msgstr ""
 
 msgid "Search"
@@ -195,9 +195,6 @@ msgid "Updated on"
 msgstr ""
 
 msgid "Created on"
-msgstr ""
-
-msgid "News"
 msgstr ""
 
 msgid "My Homepages"

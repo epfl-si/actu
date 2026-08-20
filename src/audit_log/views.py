@@ -1,5 +1,6 @@
 import json
 
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -82,6 +83,7 @@ def _format_single_log(log):
     }
 
 
+@user_passes_test(lambda u: u.is_superuser)
 def global_history_view(request):
     logs = GlobalAuditLog.objects.all().select_related("content_type")
     logs = _apply_filters(logs, request)

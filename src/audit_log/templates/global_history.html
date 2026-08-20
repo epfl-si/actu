@@ -1,177 +1,180 @@
 {% extends 'base.html' %}
-{% load i18n %}
 
-{% block web2018_title %}{% trans 'History' %}{% endblock %}
+{% load i18n %}
+{% load django_vite %}
+
+{% block web2018_title %}{% trans 'News' %} · {%trans 'Audit Logs'%}{% endblock %}
+
+{% block web2018_extra_link %}
+  <link rel="stylesheet" href="{% vite_asset_url 'assets/entrypoint.scss' %}">
+  <link rel="stylesheet" href="{% vite_asset_url 'assets/log_audit.scss' %}">
+{% endblock %}
 
 {% block web2018_content %}
-<style>
-  .audit-toggle-btn[aria-expanded="true"] .audit-chevron { transform: rotate(90deg); }
-  .audit-chevron { display: inline-block; transition: transform 0.2s ease-in-out; font-size: 0.8em; margin-right: 4px; }
-</style>
 <main id="main" class="content mt-4">
-    <div class="full-container pr-6 pl-6">
+  <div class="full-container pr-6 pl-6">
 
-        <h1 class="mb-4">{% trans "History of edition" %}</h1>
+    <h1 class="mb-4">{% trans "Audit Logs" %}</h1>
 
-        <div class="bg-light p-4 mb-5 rounded border">
-            <form method="GET" action="">
-                <div class="row">
+    <div class="p-4 mb-5 rounded bg-light border">
+      <form method="GET" action="">
+        <div class="row">
 
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="search">{% trans "Search" %}</label>
-                            <input type="text" id="search" name="search" class="form-control" value="{{ filters.search }}" placeholder="{% trans 'Search a detail...' %}">
-                        </div>
-                    </div>
+          <div class="col-md-4 mb-3">
+            <div class="form-group">
+              <label for="search">{% trans "Search" %}</label>
+              <input type="text" id="search" name="search" class="form-control" value="{{ filters.search }}" placeholder="{% trans 'Search a detail...' %}">
+            </div>
+          </div>
 
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="type">{% trans "Type" %}</label>
-                            <select id="type" name="type" class="select-multiple" multiple="multiple" data-filter="true">
-                                {% for ctype in active_types %}
-                                    <option value="{{ ctype.model }}" {% if ctype.model in filters.type %}selected{% endif %}>
-                                        {{ ctype.name|capfirst }}
-                                    </option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
+          <div class="col-md-4 mb-3">
+            <div class="form-group">
+              <label for="type">{% trans "Type" %}</label>
+              <select id="type" name="type" class="select-multiple" multiple="multiple" data-filter="true">
+                {% for ctype in active_types %}
+                  <option value="{{ ctype.model }}" {% if ctype.model in filters.type %}selected{% endif %}>
+                    {{ ctype.name|capfirst }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
 
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="user">{% trans "User" %}</label>
-                            <select id="user" name="user" class="select-multiple" multiple="multiple" data-filter="true">
-                                {% for usr in active_users %}
-                                    <option value="{{ usr }}" {% if usr in filters.user %}selected{% endif %}>
-                                        {{ usr }}
-                                    </option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
+          <div class="col-md-4 mb-3">
+            <div class="form-group">
+              <label for="user">{% trans "User" %}</label>
+              <select id="user" name="user" class="select-multiple" multiple="multiple" data-filter="true">
+                {% for usr in active_users %}
+                  <option value="{{ usr }}" {% if usr in filters.user %}selected{% endif %}>
+                    {{ usr }}
+                  </option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
 
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="action">{% trans "Action" %}</label>
-                            <select id="action" name="action" class="select-multiple" multiple="multiple">
-                                <option value="Create" {% if 'Create' in filters.action %}selected{% endif %}>{% trans "Create" %}</option>
-                                <option value="Edit" {% if 'Edit' in filters.action %}selected{% endif %}>{% trans "Edit" %}</option>
-                                <option value="Delete" {% if 'Delete' in filters.action %}selected{% endif %}>{% trans "Delete" %}</option>
-                            </select>
-                        </div>
-                    </div>
+          <div class="col-md-4 mb-3">
+            <div class="form-group">
+              <label for="action">{% trans "Action" %}</label>
+              <select id="action" name="action" class="select-multiple" multiple="multiple">
+                <option value="Create" {% if 'Create' in filters.action %}selected{% endif %}>{% trans "Create" %}</option>
+                <option value="Edit" {% if 'Edit' in filters.action %}selected{% endif %}>{% trans "Edit" %}</option>
+                <option value="Delete" {% if 'Delete' in filters.action %}selected{% endif %}>{% trans "Delete" %}</option>
+              </select>
+            </div>
+          </div>
 
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="from">{% trans "From" %}</label>
-                            <input type="date" id="from" name="from" class="form-control" value="{{ filters.from }}">
-                        </div>
-                    </div>
+          <div class="col-md-4 mb-3">
+            <div class="form-group">
+              <label for="from">{% trans "From" %}</label>
+              <input type="date" id="from" name="from" class="form-control" value="{{ filters.from }}">
+            </div>
+          </div>
 
-                    <div class="col-md-4 mb-3">
-                        <div class="form-group">
-                            <label for="to">{% trans "To" %}</label>
-                            <input type="date" id="to" name="to" class="form-control" value="{{ filters.to }}">
-                        </div>
-                    </div>
+          <div class="col-md-4 mb-3">
+            <div class="form-group">
+              <label for="to">{% trans "To" %}</label>
+              <input type="date" id="to" name="to" class="form-control" value="{{ filters.to }}">
+            </div>
+          </div>
 
-                </div>
-
-                <div class="d-flex justify-content-end align-items-center border-top pt-3">
-                    <a href="?" class="btn btn-secondary mt-2 mr-3">{% trans "Reset" %}</a>
-                    <button type="submit" class="btn btn-primary mt-2">{% trans "Apply" %}</button>
-                </div>
-            </form>
         </div>
 
-        <div class="d-flex justify-content-end mb-2">
-          <span class="text-muted">
-            {{ page_obj.paginator.count }} {% trans "result(s) found" %}
-          </span>
+        <div class="d-flex justify-content-end align-items-center pt-3">
+          <a href="?" class="btn btn-secondary mt-2 mr-3">{% trans "Reset" %}</a>
+          <button type="submit" class="btn btn-primary mt-2">{% trans "Apply" %}</button>
         </div>
-
-        <div class="table-responsive">
-            <table class="table table-striped table-hover border-bottom">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col" class="text-uppercase small" style="width: 15%;">{% trans "Date" %}</th>
-                        <th scope="col" class="text-uppercase small" style="width: 15%;">{% trans "User" %}</th>
-                        <th scope="col" class="text-uppercase small" style="width: 10%;">{% trans "Action" %}</th>
-                        <th scope="col" class="text-uppercase small" style="width: 10%;">{% trans "Type" %}</th>
-                        <th scope="col" class="text-uppercase small" style="width: 20%;">{% trans "Subject" %}</th>
-                        <th scope="col" class="text-uppercase small" style="width: 30%;">{% trans "Details" %}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  {% for event in timeline %}
-                      <tr>
-                          <td class="align-middle text-muted py-3">{{ event.date }}</td>
-                          <td class="align-middle py-3">{{ event.user }}</td>
-
-                          <td class="align-middle py-3">
-                              <span class="badge
-                                  {% if 'Create' in event.action %}published
-                                  {% elif 'Edit' in event.action %}draft
-                                  {% elif 'Delete' in event.action %}archived
-                                  {% else %}badge secondary{% endif %}">
-                                  {{ event.action_label }}
-                              </span>
-                          </td>
-
-                          <td class="align-middle py-3">
-                              <span class="text-muted text-uppercase">{{ event.type }}</span>
-                          </td>
-
-                          <td class="align-middle text-break py-3">
-                              <span>{{ event.subject }}</span>
-                          </td>
-
-                          <td class="align-left py-3">
-                            {% if event.changes.items %}
-                                <button class="btn btn-link btn-sm p-0 text-dark text-decoration-none audit-toggle-btn"
-                                        type="button"
-                                        data-toggle="collapse"
-                                        data-target="#details-{{ forloop.counter }}"
-                                        aria-expanded="false">
-                                    <span class="audit-chevron">▶</span> {% trans "View details" %}
-                                </button>
-
-                                <div class="collapse mt-2" id="details-{{ forloop.counter }}">
-                                    <div class="bg-light rounded border p-3">
-                                        <ul class="list-unstyled mb-0 text-break" style="font-family: monospace; font-size: 0.85rem;">
-                                        {% for field, values in event.changes.items %}
-                                            <li class="mb-2">
-                                                <span>{{ field|capfirst }} :</span>
-                                                {% if values.0 %}
-                                                    <del class="text-danger ml-2">{{ values.0 }}</del>
-                                                    <span class="text-muted mx-1">➔</span>
-                                                {% else %}
-                                                    <span class="ml-2"></span>
-                                                {% endif %}
-                                                <span class="text-success">{{ values.1 }}</span>
-                                            </li>
-                                        {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                              {% else %}
-                                  <span class="text-muted font-italic">{% trans "No details" %}</span>
-                              {% endif %}
-                          </td>
-                      </tr>
-                  {% empty %}
-                      <tr>
-                          <td colspan="6" class="text-center text-muted font-italic py-5">
-                              {% trans "No result" %}
-                          </td>
-                      </tr>
-                  {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-        {% include "pagination.html" %}
-
+      </form>
     </div>
+
+    <div class="d-flex justify-content-end mb-2">
+      <span class="text-muted">
+        {{ page_obj.paginator.count }} {% trans "result(s) found" %}
+      </span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-striped table-hover border-bottom">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" class="text-uppercase small" style="width: 15%;">{% trans "Date" %}</th>
+            <th scope="col" class="text-uppercase small" style="width: 15%;">{% trans "User" %}</th>
+            <th scope="col" class="text-uppercase small" style="width: 10%;">{% trans "Action" %}</th>
+            <th scope="col" class="text-uppercase small" style="width: 10%;">{% trans "Type" %}</th>
+            <th scope="col" class="text-uppercase small" style="width: 20%;">{% trans "Subject" %}</th>
+            <th scope="col" class="text-uppercase small" style="width: 30%;">{% trans "Details" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for event in timeline %}
+            <tr>
+              <td class="align-middle text-muted py-3">{{ event.date }}</td>
+              <td class="align-middle py-3">{{ event.user }}</td>
+
+              <td class="align-middle py-3">
+                <span class="badge
+                  {% if 'Create' in event.action %}published
+                  {% elif 'Edit' in event.action %}draft
+                  {% elif 'Delete' in event.action %}archived
+                  {% else %}badge secondary{% endif %}">
+                  {{ event.action_label }}
+                </span>
+              </td>
+
+              <td class="align-middle py-3">
+                <span class="text-muted text-uppercase">{{ event.type }}</span>
+              </td>
+
+              <td class="align-middle text-break py-3">
+                <span>{{ event.subject }}</span>
+              </td>
+
+              <td class="align-left py-3">
+                {% if event.changes.items %}
+                  <button class="btn btn-link btn-sm p-0 text-dark text-decoration-none audit-toggle-btn"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#details-{{ forloop.counter }}"
+                    aria-expanded="false">
+                      <span class="audit-chevron">▶</span> {% trans "View details" %}
+                  </button>
+
+                  <div class="collapse mt-2" id="details-{{ forloop.counter }}">
+                    <div class="bg-light rounded border p-3">
+                        <ul class="list-unstyled mb-0 text-break" style="font-family: monospace; font-size: 0.85rem;">
+                        {% for field, values in event.changes.items %}
+                            <li class="mb-2">
+                                <span>{{ field|capfirst }} :</span>
+                                {% if values.0 %}
+                                    <del class="text-danger ml-2">{{ values.0 }}</del>
+                                    <span class="text-muted mx-1">➔</span>
+                                {% else %}
+                                    <span class="ml-2"></span>
+                                {% endif %}
+                                <span class="text-success">{{ values.1 }}</span>
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                  </div>
+                {% else %}
+                  <span class="text-muted font-italic">{% trans "No details" %}</span>
+                {% endif %}
+              </td>
+          </tr>
+          {% empty %}
+          <tr>
+              <td colspan="6" class="text-center text-muted font-italic py-5">
+                {% trans "No result" %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  {% include "pagination.html" %}
+
+  </div>
 </main>
 {% endblock %}

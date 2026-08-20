@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-19 12:26+0200\n"
+"POT-Creation-Date: 2026-08-20 11:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -277,6 +277,9 @@ msgstr "Modificare la notizia"
 
 msgid "Create News"
 msgstr "Creare una notizia"
+
+msgid "Commun"
+msgstr "Comune"
 
 msgid "Title"
 msgstr "Titolo"

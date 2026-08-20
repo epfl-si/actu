@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     "thematics",
     "translations",
     "users",
+    "links",
 ]
 
 MIDDLEWARE = [

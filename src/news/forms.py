@@ -1,6 +1,8 @@
 from django import forms
+from django.forms.models import inlineformset_factory
 from tinymce.widgets import TinyMCE
 
+from links.models import Link
 from translations.models import NewsTranslation
 
 from .models import News
@@ -62,11 +64,35 @@ class NewsTranslationForm(forms.ModelForm):
         return translation
 
 
+class LinkForm(forms.ModelForm):
+    class Meta:
+        model = Link
+        fields = ["link"]
+
+
 class NewsWithTranslationForm:
     def __init__(
-        self, post_data=None, news_instance=None, translation_instance=None
+        self,
+        post_data=None,
+        news_instance=None,
+        translation_instance=None,
     ):
         self.news = NewsForm(post_data, instance=news_instance)
         self.translation = NewsTranslationForm(
             post_data, instance=translation_instance
         )
+        self.news_links = LinkFormSet(
+            post_data,
+            instance=news_instance,
+            prefix="links",
+        )
+
+
+LinkFormSet = inlineformset_factory(
+    News,
+    Link,
+    form=LinkForm,
+    fk_name="news",
+    extra=1,
+    can_delete=True,
+)

@@ -38,13 +38,7 @@ class ThematicSerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "id": {"help_text": _("Unique identifier of the thematic.")},
             "is_main": {
-                "help_text": _(
-                    "Whether this thematic is displayed on the main menu."
-                )
+                "help_text": _("Whether this thematic is marked as main.")
             },
-            "order": {
-                "help_text": _(
-                    "Display order of the thematic among main thematics."
-                )
-            },
+            "order": {"help_text": _("Display order of the thematic.")},
         }

@@ -14,8 +14,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Filter by whether the thematic appears in the main menu."
-msgstr "Filtra in base alla visualizzazione della tematica nel menu principale."
+msgid "Filter by whether the thematic is marked as main."
+msgstr "Filtra in base alla marcatura della tematica come principale."
 
 msgid "Search across labels in all supported languages."
 msgstr "Cerca tra le etichette in tutte le lingue supportate."
@@ -26,11 +26,11 @@ msgstr "Ordina i risultati in base al campo selezionato."
 msgid "Unique identifier of the thematic."
 msgstr "Identificatore univoco della tematica."
 
-msgid "Whether this thematic is displayed on the main menu."
-msgstr "Indica se questa tematica viene visualizzata nel menu principale."
+msgid "Whether this thematic is marked as main."
+msgstr "Indica se questa tematica è marcata come principale."
 
-msgid "Display order of the thematic among main thematics."
-msgstr "Ordine di visualizzazione della tematica tra le tematiche principali."
+msgid "Display order of the thematic."
+msgstr "Ordine di visualizzazione della tematica."
 
 msgid "Thematics"
 msgstr "Tematiche"

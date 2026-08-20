@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Filter by whether the thematic appears in the main menu."
+msgid "Filter by whether the thematic is marked as main."
 msgstr ""
 
 msgid "Search across labels in all supported languages."
@@ -26,10 +26,10 @@ msgstr ""
 msgid "Unique identifier of the thematic."
 msgstr ""
 
-msgid "Whether this thematic is displayed on the main menu."
+msgid "Whether this thematic is marked as main."
 msgstr ""
 
-msgid "Display order of the thematic among main thematics."
+msgid "Display order of the thematic."
 msgstr ""
 
 msgid "Thematics"

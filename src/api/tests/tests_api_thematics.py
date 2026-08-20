@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
+from api.filters import ThematicFilter
 from thematics.models import Thematic
 
 
@@ -87,3 +88,9 @@ class ThematicAPITests(TestCase):
         data = response.json()
         self.assertEqual(data["results"][0]["label_en"], "Slalom")
         self.assertEqual(data["results"][1]["label_en"], "Giant Slalom")
+
+    def test_filter_search_with_whitespace(self):
+        queryset = Thematic.objects.filter(is_active=True)
+        filterset = ThematicFilter(queryset=queryset, data={})
+        result = filterset.filter_search(queryset, "search", " ")
+        self.assertEqual(list(result), list(queryset))

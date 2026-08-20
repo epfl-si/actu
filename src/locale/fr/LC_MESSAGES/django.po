@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-20 15:04+0200\n"
+"POT-Creation-Date: 2026-08-20 15:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,14 +14,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-msgid "Filter by whether the thematic appears in the main menu."
-msgstr "Filtrer selon que la thématique apparaît dans le menu principal ou non."
+msgid "Filter by whether the entity (School) appears in the footer."
+msgstr ""
 
 msgid "Search across labels in all supported languages."
 msgstr "Rechercher dans les libellés de toutes les langues prises en charge."
 
 msgid "Sort the results by the selected field."
 msgstr "Trie les résultats selon le champ sélectionné."
+
+msgid "Filter by whether the thematic appears in the main menu."
+msgstr ""
+
+msgid "Unique identifier of the entity."
+msgstr ""
+
+msgid "Whether this entity (School) is displayed on the footer."
+msgstr ""
+
+msgid "Display order of the entity among main entities."
+msgstr ""
 
 msgid "Unique identifier of the thematic."
 msgstr "Identifiant unique de la thématique."
@@ -31,6 +43,21 @@ msgstr "Indique si cette thématique est affichée dans le menu principal."
 
 msgid "Display order of the thematic among main thematics."
 msgstr "Ordre d'affichage de la thématique parmi les thématiques principales."
+
+msgid "Entities"
+msgstr "Entités"
+
+msgid "List active entities"
+msgstr ""
+
+msgid "Return all active entities ordered by identifier."
+msgstr ""
+
+msgid "Retrieve an entity"
+msgstr ""
+
+msgid "Return a single active entity by its identifier."
+msgstr ""
 
 msgid "Thematics"
 msgstr "Thématiques"
@@ -76,9 +103,6 @@ msgstr "A une page d'accueil"
 
 msgid "Entity"
 msgstr "Entité"
-
-msgid "Entities"
-msgstr "Entités"
 
 msgid "Active"
 msgstr "Actif"

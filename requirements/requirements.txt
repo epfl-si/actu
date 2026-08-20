@@ -1,4 +1,4 @@
-django==5.2.17
+django==6.1
 django-debug-toolbar==7.0.0
 django-epfl-entra-id==0.0.9
 django-epfl-web2018==0.0.8

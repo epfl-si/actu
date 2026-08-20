@@ -21,11 +21,21 @@
                       Naviguer dans les zones difficiles d’accès du corps humain tout en conservant une précision extrême : c’est le défi que relève...
                     </div>
                   <div class="mt-1 d-flex align-items-center">
-                    <span class="tag tag-sm border-light mr-2">
-                      {{ item.format }}
-                      <svg class="icon" aria-hidden="true"><use xlink:href="#play-circle"></use></svg>
-                      1:30
-                    </span>
+                    {% if item.format %}
+                      <span class="tag tag-sm mt-1 border-light mr-2">
+                        {{ item.format }}
+
+                        <svg class="icon" aria-hidden="true">
+                          <use xlink:href="{% if 'Podcast' in item.format|stringformat:'s' %}#mic{% elif 'Galerie' in item.format|stringformat:'s' %}#image{% elif 'Infographie' in item.format|stringformat:'s' %}#pie-chart{% elif 'Portrait' in item.format|stringformat:'s' %}#user{% elif 'Longread' in item.format|stringformat:'s' %}#book{% else %}#play-circle{% endif %}"></use>
+                        </svg>
+
+                        {% if 'Vidéo' in item.format|stringformat:'s' or 'Podcast' in item.format|stringformat:'s' %}
+                          1:30
+                        {% elif 'Galerie' in item.format|stringformat:'s' %}
+                          5
+                        {% endif %}
+                      </span>
+                    {% endif %}
                     <time datetime="{{ item.created_at|date:'Y-m-d' }}" class="small mb-0 text-muted">
                       <span class="sr-only">Publié: </span>{{ item.created_at|date:'d/m/Y' }}
                     </time>

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-17 12:41+0200\n"
+"POT-Creation-Date: 2026-08-20 15:04+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,6 +13,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Filter by whether the thematic appears in the main menu."
+msgstr "Filtra in base alla visualizzazione della tematica nel menu principale."
+
+msgid "Search across labels in all supported languages."
+msgstr "Cerca tra le etichette in tutte le lingue supportate."
+
+msgid "Sort the results by the selected field."
+msgstr "Ordina i risultati in base al campo selezionato."
+
+msgid "Unique identifier of the thematic."
+msgstr "Identificatore univoco della tematica."
+
+msgid "Whether this thematic is displayed on the main menu."
+msgstr "Indica se questa tematica viene visualizzata nel menu principale."
+
+msgid "Display order of the thematic among main thematics."
+msgstr "Ordine di visualizzazione della tematica tra le tematiche principali."
+
+msgid "Thematics"
+msgstr "Tematiche"
+
+msgid "List active thematics"
+msgstr "Elenca le tematiche attive"
+
+msgid "Return all active thematics ordered by identifier."
+msgstr "Restituisce tutte le tematiche attive ordinate per identificatore."
+
+msgid "Retrieve a thematic"
+msgstr "Recupera una tematica"
+
+msgid "Return a single active thematic by its identifier."
+msgstr "Restituisce una singola tematica attiva in base al suo identificatore."
 
 msgid "Block Type"
 msgstr "Tipo di blocco"
@@ -259,9 +292,6 @@ msgstr "Questa traduzione non è archiviata."
 
 msgid "Translation restored successfully."
 msgstr "Traduzione ripristinata con successo."
-
-msgid "Thematics"
-msgstr "Tematiche"
 
 msgid "Thematics related to this news."
 msgstr "Tematiche relative a questa notizia."

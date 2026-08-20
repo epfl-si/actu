@@ -31,10 +31,11 @@
       <div class="tab-pane fade {% if current_language == lang.code %}show active{% endif %}" id="{{ lang.code }}" role="tabpanel" aria-labelledby="{{ lang.code }}-tab">
         <form id="addFormNews-{{ lang.code }}" method="POST">
           {% csrf_token %}
-          <div class="row mt-2 bg-gray-100">
-            <div class="form-group col-md-4">
+          <div class="row mt-2">
+            <div class="form-group col-md-6">
               <span class="text-danger">*</span>
-              <label class="{% if form.news.thematics.errors %}invalid-label{% endif %}">{% trans "Thematics" %}</label>
+              <label for="thematic-select-{{ lang.code }}" class="{% if form.news.thematics.errors %}invalid-label{% endif %}">{% trans "Thematics" %}</label>
+              <span class="badge draft float-right">{% trans "Commun" %}</span>
               <select
                 multiple
                 data-filter="True"
@@ -54,25 +55,10 @@
               </small>
               {% endfor %}
             </div>
-            <div class="form-group col-md-4">
-              <label>{% trans "Entities" %}</label>
-              <select
-                multiple
-                data-filter="True"
-                class="select-multiple {% if form.news.entities.errors %}is-invalid{% endif %}"
-                name="entities"
-                id="entite-select-{{ lang.code }}"
-              >
-                {% for entity in entities %}
-                <option class="" value="{{entity.id}}" {% if entity.id in selected_entity_ids %}selected{% endif %}>
-                  {{entity.current_label}}
-                </option>
-                {% endfor %}
-              </select>
-            </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
               <span class="text-danger">*</span>
-              <label class="{% if form.news.format.errors %}invalid-label{% endif %}">{% trans "Format" %}</label>
+              <label for="format-select-{{ lang.code }}" class="{% if form.news.format.errors %}invalid-label{% endif %}">{% trans "Format" %}</label>
+              <span class="badge draft float-right">{% trans "Commun" %}</span>
               <select
                 class="custom-select {% if form.news.format.errors %}is-invalid{% endif %}"
                 name="format"
@@ -90,6 +76,23 @@
               </small>
               {% endfor %}
             </div>
+          </div>
+          <div class="form-group">
+            <label for="entite-select-{{ lang.code }}">{% trans "Entities" %}</label>
+            <span class="badge draft float-right">{% trans "Commun" %}</span>
+            <select
+              multiple
+              data-filter="True"
+              class="select-multiple {% if form.news.entities.errors %}is-invalid{% endif %}"
+              name="entities"
+              id="entite-select-{{ lang.code }}"
+            >
+              {% for entity in entities %}
+              <option class="" value="{{entity.id}}" {% if entity.id in selected_entity_ids %}selected{% endif %}>
+                {{entity.current_label}}
+              </option>
+              {% endfor %}
+            </select>
           </div>
           <div class="form-group">
             <span class="text-danger">*</span>

@@ -417,6 +417,9 @@ msgstr "Éditer l'actualité"
 msgid "Create News"
 msgstr "Créer une actualité"
 
+msgid "Commun"
+msgstr "Commun"
+
 msgid "Title"
 msgstr "Titre"
 

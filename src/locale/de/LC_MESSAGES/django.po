@@ -418,6 +418,9 @@ msgstr "Nachrichten bearbeiten"
 msgid "Create News"
 msgstr "Nachricht erstellen"
 
+msgid "Commun"
+msgstr "Gemeinde"
+
 msgid "Title"
 msgstr "Titel"
 

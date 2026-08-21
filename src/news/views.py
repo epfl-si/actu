@@ -118,7 +118,6 @@ def create_news(request, language):
         "selected_thematic_ids": selected_thematic_ids,
         "selected_entity_ids": selected_entity_ids,
         "selected_format_id": selected_format_id,
-        "current_path": "create_news",
     }
     return render(request, "edit_news.html", context)
 
@@ -154,7 +153,6 @@ def edit_news(request, news_id, language):
         "selected_thematic_ids": selected_thematic_ids,
         "selected_entity_ids": selected_entity_ids,
         "selected_format_id": selected_format_id,
-        "current_path": "edit_news",
     }
     return render(request, "edit_news.html", context)
 

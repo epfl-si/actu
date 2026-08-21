@@ -383,7 +383,7 @@ msgstr ""
 msgid "Create News"
 msgstr ""
 
-msgid "Commun"
+msgid "Common"
 msgstr ""
 
 msgid "Title"

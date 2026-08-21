@@ -383,7 +383,7 @@ msgstr "Éditer l'actualité"
 msgid "Create News"
 msgstr "Créer une actualité"
 
-msgid "Commun"
+msgid "Common"
 msgstr "Commun"
 
 msgid "Title"

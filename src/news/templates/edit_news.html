@@ -3,10 +3,11 @@
 {% load static %}
 {% load i18n %}
 
-{% block web2018_title %}{% trans 'News' %} ·
-  {% if current_path == 'edit_news' %}{% trans "Edit News" %}
-  {% elif current_path == 'create_news' %}{% trans "Create News" %}{% endif %}
-{%endblock %} {% block web2018_content %}
+{% block web2018_title %}
+  {% trans 'News' %} · {% if form.news.instance.pk %}{% trans "Edit News" %}{% else %}{% trans "Create News" %}{% endif %}
+{% endblock %}
+
+{% block web2018_content %}
 <main id="main" class="content">
   <div class="container-lg">
 
@@ -17,8 +18,8 @@
       <li class="nav-item">
         <a class="nav-link {% if current_language == lang.code %}active{% endif %}"
             id="{{ lang.code }}-tab"
-            href="{% if current_path == 'edit_news' %}{% url 'edit_news' news_id=form.news.instance.pk language=lang.code %}
-            {% elif current_path == 'create_news' %}{% url 'create_news' language=lang.code %}{% endif %}"
+            href="{% if form.news.instance.pk %}{% url 'edit_news' news_id=form.news.instance.pk language=lang.code %}
+            {% else %}{% url 'create_news' language=lang.code %}{% endif %}"
             role="tab"
             aria-controls="{{ lang.code }}"
             aria-selected="true">{% trans lang.label %}</a>
@@ -26,26 +27,55 @@
       {% endfor %}
     </ul>
 
-    <div class="tab-content p-4">
+    <div class="tab-content p-3">
       {% for lang in languages %}
       <div class="tab-pane fade {% if current_language == lang.code %}show active{% endif %}" id="{{ lang.code }}" role="tabpanel" aria-labelledby="{{ lang.code }}-tab">
         <form id="addFormNews-{{ lang.code }}" method="POST">
           {% csrf_token %}
-          <div class="row mt-2">
-            <div class="form-group col-md-6">
+          <div class="row">
+            <div class="form-group col-md-3">
               <span class="text-danger">*</span>
-              <label for="thematic-select-{{ lang.code }}" class="{% if form.news.thematics.errors %}invalid-label{% endif %}">{% trans "Thematics" %}</label>
-              <span class="badge draft float-right">{% trans "Commun" %}</span>
+              <label for="format-select-{{ lang.code }}" class="{% if form.news.instance.pk.format.errors %}invalid-label{% endif %}">{% trans "Format" %}</label>
+              <span class="float-right" title="{% trans "Common" %}">
+                <svg class="icon feather" aria-hidden="true">
+                  <use xlink:href="#crosshair"></use>
+                </svg>
+              </span>
+              <select
+                class="custom-select {% if form.news.instance.pk.format.errors %}is-invalid{% endif %}"
+                name="format"
+                id="format-select-{{ lang.code }}"
+              >
+                {% for format in formats %}
+                <option class="" value="{{ format.id }}" {% if format.id == selected_format_id %}selected{% endif %}>
+                  {{ format.current_label}}
+                </option>
+                {% endfor %}
+              </select>
+              {% for error in form.news.format.errors %}
+              <small class="form-text invalid-feedback">
+                <ul class="errorlist" id="id_format_error"><li>{{ error }}</li></ul>
+              </small>
+              {% endfor %}
+            </div>
+            <div class="form-group col-md-3">
+              <span class="text-danger">*</span>
+              <label for="thematic-select-{{ lang.code }}" class="{% if form.news.instance.pk.thematics.errors %}invalid-label{% endif %}">{% trans "Thematics" %}</label>
+              <span class="float-right" title="{% trans "Common" %}">
+                <svg class="icon feather" aria-hidden="true">
+                  <use xlink:href="#crosshair"></use>
+                </svg>
+              </span>
               <select
                 multiple
                 data-filter="True"
-                class="select-multiple {% if form.news.thematics.errors %}is-invalid{% endif %}"
+                class="select-multiple {% if form.news.instance.pk.thematics.errors %}is-invalid{% endif %}"
                 name="thematics"
                 id="thematic-select-{{ lang.code }}"
               >
                 {% for thematic in thematics %}
-                <option class="" value="{{thematic.id}}" {% if thematic.id in selected_thematic_ids %}selected{% endif %}>
-                  {{thematic.current_label}}
+                <option class="" value="{{ thematic.id }}" {% if thematic.id in selected_thematic_ids %}selected{% endif %}>
+                  {{ thematic.current_label }}
                 </option>
                 {% endfor %}
               </select>
@@ -56,43 +86,26 @@
               {% endfor %}
             </div>
             <div class="form-group col-md-6">
-              <span class="text-danger">*</span>
-              <label for="format-select-{{ lang.code }}" class="{% if form.news.format.errors %}invalid-label{% endif %}">{% trans "Format" %}</label>
-              <span class="badge draft float-right">{% trans "Commun" %}</span>
+              <label for="entite-select-{{ lang.code }}">{% trans "Entities" %}</label>
+              <span class="float-right" title="{% trans "Common" %}">
+                <svg class="icon feather" aria-hidden="true">
+                  <use xlink:href="#crosshair"></use>
+                </svg>
+              </span>
               <select
-                class="custom-select {% if form.news.format.errors %}is-invalid{% endif %}"
-                name="format"
-                id="format-select-{{ lang.code }}"
+                multiple
+                data-filter="True"
+                class="select-multiple {% if form.news.instance.pk.entities.errors %}is-invalid{% endif %}"
+                name="entities"
+                id="entite-select-{{ lang.code }}"
               >
-                {% for format in formats %}
-                <option class="" value="{{format.id}}" {% if format.id == selected_format_id %}selected{% endif %}>
-                  {{format.current_label}}
+                {% for entity in entities %}
+                <option class="" value="{{ entity.id }}" {% if entity.id in selected_entity_ids %}selected{% endif %}>
+                  {{ entity.current_label}}
                 </option>
                 {% endfor %}
               </select>
-              {% for error in form.news.format.errors %}
-              <small class="form-text invalid-feedback">
-                <ul class="errorlist" id="id_format_error"><li>{{ error }}</li></ul>
-              </small>
-              {% endfor %}
             </div>
-          </div>
-          <div class="form-group">
-            <label for="entite-select-{{ lang.code }}">{% trans "Entities" %}</label>
-            <span class="badge draft float-right">{% trans "Commun" %}</span>
-            <select
-              multiple
-              data-filter="True"
-              class="select-multiple {% if form.news.entities.errors %}is-invalid{% endif %}"
-              name="entities"
-              id="entite-select-{{ lang.code }}"
-            >
-              {% for entity in entities %}
-              <option class="" value="{{entity.id}}" {% if entity.id in selected_entity_ids %}selected{% endif %}>
-                {{entity.current_label}}
-              </option>
-              {% endfor %}
-            </select>
           </div>
           <div class="form-group">
             <span class="text-danger">*</span>

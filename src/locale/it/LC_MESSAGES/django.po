@@ -278,7 +278,7 @@ msgstr "Modificare la notizia"
 msgid "Create News"
 msgstr "Creare una notizia"
 
-msgid "Commun"
+msgid "Common"
 msgstr "Comune"
 
 msgid "Title"

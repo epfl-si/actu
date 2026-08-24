@@ -23,20 +23,18 @@
       </p>
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdown-user">
+      <a href="{% url 'manage_news' %}" class="dropdown-item">
+        <svg aria-hidden="true" class="icon feather mr-1 mb-1">
+          <use xlink:href="#file-text"></use>
+        </svg>
+        {% trans "Manage News" %}
+      </a>
       {% if user.homepages.exists %}
         <a href="{% url 'manage_homepages' %}" class="dropdown-item">
           <svg aria-hidden="true" class="icon feather mr-1 mb-1">
             <use xlink:href="#home"></use>
           </svg>
           {% trans "My Homepages" %}
-        </a>
-      {% endif %}
-      {% if user.is_staff and user.news_created.exists %}
-        <a href="{% url 'manage_news' %}" class="dropdown-item">
-          <svg aria-hidden="true" class="icon feather mr-1 mb-1">
-            <use xlink:href="#file-text"></use>
-          </svg>
-          {% trans "Manage News" %}
         </a>
       {% endif %}
       {% if user.is_staff %}

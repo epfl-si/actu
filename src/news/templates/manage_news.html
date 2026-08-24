@@ -95,5 +95,6 @@
 {% endblock %}
 
 {% block web2018_extra_js %}
+  {{ block.super }}
   {% vite_asset 'assets/pages/manage-news/manage-news.js' %}
 {% endblock %}

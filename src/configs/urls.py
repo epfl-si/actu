@@ -40,6 +40,9 @@ urlpatterns += i18n_patterns(
     path("admin/", admin.site.urls),
 )
 
+urlpatterns += [
+    path('django-editorjs-fields/', include('django_editorjs_fields.urls'))
+]
 
 if settings.DEBUG:
     from debug_toolbar.toolbar import debug_toolbar_urls

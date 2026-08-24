@@ -2,6 +2,11 @@
 {% load i18n %}
 {% load current_label %}
 
+{% block web2018_extra_link %}
+  {{ block.super }}
+  {{ form.translation.media }}
+{% endblock %}
+
 {% block web2018_title %}
   {% trans 'News' %} · {% if form.news.instance.pk %}{% trans "Edit News" %}{% else %}{% trans "Create News" %}{% endif %}
 {% endblock %}
@@ -118,6 +123,16 @@
             </small>
             {% endfor %}
           </div>
+          {% if current_language == lang.code %}
+          <div class="form-group">
+            {{ form.translation.body }}
+            {% for error in form.translation.body.errors %}
+            <small class="form-text invalid-feedback">
+              <ul class="errorlist" id="id_body_error"><li>{{ error }}</li></ul>
+            </small>
+            {% endfor %}
+          </div>
+          {% endif %}
           <div class="d-flex flex-wrap align-items-start">
             <div class="d-flex flex-wrap">
               <button id="add-btn-news-{{ form.language }}" class="btn btn-primary btn-sm mr-2 mb-2" type="submit">

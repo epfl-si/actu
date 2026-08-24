@@ -1,6 +1,7 @@
 from django import forms
 from django.db import transaction
 from django.utils.translation import gettext_lazy as _
+from django_editorjs_fields import EditorJsWidget
 
 from translations.models import NewsTranslation
 
@@ -35,7 +36,18 @@ class NewsForm(forms.ModelForm):
 class NewsTranslationForm(forms.ModelForm):
     class Meta:
         model = NewsTranslation
-        fields = ["title"]
+        fields = ["title", "body"]
+        widgets = {
+            'body': EditorJsWidget(
+                plugins=[
+                    "@editorjs/image",
+                    "@editorjs/header"
+                ],
+                config={
+                    'minHeight': 200
+                },
+            )
+        }
 
     def save(self, user, language, news):
         is_new = self.instance.pk is None

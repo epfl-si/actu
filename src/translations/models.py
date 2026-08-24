@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django_editorjs_fields import EditorJsJSONField
 
 from news.models import News
 from utils.models import get_last_activity_label
@@ -41,6 +42,20 @@ class NewsTranslation(models.Model):
     title = models.CharField(
         max_length=90,
         verbose_name=_("Title"),
+    )
+    body = EditorJsJSONField(
+        null=True,
+        blank=True,
+        plugins=[
+            "@editorjs/image",
+            "@editorjs/header",
+            "@editorjs/list",
+            "editorjs-github-gist-plugin",
+            "editorjs-hyperlink",
+            "@editorjs/code",
+            "@editorjs/inline-code",
+            "@editorjs/table@1.3.0",
+        ],
     )
     status = models.CharField(
         max_length=20,

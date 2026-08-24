@@ -9,3 +9,4 @@ gunicorn==26.0.0
 pipdeptree==2.35.2
 psycopg[binary]==3.3.3
 requests==2.34.2
+django-editorjs-fields==0.3.0

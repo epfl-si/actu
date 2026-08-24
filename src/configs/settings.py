@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "mozilla_django_oidc",
     "rest_framework",
+    "django_editorjs_fields",
     #
     # Applications
     "api",

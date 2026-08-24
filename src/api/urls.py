@@ -8,6 +8,7 @@ from api.views import ThematicViewSet
 router = DefaultRouter()
 router.register(r"thematics", ThematicViewSet, basename="thematic")
 
+
 urlpatterns = [
     path(
         "schema/",

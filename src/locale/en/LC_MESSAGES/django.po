@@ -32,6 +32,12 @@ msgstr ""
 msgid "Italian"
 msgstr ""
 
+msgid "Actu API"
+msgstr ""
+
+msgid "API documentation for Actu."
+msgstr ""
+
 msgid "Has Homepage"
 msgstr ""
 

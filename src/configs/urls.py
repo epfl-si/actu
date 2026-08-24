@@ -18,11 +18,15 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, register_converter
 
+from api.converters import APIVersionConverter
 from utils.views import healthz
 
+register_converter(APIVersionConverter, "api_version")
+
 urlpatterns = [
+    path("api/<api_version:version>/", include("api.urls")),
     path("auth/", include("mozilla_django_oidc.urls")),
     path("healthz/", healthz, name="healthz"),
     path("i18n/", include("django.conf.urls.i18n")),

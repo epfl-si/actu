@@ -32,6 +32,12 @@ msgstr "Tedesco"
 msgid "Italian"
 msgstr "Italiano"
 
+msgid "Actu API"
+msgstr "API Actu"
+
+msgid "API documentation for Actu."
+msgstr "Documentazione dell'API per Actu."
+
 msgid "Has Homepage"
 msgstr "Ha una pagina principale"
 

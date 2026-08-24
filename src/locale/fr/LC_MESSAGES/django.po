@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-18 09:46+0200\n"
+"POT-Creation-Date: 2026-08-24 11:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -124,18 +124,6 @@ msgstr "Publié le"
 
 msgid "Published by"
 msgstr "Publié par"
-
-msgid "Published on"
-msgstr "Publié le"
-
-msgid "Archived on"
-msgstr "Archivé le"
-
-msgid "Updated on"
-msgstr "Modifié le"
-
-msgid "Created on"
-msgstr "Créé le"
 
 msgid "News"
 msgstr "Actualités"
@@ -269,6 +257,9 @@ msgstr "Format"
 msgid "Manage News"
 msgstr "Gérer les actualités"
 
+msgid "Create news"
+msgstr "Créer une actualité"
+
 msgid "No news available."
 msgstr "Aucune actualité disponible."
 
@@ -316,6 +307,18 @@ msgstr "Traductions d'actualités"
 
 msgid "Title"
 msgstr "Titre"
+
+msgid "Published on"
+msgstr "Publié le"
+
+msgid "Archived on"
+msgstr "Archivé le"
+
+msgid "Updated on"
+msgstr "Modifié le"
+
+msgid "Created on"
+msgstr "Créé le"
 
 msgid "Label in French"
 msgstr "Label en français"

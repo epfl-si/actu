@@ -2,17 +2,17 @@
 
 #manage-news-list {
 
-    .badge.draft {
-      color: variables.$bdg-gray;
-    }
+  .badge.draft {
+    color: variables.$bdg-gray;
+  }
 
-    .badge.published {
-      color: variables.$bdg-green;
-    }
+  .badge.published {
+    color: variables.$bdg-green;
+  }
 
-    .badge.archived {
-      color: variables.$bdg-red;
-    }
+  .badge.archived {
+    color: variables.$bdg-red;
+  }
 
   .list-group-teaser-thumbnail {
     flex: 0 0 14rem;

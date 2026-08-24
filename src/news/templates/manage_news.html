@@ -8,7 +8,10 @@
   <main id="main" class="content">
     <div class="container-lg">
       <h1 class="h2 my-5">{% trans "Manage News" %}</h1>
-
+      <a class="btn btn-primary btn-sm mb-3" href="#">
+        <svg class="icon feather" aria-hidden="true"><use xlink:href="#plus"></use></svg>
+        {% trans "Create news" %}
+      </a>
       {% if not news_rows %}
         <p class="text-muted">{% trans "No news available." %}</p>
       {% else %}

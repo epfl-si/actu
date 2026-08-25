@@ -45,7 +45,7 @@
                             {% csrf_token %}
                             <button type="button" class="btn btn-sm btn-actions btn-outline-danger p-1" title="{% trans "Delete" %}"
                               data-toggle="modal" data-target="#confirm_delete"
-                              data-homepage="{{ row.homepage.display_name }}"
+                              data-item-type="homepage" data-item-name="{{ row.homepage.display_name }}"
                               data-lang="{{ lang_label }}">
                               <svg class="icon feather" aria-hidden="true"><use xlink:href="#trash-2"></use></svg>
                             </button>
@@ -110,5 +110,5 @@
 {% endblock %}
 
 {% block web2018_extra_js %}
-  {% vite_asset 'assets/pages/manage-homepages/manage-homepages.js' %}
+  {% vite_asset 'assets/components/modals/confirm-delete.js' %}
 {% endblock %}

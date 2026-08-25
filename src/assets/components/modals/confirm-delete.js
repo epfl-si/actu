@@ -5,7 +5,12 @@ $(function () {
     const $button = $(event.relatedTarget)
     $formToSubmit = $button.closest('form')
 
-    $('#confirm-delete-homepage').text($button.data('homepage'))
+    const itemType = $button.data('item-type')
+    const itemName = $button.data('item-name')
+    if (!itemType || itemName === undefined) {
+      return
+    }
+    $(`#confirm-delete-${itemType}`).text(itemName)
     $('#confirm-delete-lang').text($button.data('lang'))
   })
 

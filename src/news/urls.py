@@ -1,16 +1,18 @@
-from django.urls import path
+from django.urls import path, register_converter
 
-from . import views
+from . import converters, views
+
+register_converter(converters.LanguageConverter, "language")
 
 urlpatterns = [
     path("news/manage/", views.manage_news, name="manage_news"),
     path(
-        "news/<str:language>/create/",
+        "news/<language:language>/create/",
         views.create_news,
         name="create_news",
     ),
     path(
-        "news/<int:news_id>/<str:language>/edit/",
+        "news/<int:news_id>/<language:language>/edit/",
         views.edit_news,
         name="edit_news",
     ),

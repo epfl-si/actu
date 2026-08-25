@@ -393,8 +393,8 @@ msgid "Save"
 msgstr "Salva"
 
 #, python-format
-msgid "The news %(title)s has been added successfully."
-msgstr "La notizia %(title)s é stata salvata correttamente"
+msgid "The news has been saved successfully."
+msgstr "La notizia è stata salvata correttamente"
 
 msgid "English version"
 msgstr "Versione in inglese"

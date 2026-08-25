@@ -393,7 +393,7 @@ msgid "Save"
 msgstr ""
 
 #, python-format
-msgid "The news %(title)s has been added successfully."
+msgid "The news has been saved successfully."
 msgstr ""
 
 msgid "English version"

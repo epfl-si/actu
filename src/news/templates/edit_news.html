@@ -16,33 +16,33 @@
     <ul class="nav nav-tabs" role="tablist">
       {% for lang in languages %}
       <li class="nav-item">
-        <a class="nav-link {% if current_language == lang.code %}active{% endif %}"
-            id="{{ lang.code }}-tab"
-            href="{% if form.news.instance.pk %}{% url 'edit_news' news_id=form.news.instance.pk language=lang.code %}
-            {% else %}{% url 'create_news' language=lang.code %}{% endif %}"
-            role="tab"
-            aria-controls="{{ lang.code }}"
-            aria-selected="true">{% trans lang.label %}</a>
+        <a class="nav-link {% if form.language == lang.code %}active{% endif %}"
+          id="{{ lang.code }}-tab"
+          href="{% if form.news.instance.pk %}{% url 'edit_news' news_id=form.news.instance.pk language=lang.code %}
+          {% else %}{% url 'create_news' language=lang.code %}{% endif %}"
+          role="tab"
+          aria-controls="{{ lang.code }}"
+          aria-selected="true">{% trans lang.label %}</a>
       </li>
       {% endfor %}
     </ul>
 
     <div class="tab-content p-3">
       {% for lang in languages %}
-      <div class="tab-pane fade {% if current_language == lang.code %}show active{% endif %}" id="{{ lang.code }}" role="tabpanel" aria-labelledby="{{ lang.code }}-tab">
+      <div class="tab-pane fade {% if form.language == lang.code %}show active{% endif %}" id="{{ lang.code }}" role="tabpanel" aria-labelledby="{{ lang.code }}-tab">
         <form id="addFormNews-{{ lang.code }}" method="POST">
           {% csrf_token %}
           <div class="row">
             <div class="form-group col-md-3">
               <span class="text-danger">*</span>
-              <label for="format-select-{{ lang.code }}" class="{% if form.news.instance.pk.format.errors %}invalid-label{% endif %}">{% trans "Format" %}</label>
+              <label for="format-select-{{ lang.code }}" class="{% if form.news.format.errors %}invalid-label{% endif %}">{% trans "Format" %}</label>
               <span class="float-right" title="{% trans "Common" %}">
                 <svg class="icon feather" aria-hidden="true">
                   <use xlink:href="#crosshair"></use>
                 </svg>
               </span>
               <select
-                class="custom-select {% if form.news.instance.pk.format.errors %}is-invalid{% endif %}"
+                class="custom-select {% if form.news.format.errors %}is-invalid{% endif %}"
                 name="format"
                 id="format-select-{{ lang.code }}"
               >
@@ -60,7 +60,7 @@
             </div>
             <div class="form-group col-md-3">
               <span class="text-danger">*</span>
-              <label for="thematic-select-{{ lang.code }}" class="{% if form.news.instance.pk.thematics.errors %}invalid-label{% endif %}">{% trans "Thematics" %}</label>
+              <label for="thematic-select-{{ lang.code }}" class="{% if form.news.thematics.errors %}invalid-label{% endif %}">{% trans "Thematics" %}</label>
               <span class="float-right" title="{% trans "Common" %}">
                 <svg class="icon feather" aria-hidden="true">
                   <use xlink:href="#crosshair"></use>
@@ -69,7 +69,7 @@
               <select
                 multiple
                 data-filter="True"
-                class="select-multiple {% if form.news.instance.pk.thematics.errors %}is-invalid{% endif %}"
+                class="select-multiple {% if form.news.thematics.errors %}is-invalid{% endif %}"
                 name="thematics"
                 id="thematic-select-{{ lang.code }}"
               >
@@ -95,7 +95,7 @@
               <select
                 multiple
                 data-filter="True"
-                class="select-multiple {% if form.news.instance.pk.entities.errors %}is-invalid{% endif %}"
+                class="select-multiple {% if form.news.entities.errors %}is-invalid{% endif %}"
                 name="entities"
                 id="entite-select-{{ lang.code }}"
               >

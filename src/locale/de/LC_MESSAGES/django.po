@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-20 15:04+0200\n"
+"POT-Creation-Date: 2026-08-25 18:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -164,18 +164,6 @@ msgstr "Veröffentlicht am"
 msgid "Published by"
 msgstr "Veröffentlicht von"
 
-msgid "Published on"
-msgstr "Veröffentlicht am"
-
-msgid "Archived on"
-msgstr "Archiviert am"
-
-msgid "Updated on"
-msgstr "Aktualisiert am"
-
-msgid "Created on"
-msgstr "Erstellt am"
-
 msgid "News"
 msgstr "Nachrichten"
 
@@ -302,6 +290,18 @@ msgstr "Einheiten, die mit dieser Nachricht verbunden sind."
 msgid "Format"
 msgstr "Format"
 
+msgid "Manage News"
+msgstr "Nachrichten verwalten"
+
+msgid "Create news"
+msgstr "Nachricht erstellen"
+
+msgid "No news available."
+msgstr "Keine Nachrichten verfügbar."
+
+msgid "Do you really want to delete this news translation?"
+msgstr "Möchten Sie diese Version der Nachrichtenübersetzung wirklich löschen?"
+
 msgid "News Format"
 msgstr "Nachrichtenformat"
 
@@ -316,9 +316,6 @@ msgstr "Andere"
 
 msgid "News by entity"
 msgstr "Aktuelles nach Einheit"
-
-msgid "My News"
-msgstr "Meine Neuigkeiten"
 
 msgid "Administration"
 msgstr "Administration"
@@ -346,6 +343,18 @@ msgstr "Nachrichtenübersetzungen"
 
 msgid "Title"
 msgstr "Titel"
+
+msgid "Published on"
+msgstr "Veröffentlicht am"
+
+msgid "Archived on"
+msgstr "Archiviert am"
+
+msgid "Updated on"
+msgstr "Aktualisiert am"
+
+msgid "Created on"
+msgstr "Erstellt am"
 
 msgid "Label in French"
 msgstr "Label auf Französisch"

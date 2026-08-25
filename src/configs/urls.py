@@ -36,6 +36,7 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path("", include("django_epfl_entra_id.urls")),
     path("", include("homepages.urls")),
+    path("", include("news.urls")),
     path("admin/", admin.site.urls),
 )
 

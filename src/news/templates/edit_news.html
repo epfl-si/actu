@@ -28,14 +28,13 @@
     </ul>
 
     <div class="tab-content p-3">
-      {% for lang in languages %}
-      <div class="tab-pane fade {% if form.language == lang.code %}show active{% endif %}" id="{{ lang.code }}" role="tabpanel" aria-labelledby="{{ lang.code }}-tab">
-        <form id="addFormNews-{{ lang.code }}" method="POST">
+      <div class="tab-pane fade show active" id="{{ form.language }}" role="tabpanel" aria-labelledby="{{ form.language }}-tab">
+        <form id="addFormNews-{{ form.language }}" method="POST">
           {% csrf_token %}
           <div class="row">
             <div class="form-group col-md-3">
               <span class="text-danger">*</span>
-              <label for="format-select-{{ lang.code }}" class="{% if form.news.format.errors %}invalid-label{% endif %}">{% trans "Format" %}</label>
+              <label for="format-select-{{ form.language }}" class="{% if form.news.format.errors %}invalid-label{% endif %}">{% trans "Format" %}</label>
               <span class="float-right" title="{% trans "Common" %}">
                 <svg class="icon feather" aria-hidden="true">
                   <use xlink:href="#crosshair"></use>
@@ -44,7 +43,7 @@
               <select
                 class="custom-select {% if form.news.format.errors %}is-invalid{% endif %}"
                 name="format"
-                id="format-select-{{ lang.code }}"
+                id="format-select-{{ form.language }}"
               >
                 {% for format in formats %}
                 <option class="" value="{{ format.id }}" {% if format.id == selected_format_id %}selected{% endif %}>
@@ -60,7 +59,7 @@
             </div>
             <div class="form-group col-md-3">
               <span class="text-danger">*</span>
-              <label for="thematic-select-{{ lang.code }}" class="{% if form.news.thematics.errors %}invalid-label{% endif %}">{% trans "Thematics" %}</label>
+              <label for="thematic-select-{{ form.language }}" class="{% if form.news.thematics.errors %}invalid-label{% endif %}">{% trans "Thematics" %}</label>
               <span class="float-right" title="{% trans "Common" %}">
                 <svg class="icon feather" aria-hidden="true">
                   <use xlink:href="#crosshair"></use>
@@ -71,7 +70,7 @@
                 data-filter="True"
                 class="select-multiple {% if form.news.thematics.errors %}is-invalid{% endif %}"
                 name="thematics"
-                id="thematic-select-{{ lang.code }}"
+                id="thematic-select-{{ form.language }}"
               >
                 {% for thematic in thematics %}
                 <option class="" value="{{ thematic.id }}" {% if thematic.id in selected_thematic_ids %}selected{% endif %}>
@@ -86,7 +85,7 @@
               {% endfor %}
             </div>
             <div class="form-group col-md-6">
-              <label for="entite-select-{{ lang.code }}">{% trans "Entities" %}</label>
+              <label for="entite-select-{{ form.language }}">{% trans "Entities" %}</label>
               <span class="float-right" title="{% trans "Common" %}">
                 <svg class="icon feather" aria-hidden="true">
                   <use xlink:href="#crosshair"></use>
@@ -97,7 +96,7 @@
                 data-filter="True"
                 class="select-multiple {% if form.news.entities.errors %}is-invalid{% endif %}"
                 name="entities"
-                id="entite-select-{{ lang.code }}"
+                id="entite-select-{{ form.language }}"
               >
                 {% for entity in entities %}
                 <option class="" value="{{ entity.id }}" {% if entity.id in selected_entity_ids %}selected{% endif %}>
@@ -109,10 +108,10 @@
           </div>
           <div class="form-group">
             <span class="text-danger">*</span>
-            <label class="{% if form.translation.title.errors %}invalid-label{% endif %}" for="title-{{ lang.code }}">
+            <label class="{% if form.translation.title.errors %}invalid-label{% endif %}" for="title-{{ form.language }}">
               {% trans "Title" %}
             </label>
-            <input type="text" id="title-{{ lang.code }}" class="form-control {% if form.translation.title.errors %}is-invalid{% endif %}"
+            <input type="text" id="title-{{ form.language }}" class="form-control {% if form.translation.title.errors %}is-invalid{% endif %}"
                     name="title" value="{% if form.translation.title.value %}{{ form.translation.title.value }}{% endif %}">
             {% for error in form.translation.title.errors %}
             <small class="form-text invalid-feedback">
@@ -122,14 +121,13 @@
           </div>
           <div class="d-flex flex-wrap align-items-start">
             <div class="d-flex flex-wrap">
-              <button id="add-btn-news-{{ lang.code }}" class="btn btn-primary btn-sm mr-2 mb-2" type="submit">
+              <button id="add-btn-news-{{ form.language }}" class="btn btn-primary btn-sm mr-2 mb-2" type="submit">
                 {% trans "Save" %}
               </button>
             </div>
           </div>
         </form>
       </div>
-      {% endfor %}
     </div>
 
   </div>

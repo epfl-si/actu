@@ -41,7 +41,7 @@
                               {% csrf_token %}
                               <button type="button" class="btn btn-sm btn-actions btn-outline-danger" title="{% trans "Delete" %}"
                                 data-toggle="modal" data-target="#confirm_delete"
-                                data-news="{{ translation.title|default:"-" }}"
+                                data-item-type="news" data-item-name="{{ translation.title|default:"-" }}"
                                 data-lang="{{ lang_label }}">
                                 <svg class="icon feather" aria-hidden="true"><use xlink:href="#trash-2"></use></svg>
                               </button>
@@ -98,5 +98,5 @@
 
 {% block web2018_extra_js %}
   {{ block.super }}
-  {% vite_asset 'assets/pages/manage-news/manage-news.js' %}
+  {% vite_asset 'assets/components/modals/confirm-delete.js' %}
 {% endblock %}

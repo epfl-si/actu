@@ -25,20 +25,18 @@ def _handle_post_action(request, language, news=None, translation=None):
         post_data=request.POST,
         news_instance=news,
         translation_instance=translation,
+        language=language
     )
-    if form.news.is_valid() and form.translation.is_valid():
-        news_saved = form.news.save(request.user)
-        translation_saved = form.translation.save(
-            request, language, news_saved.id
-        )
+
+    news_id = form.validate_and_save(request.user)
+    if news_id:
         messages.success(
             request,
             _("The news %(title)s has been added successfully.")
-            % {"title": translation_saved.title},
         )
         url_to_redirect = reverse(
             "edit_news",
-            kwargs={"news_id": news_saved.id, "language": language},
+            kwargs={"news_id": news_id, "language": language},
         )
         return HttpResponseRedirect(url_to_redirect)
 
@@ -95,7 +93,7 @@ def _initialize_selected_values(request=None, news=None):
 def create_news(request, language):
     thematics, entities, formats, languages = _initialize_view()
 
-    form = NewsWithTranslationForm()
+    form = NewsWithTranslationForm(language=language)
     selected_thematic_ids, selected_entity_ids, selected_format_id = (
         _initialize_selected_values(request)
     )
@@ -105,7 +103,9 @@ def create_news(request, language):
         if result:
             return result
 
-        form = NewsWithTranslationForm(request.POST)
+        form = NewsWithTranslationForm(
+            post_data=request.POST, language=language
+        )
 
     context = {
         "form": form,
@@ -113,7 +113,6 @@ def create_news(request, language):
         "entities": entities,
         "formats": formats,
         "languages": languages,
-        "current_language": language,
         "selected_thematic_ids": selected_thematic_ids,
         "selected_entity_ids": selected_entity_ids,
         "selected_format_id": selected_format_id,
@@ -128,7 +127,10 @@ def edit_news(request, news_id, language):
     news = get_object_or_404(News, id=news_id)
     translation = NewsTranslation.get(news_id, language)
     form = NewsWithTranslationForm(
-        post_data=None, news_instance=news, translation_instance=translation
+        post_data=None,
+        news_instance=news,
+        translation_instance=translation,
+        language=language,
     )
 
     selected_thematic_ids, selected_entity_ids, selected_format_id = (
@@ -140,7 +142,12 @@ def edit_news(request, news_id, language):
         if result:
             return result
 
-        form = NewsWithTranslationForm(request.POST, news, translation)
+        form = NewsWithTranslationForm(
+            post_data=request.POST,
+            news_instance=news,
+            translation_instance=translation,
+            language=language,
+        )
 
     context = {
         "form": form,
@@ -148,7 +155,6 @@ def edit_news(request, news_id, language):
         "entities": entities,
         "formats": formats,
         "languages": languages,
-        "current_language": language,
         "selected_thematic_ids": selected_thematic_ids,
         "selected_entity_ids": selected_entity_ids,
         "selected_format_id": selected_format_id,

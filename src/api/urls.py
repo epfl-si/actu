@@ -9,6 +9,7 @@ router = DefaultRouter()
 router.register(r"entities", EntityViewSet, basename="entity")
 router.register(r"thematics", ThematicViewSet, basename="thematic")
 
+
 urlpatterns = [
     path(
         "schema/",

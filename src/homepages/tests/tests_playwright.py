@@ -40,7 +40,7 @@ class ManageHomepagesPlaywrightTests(PlaywrightTestCase):
         self.page.goto(self.live_server_url + reverse("manage_homepages"))
 
         self.page.click(
-            'button[title="Delete"][data-homepage="AI"][data-lang="English"]'
+            'button[title="Delete"][data-item-name="AI"][data-lang="English"]'
         )
 
         modal = self.page.locator("#confirm_delete")
@@ -57,7 +57,7 @@ class ManageHomepagesPlaywrightTests(PlaywrightTestCase):
         self.page.goto(self.live_server_url + reverse("manage_homepages"))
 
         self.page.click(
-            'button[title="Delete"][data-homepage="AI"][data-lang="English"]'
+            'button[title="Delete"][data-item-name="AI"][data-lang="English"]'
         )
         self.page.click('#confirm_delete button:has-text("Cancel")')
 
@@ -65,7 +65,7 @@ class ManageHomepagesPlaywrightTests(PlaywrightTestCase):
         self.assertTrue(
             self.page.locator(
                 'button[title="Delete"]'
-                '[data-homepage="AI"][data-lang="English"]'
+                '[data-item-name="AI"][data-lang="English"]'
             ).is_visible()
         )
 
@@ -73,7 +73,7 @@ class ManageHomepagesPlaywrightTests(PlaywrightTestCase):
         self.page.goto(self.live_server_url + reverse("manage_homepages"))
 
         delete_button = self.page.locator(
-            'button[title="Delete"][data-homepage="AI"][data-lang="English"]'
+            'button[title="Delete"][data-item-name="AI"][data-lang="English"]'
         )
         delete_button.click()
 

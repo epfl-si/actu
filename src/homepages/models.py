@@ -163,14 +163,4 @@ class HomepageTranslation(models.Model):
 
     @property
     def last_activity_label(self):
-        return get_last_activity_label(
-            status=self.status,
-            published_status=self.Status.PUBLISHED,
-            archived_status=self.Status.ARCHIVED,
-            published_by=self.published_by,
-            published_at=self.published_at,
-            updated_by=self.updated_by,
-            updated_at=self.updated_at,
-            created_by=self.created_by,
-            created_at=self.created_at,
-        )
+        return get_last_activity_label(instance=self)

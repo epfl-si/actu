@@ -45,7 +45,6 @@ def manage_news(request):
         "manage_news.html",
         {
             "news_rows": news_rows,
-            "languages": languages,
         },
     )
 

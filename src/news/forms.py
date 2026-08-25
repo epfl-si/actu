@@ -20,11 +20,11 @@ class NewsForm(forms.ModelForm):
             self.add_error("format", "No format provided.")
         return self.cleaned_data
 
-    def save(self, request):
+    def save(self, user):
         is_new = self.instance.pk is None
         news = super().save(commit=False)
         if is_new:
-            news.created_by = request.user
+            news.created_by = user
         news.save()
         self.save_m2m()
         return news

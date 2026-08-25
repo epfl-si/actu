@@ -31,22 +31,21 @@ def _handle_post_action(request, language, news=None, translation=None):
         news_instance=news,
         translation_instance=translation,
     )
-    if form.news.is_valid():
-        news_saved = form.news.save(request)
-        if form.translation.is_valid():
-            translation_saved = form.translation.save(
-                request, language, news_saved.id
-            )
-            messages.success(
-                request,
-                _("The news %(title)s has been added successfully.")
-                % {"title": translation_saved.title},
-            )
-            url_to_redirect = reverse(
-                "edit_news",
-                kwargs={"news_id": news_saved.id, "language": language},
-            )
-            return HttpResponseRedirect(url_to_redirect)
+    if form.news.is_valid() and form.translation.is_valid():
+        news_saved = form.news.save(request.user)
+        translation_saved = form.translation.save(
+            request, language, news_saved.id
+        )
+        messages.success(
+            request,
+            _("The news %(title)s has been added successfully.")
+            % {"title": translation_saved.title},
+        )
+        url_to_redirect = reverse(
+            "edit_news",
+            kwargs={"news_id": news_saved.id, "language": language},
+        )
+        return HttpResponseRedirect(url_to_redirect)
 
 
 def _initialize_view():

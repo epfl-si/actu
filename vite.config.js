@@ -23,8 +23,7 @@ export default defineConfig({
 
     rolldownOptions: {
       input: {
-        'manage-homepages': './assets/pages/manage-homepages/manage-homepages.js',
-        'manage-news': './assets/pages/manage-news/manage-news.js',
+        'modals-confirm-delete': './assets/components/modals/confirm-delete.js',
         actu: './assets/entrypoint.scss',
         manage_users: './assets/pages/manage-users-homepages/manage_users.js',
       },

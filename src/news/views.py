@@ -9,6 +9,7 @@ from django.utils.translation import gettext_lazy as _
 
 from entities.models import Entity
 from news_formats.models import NewsFormat
+from multi_ref.models import NewsMultiRef
 from thematics.models import Thematic
 from translations.models import NewsTranslation
 
@@ -18,11 +19,14 @@ from .models import News
 User = get_user_model()
 
 
-def _handle_post_action(request, language, news=None, translation=None):
+def _handle_post_action(
+    request, language, news=None, translation=None, links=None
+):
     form = NewsWithTranslationForm(
         post_data=request.POST,
         news_instance=news,
         translation_instance=translation,
+        link_instance=links,
     )
     if form.news.is_valid():
         news_saved = form.news.save(request)
@@ -30,16 +34,21 @@ def _handle_post_action(request, language, news=None, translation=None):
             translation_saved = form.translation.save(
                 request, language, news_saved.id
             )
-            messages.success(
-                request,
-                _("The news %(title)s has been added successfully.")
-                % {"title": translation_saved.title},
-            )
-            url_to_redirect = reverse(
-                "edit_news",
-                kwargs={"news_id": news_saved.id, "language": language},
-            )
-            return HttpResponseRedirect(url_to_redirect)
+            if form.links.is_valid():
+                form.links.save(news_saved.id, language)
+
+                messages.success(
+                    request,
+                    _("The news %(title)s has been added successfully.")
+                    % {"title": translation_saved.title},
+                )
+                url_to_redirect = reverse(
+                    "edit_news",
+                    kwargs={"news_id": news_saved.id, "language": language},
+                )
+                return HttpResponseRedirect(url_to_redirect)
+            else:
+                print(form.links.errors)
 
 
 def _initialize_view():
@@ -126,8 +135,12 @@ def edit_news(request, news_id, language):
 
     news = get_object_or_404(News, id=news_id)
     translation = NewsTranslation.get(news_id, language)
+    links = NewsMultiRef.get_links(news_id, language)
     form = NewsWithTranslationForm(
-        post_data=None, news_instance=news, translation_instance=translation
+        post_data=None,
+        news_instance=news,
+        translation_instance=translation,
+        link_instance=links,
     )
 
     selected_thematic_ids, selected_entity_ids, selected_format_id = (
@@ -135,11 +148,13 @@ def edit_news(request, news_id, language):
     )
 
     if request.method == "POST":
-        result = _handle_post_action(request, language, news, translation)
+        result = _handle_post_action(
+            request, language, news, translation, links
+        )
         if result:
             return result
 
-        form = NewsWithTranslationForm(request.POST, news, translation)
+        form = NewsWithTranslationForm(request.POST, news, translation, links)
 
     context = {
         "form": form,

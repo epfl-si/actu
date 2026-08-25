@@ -1,6 +1,8 @@
 from django import forms
+from django.forms.models import modelformset_factory
 from tinymce.widgets import TinyMCE
 
+from multi_ref.models import NewsMultiRef
 from translations.models import NewsTranslation
 
 from .models import News
@@ -62,11 +64,45 @@ class NewsTranslationForm(forms.ModelForm):
         return translation
 
 
+class NewsLinkForm(forms.ModelForm):
+    class Meta:
+        model = NewsMultiRef
+        fields = ["ref"]
+        widgets = {
+            "ref": forms.URLInput(attrs={"placeholder": "https://..."}),
+        }
+
+    def save(self, news, language):
+        link_forms = self.links.save(commit=False)
+
+        for link_form in link_forms:
+            link_form.news = news
+            link_form.language = language
+            link_form.type = NewsMultiRef.Type.LINK
+            link_form.save()
+
+        for deleted in self.links.deleted_objects:
+            deleted.delete()
+
+
+NewsLinkFormSet = modelformset_factory(
+    NewsMultiRef,
+    form=NewsLinkForm,
+    extra=1,
+    can_delete=True,
+)
+
+
 class NewsWithTranslationForm:
     def __init__(
-        self, post_data=None, news_instance=None, translation_instance=None
+        self,
+        post_data=None,
+        news_instance=None,
+        translation_instance=None,
+        link_instance=None,
     ):
         self.news = NewsForm(post_data, instance=news_instance)
         self.translation = NewsTranslationForm(
             post_data, instance=translation_instance
         )
+        self.links = NewsLinkFormSet(post_data, queryset=link_instance)

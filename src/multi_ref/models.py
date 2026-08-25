@@ -40,6 +40,8 @@ class NewsMultiRef(models.Model):
     ref = models.CharField(
         max_length=512,
         verbose_name=_("Ref"),
+        null=True,
+        blank=True,
     )
 
     def __str__(self):

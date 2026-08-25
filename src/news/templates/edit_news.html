@@ -121,53 +121,80 @@
             {% endfor %}
           </div>
           <div class="form-group">
-                <span class="text-danger">*</span>
-                <label class="{% if form.translation.hat.errors %}invalid-label{% endif %}" for="hat-{{ lang.code }}">
-                  {% trans "Hat" %}
-                </label>
-                {{ form.translation.hat }}
-                {{ form.translation.media }}
-                {% for error in form.translation.hat.errors %}
-                <small class="form-text invalid-feedback">
-                  <ul class="errorlist" id="id_hat_error"><li>{{ error }}</li></ul>
-                </small>
-                {% endfor %}
-              </div>
-              <div class="form-group">
-                <label for="extract-{{ lang.code }}">
-                  {% trans "Extract" %}
-                </label>
-                {{ form.translation.extract }}
-                {{ form.translation.media }}
-              </div>
-              <div class="form-group">
-                <span class="text-danger">*</span>
-                <label class="{% if form.translation.author.errors %}invalid-label{% endif %}" for="author-{{ lang.code }}">
-                  {% trans "Author" %}
-                </label>
-                {{ form.translation.author }}
-                {{ form.translation.media }}
-                {% for error in form.translation.author.errors %}
-                <small class="form-text invalid-feedback">
-                  <ul class="errorlist" id="id_author_error"><li>{{ error }}</li></ul>
-                </small>
-                {% endfor %}
-              </div>
-              <div class="form-group">
-                <label for="funding-{{ lang.code }}">
-                  {% trans "Funding" %}
-                </label>
-                {{ form.translation.funding }}
-                {{ form.translation.media }}
-              </div>
-              <div class="form-group">
-                <label for="references-{{ lang.code }}">
-                  {% trans "References" %}
-                </label>
-                {{ form.translation.references }}
-                {{ form.translation.media }}
-              </div>
-              <div class="d-flex flex-wrap align-items-start">
+            <span class="text-danger">*</span>
+            <label class="{% if form.translation.hat.errors %}invalid-label{% endif %}" for="hat-{{ lang.code }}">
+              {% trans "Hat" %}
+            </label>
+            {{ form.translation.hat }}
+            {{ form.translation.media }}
+            {% for error in form.translation.hat.errors %}
+            <small class="form-text invalid-feedback">
+              <ul class="errorlist" id="id_hat_error"><li>{{ error }}</li></ul>
+            </small>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            <label for="extract-{{ lang.code }}">
+              {% trans "Extract" %}
+            </label>
+            {{ form.translation.extract }}
+            {{ form.translation.media }}
+          </div>
+          <div class="form-group">
+            <span class="text-danger">*</span>
+            <label class="{% if form.translation.author.errors %}invalid-label{% endif %}" for="author-{{ lang.code }}">
+              {% trans "Author" %}
+            </label>
+            {{ form.translation.author }}
+            {{ form.translation.media }}
+            {% for error in form.translation.author.errors %}
+            <small class="form-text invalid-feedback">
+              <ul class="errorlist" id="id_author_error"><li>{{ error }}</li></ul>
+            </small>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            <label for="funding-{{ lang.code }}">
+              {% trans "Funding" %}
+            </label>
+            {{ form.translation.funding }}
+            {{ form.translation.media }}
+          </div>
+          <div class="form-group">
+            <label for="references-{{ lang.code }}">
+              {% trans "References" %}
+            </label>
+            {{ form.translation.references }}
+            {{ form.translation.media }}
+          </div>
+
+          <div class="form-group">
+            <label>{% trans "Links" %}</label>
+
+            <div id="links-container-{{ lang.code }}">
+              {{ form.links.management_form }}
+              {% for link_form in form.links %}
+                <div class="input-group mb-2 link-row">
+                  {{ link_form.id }}
+                  <input type="url" name="{{ link_form.ref.html_name }}" class="form-control"
+                        value="{{ link_form.ref.value|default_if_none:'' }}" placeholder="https://...">
+                  <div class="input-group-append">
+                    <label>
+                      {{ link_form.DELETE }} {% trans "Remove" %}
+                    </label>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+            <button type="button" class="btn btn-secondary btn-sm add-link-btn"
+                    data-lang="{{ lang.code }}" data-target="links-container-{{ lang.code }}">
+              + {% trans "Add a link" %}
+            </button>
+          </div>
+
+
+          <div class="d-flex flex-wrap align-items-start">
             <div class="d-flex flex-wrap">
               <button id="add-btn-news-{{ lang.code }}" class="btn btn-primary btn-sm mr-2 mb-2" type="submit">
                 {% trans "Save" %}
@@ -181,4 +208,9 @@
 
   </div>
 </main>
+{% endblock %}
+
+{% block web2018_extra_js %}
+  {{ block.super }}
+  {% vite_asset 'assets/pages/edit_news/edit-news.js' %}
 {% endblock %}

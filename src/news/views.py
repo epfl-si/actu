@@ -30,15 +30,12 @@ def _handle_post_action(request, language, news=None, translation=None):
         post_data=request.POST,
         news_instance=news,
         translation_instance=translation,
-        language=language
+        language=language,
     )
 
     news_id = form.validate_and_save(request.user)
     if news_id:
-        messages.success(
-            request,
-            _("The news has been saved successfully.")
-        )
+        messages.success(request, _("The news has been saved successfully."))
         url_to_redirect = reverse(
             "edit_news",
             kwargs={"news_id": news_id, "language": language},

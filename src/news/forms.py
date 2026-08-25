@@ -70,8 +70,6 @@ class NewsWithTranslationForm:
         if self.is_valid():
             with transaction.atomic():
                 news = self.news.save(user)
-                self.translation.save(
-                    user, self.language, news.id
-                )
+                self.translation.save(user, self.language, news.id)
 
             return news.id

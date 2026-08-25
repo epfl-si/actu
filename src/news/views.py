@@ -37,7 +37,7 @@ def _handle_post_action(request, language, news=None, translation=None):
     if news_id:
         messages.success(
             request,
-            _("The news %(title)s has been added successfully.")
+            _("The news has been saved successfully.")
         )
         url_to_redirect = reverse(
             "edit_news",

@@ -395,18 +395,6 @@ msgstr "Vuoi davvero eliminare questa traduzione della notizia?"
 msgid "The news has been saved successfully."
 msgstr "La notizia è stata salvata correttamente"
 
-msgid "English version"
-msgstr "Versione in inglese"
-
-msgid "French version"
-msgstr "Versione in francese"
-
-msgid "German version"
-msgstr "Versione in tedesco"
-
-msgid "Italian version"
-msgstr "Versione in italiano"
-
 msgid "News Format"
 msgstr "Formato notizia"
 

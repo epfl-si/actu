@@ -1,5 +1,9 @@
+from configs import settings
+
+
 class LanguageConverter:
-    regex = "en|fr|it|de"
+    language_codes = [code for code, name in settings.LANGUAGES]
+    regex = "|".join(language_codes)
 
     def to_python(self, value):
         return value

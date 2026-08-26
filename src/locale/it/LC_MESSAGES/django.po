@@ -393,7 +393,7 @@ msgid "Do you really want to delete this news translation?"
 msgstr "Vuoi davvero eliminare questa traduzione della notizia?"
 
 msgid "The news has been saved successfully."
-msgstr "La notizia è stata salvata correttamente"
+msgstr "La notizia è stata salvata correttamente."
 
 msgid "News Format"
 msgstr "Formato notizia"

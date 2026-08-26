@@ -365,18 +365,6 @@ msgstr "Entità relative a questa notizia."
 msgid "Format"
 msgstr "Formato"
 
-msgid "Manage News"
-msgstr "Gestire le notizie"
-
-msgid "Create news"
-msgstr "Crea una notizia"
-
-msgid "No news available."
-msgstr "Nessuna notizia disponibile."
-
-msgid "Do you really want to delete this news translation?"
-msgstr "Vuoi davvero eliminare questa traduzione della notizia?"
-
 msgid "Edit News"
 msgstr "Modificare la notizia"
 
@@ -392,7 +380,18 @@ msgstr "Titolo"
 msgid "Save"
 msgstr "Salva"
 
-#, python-format
+msgid "Manage News"
+msgstr "Gestire le notizie"
+
+msgid "Create news"
+msgstr "Crea una notizia"
+
+msgid "No news available."
+msgstr "Nessuna notizia disponibile."
+
+msgid "Do you really want to delete this news translation?"
+msgstr "Vuoi davvero eliminare questa traduzione della notizia?"
+
 msgid "The news has been saved successfully."
 msgstr "La notizia è stata salvata correttamente"
 

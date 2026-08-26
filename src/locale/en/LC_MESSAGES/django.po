@@ -391,18 +391,6 @@ msgstr ""
 msgid "Format"
 msgstr ""
 
-msgid "Manage News"
-msgstr ""
-
-msgid "Create news"
-msgstr ""
-
-msgid "No news available."
-msgstr ""
-
-msgid "Do you really want to delete this news translation?"
-msgstr ""
-
 msgid "Edit News"
 msgstr ""
 
@@ -418,7 +406,18 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#, python-format
+msgid "Manage News"
+msgstr ""
+
+msgid "Create news"
+msgstr ""
+
+msgid "No news available."
+msgstr ""
+
+msgid "Do you really want to delete this news translation?"
+msgstr ""
+
 msgid "The news has been saved successfully."
 msgstr ""
 

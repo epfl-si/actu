@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-26 09:47+0200\n"
+"POT-Creation-Date: 2026-08-26 11:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -288,18 +288,6 @@ msgid "Do you really want to delete this news translation?"
 msgstr ""
 
 msgid "The news has been saved successfully."
-msgstr ""
-
-msgid "English version"
-msgstr ""
-
-msgid "French version"
-msgstr ""
-
-msgid "German version"
-msgstr ""
-
-msgid "Italian version"
 msgstr ""
 
 msgid "News Format"

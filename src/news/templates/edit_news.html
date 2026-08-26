@@ -14,15 +14,15 @@
     {% include 'includes/title.inc.html' %}
 
     <ul class="nav nav-tabs" role="tablist">
-      {% for lang in languages %}
+      {% for code, name in languages %}
       <li class="nav-item">
-        <a class="nav-link {% if form.language == lang.code %}active{% endif %}"
-          id="{{ lang.code }}-tab"
-          href="{% if form.news.instance.pk %}{% url 'edit_news' news_id=form.news.instance.pk language=lang.code %}
-          {% else %}{% url 'create_news' language=lang.code %}{% endif %}"
+        <a class="nav-link {% if form.language == code %}active{% endif %}"
+          id="{{ code }}-tab"
+          href="{% if form.news.instance.pk %}{% url 'edit_news' news_id=form.news.instance.pk language=code %}
+          {% else %}{% url 'create_news' language=code %}{% endif %}"
           role="tab"
-          aria-controls="{{ lang.code }}"
-          aria-selected="true">{% trans lang.label %}</a>
+          aria-controls="{{ code }}"
+          aria-selected="true">{% trans name %}</a>
       </li>
       {% endfor %}
     </ul>

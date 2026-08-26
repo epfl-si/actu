@@ -101,6 +101,12 @@ msgstr "Aucun résultat"
 msgid "Empty"
 msgstr "Vide"
 
+msgid "Block Type"
+msgstr "Type de bloc"
+
+msgid "Block Types"
+msgstr "Types de bloc"
+
 msgid "English"
 msgstr "Anglais"
 
@@ -112,6 +118,12 @@ msgstr "Allemand"
 
 msgid "Italian"
 msgstr "Italien"
+
+msgid "Actu API"
+msgstr "API Actu"
+
+msgid "API documentation for Actu."
+msgstr "Documentation de l'API Actu."
 
 msgid "Has Homepage"
 msgstr "A une page d'accueil"
@@ -332,6 +344,27 @@ msgstr "Thématiques liées à cette actualité."
 msgid "Entities related to this news."
 msgstr "Entités liées à cette actualité."
 
+msgid "Format"
+msgstr "Format"
+
+msgid "Manage News"
+msgstr "Gérer les actualités"
+
+msgid "Create news"
+msgstr "Créer une actualité"
+
+msgid "No news available."
+msgstr "Aucune actualité disponible."
+
+msgid "Do you really want to delete this news translation?"
+msgstr "Voulez-vous vraiment supprimer cette traduction de l'actualité?"
+
+msgid "News Format"
+msgstr "Format d'actualités"
+
+msgid "News Formats"
+msgstr "Formats d'actualités"
+
 msgid "Language selection"
 msgstr "Choix de la langue"
 
@@ -349,9 +382,6 @@ msgstr "Suivant"
 
 msgid "News by entity"
 msgstr "Les actualités par faculté"
-
-msgid "My News"
-msgstr "Mes Actualités"
 
 msgid "Administration"
 msgstr "Administration"
@@ -379,6 +409,18 @@ msgstr "Traductions d'actualités"
 
 msgid "Title"
 msgstr "Titre"
+
+msgid "Published on"
+msgstr "Publié le"
+
+msgid "Archived on"
+msgstr "Archivé le"
+
+msgid "Updated on"
+msgstr "Modifié le"
+
+msgid "Created on"
+msgstr "Créé le"
 
 msgid "Label in French"
 msgstr "Label en français"

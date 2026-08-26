@@ -101,6 +101,12 @@ msgstr "Nessun risultato"
 msgid "Empty"
 msgstr "Vuoto"
 
+msgid "Block Type"
+msgstr "Tipo di blocco"
+
+msgid "Block Types"
+msgstr "Tipi di blocco"
+
 msgid "English"
 msgstr "Inglese"
 
@@ -112,6 +118,12 @@ msgstr "Tedesco"
 
 msgid "Italian"
 msgstr "Italiano"
+
+msgid "Actu API"
+msgstr "API Actu"
+
+msgid "API documentation for Actu."
+msgstr "Documentazione dell'API per Actu."
 
 msgid "Has Homepage"
 msgstr "Ha una pagina principale"
@@ -332,6 +344,27 @@ msgstr "Tematiche relative a questa notizia."
 msgid "Entities related to this news."
 msgstr "Entità relative a questa notizia."
 
+msgid "Format"
+msgstr "Formato"
+
+msgid "Manage News"
+msgstr "Gestire le notizie"
+
+msgid "Create news"
+msgstr "Crea una notizia"
+
+msgid "No news available."
+msgstr "Nessuna notizia disponibile."
+
+msgid "Do you really want to delete this news translation?"
+msgstr "Vuoi davvero eliminare questa traduzione della notizia?"
+
+msgid "News Format"
+msgstr "Formato notizia"
+
+msgid "News Formats"
+msgstr "Formati notizia"
+
 msgid "Language selection"
 msgstr "Selezione della lingua"
 
@@ -349,9 +382,6 @@ msgstr "Successiva"
 
 msgid "News by entity"
 msgstr "Notizie per entità"
-
-msgid "My News"
-msgstr "Le mie Notizie"
 
 msgid "Administration"
 msgstr "Amministrazione"
@@ -379,6 +409,18 @@ msgstr "Traduzioni delle notizie"
 
 msgid "Title"
 msgstr "Titolo"
+
+msgid "Published on"
+msgstr "Pubblicato il"
+
+msgid "Archived on"
+msgstr "Archiviato il"
+
+msgid "Updated on"
+msgstr "Aggiornato il"
+
+msgid "Created on"
+msgstr "Creato il"
 
 msgid "Label in French"
 msgstr "Etichetta in francese"

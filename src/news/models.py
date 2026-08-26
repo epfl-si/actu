@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from audit_log.models import AuditModelMixin
 from entities.models import Entity
+from news_formats.models import NewsFormat
 from thematics.models import Thematic
 
 
@@ -32,6 +33,14 @@ class News(AuditModelMixin, models.Model):
         related_name="news",
         verbose_name=_("Entities"),
         help_text=_("Entities related to this news."),
+    )
+    format = models.ForeignKey(
+        NewsFormat,
+        on_delete=models.PROTECT,
+        related_name="news",
+        verbose_name=_("Format"),
+        null=True,
+        blank=True,
     )
     created_at = models.DateTimeField(
         auto_now_add=True,

@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from audit_log.models import AuditModelMixin
 from news.models import News
+from utils.models import get_last_activity_label
 
 
 class NewsTranslation(AuditModelMixin, models.Model):
@@ -90,3 +91,7 @@ class NewsTranslation(AuditModelMixin, models.Model):
     @property
     def is_published(self):
         return self.status == self.Status.PUBLISHED
+
+    @property
+    def last_activity_label(self):
+        return get_last_activity_label(instance=self)

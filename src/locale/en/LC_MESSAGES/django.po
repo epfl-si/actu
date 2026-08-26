@@ -99,6 +99,10 @@ msgid "No result"
 msgstr ""
 
 msgid "Empty"
+msgid "Block Type"
+msgstr ""
+
+msgid "Block Types"
 msgstr ""
 
 msgid "English"
@@ -111,6 +115,12 @@ msgid "German"
 msgstr ""
 
 msgid "Italian"
+msgstr ""
+
+msgid "Actu API"
+msgstr ""
+
+msgid "API documentation for Actu."
 msgstr ""
 
 msgid "Has Homepage"
@@ -332,6 +342,27 @@ msgstr ""
 msgid "Entities related to this news."
 msgstr ""
 
+msgid "Format"
+msgstr ""
+
+msgid "Manage News"
+msgstr ""
+
+msgid "Create news"
+msgstr ""
+
+msgid "No news available."
+msgstr ""
+
+msgid "Do you really want to delete this news translation?"
+msgstr ""
+
+msgid "News Format"
+msgstr ""
+
+msgid "News Formats"
+msgstr ""
+
 msgid "Language selection"
 msgstr ""
 
@@ -348,9 +379,6 @@ msgid "Next"
 msgstr ""
 
 msgid "News by entity"
-msgstr ""
-
-msgid "My News"
 msgstr ""
 
 msgid "Administration"
@@ -378,6 +406,18 @@ msgid "News translations"
 msgstr ""
 
 msgid "Title"
+msgstr ""
+
+msgid "Published on"
+msgstr ""
+
+msgid "Archived on"
+msgstr ""
+
+msgid "Updated on"
+msgstr ""
+
+msgid "Created on"
 msgstr ""
 
 msgid "Label in French"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-25 23:20+0200\n"
+"POT-Creation-Date: 2026-08-26 09:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -260,18 +260,6 @@ msgstr "Entités liées à cette actualité."
 msgid "Format"
 msgstr "Format"
 
-msgid "Manage News"
-msgstr "Gérer les actualités"
-
-msgid "Create news"
-msgstr "Créer une actualité"
-
-msgid "No news available."
-msgstr "Aucune actualité disponible."
-
-msgid "Do you really want to delete this news translation?"
-msgstr "Voulez-vous vraiment supprimer cette traduction de l'actualité?"
-
 msgid "Edit News"
 msgstr "Éditer l'actualité"
 
@@ -287,7 +275,18 @@ msgstr "Titre"
 msgid "Save"
 msgstr "Enregistrer"
 
-#, python-format
+msgid "Manage News"
+msgstr "Gérer les actualités"
+
+msgid "Create news"
+msgstr "Créer une actualité"
+
+msgid "No news available."
+msgstr "Aucune actualité disponible."
+
+msgid "Do you really want to delete this news translation?"
+msgstr "Voulez-vous vraiment supprimer cette traduction de l'actualité?"
+
 msgid "The news has been saved successfully."
 msgstr "L'actualité a été sauvegardée correctement"
 

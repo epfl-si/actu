@@ -18,8 +18,6 @@ from translations.models import NewsTranslation
 from .forms import NewsWithTranslationForm
 from .models import News
 
-User = get_user_model()
-
 
 def _handle_post_action(request, language, news=None, translation=None):
     form = NewsWithTranslationForm(

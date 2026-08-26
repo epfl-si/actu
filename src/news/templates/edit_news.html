@@ -1,6 +1,4 @@
 {% extends 'base.html' %}
-{% load django_vite %}
-{% load static %}
 {% load i18n %}
 
 {% block web2018_title %}
@@ -22,7 +20,7 @@
           {% else %}{% url 'create_news' language=code %}{% endif %}"
           role="tab"
           aria-controls="{{ code }}"
-          aria-selected="true">{% trans name %}</a>
+          aria-selected="{% if form.language == code %}true{% else %}false{% endif %}">{% trans name %}</a>
       </li>
       {% endfor %}
     </ul>
@@ -47,7 +45,7 @@
               >
                 {% for format in formats %}
                 <option class="" value="{{ format.id }}" {% if format.id == selected_format_id %}selected{% endif %}>
-                  {{ format.current_label}}
+                  {{ format.current_label }}
                 </option>
                 {% endfor %}
               </select>
@@ -100,7 +98,7 @@
               >
                 {% for entity in entities %}
                 <option class="" value="{{ entity.id }}" {% if entity.id in selected_entity_ids %}selected{% endif %}>
-                  {{ entity.current_label}}
+                  {{ entity.current_label }}
                 </option>
                 {% endfor %}
               </select>

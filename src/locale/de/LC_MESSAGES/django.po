@@ -430,18 +430,6 @@ msgstr "Möchten Sie diese Version der Nachrichtenübersetzung wirklich löschen
 msgid "The news has been saved successfully."
 msgstr "Die Nachricht wurde erfolgreich gespeichert."
 
-msgid "English version"
-msgstr "Version auf Englisch"
-
-msgid "French version"
-msgstr "Version auf Französisch"
-
-msgid "German version"
-msgstr "Version auf Deutsch"
-
-msgid "Italian version"
-msgstr "Version auf Italienisch"
-
 msgid "News Format"
 msgstr "Nachrichtenformat"
 

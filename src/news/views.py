@@ -58,12 +58,7 @@ def _initialize_view():
     for format in formats:
         format.current_label = format.get_label(lang)
 
-    languages = [
-        {"code": "en", "label": _("English version")},
-        {"code": "fr", "label": _("French version")},
-        {"code": "de", "label": _("German version")},
-        {"code": "it", "label": _("Italian version")},
-    ]
+    languages = settings.LANGUAGES
 
     return thematics, entities, formats, languages
 

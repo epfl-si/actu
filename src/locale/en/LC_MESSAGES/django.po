@@ -421,18 +421,6 @@ msgstr ""
 msgid "The news has been saved successfully."
 msgstr ""
 
-msgid "English version"
-msgstr ""
-
-msgid "French version"
-msgstr ""
-
-msgid "German version"
-msgstr ""
-
-msgid "Italian version"
-msgstr ""
-
 msgid "News Format"
 msgstr ""
 

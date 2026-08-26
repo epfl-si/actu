@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-26 12:08+0200\n"
+"POT-Creation-Date: 2026-08-26 14:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -99,6 +99,8 @@ msgid "No result"
 msgstr ""
 
 msgid "Empty"
+msgstr ""
+
 msgid "Block Type"
 msgstr ""
 
@@ -214,18 +216,6 @@ msgid "Published at"
 msgstr ""
 
 msgid "Published by"
-msgstr ""
-
-msgid "Published on"
-msgstr ""
-
-msgid "Archived on"
-msgstr ""
-
-msgid "Updated on"
-msgstr ""
-
-msgid "Created on"
 msgstr ""
 
 msgid "My Homepages"
@@ -379,6 +369,9 @@ msgid "Next"
 msgstr ""
 
 msgid "News by entity"
+msgstr ""
+
+msgid "My News"
 msgstr ""
 
 msgid "Administration"

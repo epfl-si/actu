@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-26 12:08+0200\n"
+"POT-Creation-Date: 2026-08-26 14:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -218,18 +218,6 @@ msgstr "Publié le"
 msgid "Published by"
 msgstr "Publié par"
 
-msgid "Published on"
-msgstr "Publié le"
-
-msgid "Archived on"
-msgstr "Archivé le"
-
-msgid "Updated on"
-msgstr "Modifié le"
-
-msgid "Created on"
-msgstr "Créé le"
-
 msgid "My Homepages"
 msgstr "Mes pages d'accueil"
 
@@ -382,6 +370,9 @@ msgstr "Suivant"
 
 msgid "News by entity"
 msgstr "Les actualités par faculté"
+
+msgid "My News"
+msgstr "Mes Actualités"
 
 msgid "Administration"
 msgstr "Administration"

@@ -7,7 +7,6 @@ from audit_log.models import AuditModelMixin
 from utils.models import get_last_activity_label
 
 
-
 class Homepage(AuditModelMixin, models.Model):
 
     class Meta:

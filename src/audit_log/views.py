@@ -1,23 +1,45 @@
 import json
 
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render
 from django.utils import timezone
+from django.utils.dateparse import parse_date
 from django.utils.translation import gettext as _
 
 from .models import GlobalAuditLog
 
 
-def _apply_filters(logs, request):
-    filter_type = request.GET.getlist("type")
-    filter_user = request.GET.getlist("user")
-    filter_action = request.GET.getlist("action")
-    filter_search = request.GET.get("search", "").strip()
-    date_from = request.GET.get("from", "")
-    date_to = request.GET.get("to", "")
+def _clean_date(date_str):
+    if not date_str:
+        return ""
+    try:
+        return date_str if parse_date(date_str) else ""
+    except ValueError:
+        return ""
+
+
+def _get_filters(request):
+    return {
+        "type": request.GET.getlist("type"),
+        "user": request.GET.getlist("user"),
+        "action": request.GET.getlist("action"),
+        "search": request.GET.get("search", "").strip(),
+        "from": _clean_date(request.GET.get("from")),
+        "to": _clean_date(request.GET.get("to")),
+    }
+
+
+def _apply_filters(logs, filters):
+    filter_type = filters.get("type")
+    filter_user = filters.get("user")
+    filter_action = filters.get("action")
+    filter_search = filters.get("search")
+    date_from = filters.get("from")
+    date_to = filters.get("to")
 
     if filter_type:
         logs = logs.filter(content_type__model__in=filter_type)
@@ -53,9 +75,9 @@ def _format_single_log(log):
 
     model_class = log.content_type.model_class()
     target_table = (
-        str(model_class._meta.verbose_name).capitalize()
+        str(model_class._meta.verbose_name)
         if model_class
-        else log.content_type.model.capitalize()
+        else log.content_type.model
     )
 
     translated_changes = {}
@@ -73,6 +95,7 @@ def _format_single_log(log):
         translated_changes[field_name] = [val_0, val_1]
 
     return {
+        "id": log.id,
         "date": timezone.localtime(log.created_at).strftime("%d/%m/%Y %H:%M"),
         "user": log.user,
         "action": log.action,
@@ -83,12 +106,18 @@ def _format_single_log(log):
     }
 
 
-@user_passes_test(lambda u: u.is_superuser)
+@login_required
 def global_history_view(request):
-    logs = GlobalAuditLog.objects.all().select_related("content_type")
-    logs = _apply_filters(logs, request)
+    if not getattr(request.user, "is_superuser", False) or not getattr(
+        request.user, "is_active", False
+    ):
+        raise PermissionDenied
 
-    paginator = Paginator(logs, 10)
+    filters = _get_filters(request)
+    logs = GlobalAuditLog.objects.all().select_related("content_type")
+    logs = _apply_filters(logs, filters)
+
+    paginator = Paginator(logs, 30)
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
     page_range = paginator.get_elided_page_range(
@@ -105,9 +134,7 @@ def global_history_view(request):
     for ctype in raw_content_types:
         model_class = ctype.model_class()
         model_name = (
-            str(model_class._meta.verbose_name).capitalize()
-            if model_class
-            else ctype.model.capitalize()
+            str(model_class._meta.verbose_name) if model_class else ctype.model
         )
         active_content_types.append(
             {"model": ctype.model, "name": _(model_name)}
@@ -132,14 +159,7 @@ def global_history_view(request):
         "query_string": query_dict.urlencode(),
         "active_types": active_content_types,
         "active_users": active_users,
-        "filters": {
-            "type": request.GET.getlist("type"),
-            "user": request.GET.getlist("user"),
-            "action": request.GET.getlist("action"),
-            "search": request.GET.get("search", ""),
-            "from": request.GET.get("from", ""),
-            "to": request.GET.get("to", ""),
-        },
+        "filters": filters,
     }
 
     return render(request, "global_history.html", context)

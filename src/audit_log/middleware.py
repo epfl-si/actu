@@ -1,6 +1,6 @@
-import contextvars
+from contextvars import ContextVar
 
-current_user = contextvars.ContextVar("current_user", default=None)
+current_user = ContextVar("current_user", default=None)
 
 
 class AuditUserMiddleware:
@@ -8,14 +8,12 @@ class AuditUserMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        user = (
-            request.user
-            if hasattr(request, "user") and request.user.is_authenticated
-            else None
-        )
+        user = request.user
         token = current_user.set(user)
 
-        response = self.get_response(request)
+        try:
+            response = self.get_response(request)
+        finally:
+            current_user.reset(token)
 
-        current_user.reset(token)
         return response

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-20 17:27+0200\n"
+"POT-Creation-Date: 2026-08-26 12:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,6 +13,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Object Type"
+msgstr "Tipo di oggetto"
+
+msgid "Object ID"
+msgstr "ID oggetto"
+
+msgid "Object Name"
+msgstr "Nome oggetto"
+
+msgid "Not defined"
+msgstr "Non definito"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "User"
+msgstr "Utente"
+
+msgid "System"
+msgstr "Sistema"
+
+msgid "Global log"
+msgstr "Registro globale"
+
+msgid "Global Logs"
+msgstr "Registri globali"
 
 msgid "News"
 msgstr "Notizie"
@@ -28,9 +55,6 @@ msgstr "Cerca un dettaglio..."
 
 msgid "Type"
 msgstr "Tipo"
-
-msgid "User"
-msgstr "Utente"
 
 msgid "Action"
 msgstr "Azione"
@@ -58,9 +82,6 @@ msgstr "Applica"
 
 msgid "result(s) found"
 msgstr "risultato/i trovato/i"
-
-msgid "Date"
-msgstr "Data"
 
 msgid "Subject"
 msgstr "Soggetto"

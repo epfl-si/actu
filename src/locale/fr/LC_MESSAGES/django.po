@@ -210,7 +210,7 @@ msgid "Are you sure you want to remove permissions for this user?"
 msgstr "Etes-vous sûr d'enlever la permission à cet utilisateur ?"
 
 msgid "No SCIPER provided."
-msgstr "Aucun SCIPER n'a été fourni"
+msgstr "Aucun SCIPER n'a été fourni."
 
 msgid "This person can't be added."
 msgstr "Cette personne ne peut pas être ajouté."
@@ -249,10 +249,10 @@ msgid "Translation restored successfully."
 msgstr "Traduction restaurée avec succès."
 
 msgid "No thematic provided."
-msgstr "Aucun thèmatique n'a été fourni"
+msgstr "Aucun thèmatique n'a été fourni."
 
 msgid "No format provided."
-msgstr "Aucun format n'a été fourni"
+msgstr "Aucun format n'a été fourni."
 
 msgid "Thematics"
 msgstr "Thématiques"

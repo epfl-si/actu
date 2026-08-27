@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.db import IntegrityError, transaction
 from django.db.models import Prefetch
-from django.http import Http404, JsonResponse
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
@@ -204,10 +204,6 @@ def create_homepage_translation(request, homepage_id, lang):
         Homepage.objects.filter(users=request.user),
         pk=homepage_id,
     )
-
-    valid_lang_codes = [code for code, _ in settings.LANGUAGES]
-    if lang not in valid_lang_codes:
-        raise Http404
 
     try:
         with transaction.atomic():

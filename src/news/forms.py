@@ -1,5 +1,6 @@
 from django import forms
 from django.db import transaction
+from django.utils.translation import gettext_lazy as _
 
 from translations.models import NewsTranslation
 
@@ -16,9 +17,9 @@ class NewsForm(forms.ModelForm):
         thematics = cleaned_data.get("thematics")
         format = cleaned_data.get("format")
         if not thematics:
-            self.add_error("thematics", "No thematic provided.")
+            self.add_error("thematics", _("No thematic provided."))
         if not format:
-            self.add_error("format", "No format provided.")
+            self.add_error("format", _("No format provided."))
         return self.cleaned_data
 
     def save(self, user):

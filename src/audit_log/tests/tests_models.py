@@ -1,4 +1,3 @@
-import json
 from unittest.mock import patch
 
 from django.contrib.auth import get_user_model
@@ -6,7 +5,8 @@ from django.contrib.auth.models import Group
 from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
 
-from audit_log.models import GlobalAuditLog, _get_m2m_field_name
+from audit_log.models import GlobalAuditLog
+from audit_log.signals import _get_m2m_field_name
 
 User = get_user_model()
 
@@ -39,32 +39,28 @@ class GlobalAuditLogTests(TestCase):
     def test_get_m2m_field_name_fallback(self):
         user = User(username="fallback")
         name = _get_m2m_field_name(user, ContentType)
-        self.assertEqual(name, "Relation")
+        self.assertEqual(name, "Unknown relation")
 
     def test_audit_model_mixin_create_with_m2m(self):
         group = Group.objects.create(name="Admins")
 
         with self.captureOnCommitCallbacks(execute=True):
             user = User.objects.create(username="hello_user", sciper="222222")
-            user._just_created = False
-            user._m2m_memory = {"groups": []}
             user.groups.add(group)
 
         log_create = GlobalAuditLog.objects.filter(
             content_type=self.user_ctype, action="Create", object_id=user.pk
         ).first()
-        self.assertNotIn("groups", json.loads(log_create.details))
+        self.assertNotIn("groups", log_create.details)
 
         log_edit = GlobalAuditLog.objects.filter(
             content_type=self.user_ctype, action="Edit", object_id=user.pk
         ).first()
-        self.assertIn("groups", json.loads(log_edit.details))
+        self.assertIn("groups", log_edit.details)
 
     def test_audit_model_mixin_m2m_changed_normal(self):
         user = User.objects.create(username="m2m_normal", sciper="333333")
         group = Group.objects.create(name="Editors")
-        user._m2m_memory = {"groups": []}
-        user._just_created = False
 
         with self.captureOnCommitCallbacks(execute=True):
             user.groups.add(group)
@@ -74,13 +70,11 @@ class GlobalAuditLogTests(TestCase):
         ).last()
 
         self.assertIsNotNone(log_edit)
-        self.assertIn("groups", json.loads(log_edit.details))
+        self.assertIn("groups", log_edit.details)
 
     def test_audit_m2m_changed_reverse(self):
         user = User.objects.create(username="m2m_reverse", sciper="444444")
         group = Group.objects.create(name="SuperAdmins")
-        user._m2m_memory = {"groups": []}
-        user._just_created = False
 
         with self.captureOnCommitCallbacks(execute=True):
             group.user_set.add(user)
@@ -90,7 +84,7 @@ class GlobalAuditLogTests(TestCase):
         ).last()
 
         self.assertIsNotNone(log_edit)
-        self.assertIn("groups", json.loads(log_edit.details))
+        self.assertIn("groups", log_edit.details)
 
     def test_audit_model_mixin_delete(self):
         user = User.objects.create(username="delete_test", sciper="555555")
@@ -115,7 +109,7 @@ class GlobalAuditLogTests(TestCase):
 
         self.assertEqual(logs.count(), 3)
 
-        first_log_details = json.loads(logs.first().details)
+        first_log_details = logs.first().details
         self.assertIsInstance(first_log_details["username"], list)
         self.assertEqual(len(first_log_details["username"]), 2)
         self.assertEqual(first_log_details["username"][0], "")
@@ -133,7 +127,7 @@ class GlobalAuditLogTests(TestCase):
         )
         self.assertEqual(logs.count(), 2)
 
-        first_log_details = json.loads(logs[1].details)
+        first_log_details = logs[1].details
         self.assertEqual(len(first_log_details["sciper"]), 2)
         self.assertEqual(first_log_details["sciper"][0], "777771")
         self.assertEqual(first_log_details["sciper"][1], "888881")
@@ -164,4 +158,4 @@ class GlobalAuditLogTests(TestCase):
         ).first()
 
         self.assertIsNotNone(log)
-        self.assertIn("12341234", log.details)
+        self.assertEqual(log.details["sciper"][1], "12341234")

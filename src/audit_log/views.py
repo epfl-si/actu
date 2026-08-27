@@ -1,5 +1,3 @@
-import json
-
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import PermissionDenied
@@ -64,13 +62,9 @@ def _apply_filters(logs, filters):
 
 
 def _format_single_log(log):
-    raw_details = str(log.details or "{}")
+    changes_dict = log.details
 
-    try:
-        changes_dict = json.loads(raw_details)
-        if not isinstance(changes_dict, dict):
-            changes_dict = {}
-    except (ValueError, TypeError):
+    if not isinstance(changes_dict, dict):
         changes_dict = {}
 
     model_class = log.content_type.model_class()
@@ -108,9 +102,7 @@ def _format_single_log(log):
 
 @login_required
 def global_history_view(request):
-    if not getattr(request.user, "is_superuser", False) or not getattr(
-        request.user, "is_active", False
-    ):
+    if not request.user.is_superuser or not request.user.is_active:
         raise PermissionDenied
 
     filters = _get_filters(request)

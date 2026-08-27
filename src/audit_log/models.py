@@ -1,5 +1,3 @@
-import json
-
 from django.contrib.contenttypes.models import ContentType
 from django.db import models, transaction
 from django.utils.translation import gettext_lazy as _
@@ -34,7 +32,7 @@ class AuditQuerySet(models.QuerySet):
                     object_repr=str(obj),
                     action="Create",
                     user=user_str,
-                    details=json.dumps(formatted_details),
+                    details=formatted_details,
                 )
             )
 
@@ -44,7 +42,9 @@ class AuditQuerySet(models.QuerySet):
 
     def bulk_update(self, objs, fields, batch_size=None):
         pks = [obj.pk for obj in objs]
-        old_objs = {obj.pk: obj for obj in self.filter(pk__in=pks)}
+        old_objs = {
+            obj.pk: obj for obj in self.model.objects.filter(pk__in=pks)
+        }
 
         ctype = ContentType.objects.get_for_model(self.model)
         logs = []
@@ -71,7 +71,7 @@ class AuditQuerySet(models.QuerySet):
                         object_repr=str(obj),
                         action="Edit",
                         user=user_str,
-                        details=json.dumps(changes),
+                        details=changes,
                     )
                 )
 
@@ -103,7 +103,7 @@ class GlobalAuditLog(models.Model):
     )
 
     action = models.CharField(max_length=100)
-    details = models.TextField()
+    details = models.JSONField(default=dict)
 
     class Meta:
         verbose_name = _("Global log")
@@ -119,9 +119,6 @@ class GlobalAuditLog(models.Model):
             ),
             models.Index(
                 fields=["user", "-created_at"], name="audit_g_user_idx"
-            ),
-            models.Index(
-                fields=["action", "-created_at"], name="audit_g_action_idx"
             ),
         ]
 
@@ -146,7 +143,11 @@ class AuditModelMixin(models.Model):
                 if field.name == "id" or "password" in field.name.lower():
                     continue
                 try:
-                    val = field.value_from_object(self)
+                    if field.is_relation:
+                        val = getattr(self, field.name)
+                    else:
+                        val = field.value_from_object(self)
+
                     state[field.name] = (
                         str(val) if val is not None else "Empty"
                     )
@@ -174,11 +175,11 @@ class AuditModelMixin(models.Model):
 
                     GlobalAuditLog.objects.create(
                         content_type=ctype,
-                        object_id=self.pk,
+                        object_id=str(self.pk),
                         object_repr=str(self),
                         action="Create",
                         user=user_str,
-                        details=json.dumps(modifs),
+                        details=modifs,
                     )
 
             transaction.on_commit(make_create_log)
@@ -197,11 +198,11 @@ class AuditModelMixin(models.Model):
                     with override("en"):
                         GlobalAuditLog.objects.create(
                             content_type=ctype,
-                            object_id=self.pk,
+                            object_id=str(self.pk),
                             object_repr=str(self),
                             action="Edit",
                             user=user_str,
-                            details=json.dumps(modifs),
+                            details=modifs,
                         )
 
                 transaction.on_commit(make_edit_log)
@@ -212,10 +213,3 @@ class AuditModelMixin(models.Model):
 def _get_user_str():
     user = current_user.get()
     return str(user) if user and user.is_authenticated else "System"
-
-
-def _get_m2m_field_name(instance, sender):
-    for field in instance._meta.many_to_many:
-        if field.remote_field.through == sender:
-            return field.name
-    return "Relation"

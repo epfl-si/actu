@@ -56,7 +56,7 @@ class Homepage(AuditModelMixin, models.Model):
     )
 
     def __str__(self):
-        return f"{self.slug}"
+        return self.slug
 
     @property
     def display_name(self):

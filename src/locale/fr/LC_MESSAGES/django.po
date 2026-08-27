@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-26 14:34+0200\n"
+"POT-Creation-Date: 2026-08-27 16:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,7 +24,7 @@ msgid "Object Name"
 msgstr "Nom de l'objet"
 
 msgid "Not defined"
-msgstr "Non définit"
+msgstr "Non défini"
 
 msgid "Date"
 msgstr "Date"
@@ -370,9 +370,6 @@ msgstr "Suivant"
 
 msgid "News by entity"
 msgstr "Les actualités par faculté"
-
-msgid "My News"
-msgstr "Mes Actualités"
 
 msgid "Administration"
 msgstr "Administration"

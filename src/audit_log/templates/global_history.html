@@ -1,10 +1,6 @@
 {% extends 'base.html' %}
-
 {% load i18n %}
-{% load django_vite %}
-
 {% block web2018_title %}{% trans 'News' %} · {% trans 'Audit Logs' %}{% endblock %}
-
 {% block web2018_content %}
 <main id="main" class="content">
   <div class="full-container pr-3 pl-3 pr-lg-6 pl-lg-6">
@@ -12,21 +8,36 @@
     <div class="p-4 mb-5 rounded bg-light border">
       <form method="GET" action="">
         <div class="row">
-
           <div class="col-md-4 mb-3">
             <div class="form-group">
               <label for="search">{% trans "Search" %}</label>
-              <input type="text" id="search" name="search" class="form-control" value="{{ filters.search }}" placeholder="{% trans 'Search a detail...' %}">
+              <input
+                type="text"
+                id="search"
+                name="search"
+                class="form-control"
+                value="{{ filters.search }}"
+                placeholder="{% trans 'Search a detail...' %}"
+              />
             </div>
           </div>
           <div class="col-md-4 mb-3">
             <div class="form-group">
               <label for="type">{% trans "Type" %}</label>
-              <select id="type" name="type" class="select-multiple" multiple="multiple" data-filter="true">
+              <select
+                id="type"
+                name="type"
+                class="select-multiple"
+                multiple="multiple"
+                data-filter="true"
+              >
                 {% for ctype in active_types %}
-                  <option value="{{ ctype.model }}" {% if ctype.model in filters.type %}selected{% endif %}>
-                    {{ ctype.name|capfirst }}
-                  </option>
+                <option
+                  value="{{ ctype.model }}"
+                  {% if ctype.model in filters.type %}selected{% endif %}
+                >
+                  {{ ctype.name|capfirst }}
+                </option>
                 {% endfor %}
               </select>
             </div>
@@ -34,11 +45,20 @@
           <div class="col-md-4 mb-3">
             <div class="form-group">
               <label for="user">{% trans "User" %}</label>
-              <select id="user" name="user" class="select-multiple" multiple="multiple" data-filter="true">
+              <select
+                id="user"
+                name="user"
+                class="select-multiple"
+                multiple="multiple"
+                data-filter="true"
+              >
                 {% for usr in active_users %}
-                  <option value="{{ usr }}" {% if usr in filters.user %}selected{% endif %}>
-                    {{ usr }}
-                  </option>
+                <option
+                  value="{{ usr }}"
+                  {% if usr in filters.user %}selected{% endif %}
+                >
+                  {{ usr }}
+                </option>
                 {% endfor %}
               </select>
             </div>
@@ -46,29 +66,60 @@
           <div class="col-md-4 mb-3">
             <div class="form-group">
               <label for="action">{% trans "Action" %}</label>
-              <select id="action" name="action" class="select-multiple" multiple="multiple">
-                <option value="Create" {% if 'Create' in filters.action %}selected{% endif %}>{% trans "Create" %}</option>
-                <option value="Edit" {% if 'Edit' in filters.action %}selected{% endif %}>{% trans "Edit" %}</option>
-                <option value="Delete" {% if 'Delete' in filters.action %}selected{% endif %}>{% trans "Delete" %}</option>
+              <select
+                id="action"
+                name="action"
+                class="select-multiple"
+                multiple="multiple"
+              >
+                {% if 'Create' in filters.action %}
+                <option value="Create" selected>{% trans "Create" %}</option>
+                {% else %}
+                <option value="Create">{% trans "Create" %}</option>
+                {% endif %} {% if 'Edit' in filters.action %}
+                <option value="Edit" selected>{% trans "Edit" %}</option>
+                {% else %}
+                <option value="Edit">{% trans "Edit" %}</option>
+                {% endif %} {% if 'Delete' in filters.action %}
+                <option value="Delete" selected>{% trans "Delete" %}</option>
+                {% else %}
+                <option value="Delete">{% trans "Delete" %}</option>
+                {% endif %}
               </select>
             </div>
           </div>
           <div class="col-md-4 mb-3">
             <div class="form-group">
               <label for="from">{% trans "From" %}</label>
-              <input type="date" id="from" name="from" class="form-control" value="{{ filters.from }}">
+              <input
+                type="date"
+                id="from"
+                name="from"
+                class="form-control"
+                value="{{ filters.from }}"
+              />
             </div>
           </div>
           <div class="col-md-4 mb-3">
             <div class="form-group">
               <label for="to">{% trans "To" %}</label>
-              <input type="date" id="to" name="to" class="form-control" value="{{ filters.to }}">
+              <input
+                type="date"
+                id="to"
+                name="to"
+                class="form-control"
+                value="{{ filters.to }}"
+              />
             </div>
           </div>
         </div>
         <div class="d-flex flex-column flex-sm-row justify-content-sm-end pt-3">
-          <a href="?" class="btn btn-secondary mt-2 mr-sm-3">{% trans "Reset" %}</a>
-          <button type="submit" class="btn btn-primary mt-2">{% trans "Apply" %}</button>
+          <a href="?" class="btn btn-secondary mt-2 mr-sm-3"
+            >{% trans "Reset" %}</a
+          >
+          <button type="submit" class="btn btn-primary mt-2">
+            {% trans "Apply" %}
+          </button>
         </div>
       </form>
     </div>
@@ -84,68 +135,76 @@
           <th scope="col" class="text-uppercase small">{% trans "User" %}</th>
           <th scope="col" class="text-uppercase small">{% trans "Action" %}</th>
           <th scope="col" class="text-uppercase small">{% trans "Type" %}</th>
-          <th scope="col" class="text-uppercase small">{% trans "Subject" %}</th>
-          <th scope="col" class="text-uppercase small w-25">{% trans "Details" %}</th>
+          <th scope="col" class="text-uppercase small">
+            {% trans "Subject" %}
+          </th>
+          <th scope="col" class="text-uppercase small w-25">
+            {% trans "Details" %}
+          </th>
         </tr>
       </thead>
       <tbody>
         {% for event in timeline %}
-          <tr>
-            <td class="text-muted">{{ event.date }}</td>
-            <td>{{ event.user }}</td>
-            <td>
-              <span class="badge activity-{{ event.action|lower }}">
-                {{ event.action_label }}
-              </span>
-            </td>
-            <td>
-              <span class="text-muted text-uppercase">{{ event.type }}</span>
-            </td>
-            <td class="text-break">
-              <span>{{ event.subject }}</span>
-            </td>
-            <td class="align-left">
-              {% if event.changes.items %}
-                <button class="btn btn-link btn-sm p-0 text-dark text-decoration-none audit-toggle-btn"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#details-{{ event.id }}"
-                    aria-expanded="false">
-                  <span class="audit-chevron">▶</span> {% trans "View details" %}
-                </button>
-                <div class="collapse mt-2" id="details-{{ event.id }}">
-                  <div class="bg-light rounded border p-3">
-                      <ul class="list-unstyled mb-0 text-break" style="font-family: monospace;">
-                      {% for field, values in event.changes.items %}
-                          <li>
-                              <span>{{ field|capfirst }} :</span>
-                              {% if values.0 %}
-                                  <del class="text-danger ml-2">{{ values.0 }}</del>
-                                  <span class="text-muted mx-1">➔</span>
-                              {% else %}
-                                  <span class="ml-2"></span>
-                              {% endif %}
-                              <span class="text-success">{{ values.1 }}</span>
-                          </li>
-                      {% endfor %}
-                      </ul>
-                  </div>
-                </div>
-              {% else %}
-                <span class="text-muted font-italic">{% trans "No details" %}</span>
-              {% endif %}
-            </td>
+        <tr>
+          <td class="text-muted">{{ event.date }}</td>
+          <td>{{ event.user }}</td>
+          <td>
+            <span class="badge activity-{{ event.action|lower }}">
+              {{ event.action_label }}
+            </span>
+          </td>
+          <td>
+            <span class="text-muted text-uppercase">{{ event.type }}</span>
+          </td>
+          <td class="text-break">
+            <span>{{ event.subject }}</span>
+          </td>
+          <td class="align-left">
+            {% if event.changes.items %}
+            <button
+              class="btn btn-link btn-sm p-0 text-dark text-decoration-none audit-toggle-btn"
+              type="button"
+              data-toggle="collapse"
+              data-target="#details-{{ event.id }}"
+              aria-expanded="false"
+            >
+              <span class="audit-chevron">▶</span> {% trans "View details" %}
+            </button>
+            <div class="collapse mt-2" id="details-{{ event.id }}">
+              <div class="bg-light rounded border p-3">
+                <ul
+                  class="list-unstyled mb-0 text-break text-monospace"
+                >
+                  {% for field, values in event.changes.items %}
+                  <li>
+                    <span>{{ field|capfirst }} :</span>
+                    {% if values.0 %}
+                    <del class="text-danger ml-2">{{ values.0 }}</del>
+                    <span class="text-muted mx-1">➔</span>
+                    {% else %}
+                    <span class="ml-2"></span>
+                    {% endif %}
+                    <span class="text-success">{{ values.1 }}</span>
+                  </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            {% else %}
+            <span class="text-muted font-italic">{% trans "No details" %}</span>
+            {% endif %}
+          </td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan="6" class="text-center text-muted font-italic py-5">
-              {% trans "No result" %}
-            </td>
-          </tr>
+          <td colspan="6" class="text-center text-muted font-italic py-5">
+            {% trans "No result" %}
+          </td>
+        </tr>
         {% endfor %}
       </tbody>
     </table>
-  {% include "pagination.html" %}
+    {% include "pagination.html" %}
   </div>
 </main>
 {% endblock %}

@@ -37,14 +37,6 @@
           {% trans "My Homepages" %}
         </a>
       {% endif %}
-      {% if user.is_staff and user.news_created.exists %}
-        <a href="#" class="dropdown-item">
-          <svg aria-hidden="true" class="icon feather mr-1 mb-1">
-            <use xlink:href="#file-text"></use>
-          </svg>
-          {% trans "My News" %}
-        </a>
-      {% endif %}
       {% if user.is_superuser %}
         <a href="{% url 'global_history' %}" class="dropdown-item">
           <svg aria-hidden="true" class="icon feather mr-1 mb-1">

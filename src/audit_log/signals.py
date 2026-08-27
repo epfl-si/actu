@@ -1,5 +1,3 @@
-import json
-
 from django.contrib.contenttypes.models import ContentType
 from django.db import transaction
 from django.db.models.signals import m2m_changed, pre_delete
@@ -9,7 +7,6 @@ from django.utils.translation import override
 from .models import (
     AuditModelMixin,
     GlobalAuditLog,
-    _get_m2m_field_name,
     _get_user_str,
 )
 
@@ -29,11 +26,11 @@ def _save_m2m_audit_log(instance, field_name):
 
             GlobalAuditLog.objects.create(
                 content_type=ctype,
-                object_id=instance.pk,
+                object_id=str(instance.pk),
                 object_repr=str(instance),
                 action="Edit",
                 user=user_str,
-                details=json.dumps(modifs),
+                details=modifs,
             )
 
     if field_name in getattr(instance, "_m2m_memory", {}):
@@ -51,7 +48,7 @@ def audit_m2m_changed(
         if issubclass(model, AuditModelMixin) and pk_set:
             for obj in model.objects.filter(pk__in=pk_set):
                 field_name = _get_m2m_field_name(obj, sender)
-                if action == "pre_add":
+                if action in ["pre_add", "pre_remove", "pre_clear"]:
                     transaction.on_commit(
                         lambda o=obj, f=field_name: _save_m2m_audit_log(o, f)
                     )
@@ -65,7 +62,7 @@ def audit_m2m_changed(
     if not hasattr(instance, "_m2m_memory"):
         instance._m2m_memory = {}
 
-    if hasattr(instance, "_m2m_memory") and field_name in instance._m2m_memory:
+    if field_name not in instance._m2m_memory:
         with override("en"):
             old_objects = list(getattr(instance, field_name).all())
             instance._m2m_memory[field_name] = (
@@ -86,9 +83,16 @@ def audit_delete_log(sender, instance, **kwargs):
         with override("en"):
             GlobalAuditLog.objects.create(
                 content_type=ctype,
-                object_id=instance.pk,
+                object_id=str(instance.pk),
                 object_repr=str(instance),
                 action="Delete",
                 user=user_str,
                 details="{}",
             )
+
+
+def _get_m2m_field_name(instance, sender):
+    for field in instance._meta.many_to_many:
+        if field.remote_field.through == sender:
+            return field.name
+    return "Unknown relation"

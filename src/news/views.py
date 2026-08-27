@@ -35,7 +35,7 @@ def _handle_post_action(request, language, news=None, translation=None):
         messages.success(request, _("The news has been saved successfully."))
         url_to_redirect = reverse(
             "edit_news",
-            kwargs={"news_id": news_id, "language": language},
+            kwargs={"news_id": news_id, "lang": language},
         )
         return HttpResponseRedirect(url_to_redirect)
 
@@ -84,22 +84,20 @@ def _initialize_selected_values(request=None, news=None):
 
 
 @login_required
-def create_news(request, language):
+def create_news(request, lang):
     thematics, entities, formats, languages = _initialize_view()
 
-    form = NewsWithTranslationForm(language=language)
+    form = NewsWithTranslationForm(language=lang)
     selected_thematic_ids, selected_entity_ids, selected_format_id = (
         _initialize_selected_values(request)
     )
 
     if request.method == "POST":
-        result = _handle_post_action(request, language)
+        result = _handle_post_action(request, language=lang)
         if result:
             return result
 
-        form = NewsWithTranslationForm(
-            post_data=request.POST, language=language
-        )
+        form = NewsWithTranslationForm(post_data=request.POST, language=lang)
 
     context = {
         "form": form,
@@ -115,16 +113,16 @@ def create_news(request, language):
 
 
 @login_required
-def edit_news(request, news_id, language):
+def edit_news(request, news_id, lang):
     thematics, entities, formats, languages = _initialize_view()
 
     news = get_object_or_404(News, id=news_id)
-    translation = NewsTranslation.get(news_id, language)
+    translation = NewsTranslation.get(news_id, language=lang)
     form = NewsWithTranslationForm(
         post_data=None,
         news_instance=news,
         translation_instance=translation,
-        language=language,
+        language=lang,
     )
 
     selected_thematic_ids, selected_entity_ids, selected_format_id = (
@@ -132,7 +130,9 @@ def edit_news(request, news_id, language):
     )
 
     if request.method == "POST":
-        result = _handle_post_action(request, language, news, translation)
+        result = _handle_post_action(
+            request, language=lang, news=news, translation=translation
+        )
         if result:
             return result
 
@@ -140,7 +140,7 @@ def edit_news(request, news_id, language):
             post_data=request.POST,
             news_instance=news,
             translation_instance=translation,
-            language=language,
+            language=lang,
         )
 
     context = {

@@ -1,6 +1,7 @@
 from django.urls import path, register_converter
 
-from . import converters, views
+from . import views
+from utils import converters
 
 register_converter(converters.LanguageConverter, "language")
 

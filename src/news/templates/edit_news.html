@@ -16,8 +16,8 @@
       <li class="nav-item">
         <a class="nav-link {% if form.language == code %}active{% endif %}"
           id="{{ code }}-tab"
-          href="{% if form.news.instance.pk %}{% url 'edit_news' news_id=form.news.instance.pk language=code %}
-          {% else %}{% url 'create_news' language=code %}{% endif %}"
+          href="{% if form.news.instance.pk %}{% url 'edit_news' news_id=form.news.instance.pk lang=code %}
+          {% else %}{% url 'create_news' lang=code %}{% endif %}"
           role="tab"
           aria-controls="{{ code }}"
           aria-selected="{% if form.language == code %}true{% else %}false{% endif %}">{% trans name %}</a>

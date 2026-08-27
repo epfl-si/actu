@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-26 11:13+0200\n"
+"POT-Creation-Date: 2026-08-27 08:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -247,6 +247,12 @@ msgstr "Cette traduction n'est pas archivée."
 
 msgid "Translation restored successfully."
 msgstr "Traduction restaurée avec succès."
+
+msgid "No thematic provided."
+msgstr "Aucun thèmatique n'a été fourni"
+
+msgid "No format provided."
+msgstr "Aucun format n'a été fourni"
 
 msgid "Thematics"
 msgstr "Thématiques"

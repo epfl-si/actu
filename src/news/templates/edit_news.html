@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load current_label %}
 
 {% block web2018_title %}
   {% trans 'News' %} · {% if form.news.instance.pk %}{% trans "Edit News" %}{% else %}{% trans "Create News" %}{% endif %}
@@ -45,7 +46,7 @@
               >
                 {% for format in formats %}
                 <option class="" value="{{ format.id }}" {% if format.id == selected_format_id %}selected{% endif %}>
-                  {{ format.current_label }}
+                  {{ format|label_for }}
                 </option>
                 {% endfor %}
               </select>
@@ -72,7 +73,7 @@
               >
                 {% for thematic in thematics %}
                 <option class="" value="{{ thematic.id }}" {% if thematic.id in selected_thematic_ids %}selected{% endif %}>
-                  {{ thematic.current_label }}
+                  {{ thematic|label_for }}
                 </option>
                 {% endfor %}
               </select>
@@ -98,7 +99,7 @@
               >
                 {% for entity in entities %}
                 <option class="" value="{{ entity.id }}" {% if entity.id in selected_entity_ids %}selected{% endif %}>
-                  {{ entity.current_label }}
+                  {{ entity|label_for }}
                 </option>
                 {% endfor %}
               </select>

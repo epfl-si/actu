@@ -1,4 +1,3 @@
-from django import utils
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -41,20 +40,9 @@ def _handle_post_action(request, language, news=None, translation=None):
 
 
 def _initialize_view():
-    lang = utils.translation.get_language()
-
     thematics = Thematic.objects.all()
-    for thematic in thematics:
-        thematic.current_label = thematic.get_label(lang)
-
     entities = Entity.objects.all()
-    for entity in entities:
-        entity.current_label = entity.get_label(lang)
-
     formats = NewsFormat.objects.all()
-    for format in formats:
-        format.current_label = format.get_label(lang)
-
     languages = settings.LANGUAGES
 
     return thematics, entities, formats, languages

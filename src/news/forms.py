@@ -65,7 +65,9 @@ class NewsWithTranslationForm:
         self.language = language
 
     def is_valid(self):
-        return self.news.is_valid() and self.translation.is_valid()
+        news_valid = self.news.is_valid()
+        translation_valid = self.translation.is_valid()
+        return news_valid and translation_valid
 
     def validate_and_save(self, user):
         if self.is_valid():

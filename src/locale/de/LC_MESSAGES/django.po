@@ -225,7 +225,7 @@ msgid "You don't have permission to manage any homepage."
 msgstr "Sie haben keine Berechtigung, eine Startseite zu verwalten."
 
 msgid "Actions"
-msgstr "Aktion"
+msgstr "Aktionen"
 
 msgid "Preview and publish"
 msgstr "Vorschau und veröffentlichen"

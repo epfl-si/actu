@@ -1,0 +1,10 @@
+.audit-chevron {
+  display: inline-block;
+  font-size: 0.8em;
+  margin-right: 4px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.audit-toggle-btn[aria-expanded="true"] .audit-chevron {
+  transform: rotate(90deg);
+}

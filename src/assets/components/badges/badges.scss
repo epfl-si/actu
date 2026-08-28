@@ -3,19 +3,22 @@
 .badge {
   border-radius: variables.$bdg-border-radius;
 
-  &.draft {
+  &.draft,
+  &.activity-edit {
     background-color: variables.$bdg-gray-bg;
     border: 1px solid variables.$bdg-gray-border;
     color: variables.$bdg-gray;
   }
 
-  &.published {
+  &.published,
+  &.activity-create {
     background-color: variables.$bdg-green-bg;
     border: 1px solid variables.$bdg-green-border;
     color: variables.$bdg-green;
   }
 
-  &.archived {
+  &.archived,
+  &.activity-delete {
     background-color: variables.$bdg-red-bg;
     border: 1px solid variables.$bdg-red-border;
     color: variables.$bdg-red;

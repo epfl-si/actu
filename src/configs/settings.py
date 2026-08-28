@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     "rest_framework",
     #
     # Applications
+    "audit_log",
     "api",
     "block_types",
     "entities",
@@ -86,6 +87,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "audit_log.middleware.AuditUserMiddleware",
 ]
 
 ROOT_URLCONF = "configs.urls"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-27 15:11+0200\n"
+"POT-Creation-Date: 2026-08-27 16:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,6 +13,93 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Object Type"
+msgstr "Objekttyp"
+
+msgid "Object ID"
+msgstr "Objekt-ID"
+
+msgid "Object Name"
+msgstr "Objektname"
+
+msgid "Not defined"
+msgstr "Nicht definiert"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "User"
+msgstr "Benutzer"
+
+msgid "System"
+msgstr "System"
+
+msgid "Global log"
+msgstr "Globales Protokoll"
+
+msgid "Global Logs"
+msgstr "Globale Protokolle"
+
+msgid "News"
+msgstr "Nachrichten"
+
+msgid "Audit Logs"
+msgstr "Aktivitätslogs"
+
+msgid "Search"
+msgstr "Suche"
+
+msgid "Search a detail..."
+msgstr "Nach einem Detail suchen..."
+
+msgid "Type"
+msgstr "typ"
+
+msgid "Action"
+msgstr "Aktion"
+
+msgid "Create"
+msgstr "Erstellen"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "From"
+msgstr "Von"
+
+msgid "To"
+msgstr "Bis"
+
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+msgid "Apply"
+msgstr "Anwenden"
+
+msgid "result(s) found"
+msgstr "Ergebnis(se) gefunden"
+
+msgid "Subject"
+msgstr "Betreff"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "View details"
+msgstr "Details anzeigen"
+
+msgid "No details"
+msgstr "Keine Details"
+
+msgid "No result"
+msgstr "Kein Ergebnis"
+
+msgid "Empty"
+msgstr "Leer"
 
 msgid "Block Type"
 msgstr "Blocktyp"
@@ -131,9 +218,6 @@ msgstr "Veröffentlicht am"
 msgid "Published by"
 msgstr "Veröffentlicht von"
 
-msgid "News"
-msgstr "Nachrichten"
-
 msgid "My Homepages"
 msgstr "My Startseiten"
 
@@ -146,17 +230,8 @@ msgstr "Aktionen"
 msgid "Preview and publish"
 msgstr "Vorschau und veröffentlichen"
 
-msgid "Edit"
-msgstr "Bearbeiten"
-
-msgid "Delete"
-msgstr "Löschen"
-
 msgid "Restore"
 msgstr "Wiederherstellen"
-
-msgid "Create"
-msgstr "Erstellen"
 
 msgid "Edit permissions"
 msgstr "Berechtigungen bearbeiten"
@@ -283,6 +358,15 @@ msgstr "Sprachauswahl"
 
 msgid "Others"
 msgstr "Andere"
+
+msgid "Previous"
+msgstr "Vorherige"
+
+msgid "Current page"
+msgstr "Aktuelle Seite"
+
+msgid "Next"
+msgstr "Nächste"
 
 msgid "News by entity"
 msgstr "Aktuelles nach Einheit"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-27 15:11+0200\n"
+"POT-Creation-Date: 2026-08-27 16:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,6 +13,93 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Object Type"
+msgstr ""
+
+msgid "Object ID"
+msgstr ""
+
+msgid "Object Name"
+msgstr ""
+
+msgid "Not defined"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "Global log"
+msgstr ""
+
+msgid "Global Logs"
+msgstr ""
+
+msgid "News"
+msgstr ""
+
+msgid "Audit Logs"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search a detail..."
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "To"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "result(s) found"
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "View details"
+msgstr ""
+
+msgid "No details"
+msgstr ""
+
+msgid "No result"
+msgstr ""
+
+msgid "Empty"
+msgstr ""
 
 msgid "Block Type"
 msgstr ""
@@ -131,9 +218,6 @@ msgstr ""
 msgid "Published by"
 msgstr ""
 
-msgid "News"
-msgstr ""
-
 msgid "My Homepages"
 msgstr ""
 
@@ -146,16 +230,7 @@ msgstr ""
 msgid "Preview and publish"
 msgstr ""
 
-msgid "Edit"
-msgstr ""
-
-msgid "Delete"
-msgstr ""
-
 msgid "Restore"
-msgstr ""
-
-msgid "Create"
 msgstr ""
 
 msgid "Edit permissions"
@@ -282,6 +357,15 @@ msgid "Language selection"
 msgstr ""
 
 msgid "Others"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Current page"
+msgstr ""
+
+msgid "Next"
 msgstr ""
 
 msgid "News by entity"

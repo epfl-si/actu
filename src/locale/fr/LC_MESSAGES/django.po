@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-27 15:11+0200\n"
+"POT-Creation-Date: 2026-08-27 16:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,6 +13,93 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Object Type"
+msgstr "Type d'objet"
+
+msgid "Object ID"
+msgstr "ID de l'objet"
+
+msgid "Object Name"
+msgstr "Nom de l'objet"
+
+msgid "Not defined"
+msgstr "Non défini"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "User"
+msgstr "Utilisateur"
+
+msgid "System"
+msgstr "Système"
+
+msgid "Global log"
+msgstr "Log global"
+
+msgid "Global Logs"
+msgstr "Logs Globaux"
+
+msgid "News"
+msgstr "Actualités"
+
+msgid "Audit Logs"
+msgstr "Journal d'activités"
+
+msgid "Search"
+msgstr "Recherche"
+
+msgid "Search a detail..."
+msgstr "Rechercher un détail..."
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Create"
+msgstr "Créer"
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "From"
+msgstr "De"
+
+msgid "To"
+msgstr "À"
+
+msgid "Reset"
+msgstr "Réinitialiser"
+
+msgid "Apply"
+msgstr "Appliquer"
+
+msgid "result(s) found"
+msgstr "résultat(s) trouvé(s)"
+
+msgid "Subject"
+msgstr "Sujet"
+
+msgid "Details"
+msgstr "Détails"
+
+msgid "View details"
+msgstr "Voir les détails"
+
+msgid "No details"
+msgstr "Aucun détail"
+
+msgid "No result"
+msgstr "Aucun résultat"
+
+msgid "Empty"
+msgstr "Vide"
 
 msgid "Block Type"
 msgstr "Type de bloc"
@@ -131,9 +218,6 @@ msgstr "Publié le"
 msgid "Published by"
 msgstr "Publié par"
 
-msgid "News"
-msgstr "Actualités"
-
 msgid "My Homepages"
 msgstr "Mes pages d'accueil"
 
@@ -146,17 +230,8 @@ msgstr "Actions"
 msgid "Preview and publish"
 msgstr "Prévisualiser et publier"
 
-msgid "Edit"
-msgstr "Modifier"
-
-msgid "Delete"
-msgstr "Supprimer"
-
 msgid "Restore"
 msgstr "Restaurer"
-
-msgid "Create"
-msgstr "Créer"
 
 msgid "Edit permissions"
 msgstr "Modifier les autorisations"
@@ -283,6 +358,15 @@ msgstr "Choix de la langue"
 
 msgid "Others"
 msgstr "Autres"
+
+msgid "Previous"
+msgstr "Précédent"
+
+msgid "Current page"
+msgstr "Page actuelle"
+
+msgid "Next"
+msgstr "Suivant"
 
 msgid "News by entity"
 msgstr "Les actualités par faculté"

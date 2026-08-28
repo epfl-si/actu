@@ -242,6 +242,9 @@ msgstr ""
 msgid "Delete translation"
 msgstr ""
 
+msgid "Close"
+msgstr ""
+
 msgid "Do you really want to delete this homepage translation?"
 msgstr ""
 
@@ -276,9 +279,6 @@ msgid "Nobody has permission to manage this homepage."
 msgstr ""
 
 msgid "Remove user"
-msgstr ""
-
-msgid "Close"
 msgstr ""
 
 msgid "Are you sure you want to remove permissions for this user?"

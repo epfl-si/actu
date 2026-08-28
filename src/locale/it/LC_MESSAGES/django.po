@@ -242,6 +242,9 @@ msgstr "Autorizzazioni"
 msgid "Delete translation"
 msgstr "Elimina traduzione"
 
+msgid "Close"
+msgstr "Chiudi"
+
 msgid "Do you really want to delete this homepage translation?"
 msgstr "Vuoi davvero eliminare questa versione della homepage?"
 
@@ -277,9 +280,6 @@ msgstr "Nessuno ha il permesso di gestire questa homepage."
 
 msgid "Remove user"
 msgstr "Rimuovi utente"
-
-msgid "Close"
-msgstr "Chiudi"
 
 msgid "Are you sure you want to remove permissions for this user?"
 msgstr "Sei sicuro di voler rimuovere le autorizzazioni per questo utente?"

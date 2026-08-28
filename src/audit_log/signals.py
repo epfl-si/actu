@@ -87,7 +87,7 @@ def audit_delete_log(sender, instance, **kwargs):
                 object_repr=str(instance),
                 action="Delete",
                 user=user_str,
-                details="{}",
+                details={},
             )
 
 

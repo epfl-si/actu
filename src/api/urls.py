@@ -1,6 +1,13 @@
-from django.urls import path
+from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.permissions import AllowAny
+from rest_framework.routers import DefaultRouter
+
+from api.views import ThematicViewSet
+
+router = DefaultRouter()
+router.register(r"thematics", ThematicViewSet, basename="thematic")
+
 
 urlpatterns = [
     path(
@@ -15,4 +22,5 @@ urlpatterns = [
         ),
         name="api-docs",
     ),
+    path("", include(router.urls)),
 ]

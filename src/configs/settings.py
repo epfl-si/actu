@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     #
     # Packages
     "django_epfl_web2018",
+    "django_filters",
     "django_vite",
     "drf_spectacular",
     "mozilla_django_oidc",
@@ -206,6 +207,9 @@ REST_FRAMEWORK = {
     "ALLOWED_VERSIONS": ["v1"],
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.SessionAuthentication",
+    ],
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
     ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",

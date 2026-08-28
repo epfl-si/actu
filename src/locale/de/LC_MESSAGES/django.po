@@ -14,6 +14,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Filter by whether the thematic is marked as main."
+msgstr "Filtert, ob das Thema als Hauptthema markiert ist."
+
+msgid "Search across labels in all supported languages."
+msgstr "Suche über Bezeichnungen in allen unterstützten Sprachen."
+
+msgid "Sort the results by the selected field."
+msgstr "Sortiert die Ergebnisse nach dem ausgewählten Feld."
+
+msgid "Unique identifier of the thematic."
+msgstr "Eindeutiger Identifikator des Themas."
+
+msgid "Whether this thematic is marked as main."
+msgstr "Gibt an, ob dieses Thema als Hauptthema markiert ist."
+
+msgid "Display order of the thematic."
+msgstr "Anzeigereihenfolge des Themas."
+
+msgid "Thematics"
+msgstr "Themen"
+
+msgid "List active thematics"
+msgstr "Aktive Themen auflisten"
+
+msgid "Return all active thematics ordered by identifier."
+msgstr "Gibt alle aktiven Themen sortiert nach Kennung zurück."
+
+msgid "Retrieve a thematic"
+msgstr "Ein Thema abrufen"
+
+msgid "Return a single active thematic by its identifier."
+msgstr "Gibt ein einzelnes aktives Thema anhand seiner Kennung zurück."
+
 msgid "Object Type"
 msgstr "Objekttyp"
 
@@ -322,9 +355,6 @@ msgstr "Diese Übersetzung ist nicht archiviert."
 
 msgid "Translation restored successfully."
 msgstr "Übersetzung erfolgreich wiederhergestellt."
-
-msgid "Thematics"
-msgstr "Themen"
 
 msgid "Thematics related to this news."
 msgstr "Themen, die mit dieser Nachricht verbunden sind."

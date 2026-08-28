@@ -14,6 +14,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Filter by whether the thematic is marked as main."
+msgstr ""
+
+msgid "Search across labels in all supported languages."
+msgstr ""
+
+msgid "Sort the results by the selected field."
+msgstr ""
+
+msgid "Unique identifier of the thematic."
+msgstr ""
+
+msgid "Whether this thematic is marked as main."
+msgstr ""
+
+msgid "Display order of the thematic."
+msgstr ""
+
+msgid "Thematics"
+msgstr ""
+
+msgid "List active thematics"
+msgstr ""
+
+msgid "Return all active thematics ordered by identifier."
+msgstr ""
+
+msgid "Retrieve a thematic"
+msgstr ""
+
+msgid "Return a single active thematic by its identifier."
+msgstr ""
+
 msgid "Object Type"
 msgstr ""
 
@@ -321,9 +354,6 @@ msgid "This translation is not archived."
 msgstr ""
 
 msgid "Translation restored successfully."
-msgstr ""
-
-msgid "Thematics"
 msgstr ""
 
 msgid "Thematics related to this news."

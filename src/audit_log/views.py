@@ -14,10 +14,7 @@ from .models import GlobalAuditLog
 def _clean_date(date_str):
     if not date_str:
         return ""
-    try:
-        return date_str if parse_date(date_str) else ""
-    except ValueError:
-        return ""
+    return date_str if parse_date(date_str) else ""
 
 
 def _get_filters(request):

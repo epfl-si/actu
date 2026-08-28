@@ -8,9 +8,7 @@ from thematics.models import Thematic
 
 class EntityFilter(django_filters.FilterSet):
     is_main = django_filters.BooleanFilter(
-        help_text=_(
-            "Filter by whether the entity (School) appears in the footer."
-        ),
+        help_text=_("Filter by whether the entity is marked as main."),
     )
     search = django_filters.CharFilter(
         method="filter_search",

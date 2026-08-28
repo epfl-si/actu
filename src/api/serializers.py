@@ -39,9 +39,7 @@ class EntitySerializer(serializers.ModelSerializer):
         extra_kwargs = {
             "id": {"help_text": _("Unique identifier of the entity.")},
             "is_main": {
-                "help_text": _(
-                    "Whether this entity (School) is displayed on the footer."
-                )
+                "help_text": _("Whether this entity is marked as main.")
             },
             "order": {
                 "help_text": _(

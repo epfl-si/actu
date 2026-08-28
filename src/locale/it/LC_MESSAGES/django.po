@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 18:49+0200\n"
+"POT-Creation-Date: 2026-08-28 19:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,6 +13,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Filter by whether the entity is marked as main."
+msgstr "Filtra in base alla marcatura dell'entità come principale."
 
 msgid "Filter by whether the thematic is marked as main."
 msgstr "Filtra in base alla marcatura della tematica come principale."
@@ -50,6 +53,9 @@ msgstr "Restituisce una singola tematica attiva in base al suo identificatore."
 msgid "Filter by whether the entity (School) appears in the footer."
 msgstr ""
 
+msgid "Filter by whether the entity (School) appears in the footer."
+msgstr ""
+
 msgid "Search across labels in all supported languages."
 msgstr "Cerca tra le etichette in tutte le lingue supportate."
 
@@ -60,10 +66,13 @@ msgid "Filter by whether the thematic is marked as main."
 msgstr "Filtra in base alla marcatura della tematica come principale."
 
 msgid "Unique identifier of the entity."
-msgstr ""
+msgstr "Identificatore univoco dell'entità."
 
 msgid "Whether this entity (School) is displayed on the footer."
 msgstr ""
+
+msgid "Whether this entity is marked as main."
+msgstr "Indica se questa entità è marcata come principale."
 
 msgid "Display order of the entity among main entities."
 msgstr "Ordine di visualizzazione della tematica tra le tematiche principali."
@@ -81,16 +90,16 @@ msgid "Entities"
 msgstr "Entità"
 
 msgid "List active entities"
-msgstr ""
+msgstr "Elenca le entità attive"
 
 msgid "Return all active entities ordered by identifier."
-msgstr ""
+msgstr "Restituisce tutte le entità attive ordinate per identificatore."
 
 msgid "Retrieve an entity"
-msgstr ""
+msgstr "Recupera un'entità"
 
 msgid "Return a single active entity by its identifier."
-msgstr ""
+msgstr "Restituisce una singola entità attiva in base al suo identificatore."
 
 msgid "Thematics"
 msgstr "Tematiche"

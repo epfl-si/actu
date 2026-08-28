@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 18:49+0200\n"
+"POT-Creation-Date: 2026-08-28 19:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,8 +14,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Filter by whether the entity (School) appears in the footer."
-msgstr ""
+msgid "Filter by whether the entity is marked as main."
+msgstr "Filtert, ob die Einheit als Haupteinheit markiert ist."
 
 msgid "Search across labels in all supported languages."
 msgstr "Suche über Bezeichnungen in allen unterstützten Sprachen."
@@ -30,13 +30,13 @@ msgid "Filter by whether the thematic is marked as main."
 msgstr "Filtert, ob das Thema als Hauptthema markiert ist."
 
 msgid "Unique identifier of the entity."
-msgstr ""
+msgstr "Eindeutiger Identifikator der Einheit."
 
-msgid "Whether this entity (School) is displayed on the footer."
-msgstr ""
+msgid "Whether this entity is marked as main."
+msgstr "Gibt an, ob diese Einheit als Haupteinheit markiert ist."
 
 msgid "Display order of the entity among main entities."
-msgstr ""
+msgstr "Anzeigereihenfolge der Einheit unter den Haupteinheiten."
 
 msgid "Whether this thematic is marked as main."
 msgstr "Gibt an, ob dieses Thema als Hauptthema markiert ist."
@@ -51,16 +51,16 @@ msgid "Entities"
 msgstr "Einheiten"
 
 msgid "List active entities"
-msgstr ""
+msgstr "Aktive Einheiten auflisten"
 
 msgid "Return all active entities ordered by identifier."
-msgstr ""
+msgstr "Gibt alle aktiven Einheiten sortiert nach Kennung zurück."
 
 msgid "Retrieve an entity"
-msgstr ""
+msgstr "Eine Einheit abrufen"
 
 msgid "Return a single active entity by its identifier."
-msgstr ""
+msgstr "Gibt eine einzelne aktive Einheit anhand ihrer Kennung zurück."
 
 msgid "Thematics"
 msgstr "Themen"

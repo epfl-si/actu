@@ -37,13 +37,13 @@ class NewsTranslationForm(forms.ModelForm):
         model = NewsTranslation
         fields = ["title"]
 
-    def save(self, user, language, news_id):
+    def save(self, user, language, news):
         is_new = self.instance.pk is None
         translation = super().save(commit=False)
         if is_new:
             translation.created_by = user
             translation.language = language
-            translation.news_id = news_id
+            translation.news = news
         else:
             translation.updated_by = user
         translation.save()
@@ -71,6 +71,6 @@ class NewsWithTranslationForm:
         if self.is_valid():
             with transaction.atomic():
                 news = self.news.save(user)
-                self.translation.save(user, self.language, news.id)
+                self.translation.save(user, self.language, news)
 
             return news.id

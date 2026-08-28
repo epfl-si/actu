@@ -48,10 +48,9 @@ def audit_m2m_changed(
         if issubclass(model, AuditModelMixin) and pk_set:
             for obj in model.objects.filter(pk__in=pk_set):
                 field_name = _get_m2m_field_name(obj, sender)
-                if action in ["pre_add", "pre_remove", "pre_clear"]:
-                    transaction.on_commit(
-                        lambda o=obj, f=field_name: _save_m2m_audit_log(o, f)
-                    )
+                transaction.on_commit(
+                    lambda o=obj, f=field_name: _save_m2m_audit_log(o, f)
+                )
         return
 
     if not hasattr(instance, "_initial_state"):

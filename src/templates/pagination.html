@@ -4,7 +4,7 @@
     <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
       <a
         class="page-link"
-        href="{% if page_obj.has_previous %}?{{ query_string }}&page={{ page_obj.previous_page_number }}{% else %}#{% endif %}"
+        href="{% if page_obj.has_previous %}?{% if query_string %}{{ query_string }}&{% endif %}page={{ page_obj.previous_page_number }}{% else %}#{% endif %}"
         aria-label="{% trans 'Previous' %}"
       >
         <svg class="icon" aria-hidden="true">
@@ -39,7 +39,7 @@
     <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
       <a
         class="page-link"
-        href="{% if page_obj.has_next %}?{{ query_string }}&page={{ page_obj.next_page_number }}{% else %}#{% endif %}"
+        href="{% if page_obj.has_next %}?{% if query_string %}{{ query_string }}&{% endif %}page={{ page_obj.next_page_number }}{% else %}#{% endif %}"
         aria-label="{% trans 'Next' %}"
       >
         <svg class="icon" aria-hidden="true">

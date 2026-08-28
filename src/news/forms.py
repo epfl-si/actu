@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django_editorjs_fields import EditorJsWidget
 
 from translations.models import NewsTranslation
+from utils.widgets import EditorJsExtendedWidget
 
 from .models import News
 
@@ -37,17 +38,21 @@ class NewsTranslationForm(forms.ModelForm):
     class Meta:
         model = NewsTranslation
         fields = ["title", "body"]
-        widgets = {
-            'body': EditorJsWidget(
-                plugins=[
-                    "@editorjs/image",
-                    "@editorjs/header"
-                ],
-                config={
-                    'minHeight': 200
-                },
-            )
-        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set our custom EditorJsWidget. It is set in the __init__ instead of
+        # Meta.widgets because EditorJsJSONField.formfield() overwrites
+        # any widget passed in kwargs
+        self.fields["body"].widget = EditorJsExtendedWidget(
+            plugins=[
+                "@editorjs/image",
+                "@editorjs/header",
+            ],
+            config={
+                "minHeight": 200,
+            },
+        )
 
     def save(self, user, language, news):
         is_new = self.instance.pk is None

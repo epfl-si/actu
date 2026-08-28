@@ -192,6 +192,10 @@ STATIC_ROOT = BASE_DIR / "static_root"
 
 STATIC_URL = "static/"
 
+STATICFILES_DIRS = [
+    BASE_DIR / "utils" / "static",
+]
+
 DJANGO_VITE = {
     "default": {
         "dev_mode": DEBUG,

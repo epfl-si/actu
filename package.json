@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "eslint": "eslint '*.js' 'src/assets'",
+    "eslint": "eslint '*.js' 'src/assets' 'src/utils/static/editorjs/js'",
     "lint": "npm run stylelint && npm run eslint",
     "stylelint": "stylelint 'src/assets/**/*.scss'"
   },

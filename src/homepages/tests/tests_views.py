@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.messages import get_messages
 from django.shortcuts import resolve_url
 from django.test import TestCase
-from django.urls import reverse
+from django.urls import NoReverseMatch, reverse
 from django.utils import translation
 
 from homepages.models import Homepage, HomepageTranslation
@@ -293,12 +293,11 @@ class CreateHomepageTranslationViewTest(TestCase):
 
     def test_invalid_language_gets_404(self):
         self.client.force_login(self.user)
-        url = reverse(
-            "create_homepage_translation",
-            args=[self.homepage.id, "fi"],
-        )
-        response = self.client.post(url, follow=True)
-        self.assertEqual(response.status_code, 404)
+        with self.assertRaises(NoReverseMatch):
+            reverse(
+                "create_homepage_translation",
+                args=[self.homepage.id, "fi"],
+            )
 
     def test_existing_translation_shows_warning_message(self):
         HomepageTranslation.objects.create(

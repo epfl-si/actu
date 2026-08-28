@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-25 18:12+0200\n"
+"POT-Creation-Date: 2026-08-27 16:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -45,6 +45,93 @@ msgid "Retrieve a thematic"
 msgstr ""
 
 msgid "Return a single active thematic by its identifier."
+msgstr ""
+
+msgid "Object Type"
+msgstr ""
+
+msgid "Object ID"
+msgstr ""
+
+msgid "Object Name"
+msgstr ""
+
+msgid "Not defined"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "Global log"
+msgstr ""
+
+msgid "Global Logs"
+msgstr ""
+
+msgid "News"
+msgstr ""
+
+msgid "Audit Logs"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search a detail..."
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "To"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "result(s) found"
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "View details"
+msgstr ""
+
+msgid "No details"
+msgstr ""
+
+msgid "No result"
+msgstr ""
+
+msgid "Empty"
 msgstr ""
 
 msgid "Block Type"
@@ -164,9 +251,6 @@ msgstr ""
 msgid "Published by"
 msgstr ""
 
-msgid "News"
-msgstr ""
-
 msgid "My Homepages"
 msgstr ""
 
@@ -179,16 +263,7 @@ msgstr ""
 msgid "Preview and publish"
 msgstr ""
 
-msgid "Edit"
-msgstr ""
-
-msgid "Delete"
-msgstr ""
-
 msgid "Restore"
-msgstr ""
-
-msgid "Create"
 msgstr ""
 
 msgid "Edit permissions"
@@ -198,6 +273,9 @@ msgid "Permissions"
 msgstr ""
 
 msgid "Delete translation"
+msgstr ""
+
+msgid "Close"
 msgstr ""
 
 msgid "Do you really want to delete this homepage translation?"
@@ -234,9 +312,6 @@ msgid "Nobody has permission to manage this homepage."
 msgstr ""
 
 msgid "Remove user"
-msgstr ""
-
-msgid "Close"
 msgstr ""
 
 msgid "Are you sure you want to remove permissions for this user?"
@@ -312,6 +387,15 @@ msgid "Language selection"
 msgstr ""
 
 msgid "Others"
+msgstr ""
+
+msgid "Previous"
+msgstr ""
+
+msgid "Current page"
+msgstr ""
+
+msgid "Next"
 msgstr ""
 
 msgid "News by entity"

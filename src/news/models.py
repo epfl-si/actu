@@ -2,12 +2,13 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from audit_log.models import AuditModelMixin
 from entities.models import Entity
 from news_formats.models import NewsFormat
 from thematics.models import Thematic
 
 
-class News(models.Model):
+class News(AuditModelMixin, models.Model):
     """
     A news contains properties related to a news.
 

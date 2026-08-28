@@ -3,10 +3,11 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from audit_log.models import AuditModelMixin
 from utils.models import get_last_activity_label
 
 
-class Homepage(models.Model):
+class Homepage(AuditModelMixin, models.Model):
 
     class Meta:
         verbose_name = _("Homepage")
@@ -54,6 +55,9 @@ class Homepage(models.Model):
         verbose_name=_("Users"),
     )
 
+    def __str__(self):
+        return self.slug
+
     @property
     def display_name(self):
         if self.thematic:
@@ -80,7 +84,7 @@ class Homepage(models.Model):
             )
 
 
-class HomepageTranslation(models.Model):
+class HomepageTranslation(AuditModelMixin, models.Model):
     """
     Translations of a homepage item.
     """

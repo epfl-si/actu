@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-28 19:02+0200\n"
+"POT-Creation-Date: 2026-08-28 19:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,8 +23,8 @@ msgstr "Suche über Bezeichnungen in allen unterstützten Sprachen."
 msgid "Sort the results by the selected field."
 msgstr "Sortiert die Ergebnisse nach dem ausgewählten Feld."
 
-msgid "Unique identifier of the thematic."
-msgstr "Eindeutiger Identifikator des Themas."
+msgid "Filter by whether the entity is marked as main."
+msgstr "Filtert, ob die Einheit als Haupteinheit markiert ist."
 
 msgid "Filter by whether the thematic is marked as main."
 msgstr "Filtert, ob das Thema als Hauptthema markiert ist."
@@ -37,6 +37,9 @@ msgstr "Gibt an, ob diese Einheit als Haupteinheit markiert ist."
 
 msgid "Display order of the entity among main entities."
 msgstr "Anzeigereihenfolge der Einheit unter den Haupteinheiten."
+
+msgid "Unique identifier of the thematic."
+msgstr "Eindeutiger Identifikator des Themas."
 
 msgid "Whether this thematic is marked as main."
 msgstr "Gibt an, ob dieses Thema als Hauptthema markiert ist."
@@ -163,6 +166,7 @@ msgstr "Kein Ergebnis"
 
 msgid "Empty"
 msgstr "Leer"
+
 msgid "Block Type"
 msgstr "Blocktyp"
 

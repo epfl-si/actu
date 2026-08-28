@@ -6,6 +6,19 @@ from entities.models import Entity
 from thematics.models import Thematic
 
 
+class LabelModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = [
+            "id",
+            "label_fr",
+            "label_en",
+            "label_de",
+            "label_it",
+            "is_main",
+            "order",
+        ]
+
+
 @extend_schema_serializer(
     component_name="Entity",
     examples=[
@@ -23,19 +36,9 @@ from thematics.models import Thematic
         ),
     ],
 )
-class EntitySerializer(serializers.ModelSerializer):
-
-    class Meta:
+class EntitySerializer(LabelModelSerializer):
+    class Meta(LabelModelSerializer.Meta):
         model = Entity
-        fields = [
-            "id",
-            "label_fr",
-            "label_en",
-            "label_de",
-            "label_it",
-            "is_main",
-            "order",
-        ]
         extra_kwargs = {
             "id": {"help_text": _("Unique identifier of the entity.")},
             "is_main": {
@@ -66,19 +69,9 @@ class EntitySerializer(serializers.ModelSerializer):
         ),
     ],
 )
-class ThematicSerializer(serializers.ModelSerializer):
-
-    class Meta:
+class ThematicSerializer(LabelModelSerializer):
+    class Meta(LabelModelSerializer.Meta):
         model = Thematic
-        fields = [
-            "id",
-            "label_fr",
-            "label_en",
-            "label_de",
-            "label_it",
-            "is_main",
-            "order",
-        ]
         extra_kwargs = {
             "id": {"help_text": _("Unique identifier of the thematic.")},
             "is_main": {

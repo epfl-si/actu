@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-27 16:43+0200\n"
+"POT-Creation-Date: 2026-08-28 18:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -23,6 +23,9 @@ msgstr "Suche über Bezeichnungen in allen unterstützten Sprachen."
 msgid "Sort the results by the selected field."
 msgstr "Sortiert die Ergebnisse nach dem ausgewählten Feld."
 
+msgid "Unique identifier of the thematic."
+msgstr "Eindeutiger Identifikator des Themas."
+
 msgid "Filter by whether the thematic is marked as main."
 msgstr "Filtert, ob das Thema als Hauptthema markiert ist."
 
@@ -35,14 +38,14 @@ msgstr ""
 msgid "Display order of the entity among main entities."
 msgstr ""
 
-msgid "Unique identifier of the thematic."
-msgstr "Eindeutiger Identifikator des Themas."
-
 msgid "Whether this thematic is marked as main."
 msgstr "Gibt an, ob dieses Thema als Hauptthema markiert ist."
 
 msgid "Display order of the thematic."
 msgstr "Anzeigereihenfolge des Themas."
+
+msgid "Display order of the thematic among main thematics."
+msgstr "Anzeigereihenfolge des Themas unter den Hauptthemen."
 
 msgid "Entities"
 msgstr "Einheiten"
@@ -73,6 +76,93 @@ msgstr "Ein Thema abrufen"
 
 msgid "Return a single active thematic by its identifier."
 msgstr "Gibt ein einzelnes aktives Thema anhand seiner Kennung zurück."
+
+msgid "Object Type"
+msgstr "Objekttyp"
+
+msgid "Object ID"
+msgstr "Objekt-ID"
+
+msgid "Object Name"
+msgstr "Objektname"
+
+msgid "Not defined"
+msgstr "Nicht definiert"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "User"
+msgstr "Benutzer"
+
+msgid "System"
+msgstr "System"
+
+msgid "Global log"
+msgstr "Globales Protokoll"
+
+msgid "Global Logs"
+msgstr "Globale Protokolle"
+
+msgid "News"
+msgstr "Nachrichten"
+
+msgid "Audit Logs"
+msgstr "Aktivitätslogs"
+
+msgid "Search"
+msgstr "Suche"
+
+msgid "Search a detail..."
+msgstr "Nach einem Detail suchen..."
+
+msgid "Type"
+msgstr "typ"
+
+msgid "Action"
+msgstr "Aktion"
+
+msgid "Create"
+msgstr "Erstellen"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Delete"
+msgstr "Löschen"
+
+msgid "From"
+msgstr "Von"
+
+msgid "To"
+msgstr "Bis"
+
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+msgid "Apply"
+msgstr "Anwenden"
+
+msgid "result(s) found"
+msgstr "Ergebnis(se) gefunden"
+
+msgid "Subject"
+msgstr "Betreff"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "View details"
+msgstr "Details anzeigen"
+
+msgid "No details"
+msgstr "Keine Details"
+
+msgid "No result"
+msgstr "Kein Ergebnis"
+
+msgid "Empty"
+msgstr "Leer"
 msgid "Block Type"
 msgstr "Blocktyp"
 
@@ -102,9 +192,6 @@ msgstr "Hat Startseite"
 
 msgid "Entity"
 msgstr "Einheit"
-
-msgid "Entities"
-msgstr "Einheiten"
 
 msgid "Active"
 msgstr "Aktiv"

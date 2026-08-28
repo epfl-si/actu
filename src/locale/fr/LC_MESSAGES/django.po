@@ -17,14 +17,14 @@ msgstr ""
 msgid "Filter by whether the entity (School) appears in the footer."
 msgstr ""
 
-msgid "Filter by whether the thematic is marked as main."
-msgstr "Filtrer selon que la thématique est marquée comme principale ou non."
-
 msgid "Search across labels in all supported languages."
 msgstr "Rechercher dans les libellés de toutes les langues prises en charge."
 
 msgid "Sort the results by the selected field."
 msgstr "Trie les résultats selon le champ sélectionné."
+
+msgid "Filter by whether the thematic appears in the main menu."
+msgstr ""
 
 msgid "Unique identifier of the entity."
 msgstr ""
@@ -38,14 +38,14 @@ msgstr ""
 msgid "Unique identifier of the thematic."
 msgstr "Identifiant unique de la thématique."
 
-msgid "Whether this thematic is marked as main."
-msgstr "Indique si cette thématique est marquée comme principale."
+msgid "Whether this thematic is displayed on the main menu."
+msgstr "Indique si cette thématique est affichée dans le menu principal."
 
-msgid "Display order of the thematic."
-msgstr "Ordre d'affichage de la thématique."
+msgid "Display order of the thematic among main thematics."
+msgstr "Ordre d'affichage de la thématique parmi les thématiques principales."
 
-msgid "Thematics"
-msgstr "Thématiques"
+msgid "Entities"
+msgstr "Entités"
 
 msgid "List active entities"
 msgstr ""
@@ -59,6 +59,9 @@ msgstr ""
 msgid "Return a single active entity by its identifier."
 msgstr ""
 
+msgid "Thematics"
+msgstr "Thématiques"
+
 msgid "List active thematics"
 msgstr "Lister les thématiques actives"
 
@@ -70,6 +73,93 @@ msgstr "Récupérer une thématique"
 
 msgid "Return a single active thematic by its identifier."
 msgstr "Retourne une thématique active unique à partir de son identifiant."
+
+msgid "Object Type"
+msgstr "Type d'objet"
+
+msgid "Object ID"
+msgstr "ID de l'objet"
+
+msgid "Object Name"
+msgstr "Nom de l'objet"
+
+msgid "Not defined"
+msgstr "Non défini"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "User"
+msgstr "Utilisateur"
+
+msgid "System"
+msgstr "Système"
+
+msgid "Global log"
+msgstr "Log global"
+
+msgid "Global Logs"
+msgstr "Logs Globaux"
+
+msgid "News"
+msgstr "Actualités"
+
+msgid "Audit Logs"
+msgstr "Journal d'activités"
+
+msgid "Search"
+msgstr "Recherche"
+
+msgid "Search a detail..."
+msgstr "Rechercher un détail..."
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Create"
+msgstr "Créer"
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "From"
+msgstr "De"
+
+msgid "To"
+msgstr "À"
+
+msgid "Reset"
+msgstr "Réinitialiser"
+
+msgid "Apply"
+msgstr "Appliquer"
+
+msgid "result(s) found"
+msgstr "résultat(s) trouvé(s)"
+
+msgid "Subject"
+msgstr "Sujet"
+
+msgid "Details"
+msgstr "Détails"
+
+msgid "View details"
+msgstr "Voir les détails"
+
+msgid "No details"
+msgstr "Aucun détail"
+
+msgid "No result"
+msgstr "Aucun résultat"
+
+msgid "Empty"
+msgstr "Vide"
 msgid "Block Type"
 msgstr "Type de bloc"
 
@@ -99,9 +189,6 @@ msgstr "A une page d'accueil"
 
 msgid "Entity"
 msgstr "Entité"
-
-msgid "Entities"
-msgstr "Entités"
 
 msgid "Active"
 msgstr "Actif"

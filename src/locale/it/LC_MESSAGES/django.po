@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-27 16:43+0200\n"
+"POT-Creation-Date: 2026-08-28 18:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -31,6 +31,66 @@ msgstr "Indica se questa tematica è marcata come principale."
 
 msgid "Display order of the thematic."
 msgstr "Ordine di visualizzazione della tematica."
+
+msgid "Thematics"
+msgstr "Tematiche"
+
+msgid "List active thematics"
+msgstr "Elenca le tematiche attive"
+
+msgid "Return all active thematics ordered by identifier."
+msgstr "Restituisce tutte le tematiche attive ordinate per identificatore."
+
+msgid "Retrieve a thematic"
+msgstr "Recupera una tematica"
+
+msgid "Return a single active thematic by its identifier."
+msgstr "Restituisce una singola tematica attiva in base al suo identificatore."
+
+msgid "Filter by whether the entity (School) appears in the footer."
+msgstr ""
+
+msgid "Search across labels in all supported languages."
+msgstr "Cerca tra le etichette in tutte le lingue supportate."
+
+msgid "Sort the results by the selected field."
+msgstr "Ordina i risultati in base al campo selezionato."
+
+msgid "Filter by whether the thematic is marked as main."
+msgstr "Filtra in base alla marcatura della tematica come principale."
+
+msgid "Unique identifier of the entity."
+msgstr ""
+
+msgid "Whether this entity (School) is displayed on the footer."
+msgstr ""
+
+msgid "Display order of the entity among main entities."
+msgstr "Ordine di visualizzazione della tematica tra le tematiche principali."
+
+msgid "Unique identifier of the thematic."
+msgstr "Identificatore univoco della tematica."
+
+msgid "Whether this thematic is marked as main."
+msgstr "Indica se questa tematica è marcata come principale."
+
+msgid "Display order of the thematic."
+msgstr "Ordine di visualizzazione della tematica."
+
+msgid "Entities"
+msgstr "Entità"
+
+msgid "List active entities"
+msgstr ""
+
+msgid "Return all active entities ordered by identifier."
+msgstr ""
+
+msgid "Retrieve an entity"
+msgstr ""
+
+msgid "Return a single active entity by its identifier."
+msgstr ""
 
 msgid "Thematics"
 msgstr "Tematiche"
@@ -133,6 +193,7 @@ msgstr "Nessun risultato"
 
 msgid "Empty"
 msgstr "Vuoto"
+
 msgid "Block Type"
 msgstr "Tipo di blocco"
 
@@ -161,6 +222,9 @@ msgid "Has Homepage"
 msgstr "Ha una pagina principale"
 
 msgid "Entity"
+msgstr "Entità"
+
+msgid "Entities"
 msgstr "Entità"
 
 msgid "Active"
@@ -246,6 +310,9 @@ msgstr "Pubblicato il"
 
 msgid "Published by"
 msgstr "Pubblicato da"
+
+msgid "News"
+msgstr "Notizie"
 
 msgid "My Homepages"
 msgstr "Le mie Pagine principali"

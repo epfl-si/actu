@@ -8,6 +8,33 @@ from translations.models import NewsTranslation
 User = get_user_model()
 
 
+class ManageNewsViewTest(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="bentoumi",
+            sciper="99999999",
+        )
+
+    def test_limits_to_ten_news_per_page(self):
+        for index in range(12):
+            news = News.objects.create(created_by=self.user)
+            NewsTranslation.objects.create(
+                news=news,
+                language="en",
+                status=NewsTranslation.Status.DRAFT,
+                created_by=self.user,
+            )
+
+        self.client.force_login(self.user)
+        response = self.client.get(reverse("manage_news"))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context["news_rows"]), 10)
+        self.assertEqual(response.context["page_obj"].paginator.per_page, 10)
+        self.assertTrue(response.context["page_obj"].has_next())
+
+
 class DeleteNewsTranslationViewTest(TestCase):
 
     def setUp(self):

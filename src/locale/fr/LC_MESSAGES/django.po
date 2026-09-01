@@ -362,9 +362,6 @@ msgstr "Aucun thèmatique n'a été fourni."
 msgid "No format provided."
 msgstr "Aucun format n'a été fourni."
 
-msgid "Thematics"
-msgstr "Thématiques"
-
 msgid "Thematics related to this news."
 msgstr "Thématiques liées à cette actualité."
 

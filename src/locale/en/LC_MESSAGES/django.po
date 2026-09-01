@@ -362,9 +362,6 @@ msgstr ""
 msgid "No format provided."
 msgstr ""
 
-msgid "Thematics"
-msgstr ""
-
 msgid "Thematics related to this news."
 msgstr ""
 

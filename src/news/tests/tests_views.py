@@ -312,6 +312,25 @@ class CreateNewsTranslationViewTest(TestCase):
         )
         self.assertIn("This field is required.", response.content.decode())
 
+    def test_injection_of_invalid_data(self):
+        self.client.force_login(self.user)
+        url = reverse("create_news", args=["en"])
+        data = {
+            "thematics": ["foobar", self.thematic_2.id],
+            "entities": ["foobar", self.entity_2.id],
+            "format": self.format.id,
+        }
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.context["selected_thematic_ids"],
+            {self.thematic_2.id},
+        )
+        self.assertEqual(
+            response.context["selected_entity_ids"],
+            {self.entity_2.id},
+        )
+
     def test_success_message_is_shown_after_creation(self):
         self.client.force_login(self.user)
         url = reverse("create_news", args=["en"])

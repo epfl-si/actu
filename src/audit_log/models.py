@@ -143,11 +143,7 @@ class AuditModelMixin(models.Model):
                 if field.name == "id" or "password" in field.name.lower():
                     continue
                 try:
-                    if field.is_relation:
-                        val = getattr(self, field.name)
-                    else:
-                        val = field.value_from_object(self)
-
+                    val = field.value_from_object(self)
                     state[field.name] = (
                         str(val) if val is not None else "Empty"
                     )

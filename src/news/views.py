@@ -17,6 +17,7 @@ from entities.models import Entity
 from news_formats.models import NewsFormat
 from thematics.models import Thematic
 from translations.models import NewsTranslation
+from utils.parser import _safe_int, _safe_int_set
 
 from .forms import NewsWithTranslationForm
 from .models import News
@@ -58,11 +59,11 @@ def _initialize_view():
 def _initialize_selected_values(request=None, news=None):
     if request is not None and request.method == "POST":
         # Re-rendering after a failed submission: reflect what the user picked
-        selected_thematic_ids = set(
-            map(int, request.POST.getlist("thematics"))
+        selected_thematic_ids = _safe_int_set(
+            request.POST.getlist("thematics")
         )
-        selected_entity_ids = set(map(int, request.POST.getlist("entities")))
-        selected_format_id = int(request.POST.get("format"))
+        selected_entity_ids = _safe_int_set(request.POST.getlist("entities"))
+        selected_format_id = _safe_int(request.POST.get("format"))
     elif news and news.pk:
         # Initial load of an existing News
         selected_thematic_ids = set(

@@ -397,9 +397,6 @@ msgstr "Es wurde kein Thema angegeben."
 msgid "No format provided."
 msgstr "Es wurde kein Format angegeben."
 
-msgid "Thematics"
-msgstr "Themen"
-
 msgid "Thematics related to this news."
 msgstr "Themen, die mit dieser Nachricht verbunden sind."
 

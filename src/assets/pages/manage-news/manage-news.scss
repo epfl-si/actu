@@ -1,0 +1,36 @@
+@use 'variables';
+
+#manage-news-list {
+
+  .badge.draft {
+    color: variables.$bdg-gray;
+  }
+
+  .badge.published {
+    color: variables.$bdg-green;
+  }
+
+  .badge.archived {
+    color: variables.$bdg-red;
+  }
+
+  .list-group-teaser-thumbnail {
+    flex: 0 0 14rem;
+
+    @media (max-width: 991.98px) {
+      flex-basis: 0;
+    }
+  }
+
+  .d-flex.list-group-teaser-content {
+    gap: .25rem;
+  }
+
+  .tag.tag-sm.tag-light {
+    width: 30px;
+  }
+
+  .btn.btn-sm.btn-actions {
+    padding: .2rem;
+  }
+}

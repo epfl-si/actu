@@ -1,0 +1,41 @@
+[
+  {
+    "model": "entities.entity",
+    "pk": 1,
+    "fields": {
+      "label_fr": "Sciences de la Vie",
+      "label_en": "Life Sciences",
+      "label_de": "Lebenswissenschaften",
+      "label_it": "Scienze della Vita",
+      "is_active": true,
+      "is_main": true,
+      "order": 0
+    }
+  },
+  {
+    "model": "entities.entity",
+    "pk": 2,
+    "fields": {
+      "label_fr": "Sciences de Base",
+      "label_en": "Basic Science",
+      "label_de": "Grundlagenwissenschaften",
+      "label_it": "Scienze di Base",
+      "is_active": true,
+      "is_main": true,
+      "order": 1
+    }
+  },
+  {
+    "model": "entities.entity",
+    "pk": 3,
+    "fields": {
+      "label_fr": "DCSL – Laboratoire des systèmes de centres de données",
+      "label_en": "DCSL – Data Center Systems Laboratory",
+      "label_de": "DCSL – Labor für Rechenzentrumssysteme",
+      "label_it": "DCSL – Laboratorio di sistemi per data center",
+      "is_active": true,
+      "is_main": false,
+      "order": 1
+    }
+  }
+]

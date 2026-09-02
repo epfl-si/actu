@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 14:11+0200\n"
+"POT-Creation-Date: 2026-08-27 16:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,6 +13,126 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Filter by whether the thematic is marked as main."
+msgstr "Filtrer selon que la thématique est marquée comme principale ou non."
+
+msgid "Search across labels in all supported languages."
+msgstr "Rechercher dans les libellés de toutes les langues prises en charge."
+
+msgid "Sort the results by the selected field."
+msgstr "Trie les résultats selon le champ sélectionné."
+
+msgid "Unique identifier of the thematic."
+msgstr "Identifiant unique de la thématique."
+
+msgid "Whether this thematic is marked as main."
+msgstr "Indique si cette thématique est marquée comme principale."
+
+msgid "Display order of the thematic."
+msgstr "Ordre d'affichage de la thématique."
+
+msgid "Thematics"
+msgstr "Thématiques"
+
+msgid "List active thematics"
+msgstr "Lister les thématiques actives"
+
+msgid "Return all active thematics ordered by identifier."
+msgstr "Retourne toutes les thématiques actives ordonnées par identifiant."
+
+msgid "Retrieve a thematic"
+msgstr "Récupérer une thématique"
+
+msgid "Return a single active thematic by its identifier."
+msgstr "Retourne une thématique active unique à partir de son identifiant."
+
+msgid "Object Type"
+msgstr "Type d'objet"
+
+msgid "Object ID"
+msgstr "ID de l'objet"
+
+msgid "Object Name"
+msgstr "Nom de l'objet"
+
+msgid "Not defined"
+msgstr "Non défini"
+
+msgid "Date"
+msgstr "Date"
+
+msgid "User"
+msgstr "Utilisateur"
+
+msgid "System"
+msgstr "Système"
+
+msgid "Global log"
+msgstr "Log global"
+
+msgid "Global Logs"
+msgstr "Logs Globaux"
+
+msgid "News"
+msgstr "Actualités"
+
+msgid "Audit Logs"
+msgstr "Journal d'activités"
+
+msgid "Search"
+msgstr "Recherche"
+
+msgid "Search a detail..."
+msgstr "Rechercher un détail..."
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Action"
+msgstr "Action"
+
+msgid "Create"
+msgstr "Créer"
+
+msgid "Edit"
+msgstr "Modifier"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "From"
+msgstr "De"
+
+msgid "To"
+msgstr "À"
+
+msgid "Reset"
+msgstr "Réinitialiser"
+
+msgid "Apply"
+msgstr "Appliquer"
+
+msgid "result(s) found"
+msgstr "résultat(s) trouvé(s)"
+
+msgid "Subject"
+msgstr "Sujet"
+
+msgid "Details"
+msgstr "Détails"
+
+msgid "View details"
+msgstr "Voir les détails"
+
+msgid "No details"
+msgstr "Aucun détail"
+
+msgid "No result"
+msgstr "Aucun résultat"
+
+msgid "Empty"
+msgstr "Vide"
 
 msgid "Block Type"
 msgstr "Type de bloc"
@@ -31,6 +151,12 @@ msgstr "Allemand"
 
 msgid "Italian"
 msgstr "Italien"
+
+msgid "Actu API"
+msgstr "API Actu"
+
+msgid "API documentation for Actu."
+msgstr "Documentation de l'API Actu."
 
 msgid "Has Homepage"
 msgstr "A une page d'accueil"
@@ -125,21 +251,6 @@ msgstr "Publié le"
 msgid "Published by"
 msgstr "Publié par"
 
-msgid "Published on"
-msgstr "Publié le"
-
-msgid "Archived on"
-msgstr "Archivé le"
-
-msgid "Updated on"
-msgstr "Modifié le"
-
-msgid "Created on"
-msgstr "Créé le"
-
-msgid "News"
-msgstr "Actualités"
-
 msgid "My Homepages"
 msgstr "Mes pages d'accueil"
 
@@ -152,17 +263,8 @@ msgstr "Actions"
 msgid "Preview and publish"
 msgstr "Prévisualiser et publier"
 
-msgid "Edit"
-msgstr "Modifier"
-
-msgid "Delete"
-msgstr "Supprimer"
-
 msgid "Restore"
 msgstr "Restaurer"
-
-msgid "Create"
-msgstr "Créer"
 
 msgid "Edit permissions"
 msgstr "Modifier les autorisations"
@@ -172,6 +274,9 @@ msgstr "Autorisations"
 
 msgid "Delete translation"
 msgstr "Supprimer la traduction"
+
+msgid "Close"
+msgstr "Fermer"
 
 msgid "Do you really want to delete this homepage translation?"
 msgstr "Voulez-vous vraiment supprimer cette traduction de page d'accueil?"
@@ -208,9 +313,6 @@ msgstr "Personne n'a la permission de gérer cette page d'accueil."
 
 msgid "Remove user"
 msgstr "Supprimer"
-
-msgid "Close"
-msgstr "Fermer"
 
 msgid "Are you sure you want to remove permissions for this user?"
 msgstr "Etes-vous sûr d'enlever la permission à cet utilisateur ?"
@@ -254,9 +356,6 @@ msgstr "Cette traduction n'est pas archivée."
 msgid "Translation restored successfully."
 msgstr "Traduction restaurée avec succès."
 
-msgid "Thematics"
-msgstr "Thématiques"
-
 msgid "Thematics related to this news."
 msgstr "Thématiques liées à cette actualité."
 
@@ -265,6 +364,18 @@ msgstr "Entités liées à cette actualité."
 
 msgid "Format"
 msgstr "Format"
+
+msgid "Manage News"
+msgstr "Gérer les actualités"
+
+msgid "Create news"
+msgstr "Créer une actualité"
+
+msgid "No news available."
+msgstr "Aucune actualité disponible."
+
+msgid "Do you really want to delete this news translation?"
+msgstr "Voulez-vous vraiment supprimer cette traduction de l'actualité?"
 
 msgid "News Format"
 msgstr "Format d'actualités"
@@ -278,11 +389,17 @@ msgstr "Choix de la langue"
 msgid "Others"
 msgstr "Autres"
 
+msgid "Previous"
+msgstr "Précédent"
+
+msgid "Current page"
+msgstr "Page actuelle"
+
+msgid "Next"
+msgstr "Suivant"
+
 msgid "News by entity"
 msgstr "Les actualités par faculté"
-
-msgid "My News"
-msgstr "Mes Actualités"
 
 msgid "Administration"
 msgstr "Administration"
@@ -310,6 +427,18 @@ msgstr "Traductions d'actualités"
 
 msgid "Title"
 msgstr "Titre"
+
+msgid "Published on"
+msgstr "Publié le"
+
+msgid "Archived on"
+msgstr "Archivé le"
+
+msgid "Updated on"
+msgstr "Modifié le"
+
+msgid "Created on"
+msgstr "Créé le"
 
 msgid "Label in French"
 msgstr "Label en français"

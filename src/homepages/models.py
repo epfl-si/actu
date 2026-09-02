@@ -1,11 +1,13 @@
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
-from django.utils.timezone import localtime
 from django.utils.translation import gettext_lazy as _
 
+from audit_log.models import AuditModelMixin
+from utils.models import get_last_activity_label
 
-class Homepage(models.Model):
+
+class Homepage(AuditModelMixin, models.Model):
 
     class Meta:
         verbose_name = _("Homepage")
@@ -53,6 +55,9 @@ class Homepage(models.Model):
         verbose_name=_("Users"),
     )
 
+    def __str__(self):
+        return self.slug
+
     @property
     def display_name(self):
         if self.thematic:
@@ -79,7 +84,7 @@ class Homepage(models.Model):
             )
 
 
-class HomepageTranslation(models.Model):
+class HomepageTranslation(AuditModelMixin, models.Model):
     """
     Translations of a homepage item.
     """
@@ -162,32 +167,4 @@ class HomepageTranslation(models.Model):
 
     @property
     def last_activity_label(self):
-        """
-        Returns a human-readable string describing the last
-        meaningful action on this translation.
-        """
-        if self.status == self.Status.PUBLISHED:
-            user = self.published_by
-            date = self.published_at
-            verb = _("Published on")
-        elif self.status == self.Status.ARCHIVED:
-            user = self.updated_by
-            date = self.updated_at
-            verb = _("Archived on")
-        else:
-            if self.updated_by:
-                user = self.updated_by
-                date = self.updated_at
-                verb = _("Updated on")
-            else:
-                user = self.created_by
-                date = self.created_at
-                verb = _("Created on")
-
-        user_name = f"{user.first_name} {user.last_name}" if user else ""
-
-        if date is None:
-            return f"{verb} — ({user_name})"
-        date = localtime(date)
-
-        return f"{verb} {date.strftime('%d.%m.%Y %H:%M')} ({user_name})"
+        return get_last_activity_label(instance=self)

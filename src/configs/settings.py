@@ -60,10 +60,15 @@ INSTALLED_APPS = [
     #
     # Packages
     "django_epfl_web2018",
+    "django_filters",
     "django_vite",
+    "drf_spectacular",
     "mozilla_django_oidc",
+    "rest_framework",
     #
     # Applications
+    "audit_log",
+    "api",
     "block_types",
     "entities",
     "homepages",
@@ -83,6 +88,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "audit_log.middleware.AuditUserMiddleware",
 ]
 
 ROOT_URLCONF = "configs.urls"
@@ -191,6 +197,46 @@ DJANGO_VITE = {
     "default": {
         "dev_mode": DEBUG,
     }
+}
+
+
+# Django REST Framework
+# https://www.django-rest-framework.org/
+
+REST_FRAMEWORK = {
+    "ALLOWED_VERSIONS": ["v1"],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+    "DEFAULT_FILTER_BACKENDS": [
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "DEFAULT_PAGINATION_CLASS": (
+        "rest_framework.pagination.PageNumberPagination"
+    ),
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "rest_framework.renderers.BrowsableAPIRenderer",
+    ],
+    "DEFAULT_SCHEMA_CLASS": ("drf_spectacular.openapi.AutoSchema"),
+    "DEFAULT_VERSION": "v1",
+    "DEFAULT_VERSIONING_CLASS": (
+        "rest_framework.versioning.URLPathVersioning"
+    ),
+    "PAGE_SIZE": 10,
+}
+
+SPECTACULAR_SETTINGS = {
+    # Basic metadata
+    "TITLE": _("Actu API"),
+    "DESCRIPTION": _("API documentation for Actu."),
+    "VERSION": "1.0.0",
+    # Swagger UI behavior
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SWAGGER_UI_FAVICON_HREF": "https://web2018.epfl.ch/logo/favicon.ico",
 }
 
 

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load django_vite %}
+{% load i18n %}
+
+{% block web2018_title %}{% trans 'News' %} · {% trans "Manage News" %}{% endblock %}
+
+{% block web2018_content %}
+  <main id="main" class="content">
+    <div class="container-lg">
+      <h1 class="h2 my-5">{% trans "Manage News" %}</h1>
+      <a class="btn btn-primary btn-sm mb-3" href="#">
+        <svg class="icon feather" aria-hidden="true"><use xlink:href="#plus"></use></svg>
+        {% trans "Create news" %}
+      </a>
+      {% if not news_rows %}
+        <p class="text-muted">{% trans "No news available." %}</p>
+      {% else %}
+        <div id="manage-news-list" class="list-group">
+          {% for row in news_rows %}
+            <div class="list-group-item list-group-teaser">
+              <div class="list-group-teaser-container text-sm">
+                <div class="list-group-teaser-thumbnail">
+                  <img class="img-fluid" src="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-1440x810.jpg">
+                </div>
+                <div class="list-group-teaser-content pl-lg-0 d-flex flex-column justify-content-between">
+                  {% for lang_code, lang_label, translation in row.lang_cells %}
+                    <div class="d-flex align-items-center">
+                      <span class="tag tag-sm tag-light flex-shrink-0 text-center mr-2 m-0">{{ lang_code.upper }}</span>
+                      {% if translation %}
+                        <span class="badge {{ translation.status }} flex-shrink-0 text-center text-xs mr-2" title="{{ translation.last_activity_label }}">
+                          {{ translation.get_status_display }}</span>
+                        <div class="flex-grow-1 text-truncate mr-2">{{ translation.title|default:"-" }}</div>
+                        <div class="d-flex flex-shrink-0 align-items-center">
+                          {% if translation.status == 'published' or translation.status == 'draft' %}
+                            <a href="#" class="btn btn-sm btn-actions btn-outline-dark mr-1" title="{% trans "Preview and publish" %}">
+                              <svg class="icon feather" aria-hidden="true"><use xlink:href="#eye"></use></svg></a>
+                            <a href="#" class="btn btn-sm btn-actions btn-outline-tertiary mr-1" title="{% trans "Edit" %}">
+                              <svg class="icon feather" aria-hidden="true"><use xlink:href="#edit-2"></use>
+                              </svg></a>
+                            <form method="post" action="{% url 'delete_news_translation' row.news.id lang_code %}" class="d-inline">
+                              {% csrf_token %}
+                              <button type="button" class="btn btn-sm btn-actions btn-outline-danger" title="{% trans "Delete" %}"
+                                data-toggle="modal" data-target="#confirm_delete"
+                                data-item-type="news" data-item-name="{{ translation.title|default:"-" }}"
+                                data-lang="{{ lang_label }}">
+                                <svg class="icon feather" aria-hidden="true"><use xlink:href="#trash-2"></use></svg>
+                              </button>
+                            </form>
+                          {% else %}
+                            <form method="post" action="{% url 'restore_news_translation' row.news.id lang_code %}" class="d-inline">
+                              {% csrf_token %}
+                              <button type="submit" class="btn btn-sm btn-actions btn-outline-dark" title="{% trans "Restore" %}">
+                                <svg class="icon feather" aria-hidden="true"><use xlink:href="#rotate-ccw"></use></svg>
+                              </button>
+                            </form>
+                          {% endif %}
+                        </div>
+                      {% else %}
+                        <a href="#" class="btn btn-sm btn-actions btn-secondary text-small mr-1" title="{% trans "Create" %}">
+                          <svg class="icon feather" aria-hidden="true"><use xlink:href="#plus"></use></svg>{% trans 'Create' %}</a>
+                      {% endif %}
+                    </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <!-- Confirm delete modal -->
+        <div class="modal fade" id="confirm_delete" tabindex="-1" role="dialog" aria-labelledby="confirm_delete_label" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirm_delete_label">{% trans "Delete translation" %}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="{% trans "Close" %}">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>
+                  {% trans "Do you really want to delete this news translation?" %}
+                </p>
+                <p>
+                  <strong id="confirm-delete-news"></strong> (<span id="confirm-delete-lang"></span>)
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Cancel" %}</button>
+                <button type="button" class="btn btn-danger" id="confirm-delete-submit">{% trans "Delete" %}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </main>
+{% endblock %}
+
+{% block web2018_extra_js %}
+  {{ block.super }}
+  {% vite_asset 'assets/components/modals/confirm-delete.js' %}
+{% endblock %}

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-07 14:11+0200\n"
+"POT-Creation-Date: 2026-08-27 16:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,6 +13,126 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Filter by whether the thematic is marked as main."
+msgstr ""
+
+msgid "Search across labels in all supported languages."
+msgstr ""
+
+msgid "Sort the results by the selected field."
+msgstr ""
+
+msgid "Unique identifier of the thematic."
+msgstr ""
+
+msgid "Whether this thematic is marked as main."
+msgstr ""
+
+msgid "Display order of the thematic."
+msgstr ""
+
+msgid "Thematics"
+msgstr ""
+
+msgid "List active thematics"
+msgstr ""
+
+msgid "Return all active thematics ordered by identifier."
+msgstr ""
+
+msgid "Retrieve a thematic"
+msgstr ""
+
+msgid "Return a single active thematic by its identifier."
+msgstr ""
+
+msgid "Object Type"
+msgstr ""
+
+msgid "Object ID"
+msgstr ""
+
+msgid "Object Name"
+msgstr ""
+
+msgid "Not defined"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "User"
+msgstr ""
+
+msgid "System"
+msgstr ""
+
+msgid "Global log"
+msgstr ""
+
+msgid "Global Logs"
+msgstr ""
+
+msgid "News"
+msgstr ""
+
+msgid "Audit Logs"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Search a detail..."
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Action"
+msgstr ""
+
+msgid "Create"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "From"
+msgstr ""
+
+msgid "To"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Apply"
+msgstr ""
+
+msgid "result(s) found"
+msgstr ""
+
+msgid "Subject"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "View details"
+msgstr ""
+
+msgid "No details"
+msgstr ""
+
+msgid "No result"
+msgstr ""
+
+msgid "Empty"
+msgstr ""
 
 msgid "Block Type"
 msgstr ""
@@ -30,6 +150,12 @@ msgid "German"
 msgstr ""
 
 msgid "Italian"
+msgstr ""
+
+msgid "Actu API"
+msgstr ""
+
+msgid "API documentation for Actu."
 msgstr ""
 
 msgid "Has Homepage"
@@ -125,21 +251,6 @@ msgstr ""
 msgid "Published by"
 msgstr ""
 
-msgid "Published on"
-msgstr ""
-
-msgid "Archived on"
-msgstr ""
-
-msgid "Updated on"
-msgstr ""
-
-msgid "Created on"
-msgstr ""
-
-msgid "News"
-msgstr ""
-
 msgid "My Homepages"
 msgstr ""
 
@@ -152,16 +263,7 @@ msgstr ""
 msgid "Preview and publish"
 msgstr ""
 
-msgid "Edit"
-msgstr ""
-
-msgid "Delete"
-msgstr ""
-
 msgid "Restore"
-msgstr ""
-
-msgid "Create"
 msgstr ""
 
 msgid "Edit permissions"
@@ -171,6 +273,9 @@ msgid "Permissions"
 msgstr ""
 
 msgid "Delete translation"
+msgstr ""
+
+msgid "Close"
 msgstr ""
 
 msgid "Do you really want to delete this homepage translation?"
@@ -207,9 +312,6 @@ msgid "Nobody has permission to manage this homepage."
 msgstr ""
 
 msgid "Remove user"
-msgstr ""
-
-msgid "Close"
 msgstr ""
 
 msgid "Are you sure you want to remove permissions for this user?"
@@ -254,9 +356,6 @@ msgstr ""
 msgid "Translation restored successfully."
 msgstr ""
 
-msgid "Thematics"
-msgstr ""
-
 msgid "Thematics related to this news."
 msgstr ""
 
@@ -264,6 +363,18 @@ msgid "Entities related to this news."
 msgstr ""
 
 msgid "Format"
+msgstr ""
+
+msgid "Manage News"
+msgstr ""
+
+msgid "Create news"
+msgstr ""
+
+msgid "No news available."
+msgstr ""
+
+msgid "Do you really want to delete this news translation?"
 msgstr ""
 
 msgid "News Format"
@@ -278,10 +389,16 @@ msgstr ""
 msgid "Others"
 msgstr ""
 
-msgid "News by entity"
+msgid "Previous"
 msgstr ""
 
-msgid "My News"
+msgid "Current page"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "News by entity"
 msgstr ""
 
 msgid "Administration"
@@ -309,6 +426,18 @@ msgid "News translations"
 msgstr ""
 
 msgid "Title"
+msgstr ""
+
+msgid "Published on"
+msgstr ""
+
+msgid "Archived on"
+msgstr ""
+
+msgid "Updated on"
+msgstr ""
+
+msgid "Created on"
 msgstr ""
 
 msgid "Label in French"

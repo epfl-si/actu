@@ -1,0 +1,16 @@
+[
+  {
+    "model": "news.news",
+    "pk": 1,
+    "fields": {
+      "created_at": "2026-08-10T13:18:43.943Z",
+      "created_by": 1,
+      "thematics": [
+        1
+      ],
+      "entities": [
+        1
+      ]
+    }
+  }
+]

@@ -35,7 +35,6 @@ def _handle_post_action(request, homepage):
 
         user = User.objects.filter(sciper=sciper).first()
         if not user:
-            client = AccredServiceClient()
             person_details = client.get_person_details(sciper)
 
             if person_details:

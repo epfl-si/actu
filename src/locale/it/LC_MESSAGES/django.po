@@ -1,10 +1,9 @@
-#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-27 16:43+0200\n"
+"POT-Creation-Date: 2026-09-02 13:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -14,14 +13,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Filter by whether the thematic is marked as main."
-msgstr "Filtra in base alla marcatura della tematica come principale."
-
 msgid "Search across labels in all supported languages."
 msgstr "Cerca tra le etichette in tutte le lingue supportate."
 
 msgid "Sort the results by the selected field."
 msgstr "Ordina i risultati in base al campo selezionato."
+
+msgid "Filter by whether the entity is marked as main."
+msgstr "Filtra in base alla marcatura dell'entità come principale."
+
+msgid "Filter by whether the thematic is marked as main."
+msgstr "Filtra in base alla marcatura della tematica come principale."
+
+msgid "Unique identifier of the entity."
+msgstr "Identificatore univoco dell'entità."
+
+msgid "Whether this entity is marked as main."
+msgstr "Indica se questa entità è marcata come principale."
+
+msgid "Display order of the entity among main entities."
+msgstr "Ordine di visualizzazione della tematica tra le tematiche principali."
 
 msgid "Unique identifier of the thematic."
 msgstr "Identificatore univoco della tematica."
@@ -31,6 +42,21 @@ msgstr "Indica se questa tematica è marcata come principale."
 
 msgid "Display order of the thematic."
 msgstr "Ordine di visualizzazione della tematica."
+
+msgid "Entities"
+msgstr "Entità"
+
+msgid "List active entities"
+msgstr "Elenca le entità attive"
+
+msgid "Return all active entities ordered by identifier."
+msgstr "Restituisce tutte le entità attive ordinate per identificatore."
+
+msgid "Retrieve an entity"
+msgstr "Recupera un'entità"
+
+msgid "Return a single active entity by its identifier."
+msgstr "Restituisce una singola entità attiva in base al suo identificatore."
 
 msgid "Thematics"
 msgstr "Tematiche"
@@ -164,9 +190,6 @@ msgstr "Ha una pagina principale"
 msgid "Entity"
 msgstr "Entità"
 
-msgid "Entities"
-msgstr "Entità"
-
 msgid "Active"
 msgstr "Attivo"
 
@@ -182,8 +205,12 @@ msgstr "Indica se questa entità (Scuola) viene visualizzata nel piè di pagina.
 msgid "Order"
 msgstr "Ordine"
 
-msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
-msgstr "Definisce l'ordine di visualizzazione. Un valore di 0 significa che l'ordine viene ignorato (per le entità non principali)."
+msgid ""
+"Defines the display order. A value of 0 means that the order is ignored (for "
+"non-main entities)."
+msgstr ""
+"Definisce l'ordine di visualizzazione. Un valore di 0 significa che l'ordine "
+"viene ignorato (per le entità non principali)."
 
 msgid "Name"
 msgstr "Nome"
@@ -207,10 +234,13 @@ msgid "Users"
 msgstr "Utenti"
 
 msgid "A Homepage cannot be linked to both a thematic and an entity."
-msgstr "Una pagina principale non può essere collegata contemporaneamente a una tematica e a un'entità."
+msgstr ""
+"Una pagina principale non può essere collegata contemporaneamente a una "
+"tematica e a un'entità."
 
 msgid "A Homepage must be linked to either a thematic or an entity."
-msgstr "Una pagina principale deve essere collegata a una tematica o a un'entità."
+msgstr ""
+"Una pagina principale deve essere collegata a una tematica o a un'entità."
 
 msgid "Draft"
 msgstr "Bozza"

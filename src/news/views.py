@@ -96,4 +96,3 @@ def restore_news_translation(request, news_id, lang):
     messages.success(request, _("Translation restored successfully."))
 
     return redirect("manage_news")
->>>>>>> main

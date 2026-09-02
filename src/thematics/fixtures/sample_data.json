@@ -1,0 +1,54 @@
+[
+  {
+    "model": "thematics.thematic",
+    "pk": 1,
+    "fields": {
+      "label_fr": "IA",
+      "label_en": "AI",
+      "label_de": "KI",
+      "label_it": "IA",
+      "is_active": true,
+      "is_main": true,
+      "order": 0
+    }
+  },
+  {
+    "model": "thematics.thematic",
+    "pk": 2,
+    "fields": {
+      "label_fr": "Santé",
+      "label_en": "Health",
+      "label_de": "Gesundheit",
+      "label_it": "Salute",
+      "is_active": true,
+      "is_main": true,
+      "order": 1
+    }
+  },
+  {
+    "model": "thematics.thematic",
+    "pk": 3,
+    "fields": {
+      "label_fr": "Energie",
+      "label_en": "Energy",
+      "label_de": "Energy_de",
+      "label_it": "Energy_it",
+      "is_active": true,
+      "is_main": false,
+      "order": 0
+    }
+  },
+  {
+    "model": "thematics.thematic",
+    "pk": 3,
+    "fields": {
+      "label_fr": "Climat",
+      "label_en": "Climate",
+      "label_de": "Klima",
+      "label_it": "Clima",
+      "is_active": true,
+      "is_main": false,
+      "order": 0
+    }
+  }
+]

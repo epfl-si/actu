@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-25 18:25+0200\n"
+"POT-Creation-Date: 2026-08-27 16:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,14 +17,14 @@ msgstr ""
 msgid "Filter by whether the entity (School) appears in the footer."
 msgstr ""
 
+msgid "Filter by whether the thematic is marked as main."
+msgstr "Filtrer selon que la thématique est marquée comme principale ou non."
+
 msgid "Search across labels in all supported languages."
 msgstr "Rechercher dans les libellés de toutes les langues prises en charge."
 
 msgid "Sort the results by the selected field."
 msgstr "Trie les résultats selon le champ sélectionné."
-
-msgid "Filter by whether the thematic appears in the main menu."
-msgstr ""
 
 msgid "Unique identifier of the entity."
 msgstr ""
@@ -38,14 +38,14 @@ msgstr ""
 msgid "Unique identifier of the thematic."
 msgstr "Identifiant unique de la thématique."
 
-msgid "Whether this thematic is displayed on the main menu."
-msgstr "Indique si cette thématique est affichée dans le menu principal."
+msgid "Whether this thematic is marked as main."
+msgstr "Indique si cette thématique est marquée comme principale."
 
-msgid "Display order of the thematic among main thematics."
-msgstr "Ordre d'affichage de la thématique parmi les thématiques principales."
+msgid "Display order of the thematic."
+msgstr "Ordre d'affichage de la thématique."
 
-msgid "Entities"
-msgstr "Entités"
+msgid "Thematics"
+msgstr "Thématiques"
 
 msgid "List active entities"
 msgstr ""
@@ -59,9 +59,6 @@ msgstr ""
 msgid "Return a single active entity by its identifier."
 msgstr ""
 
-msgid "Thematics"
-msgstr "Thématiques"
-
 msgid "List active thematics"
 msgstr "Lister les thématiques actives"
 
@@ -73,7 +70,6 @@ msgstr "Récupérer une thématique"
 
 msgid "Return a single active thematic by its identifier."
 msgstr "Retourne une thématique active unique à partir de son identifiant."
-
 msgid "Block Type"
 msgstr "Type de bloc"
 
@@ -103,6 +99,9 @@ msgstr "A une page d'accueil"
 
 msgid "Entity"
 msgstr "Entité"
+
+msgid "Entities"
+msgstr "Entités"
 
 msgid "Active"
 msgstr "Actif"
@@ -188,9 +187,6 @@ msgstr "Publié le"
 msgid "Published by"
 msgstr "Publié par"
 
-msgid "News"
-msgstr "Actualités"
-
 msgid "My Homepages"
 msgstr "Mes pages d'accueil"
 
@@ -203,17 +199,8 @@ msgstr "Actions"
 msgid "Preview and publish"
 msgstr "Prévisualiser et publier"
 
-msgid "Edit"
-msgstr "Modifier"
-
-msgid "Delete"
-msgstr "Supprimer"
-
 msgid "Restore"
 msgstr "Restaurer"
-
-msgid "Create"
-msgstr "Créer"
 
 msgid "Edit permissions"
 msgstr "Modifier les autorisations"
@@ -223,6 +210,9 @@ msgstr "Autorisations"
 
 msgid "Delete translation"
 msgstr "Supprimer la traduction"
+
+msgid "Close"
+msgstr "Fermer"
 
 msgid "Do you really want to delete this homepage translation?"
 msgstr "Voulez-vous vraiment supprimer cette traduction de page d'accueil?"
@@ -259,9 +249,6 @@ msgstr "Personne n'a la permission de gérer cette page d'accueil."
 
 msgid "Remove user"
 msgstr "Supprimer"
-
-msgid "Close"
-msgstr "Fermer"
 
 msgid "Are you sure you want to remove permissions for this user?"
 msgstr "Etes-vous sûr d'enlever la permission à cet utilisateur ?"
@@ -337,6 +324,15 @@ msgstr "Choix de la langue"
 
 msgid "Others"
 msgstr "Autres"
+
+msgid "Previous"
+msgstr "Précédent"
+
+msgid "Current page"
+msgstr "Page actuelle"
+
+msgid "Next"
+msgstr "Suivant"
 
 msgid "News by entity"
 msgstr "Les actualités par faculté"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-25 18:25+0200\n"
+"POT-Creation-Date: 2026-08-24 11:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,66 +13,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-msgid "Filter by whether the entity (School) appears in the footer."
-msgstr ""
-
-msgid "Search across labels in all supported languages."
-msgstr ""
-
-msgid "Sort the results by the selected field."
-msgstr ""
-
-msgid "Filter by whether the thematic appears in the main menu."
-msgstr ""
-
-msgid "Unique identifier of the entity."
-msgstr ""
-
-msgid "Whether this entity (School) is displayed on the footer."
-msgstr ""
-
-msgid "Display order of the entity among main entities."
-msgstr ""
-
-msgid "Unique identifier of the thematic."
-msgstr ""
-
-msgid "Whether this thematic is displayed on the main menu."
-msgstr ""
-
-msgid "Display order of the thematic among main thematics."
-msgstr ""
-
-msgid "Entities"
-msgstr ""
-
-msgid "List active entities"
-msgstr ""
-
-msgid "Return all active entities ordered by identifier."
-msgstr ""
-
-msgid "Retrieve an entity"
-msgstr ""
-
-msgid "Return a single active entity by its identifier."
-msgstr ""
-
-msgid "Thematics"
-msgstr ""
-
-msgid "List active thematics"
-msgstr ""
-
-msgid "Return all active thematics ordered by identifier."
-msgstr ""
-
-msgid "Retrieve a thematic"
-msgstr ""
-
-msgid "Return a single active thematic by its identifier."
-msgstr ""
 
 msgid "Block Type"
 msgstr ""
@@ -102,6 +42,9 @@ msgid "Has Homepage"
 msgstr ""
 
 msgid "Entity"
+msgstr ""
+
+msgid "Entities"
 msgstr ""
 
 msgid "Active"
@@ -303,6 +246,9 @@ msgid "This translation is not archived."
 msgstr ""
 
 msgid "Translation restored successfully."
+msgstr ""
+
+msgid "Thematics"
 msgstr ""
 
 msgid "Thematics related to this news."

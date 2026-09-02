@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
@@ -24,10 +25,17 @@ def manage_news(request):
         Prefetch("translations", queryset=translations_qs)
     )
 
+    paginator = Paginator(news, 10)
+    page_number = request.GET.get("page", 1)
+    page_obj = paginator.get_page(page_number)
+    page_range = paginator.get_elided_page_range(
+        page_obj.number, on_each_side=1, on_ends=1
+    )
+
     languages = settings.LANGUAGES
 
     news_rows = []
-    for n in news:
+    for n in page_obj:
         translations_by_lang = {t.language: t for t in n.translations.all()}
         lang_cells = [
             (lang_code, lang_label, translations_by_lang.get(lang_code))
@@ -40,11 +48,19 @@ def manage_news(request):
             }
         )
 
+    query_dict = request.GET.copy()
+    if "page" in query_dict:
+        del query_dict["page"]
+
     return render(
         request,
         "manage_news.html",
         {
             "news_rows": news_rows,
+            "page_obj": page_obj,
+            "page_range": page_range,
+            "paginator": paginator,
+            "query_string": query_dict.urlencode(),
         },
     )
 

@@ -44,9 +44,7 @@ class EntityFilter(django_filters.FilterSet):
 
 class ThematicFilter(django_filters.FilterSet):
     is_main = django_filters.BooleanFilter(
-        help_text=_(
-            "Filter by whether the thematic appears in the main menu."
-        ),
+        help_text=_("Filter by whether the thematic is marked as main."),
     )
     search = django_filters.CharFilter(
         method="filter_search",

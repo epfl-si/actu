@@ -27,14 +27,17 @@ def _handle_post_action(request, language, news=None, translation=None):
         language=language,
     )
 
-    news_id = form.validate_and_save(request.user)
-    if news_id:
-        messages.success(request, _("The news has been saved successfully."))
-        url_to_redirect = reverse(
-            "edit_news",
-            kwargs={"news_id": news_id, "lang": language},
-        )
-        return HttpResponseRedirect(url_to_redirect)
+    if form.is_valid():
+        news_id = form.save(request.user)
+        if news_id:
+            messages.success(
+                request, _("The news has been saved successfully.")
+            )
+            url_to_redirect = reverse(
+                "edit_news",
+                kwargs={"news_id": news_id, "lang": language},
+            )
+            return HttpResponseRedirect(url_to_redirect)
 
 
 def _initialize_view():
@@ -109,7 +112,7 @@ def edit_news(request, news_id, lang):
     thematics, entities, formats, languages = _initialize_view()
 
     news = get_object_or_404(News, id=news_id)
-    translation = NewsTranslation.get(news_id, language=lang)
+    translation = news.get_translation(language=lang)
     form = NewsWithTranslationForm(
         post_data=None,
         news_instance=news,

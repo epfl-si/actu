@@ -69,10 +69,9 @@ class NewsWithTranslationForm:
         translation_valid = self.translation.is_valid()
         return news_valid and translation_valid
 
-    def validate_and_save(self, user):
-        if self.is_valid():
-            with transaction.atomic():
-                news = self.news.save(user)
-                self.translation.save(user, self.language, news)
+    def save(self, user):
+        with transaction.atomic():
+            news = self.news.save(user)
+            self.translation.save(user, self.language, news)
 
-            return news.id
+        return news.id

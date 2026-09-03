@@ -383,6 +383,21 @@ msgstr "Comune"
 msgid "Title"
 msgstr "Titolo"
 
+msgid "Hat"
+msgstr "Intestazione"
+
+msgid "Extract"
+msgstr "Estratto"
+
+msgid "Author"
+msgstr "Autore"
+
+msgid "Funding"
+msgstr "Finanziamento"
+
+msgid "References"
+msgstr "Referenze"
+
 msgid "Save"
 msgstr "Salva"
 

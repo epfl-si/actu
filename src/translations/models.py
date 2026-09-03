@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from tinymce.models import HTMLField
 
 from audit_log.models import AuditModelMixin
 from news.models import News
@@ -43,6 +44,15 @@ class NewsTranslation(AuditModelMixin, models.Model):
         max_length=90,
         verbose_name=_("Title"),
     )
+    hat = HTMLField(
+        verbose_name=_("Hat"),
+    )
+    extract = HTMLField(verbose_name=_("Extract"), null=True, blank=True)
+    author = HTMLField(
+        verbose_name=_("Author"),
+    )
+    funding = HTMLField(verbose_name=_("Funding"), null=True, blank=True)
+    references = HTMLField(verbose_name=_("References"), null=True, blank=True)
     status = models.CharField(
         max_length=20,
         choices=Status.choices,

@@ -30,14 +30,14 @@
       <div class="tab-pane fade show active" id="{{ form.language }}" role="tabpanel" aria-labelledby="{{ form.language }}-tab">
         <form id="addFormNews-{{ form.language }}" method="POST">
           {% csrf_token %}
-          <div class="row">
+          <div class="row ">
             <div class="form-group col-md-3">
               <span class="text-danger">*</span>
               <label for="format-select-{{ form.language }}" class="{% if form.news.format.errors %}invalid-label{% endif %}">{% trans "Format" %}</label>
               <span class="float-right" title="{% trans "Common" %}">
-                <svg class="icon feather" aria-hidden="true">
-                  <use xlink:href="#crosshair"></use>
-                </svg>
+              <svg class="icon feather" aria-hidden="true">
+                <use xlink:href="#crosshair"></use>
+              </svg>
               </span>
               <select
                 class="custom-select {% if form.news.format.errors %}is-invalid{% endif %}"
@@ -60,9 +60,9 @@
               <span class="text-danger">*</span>
               <label for="thematic-select-{{ form.language }}" class="{% if form.news.thematics.errors %}invalid-label{% endif %}">{% trans "Thematics" %}</label>
               <span class="float-right" title="{% trans "Common" %}">
-                <svg class="icon feather" aria-hidden="true">
-                  <use xlink:href="#crosshair"></use>
-                </svg>
+              <svg class="icon feather" aria-hidden="true">
+                <use xlink:href="#crosshair"></use>
+              </svg>
               </span>
               <select
                 multiple
@@ -86,9 +86,9 @@
             <div class="form-group col-md-6">
               <label for="entite-select-{{ form.language }}">{% trans "Entities" %}</label>
               <span class="float-right" title="{% trans "Common" %}">
-                <svg class="icon feather" aria-hidden="true">
-                  <use xlink:href="#crosshair"></use>
-                </svg>
+              <svg class="icon feather" aria-hidden="true">
+                <use xlink:href="#crosshair"></use>
+              </svg>
               </span>
               <select
                 multiple
@@ -118,7 +118,54 @@
             </small>
             {% endfor %}
           </div>
-          <div class="d-flex flex-wrap align-items-start">
+          <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="{% if form.translation.hat.errors %}invalid-label{% endif %}" for="hat-{{ lang.code }}">
+                  {% trans "Hat" %}
+                </label>
+                {{ form.translation.hat }}
+                {{ form.translation.media }}
+                {% for error in form.translation.hat.errors %}
+                <small class="form-text invalid-feedback">
+                  <ul class="errorlist" id="id_hat_error"><li>{{ error }}</li></ul>
+                </small>
+                {% endfor %}
+              </div>
+              <div class="form-group">
+                <label for="extract-{{ lang.code }}">
+                  {% trans "Extract" %}
+                </label>
+                {{ form.translation.extract }}
+                {{ form.translation.media }}
+              </div>
+              <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="{% if form.translation.author.errors %}invalid-label{% endif %}" for="author-{{ lang.code }}">
+                  {% trans "Author" %}
+                </label>
+                {{ form.translation.author }}
+                {{ form.translation.media }}
+                {% for error in form.translation.author.errors %}
+                <small class="form-text invalid-feedback">
+                  <ul class="errorlist" id="id_author_error"><li>{{ error }}</li></ul>
+                </small>
+                {% endfor %}
+              </div>
+              <div class="form-group">
+                <label for="funding-{{ lang.code }}">
+                  {% trans "Funding" %}
+                </label>
+                {{ form.translation.funding }}
+                {{ form.translation.media }}
+              </div>
+              <div class="form-group">
+                <label for="references-{{ lang.code }}">
+                  {% trans "References" %}
+                </label>
+                {{ form.translation.references }}
+                {{ form.translation.media }}
+              </div>
+              <div class="d-flex flex-wrap align-items-start">
             <div class="d-flex flex-wrap">
               <button id="add-btn-news-{{ form.language }}" class="btn btn-primary btn-sm mr-2 mb-2" type="submit">
                 {% trans "Save" %}

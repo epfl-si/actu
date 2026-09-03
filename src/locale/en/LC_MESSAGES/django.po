@@ -383,6 +383,21 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+msgid "Hat"
+msgstr ""
+
+msgid "Extract"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Funding"
+msgstr ""
+
+msgid "References"
+msgstr ""
+
 msgid "Save"
 msgstr ""
 

@@ -14,13 +14,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Filter by whether the thematic is marked as main."
-msgstr ""
-
 msgid "Search across labels in all supported languages."
 msgstr ""
 
 msgid "Sort the results by the selected field."
+msgstr ""
+
+msgid "Filter by whether the entity is marked as main."
+msgstr ""
+
+msgid "Filter by whether the thematic is marked as main."
+msgstr ""
+
+msgid "Unique identifier of the entity."
+msgstr ""
+
+msgid "Whether this entity is marked as main."
+msgstr ""
+
+msgid "Display order of the entity among main entities."
 msgstr ""
 
 msgid "Unique identifier of the thematic."
@@ -30,6 +42,21 @@ msgid "Whether this thematic is marked as main."
 msgstr ""
 
 msgid "Display order of the thematic."
+msgstr ""
+
+msgid "Entities"
+msgstr ""
+
+msgid "List active entities"
+msgstr ""
+
+msgid "Return all active entities ordered by identifier."
+msgstr ""
+
+msgid "Retrieve an entity"
+msgstr ""
+
+msgid "Return a single active entity by its identifier."
 msgstr ""
 
 msgid "Thematics"
@@ -164,9 +191,6 @@ msgstr ""
 msgid "Entity"
 msgstr ""
 
-msgid "Entities"
-msgstr ""
-
 msgid "Active"
 msgstr ""
 
@@ -182,7 +206,9 @@ msgstr ""
 msgid "Order"
 msgstr ""
 
-msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
+msgid ""
+"Defines the display order. A value of 0 means that the order is ignored (for "
+"non-main entities)."
 msgstr ""
 
 msgid "Name"

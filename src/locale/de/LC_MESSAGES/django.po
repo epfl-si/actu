@@ -14,14 +14,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Filter by whether the thematic is marked as main."
-msgstr "Filtert, ob das Thema als Hauptthema markiert ist."
-
 msgid "Search across labels in all supported languages."
 msgstr "Suche über Bezeichnungen in allen unterstützten Sprachen."
 
 msgid "Sort the results by the selected field."
 msgstr "Sortiert die Ergebnisse nach dem ausgewählten Feld."
+
+msgid "Filter by whether the entity is marked as main."
+msgstr "Filtert, ob die Einheit als Haupteinheit markiert ist."
+
+msgid "Filter by whether the thematic is marked as main."
+msgstr "Filtert, ob das Thema als Hauptthema markiert ist."
+
+msgid "Unique identifier of the entity."
+msgstr "Eindeutiger Identifikator der Einheit."
+
+msgid "Whether this entity is marked as main."
+msgstr "Gibt an, ob diese Einheit als Haupteinheit markiert ist."
+
+msgid "Display order of the entity among main entities."
+msgstr "Anzeigereihenfolge der Einheit unter den Haupteinheiten."
 
 msgid "Unique identifier of the thematic."
 msgstr "Eindeutiger Identifikator des Themas."
@@ -31,6 +43,21 @@ msgstr "Gibt an, ob dieses Thema als Hauptthema markiert ist."
 
 msgid "Display order of the thematic."
 msgstr "Anzeigereihenfolge des Themas."
+
+msgid "Entities"
+msgstr "Einheiten"
+
+msgid "List active entities"
+msgstr "Aktive Einheiten auflisten"
+
+msgid "Return all active entities ordered by identifier."
+msgstr "Gibt alle aktiven Einheiten sortiert nach Kennung zurück."
+
+msgid "Retrieve an entity"
+msgstr "Eine Einheit abrufen"
+
+msgid "Return a single active entity by its identifier."
+msgstr "Gibt eine einzelne aktive Einheit anhand ihrer Kennung zurück."
 
 msgid "Thematics"
 msgstr "Themen"
@@ -164,9 +191,6 @@ msgstr "Hat Startseite"
 msgid "Entity"
 msgstr "Einheit"
 
-msgid "Entities"
-msgstr "Einheiten"
-
 msgid "Active"
 msgstr "Aktiv"
 
@@ -182,8 +206,12 @@ msgstr "Gibt an, ob diese Einheit (Schule) im Footer angezeigt wird."
 msgid "Order"
 msgstr "Reihenfolge"
 
-msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
-msgstr "Definiert die Anzeige-Reihenfolge. Ein Wert von 0 bedeutet, dass die Reihenfolge ignoriert wird (für nicht-haupt-Entitäten)."
+msgid ""
+"Defines the display order. A value of 0 means that the order is ignored (for "
+"non-main entities)."
+msgstr ""
+"Definiert die Anzeige-Reihenfolge. Ein Wert von 0 bedeutet, dass die "
+"Reihenfolge ignoriert wird (für nicht-haupt-Entitäten)."
 
 msgid "Name"
 msgstr "Name"
@@ -207,10 +235,14 @@ msgid "Users"
 msgstr "Benutzer"
 
 msgid "A Homepage cannot be linked to both a thematic and an entity."
-msgstr "Eine Startseite kann nicht gleichzeitig mit einem Thema und einer Einheit verknüpft sein."
+msgstr ""
+"Eine Startseite kann nicht gleichzeitig mit einem Thema und einer Einheit "
+"verknüpft sein."
 
 msgid "A Homepage must be linked to either a thematic or an entity."
-msgstr "Eine Startseite muss entweder mit einem Thema oder einer Einheit verknüpft sein."
+msgstr ""
+"Eine Startseite muss entweder mit einem Thema oder einer Einheit verknüpft "
+"sein."
 
 msgid "Draft"
 msgstr "Entwurf"
@@ -315,7 +347,9 @@ msgid "Remove user"
 msgstr "Benutzer entfernen"
 
 msgid "Are you sure you want to remove permissions for this user?"
-msgstr "Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen möchten?"
+msgstr ""
+"Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen "
+"möchten?"
 
 msgid "No SCIPER provided."
 msgstr "Keine SCIPER-Nummer angegeben."
@@ -336,7 +370,8 @@ msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich entfernt."
 
 #, python-format
 msgid "The user %(first)s %(last)s has no permission to this homepage."
-msgstr "Der Benutzer %(first)s %(last)s hat keine Berechtigung für diese Startseite."
+msgstr ""
+"Der Benutzer %(first)s %(last)s hat keine Berechtigung für diese Startseite."
 
 msgid "A translation for this language already exists."
 msgstr "Für diese Sprache existiert bereits eine Übersetzung."
@@ -454,3 +489,6 @@ msgstr "Label auf Deutsch"
 
 msgid "Label in Italian"
 msgstr "Label auf Italienisch"
+
+#~ msgid "Display order of the thematic among main thematics."
+#~ msgstr "Anzeigereihenfolge des Themas unter den Hauptthemen."

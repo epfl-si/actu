@@ -15,6 +15,11 @@
       {% if not news_rows %}
         <p class="text-muted">{% trans "No news available." %}</p>
       {% else %}
+        <div class="d-flex justify-content-end mb-2">
+          <span class="text-muted">
+            {{ page_obj.paginator.count }} {% trans "result(s) found" %}
+          </span>
+        </div>
         <div id="manage-news-list" class="list-group">
           {% for row in news_rows %}
             <div class="list-group-item list-group-teaser">
@@ -66,6 +71,7 @@
             </div>
           {% endfor %}
         </div>
+        {% include "pagination.html" %}
         <!-- Confirm delete modal -->
         <div class="modal fade" id="confirm_delete" tabindex="-1" role="dialog" aria-labelledby="confirm_delete_label" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">

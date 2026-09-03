@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="list-group-teaser-content">
-                  <h3 class="h5 mb-1">Un endoscope à rigidité variable pour atteindre les zones difficiles</h3>
+                  <h3 class="h5 mb-1">{{ item.trans.title }}</h3>
                     <div class="list-group-teaser-excerpt small">
                       Naviguer dans les zones difficiles d’accès du corps humain tout en conservant une précision extrême : c’est le défi que relève...
                     </div>
@@ -24,14 +24,12 @@
                     {% if item.format %}
                       <span class="tag tag-sm mt-1 border-light mr-2">
                         {{ item.format }}
-
                         <svg class="icon" aria-hidden="true">
-                          <use xlink:href="{% if 'Podcast' in item.format|stringformat:'s' %}#mic{% elif 'Galerie' in item.format|stringformat:'s' %}#image{% elif 'Infographie' in item.format|stringformat:'s' %}#pie-chart{% elif 'Portrait' in item.format|stringformat:'s' %}#user{% elif 'Longread' in item.format|stringformat:'s' %}#book{% else %}#play-circle{% endif %}"></use>
+                          <use xlink:href="{{ item.format.icon }}"></use>
                         </svg>
-
-                        {% if 'Vidéo' in item.format|stringformat:'s' or 'Podcast' in item.format|stringformat:'s' %}
+                        {% if 'vidéo' in item.format|stringformat:'s'|lower or 'podcast' in item.format|stringformat:'s'|lower %}
                           1:30
-                        {% elif 'Galerie' in item.format|stringformat:'s' %}
+                        {% elif 'galerie' in item.format|stringformat:'s'|lower or 'gallery' in item.format|stringformat:'s'|lower %}
                           5
                         {% endif %}
                       </span>

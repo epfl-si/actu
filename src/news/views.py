@@ -2,8 +2,8 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Prefetch
-from django.utils.translation import get_language
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 
@@ -16,29 +16,37 @@ def list_news(request):
     current_lang = get_language()
 
     translations_qs = NewsTranslation.objects.filter(
-        language=current_lang,
-        status=NewsTranslation.Status.PUBLISHED
+        language=current_lang, status=NewsTranslation.Status.PUBLISHED
     )
 
-    news_list = News.objects.filter(
-        translations__language=current_lang,
-        translations__status=NewsTranslation.Status.PUBLISHED
-    ).select_related(
-        'format', 'created_by',
-    ).prefetch_related(
-        Prefetch('translations', queryset=translations_qs, to_attr='lang_translations'),
-        'thematics',
-        'entities'
-    ).distinct()
+    news_list = (
+        News.objects.filter(
+            translations__language=current_lang,
+            translations__status=NewsTranslation.Status.PUBLISHED,
+        )
+        .select_related(
+            "format",
+            "created_by",
+        )
+        .prefetch_related(
+            Prefetch(
+                "translations",
+                queryset=translations_qs,
+                to_attr="lang_translations",
+            ),
+            "thematics",
+            "entities",
+        )
+        .distinct()
+    )
 
     for item in news_list:
         item.trans = item.lang_translations[0]
 
-    context = {
-        'news': news_list
-    }
+    context = {"news": news_list}
 
-    return render(request, 'list.html', context)
+    return render(request, "list.html", context)
+
 
 @login_required
 def manage_news(request):

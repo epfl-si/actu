@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
+from django.utils.translation import override
 
 from news.models import News
 from translations.models import NewsTranslation
@@ -153,3 +154,88 @@ class RestoreNewsTranslationViewTest(TestCase):
         messages = list(response.context["messages"])
         self.assertEqual(len(messages), 1)
         self.assertIn("restored successfully", str(messages[0]))
+
+
+class ListNewsViewTest(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="bentoumi",
+            sciper="99999999",
+        )
+
+        self.news_pub_en = News.objects.create(created_by=self.user)
+        self.trans_pub_en = NewsTranslation.objects.create(
+            news=self.news_pub_en,
+            language="en",
+            status=NewsTranslation.Status.PUBLISHED,
+            created_by=self.user,
+            title="English Published News",
+        )
+
+        self.news_draft_en = News.objects.create(created_by=self.user)
+        self.trans_draft_en = NewsTranslation.objects.create(
+            news=self.news_draft_en,
+            language="en",
+            status=NewsTranslation.Status.DRAFT,
+            created_by=self.user,
+            title="English Draft News",
+        )
+
+        self.news_pub_fr = News.objects.create(created_by=self.user)
+        self.trans_pub_fr = NewsTranslation.objects.create(
+            news=self.news_pub_fr,
+            language="fr",
+            status=NewsTranslation.Status.PUBLISHED,
+            created_by=self.user,
+            title="Actualité Publiée en Français",
+        )
+
+    def test_view_url_exists_at_desired_location_and_uses_correct_template(
+        self,
+    ):
+        url = reverse("list_news")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "list.html")
+
+    def test_shows_only_published_news_in_english(self):
+        url = reverse("list_news")
+
+        with override("en"):
+            response = self.client.get(url)
+            news_in_context = list(response.context["news"])
+
+            self.assertIn(self.news_pub_en, news_in_context)
+
+            self.assertNotIn(self.news_draft_en, news_in_context)
+
+            self.assertNotIn(self.news_pub_fr, news_in_context)
+
+    def test_shows_only_published_news_in_french(self):
+        with override("fr"):
+            url = reverse("list_news")
+
+            response = self.client.get(url)
+            news_in_context = list(response.context["news"])
+
+            self.assertIn(self.news_pub_fr, news_in_context)
+            self.assertNotIn(self.news_pub_en, news_in_context)
+
+    def test_trans_attribute_is_correctly_assigned(self):
+        url = reverse("list_news")
+
+        with override("en"):
+            response = self.client.get(url)
+            news_list = list(response.context["news"])
+
+            returned_news = next(
+                n for n in news_list if n.id == self.news_pub_en.id
+            )
+
+            self.assertTrue(hasattr(returned_news, "trans"))
+
+            self.assertEqual(
+                returned_news.trans.title, "English Published News"
+            )
+            self.assertEqual(returned_news.trans.language, "en")

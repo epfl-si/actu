@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load i18n humanize %}
+
+{% block web2018_content %}
+  <main id="main" class="content py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+
+          {% if not news %}
+            <p class="text-muted">{% trans "No news available." %}</p>
+          {% else %}
+
+            <div class="d-flex justify-content-end mb-2">
+              <span class="text-muted small">
+                {{ page_obj.paginator.count }} {% trans "result(s) found" %}
+              </span>
+            </div>
+
+            <div class="list-group">
+              {% for item in news %}
+                <a href="#" class="list-group-teaser list-group-news-teaser list-group-item list-group-teaser-container link-trapeze-vertical">
+
+                  <div class="list-group-teaser-thumbnail">
+                    <img src="https://picsum.photos/400/225" alt="Illustration de la news" class="img-fluid">
+                  </div>
+
+                  <div class="list-group-teaser-content">
+                    <h3 class="h5 mb-1">{{ item.trans.title }}</h3>
+
+                    <div class="list-group-teaser-excerpt small">
+                      Naviguer dans les zones difficiles d’accès du corps humain tout en conservant une précision extrême...
+                    </div>
+
+                    <div class="mt-1 d-flex align-items-center">
+                      {% if item.format %}
+                        <span class="tag tag-sm mt-1 border-light mr-2">
+                          {{ item.format }}
+                          {% if item.format.icon %}
+                            <svg class="icon" aria-hidden="true">
+                              <use xlink:href="{{ item.format.icon }}"></use>
+                            </svg>
+                          {% endif %}
+                        </span>
+                      {% endif %}
+
+                      <time datetime="{{ item.created_at|date:'Y-m-d' }}" title="{{ item.created_at }}" class="small mb-0 text-muted">
+                        {{ item.created_at|naturaltime }}
+                      </time>
+                    </div>
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+
+            {% include "pagination.html" %}
+
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

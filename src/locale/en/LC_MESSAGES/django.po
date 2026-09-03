@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-02 13:55+0200\n"
+"POT-Creation-Date: 2026-09-03 12:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -206,9 +206,7 @@ msgstr ""
 msgid "Order"
 msgstr ""
 
-msgid ""
-"Defines the display order. A value of 0 means that the order is ignored (for "
-"non-main entities)."
+msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
 msgstr ""
 
 msgid "Name"
@@ -391,13 +389,13 @@ msgstr ""
 msgid "Format"
 msgstr ""
 
+msgid "No news available."
+msgstr ""
+
 msgid "Manage News"
 msgstr ""
 
 msgid "Create news"
-msgstr ""
-
-msgid "No news available."
 msgstr ""
 
 msgid "Do you really want to delete this news translation?"

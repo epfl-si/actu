@@ -4,12 +4,64 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 
 from translations.models import NewsTranslation
 
 from .models import News
+
+
+def list_news(request):
+    current_lang = get_language()
+
+    translations_qs = NewsTranslation.objects.filter(
+        language=current_lang, status=NewsTranslation.Status.PUBLISHED
+    )
+
+    news_list = (
+        News.objects.filter(
+            translations__language=current_lang,
+            translations__status=NewsTranslation.Status.PUBLISHED,
+        )
+        .select_related("format", "created_by")
+        .prefetch_related(
+            Prefetch(
+                "translations",
+                queryset=translations_qs,
+                to_attr="lang_translations",
+            ),
+            "thematics",
+            "entities",
+        )
+        .distinct()
+    )
+
+    paginator = Paginator(news_list, 10)
+    page_number = request.GET.get("page", 1)
+    page_obj = paginator.get_page(page_number)
+
+    page_range = paginator.get_elided_page_range(
+        page_obj.number, on_each_side=1, on_ends=1
+    )
+
+    for item in page_obj:
+        item.trans = item.lang_translations[0]
+
+    query_dict = request.GET.copy()
+    if "page" in query_dict:
+        del query_dict["page"]
+
+    context = {
+        "news": page_obj,
+        "page_obj": page_obj,
+        "page_range": page_range,
+        "paginator": paginator,
+        "query_string": query_dict.urlencode(),
+    }
+
+    return render(request, "list.html", context)
 
 
 @login_required

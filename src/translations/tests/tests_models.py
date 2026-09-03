@@ -180,3 +180,13 @@ class NewsTranslationModelTest(TestCase):
                 news_translation=self.translation, old_slug=second_slug
             ).exists()
         )
+
+    def test_get_absolute_url_returns_slug_when_present(self):
+        self.assertTrue(bool(self.translation.slug))
+        expected_url = f"/{self.translation.slug}"
+        self.assertEqual(self.translation.get_absolute_url(), expected_url)
+
+    def test_get_absolute_url_returns_id_when_slug_is_missing(self):
+        self.translation.slug = None
+        expected_url = f"/{self.translation.id}"
+        self.assertEqual(self.translation.get_absolute_url(), expected_url)

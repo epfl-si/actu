@@ -1,6 +1,6 @@
 from autoslug import AutoSlugField
 from django.conf import settings
-from django.db import models
+from django.db import models, transaction
 from django.utils.translation import gettext_lazy as _
 from tinymce.models import HTMLField
 
@@ -115,22 +115,27 @@ class NewsTranslation(AuditModelMixin, models.Model):
     def last_activity_label(self):
         return get_last_activity_label(instance=self)
 
+    def get_absolute_url(self):
+        identifier = self.slug if self.slug else self.id
+        return f"/{identifier}"
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._original_slug = self.slug
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+        with transaction.atomic():
+            super().save(*args, **kwargs)
 
-        if self._original_slug and self._original_slug != self.slug:
-            NewsSlugHistory.objects.get_or_create(
-                news_translation_id=self.pk,
-                old_slug=self._original_slug,
-            )
-            NewsSlugHistory.objects.filter(
-                news_translation_id=self.pk,
-                old_slug=self.slug,
-            ).delete()
+            if self._original_slug and self._original_slug != self.slug:
+                NewsSlugHistory.objects.get_or_create(
+                    news_translation_id=self.pk,
+                    old_slug=self._original_slug,
+                )
+                NewsSlugHistory.objects.filter(
+                    news_translation_id=self.pk,
+                    old_slug=self.slug,
+                ).delete()
 
         self._original_slug = self.slug
 

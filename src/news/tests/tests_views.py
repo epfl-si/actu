@@ -239,3 +239,57 @@ class ListNewsViewTest(TestCase):
                 returned_news.trans.title, "English Published News"
             )
             self.assertEqual(returned_news.trans.language, "en")
+
+    def test_pagination_limits_to_10_items_per_page(self):
+        with override("fr"):
+            for i in range(14):
+                news = News.objects.create(created_by=self.user)
+                NewsTranslation.objects.create(
+                    news=news,
+                    language="fr",
+                    status=NewsTranslation.Status.PUBLISHED,
+                    created_by=self.user,
+                    title=f"Actualité FR {i}",
+                )
+
+            url = reverse("list_news")
+            response = self.client.get(url)
+            news_list = list(response.context["news"])
+
+            self.assertEqual(len(news_list), 10)
+
+            self.assertEqual(response.context["paginator"].count, 15)
+            self.assertEqual(response.context["paginator"].num_pages, 2)
+
+    def test_pagination_loads_second_page_correctly(self):
+        with override("fr"):
+            for i in range(14):
+                news = News.objects.create(created_by=self.user)
+                NewsTranslation.objects.create(
+                    news=news,
+                    language="fr",
+                    status=NewsTranslation.Status.PUBLISHED,
+                    created_by=self.user,
+                    title=f"Actualité FR {i}",
+                )
+
+            url = reverse("list_news")
+            response = self.client.get(url, {"page": "2"})
+            news_list = list(response.context["news"])
+
+            self.assertEqual(len(news_list), 5)
+            self.assertEqual(response.context["page_obj"].number, 2)
+
+    def test_pagination_preserves_query_string_without_page_parameter(self):
+        with override("en"):
+            url = reverse("list_news")
+            response = self.client.get(
+                url, {"category": "science", "q": "space", "page": "2"}
+            )
+
+            query_string = response.context["query_string"]
+
+            self.assertIn("category=science", query_string)
+            self.assertIn("q=space", query_string)
+
+            self.assertNotIn("page=", query_string)

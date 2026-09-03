@@ -36,21 +36,16 @@
                       {% if item.format %}
                         <span class="tag tag-sm mt-1 border-light mr-2">
                           {{ item.format }}
-
-                          <svg class="icon" aria-hidden="true">
-                            <use xlink:href="{{ item.format.icon|default:'#play-circle' }}"></use>
-                          </svg>
-
-                          {% if 'vidéo' in item.format.name|lower or 'podcast' in item.format.name|lower %}
-                            1:30
-                          {% elif 'galerie' in item.format.name|lower or 'gallery' in item.format.name|lower %}
-                            5
+                          {% if item.format.icon %}
+                            <svg class="icon" aria-hidden="true">
+                              <use xlink:href="{{ item.format.icon }}"></use>
+                            </svg>
                           {% endif %}
                         </span>
                       {% endif %}
 
                       <time datetime="{{ item.created_at|date:'Y-m-d' }}" class="small mb-0 text-muted">
-                        <span class="sr-only">{% trans "Publish:" %} </span>{{ item.created_at|date:'d/m/Y' }}
+                        <span class="sr-only">{% trans "Publish:" %} </span>{{ item.created_at|timesince }}
                       </time>
                     </div>
                   </div>

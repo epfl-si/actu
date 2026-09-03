@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-02 13:55+0200\n"
+"POT-Creation-Date: 2026-09-03 16:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -206,12 +206,8 @@ msgstr "Gibt an, ob diese Einheit (Schule) im Footer angezeigt wird."
 msgid "Order"
 msgstr "Reihenfolge"
 
-msgid ""
-"Defines the display order. A value of 0 means that the order is ignored (for "
-"non-main entities)."
-msgstr ""
-"Definiert die Anzeige-Reihenfolge. Ein Wert von 0 bedeutet, dass die "
-"Reihenfolge ignoriert wird (für nicht-haupt-Entitäten)."
+msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
+msgstr "Definiert die Anzeige-Reihenfolge. Ein Wert von 0 bedeutet, dass die Reihenfolge ignoriert wird (für nicht-haupt-Entitäten)."
 
 msgid "Name"
 msgstr "Name"
@@ -235,14 +231,10 @@ msgid "Users"
 msgstr "Benutzer"
 
 msgid "A Homepage cannot be linked to both a thematic and an entity."
-msgstr ""
-"Eine Startseite kann nicht gleichzeitig mit einem Thema und einer Einheit "
-"verknüpft sein."
+msgstr "Eine Startseite kann nicht gleichzeitig mit einem Thema und einer Einheit verknüpft sein."
 
 msgid "A Homepage must be linked to either a thematic or an entity."
-msgstr ""
-"Eine Startseite muss entweder mit einem Thema oder einer Einheit verknüpft "
-"sein."
+msgstr "Eine Startseite muss entweder mit einem Thema oder einer Einheit verknüpft sein."
 
 msgid "Draft"
 msgstr "Entwurf"
@@ -347,9 +339,7 @@ msgid "Remove user"
 msgstr "Benutzer entfernen"
 
 msgid "Are you sure you want to remove permissions for this user?"
-msgstr ""
-"Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen "
-"möchten?"
+msgstr "Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen möchten?"
 
 msgid "No SCIPER provided."
 msgstr "Keine SCIPER-Nummer angegeben."
@@ -370,8 +360,7 @@ msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich entfernt."
 
 #, python-format
 msgid "The user %(first)s %(last)s has no permission to this homepage."
-msgstr ""
-"Der Benutzer %(first)s %(last)s hat keine Berechtigung für diese Startseite."
+msgstr "Der Benutzer %(first)s %(last)s hat keine Berechtigung für diese Startseite."
 
 msgid "A translation for this language already exists."
 msgstr "Für diese Sprache existiert bereits eine Übersetzung."
@@ -435,6 +424,9 @@ msgstr "Möchten Sie diese Version der Nachrichtenübersetzung wirklich löschen
 
 msgid "The news has been saved successfully."
 msgstr "Die Nachricht wurde erfolgreich gespeichert."
+
+msgid "The form contains errors. Please correct the highlighted fields below."
+msgstr "Das Formular enthält Fehler. Bitte korrigieren Sie die unten hervorgehobenen Felder."
 
 msgid "News Format"
 msgstr "Nachrichtenformat"

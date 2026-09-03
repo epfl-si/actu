@@ -63,10 +63,18 @@ def _initialize_selected_values(request=None, news_form=None):
 def _initialize_form_and_render_view(request, lang, news_id=None):
     thematics, entities, formats, languages = _initialize_view()
 
+    if news_id:
+        news_instance = get_object_or_404(News, id=news_id)
+        translation_instance = news_instance.get_translation(language=lang)
+    else:
+        news_instance = None
+        translation_instance = None
+
     form = NewsWithTranslationForm(
         post_data=request.POST or None,
         language=lang,
-        news_id=news_id,
+        news_instance=news_instance,
+        translation_instance=translation_instance,
     )
 
     selected_thematic_ids, selected_entity_ids, selected_format_id = (
@@ -76,15 +84,22 @@ def _initialize_form_and_render_view(request, lang, news_id=None):
     if request.method == "POST":
         if form.is_valid():
             news_id = form.save(request.user)
-            if news_id:
-                messages.success(
-                    request, _("The news has been saved successfully.")
-                )
-                url_to_redirect = reverse(
-                    "edit_news",
-                    kwargs={"news_id": news_id, "lang": lang},
-                )
-                return HttpResponseRedirect(url_to_redirect)
+            messages.success(
+                request, _("The news has been saved successfully.")
+            )
+            url_to_redirect = reverse(
+                "edit_news",
+                kwargs={"news_id": news_id, "lang": lang},
+            )
+            return HttpResponseRedirect(url_to_redirect)
+        else:
+            messages.error(
+                request,
+                _(
+                    "The form contains errors. "
+                    "Please correct the highlighted fields below."
+                ),
+            )
 
     context = {
         "form": form,

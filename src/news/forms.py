@@ -1,6 +1,5 @@
 from django import forms
 from django.db import transaction
-from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
 
 from translations.models import NewsTranslation
@@ -55,18 +54,10 @@ class NewsWithTranslationForm:
     def __init__(
         self,
         post_data=None,
-        news_id=None,
+        news_instance=None,
+        translation_instance=None,
         language=None,
     ):
-        if news_id:
-            news_instance = get_object_or_404(News, id=news_id)
-            translation_instance = news_instance.get_translation(
-                language=language
-            )
-        else:
-            news_instance = None
-            translation_instance = None
-
         self.news = NewsForm(post_data, instance=news_instance)
         self.translation = NewsTranslationForm(
             post_data, instance=translation_instance

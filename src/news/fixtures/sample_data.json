@@ -5,11 +5,113 @@
     "fields": {
       "created_at": "2026-08-10T13:18:43.943Z",
       "created_by": 1,
+      "format": 1,
       "thematics": [
         1
       ],
       "entities": [
         1
+      ]
+    }
+  },
+  {
+    "model": "news.news",
+    "pk": 2,
+    "fields": {
+      "created_at": "2026-08-09T10:00:00.000Z",
+      "created_by": 1,
+      "format": 2,
+      "thematics": [
+        3
+      ],
+      "entities": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "news.news",
+    "pk": 3,
+    "fields": {
+      "created_at": "2026-08-08T10:00:00.000Z",
+      "created_by": 1,
+      "format": 3,
+      "thematics": [
+        1
+      ],
+      "entities": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "news.news",
+    "pk": 4,
+    "fields": {
+      "created_at": "2026-08-07T10:00:00.000Z",
+      "created_by": 1,
+      "format": 4,
+      "thematics": [
+        1
+      ],
+      "entities": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "news.news",
+    "pk": 5,
+    "fields": {
+      "created_at": "2026-08-06T10:00:00.000Z",
+      "created_by": 1,
+      "format": 5,
+      "thematics": [
+        1
+      ],
+      "entities": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "news.news",
+    "pk": 6,
+    "fields": {
+      "created_at": "2026-08-05T10:00:00.000Z",
+      "created_by": 1,
+      "format": 6,
+      "thematics": [
+        2
+      ],
+      "entities": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "news.news",
+    "pk": 7,
+    "fields": {
+      "created_at": "2026-08-04T10:00:00.000Z",
+      "created_by": 1,
+      "format": 7,
+      "thematics": [],
+      "entities": []
+    }
+  },
+  {
+    "model": "news.news",
+    "pk": 8,
+    "fields": {
+      "created_at": "2026-08-03T10:00:00.000Z",
+      "created_by": 1,
+      "format": 8,
+      "thematics": [
+        3
+      ],
+      "entities": [
+        2
       ]
     }
   }

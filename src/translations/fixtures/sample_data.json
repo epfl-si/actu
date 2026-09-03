@@ -1,0 +1,178 @@
+[
+  {
+    "model": "translations.newstranslation",
+    "pk": 1,
+    "fields": {
+      "news": 1,
+      "language": "en",
+      "title": "AI advances in life sciences (published AI news)",
+      "status": "published",
+      "created_at": "2026-08-10T13:18:43.943Z",
+      "created_by": 1,
+      "updated_at": "2026-08-10T13:18:43.943Z",
+      "updated_by": null,
+      "published_at": "2026-08-10T13:18:43.943Z",
+      "published_by": 1
+    }
+  },
+  {
+    "model": "translations.newstranslation",
+    "pk": 2,
+    "fields": {
+      "news": 2,
+      "language": "fr",
+      "title": "Percée énergétique en sciences de base (published energy news in French)",
+      "status": "published",
+      "created_at": "2026-08-09T10:00:00.000Z",
+      "created_by": 1,
+      "updated_at": "2026-08-09T10:00:00.000Z",
+      "updated_by": null,
+      "published_at": "2026-08-09T10:00:00.000Z",
+      "published_by": 1
+    }
+  },
+  {
+    "model": "translations.newstranslation",
+    "pk": 3,
+    "fields": {
+      "news": 3,
+      "language": "en",
+      "title": "AI draft discovery (draft news)",
+      "status": "draft",
+      "created_at": "2026-08-08T10:00:00.000Z",
+      "created_by": 1,
+      "updated_at": "2026-08-08T10:00:00.000Z",
+      "updated_by": null,
+      "published_at": null,
+      "published_by": null
+    }
+  },
+  {
+    "model": "translations.newstranslation",
+    "pk": 4,
+    "fields": {
+      "news": 4,
+      "language": "en",
+      "title": "AI old discovery (archived news)",
+      "status": "archived",
+      "created_at": "2026-08-07T10:00:00.000Z",
+      "created_by": 1,
+      "updated_at": "2026-08-07T10:00:00.000Z",
+      "updated_by": null,
+      "published_at": "2026-08-07T10:00:00.000Z",
+      "published_by": 1
+    }
+  },
+  {
+    "model": "translations.newstranslation",
+    "pk": 5,
+    "fields": {
+      "news": 5,
+      "language": "en",
+      "title": "AI pending release (published status without date)",
+      "status": "published",
+      "created_at": "2026-08-06T10:00:00.000Z",
+      "created_by": 1,
+      "updated_at": "2026-08-06T10:00:00.000Z",
+      "updated_by": null,
+      "published_at": null,
+      "published_by": null
+    }
+  },
+  {
+    "model": "translations.newstranslation",
+    "pk": 6,
+    "fields": {
+      "news": 6,
+      "language": "en",
+      "title": "Health research at DCSL (multilingual news)",
+      "status": "published",
+      "created_at": "2026-08-05T10:00:00.000Z",
+      "created_by": 1,
+      "updated_at": "2026-08-05T10:00:00.000Z",
+      "updated_by": null,
+      "published_at": "2026-08-05T10:00:00.000Z",
+      "published_by": 1
+    }
+  },
+  {
+    "model": "translations.newstranslation",
+    "pk": 7,
+    "fields": {
+      "news": 6,
+      "language": "fr",
+      "title": "Recherche santé au DCSL (multilingual news)",
+      "status": "published",
+      "created_at": "2026-08-05T10:00:00.000Z",
+      "created_by": 1,
+      "updated_at": "2026-08-05T10:00:00.000Z",
+      "updated_by": null,
+      "published_at": "2026-08-05T10:00:00.000Z",
+      "published_by": 1
+    }
+  },
+  {
+    "model": "translations.newstranslation",
+    "pk": 8,
+    "fields": {
+      "news": 6,
+      "language": "de",
+      "title": "Gesundheitsforschung am DCSL (multilingual news)",
+      "status": "published",
+      "created_at": "2026-08-05T10:00:00.000Z",
+      "created_by": 1,
+      "updated_at": "2026-08-05T10:00:00.000Z",
+      "updated_by": null,
+      "published_at": "2026-08-05T10:00:00.000Z",
+      "published_by": 1
+    }
+  },
+  {
+    "model": "translations.newstranslation",
+    "pk": 9,
+    "fields": {
+      "news": 6,
+      "language": "it",
+      "title": "Ricerca sanitaria al DCSL (multilingual news)",
+      "status": "published",
+      "created_at": "2026-08-05T10:00:00.000Z",
+      "created_by": 1,
+      "updated_at": "2026-08-05T10:00:00.000Z",
+      "updated_by": null,
+      "published_at": "2026-08-05T10:00:00.000Z",
+      "published_by": 1
+    }
+  },
+  {
+    "model": "translations.newstranslation",
+    "pk": 10,
+    "fields": {
+      "news": 7,
+      "language": "en",
+      "title": "Standalone campus update (news without thematic or entity)",
+      "status": "published",
+      "created_at": "2026-08-04T10:00:00.000Z",
+      "created_by": 1,
+      "updated_at": "2026-08-04T10:00:00.000Z",
+      "updated_by": null,
+      "published_at": "2026-08-04T10:00:00.000Z",
+      "published_by": 1
+    }
+  },
+  {
+    "model": "translations.newstranslation",
+    "pk": 11,
+    "fields": {
+      "news": 8,
+      "language": "en",
+      "title": "Energy policy update (search test news)",
+      "status": "published",
+      "created_at": "2026-08-03T10:00:00.000Z",
+      "created_by": 1,
+      "updated_at": "2026-08-03T10:00:00.000Z",
+      "updated_by": null,
+      "published_at": "2026-08-03T10:00:00.000Z",
+      "published_by": 1
+    }
+  }
+]

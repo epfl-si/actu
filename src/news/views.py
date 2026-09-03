@@ -17,20 +17,26 @@ def list_news(request):
     current_lang = get_language()
 
     translations_qs = NewsTranslation.objects.filter(
-        language=current_lang,
-        status=NewsTranslation.Status.PUBLISHED
+        language=current_lang, status=NewsTranslation.Status.PUBLISHED
     )
 
-    news_list = News.objects.filter(
-        translations__language=current_lang,
-        translations__status=NewsTranslation.Status.PUBLISHED
-    ).select_related(
-        'format', 'created_by'
-    ).prefetch_related(
-        Prefetch('translations', queryset=translations_qs, to_attr='lang_translations'),
-        'thematics',
-        'entities'
-    ).distinct()
+    news_list = (
+        News.objects.filter(
+            translations__language=current_lang,
+            translations__status=NewsTranslation.Status.PUBLISHED,
+        )
+        .select_related("format", "created_by")
+        .prefetch_related(
+            Prefetch(
+                "translations",
+                queryset=translations_qs,
+                to_attr="lang_translations",
+            ),
+            "thematics",
+            "entities",
+        )
+        .distinct()
+    )
 
     paginator = Paginator(news_list, 10)
     page_number = request.GET.get("page", 1)
@@ -48,14 +54,14 @@ def list_news(request):
         del query_dict["page"]
 
     context = {
-        'news': page_obj,
-        'page_obj': page_obj,
-        'page_range': page_range,
-        'paginator': paginator,
-        'query_string': query_dict.urlencode(),
+        "news": page_obj,
+        "page_obj": page_obj,
+        "page_range": page_range,
+        "paginator": paginator,
+        "query_string": query_dict.urlencode(),
     }
 
-    return render(request, 'list.html', context)
+    return render(request, "list.html", context)
 
 
 @login_required

@@ -373,6 +373,178 @@ class NewsAPITests(TestCase):
         self.assertIsNone(data["previous"])
         self.assertIsNotNone(data["next"])
 
+    def test_search_by_title(self):
+        self._create_news(
+            title="Energy research breakthrough",
+            thematic=self.thematic,
+            published_at=self.now,
+        )
+        self._create_news(
+            title="AI in healthcare",
+            thematic=self.thematic,
+            published_at=self.now,
+        )
+
+        url = reverse("news-list", kwargs={"version": "v1"})
+        response = self.client.get(
+            url,
+            {"thematic": self.thematic.pk, "search": "energy"},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(len(data["results"]), 1)
+        self.assertEqual(
+            data["results"][0]["title"], "Energy research breakthrough"
+        )
+
+    def test_search_is_case_insensitive(self):
+        self._create_news(
+            title="Energy research breakthrough",
+            thematic=self.thematic,
+            published_at=self.now,
+        )
+
+        url = reverse("news-list", kwargs={"version": "v1"})
+        response = self.client.get(
+            url,
+            {"thematic": self.thematic.pk, "search": "ENERGY"},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(len(data["results"]), 1)
+        self.assertEqual(
+            data["results"][0]["title"], "Energy research breakthrough"
+        )
+
+    def test_search_is_partial_match(self):
+        self._create_news(
+            title="Energy research breakthrough",
+            thematic=self.thematic,
+            published_at=self.now,
+        )
+
+        url = reverse("news-list", kwargs={"version": "v1"})
+        response = self.client.get(
+            url,
+            {"thematic": self.thematic.pk, "search": "ener"},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(len(data["results"]), 1)
+        self.assertEqual(
+            data["results"][0]["title"], "Energy research breakthrough"
+        )
+
+    def test_search_respects_language(self):
+        news = News.objects.create(
+            created_by=self.user,
+            format=self.format,
+        )
+        news.thematics.add(self.thematic)
+        NewsTranslation.objects.create(
+            news=news,
+            language="en",
+            title="English energy title",
+            status=NewsTranslation.Status.PUBLISHED,
+            created_by=self.user,
+            published_at=self.now,
+            published_by=self.user,
+        )
+        NewsTranslation.objects.create(
+            news=news,
+            language="fr",
+            title="Titre français sur l'énergie",
+            status=NewsTranslation.Status.PUBLISHED,
+            created_by=self.user,
+            published_at=self.now,
+            published_by=self.user,
+        )
+
+        url = reverse("news-list", kwargs={"version": "v1"})
+        response = self.client.get(
+            url,
+            {
+                "thematic": self.thematic.pk,
+                "language": "fr",
+                "search": "énergie",
+            },
+        )
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(len(data["results"]), 1)
+        self.assertEqual(
+            data["results"][0]["title"],
+            "Titre français sur l'énergie",
+        )
+
+    def test_search_combines_with_entity_filter(self):
+        self._create_news(
+            title="Energy research breakthrough",
+            entity=self.entity,
+            published_at=self.now,
+        )
+        self._create_news(
+            title="AI in healthcare",
+            entity=self.entity,
+            published_at=self.now,
+        )
+        self._create_news(
+            title="Energy policy update",
+            entity=self.other_entity,
+            published_at=self.now,
+        )
+
+        url = reverse("news-list", kwargs={"version": "v1"})
+        response = self.client.get(
+            url,
+            {"entity": self.entity.pk, "search": "energy"},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(len(data["results"]), 1)
+        self.assertEqual(
+            data["results"][0]["title"], "Energy research breakthrough"
+        )
+
+    def test_search_with_whitespace_returns_unfiltered(self):
+        self._create_news(
+            title="Energy research breakthrough",
+            thematic=self.thematic,
+            published_at=self.now,
+        )
+
+        url = reverse("news-list", kwargs={"version": "v1"})
+        response = self.client.get(
+            url,
+            {"thematic": self.thematic.pk, "search": "   "},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(len(data["results"]), 1)
+
+    def test_search_with_no_match_returns_empty(self):
+        self._create_news(
+            title="Energy research breakthrough",
+            thematic=self.thematic,
+            published_at=self.now,
+        )
+
+        url = reverse("news-list", kwargs={"version": "v1"})
+        response = self.client.get(
+            url,
+            {"thematic": self.thematic.pk, "search": "quantum"},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(len(data["results"]), 0)
+
 
 class NewsPaginationTests(TestCase):
 

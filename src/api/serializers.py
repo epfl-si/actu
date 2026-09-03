@@ -4,6 +4,38 @@ from rest_framework import serializers
 
 from entities.models import Entity
 from thematics.models import Thematic
+from translations.models import NewsTranslation
+
+
+@extend_schema_serializer(
+    component_name="News",
+    examples=[
+        OpenApiExample(
+            "News item",
+            value={
+                "id": 42,
+                "title": "Sample news title",
+                "format": "News",
+            },
+        ),
+    ],
+)
+class NewsSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(
+        source="news.id",
+        read_only=True,
+        help_text=_("Unique identifier of the news item."),
+    )
+    format = serializers.SerializerMethodField(
+        help_text=_("Format of the news item in the requested language."),
+    )
+
+    class Meta:
+        model = NewsTranslation
+        fields = ["id", "title", "format"]
+
+    def get_format(self, obj: NewsTranslation) -> str:
+        return obj.news.format.get_label(obj.language)
 
 
 class LabelModelSerializer(serializers.ModelSerializer):

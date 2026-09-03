@@ -1,3 +1,4 @@
+from autoslug import AutoSlugField
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -53,6 +54,14 @@ class NewsTranslation(AuditModelMixin, models.Model):
     )
     funding = HTMLField(verbose_name=_("Funding"), null=True, blank=True)
     references = HTMLField(verbose_name=_("References"), null=True, blank=True)
+    slug = AutoSlugField(
+        populate_from="title",
+        max_length=255,
+        unique=True,
+        always_update=True,
+        null=True,
+        blank=True,
+    )
     status = models.CharField(
         max_length=20,
         choices=Status.choices,
@@ -105,3 +114,31 @@ class NewsTranslation(AuditModelMixin, models.Model):
     @property
     def last_activity_label(self):
         return get_last_activity_label(instance=self)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._original_slug = self.slug
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if self._original_slug and self._original_slug != self.slug:
+            NewsSlugHistory.objects.get_or_create(
+                news_translation_id=self.pk,
+                old_slug=self._original_slug,
+            )
+            NewsSlugHistory.objects.filter(
+                news_translation_id=self.pk,
+                old_slug=self.slug,
+            ).delete()
+
+        self._original_slug = self.slug
+
+
+class NewsSlugHistory(models.Model):
+    news_translation = models.ForeignKey(
+        "NewsTranslation",
+        on_delete=models.CASCADE,
+        related_name="historical_slugs",
+    )
+    old_slug = models.CharField(max_length=255, db_index=True, unique=True)

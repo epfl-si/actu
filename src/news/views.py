@@ -23,20 +23,6 @@ from .forms import NewsWithTranslationForm
 from .models import News
 
 
-def _handle_post_action(request, form, language, news_id=None):
-    if form.is_valid():
-        news_id = form.save(request.user)
-        if news_id:
-            messages.success(
-                request, _("The news has been saved successfully.")
-            )
-            url_to_redirect = reverse(
-                "edit_news",
-                kwargs={"news_id": news_id, "lang": language},
-            )
-            return HttpResponseRedirect(url_to_redirect)
-
-
 def _initialize_view():
     thematics = Thematic.objects.filter(is_active=True).order_by(
         f"label_{utils.translation.get_language()}"
@@ -77,43 +63,13 @@ def _initialize_selected_values(request=None, news_form=None):
     return selected_thematic_ids, selected_entity_ids, selected_format_id
 
 
-@login_required
-def create_news(request, lang):
-    thematics, entities, formats, languages = _initialize_view()
-
-    form = NewsWithTranslationForm(
-        post_data=request.POST or None, language=lang
-    )
-    selected_thematic_ids, selected_entity_ids, selected_format_id = (
-        _initialize_selected_values(request)
-    )
-
-    if request.method == "POST":
-        result = _handle_post_action(request, form, language=lang)
-        if result:
-            return result
-
-    context = {
-        "form": form,
-        "thematics": thematics,
-        "entities": entities,
-        "formats": formats,
-        "languages": languages,
-        "selected_thematic_ids": selected_thematic_ids,
-        "selected_entity_ids": selected_entity_ids,
-        "selected_format_id": selected_format_id,
-    }
-    return render(request, "edit_news.html", context)
-
-
-@login_required
-def edit_news(request, news_id, lang):
+def _initialize_form_and_render_view(request, lang, news_id=None):
     thematics, entities, formats, languages = _initialize_view()
 
     form = NewsWithTranslationForm(
         post_data=request.POST or None,
-        news_id=news_id,
         language=lang,
+        news_id=news_id,
     )
 
     selected_thematic_ids, selected_entity_ids, selected_format_id = (
@@ -121,11 +77,17 @@ def edit_news(request, news_id, lang):
     )
 
     if request.method == "POST":
-        result = _handle_post_action(
-            request, form, language=lang, news_id=news_id
-        )
-        if result:
-            return result
+        if form.is_valid():
+            news_id = form.save(request.user)
+            if news_id:
+                messages.success(
+                    request, _("The news has been saved successfully.")
+                )
+                url_to_redirect = reverse(
+                    "edit_news",
+                    kwargs={"news_id": news_id, "lang": lang},
+                )
+                return HttpResponseRedirect(url_to_redirect)
 
     context = {
         "form": form,
@@ -138,6 +100,16 @@ def edit_news(request, news_id, lang):
         "selected_format_id": selected_format_id,
     }
     return render(request, "edit_news.html", context)
+
+
+@login_required
+def create_news(request, lang):
+    return _initialize_form_and_render_view(request, lang)
+
+
+@login_required
+def edit_news(request, news_id, lang):
+    return _initialize_form_and_render_view(request, lang, news_id)
 
 
 @login_required

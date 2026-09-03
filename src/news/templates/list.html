@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
+{% load i18n humanize %}
 
 {% block web2018_content %}
   <main id="main" class="content py-3">
@@ -44,8 +44,8 @@
                         </span>
                       {% endif %}
 
-                      <time datetime="{{ item.created_at|date:'Y-m-d' }}" class="small mb-0 text-muted">
-                        <span class="sr-only">{% trans "Publish:" %} </span>{{ item.created_at|timesince }}
+                      <time datetime="{{ item.created_at|date:'Y-m-d' }}" title="{{ item.created_at }}" class="small mb-0 text-muted">
+                        {{ item.created_at|naturaltime }}
                       </time>
                     </div>
                   </div>

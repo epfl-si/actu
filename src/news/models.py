@@ -55,3 +55,8 @@ class News(AuditModelMixin, models.Model):
 
     def __str__(self):
         return f"News #{self.pk}"
+
+    def get_translation(self, language):
+        """Return the translation for this news, or None if it doesn't
+        exist."""
+        return self.translations.filter(language=language).first()

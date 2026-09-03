@@ -8,7 +8,7 @@
   <main id="main" class="content">
     <div class="container-lg">
       <h1 class="h2 my-5">{% trans "Manage News" %}</h1>
-      <a class="btn btn-primary btn-sm mb-3" href="#">
+      <a class="btn btn-primary btn-sm mb-3" href="{% url 'create_news' lang=get_default_lang %}">
         <svg class="icon feather" aria-hidden="true"><use xlink:href="#plus"></use></svg>
         {% trans "Create news" %}
       </a>
@@ -39,7 +39,7 @@
                           {% if translation.status == 'published' or translation.status == 'draft' %}
                             <a href="#" class="btn btn-sm btn-actions btn-outline-dark mr-1" title="{% trans "Preview and publish" %}">
                               <svg class="icon feather" aria-hidden="true"><use xlink:href="#eye"></use></svg></a>
-                            <a href="#" class="btn btn-sm btn-actions btn-outline-tertiary mr-1" title="{% trans "Edit" %}">
+                            <a href="{% url 'edit_news' news_id=row.news.id lang=lang_code %}" class="btn btn-sm btn-actions btn-outline-tertiary mr-1" title="{% trans "Edit" %}">
                               <svg class="icon feather" aria-hidden="true"><use xlink:href="#edit-2"></use>
                               </svg></a>
                             <form method="post" action="{% url 'delete_news_translation' row.news.id lang_code %}" class="d-inline">
@@ -61,7 +61,7 @@
                           {% endif %}
                         </div>
                       {% else %}
-                        <a href="#" class="btn btn-sm btn-actions btn-secondary text-small mr-1" title="{% trans "Create" %}">
+                        <a href="{% url 'edit_news' news_id=row.news.id lang=lang_code %}" class="btn btn-sm btn-actions btn-secondary text-small mr-1" title="{% trans "Create" %}">
                           <svg class="icon feather" aria-hidden="true"><use xlink:href="#plus"></use></svg>{% trans 'Create' %}</a>
                       {% endif %}
                     </div>

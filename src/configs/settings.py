@@ -107,6 +107,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "thematics.context_processors.global_thematics",
                 "entities.context_processors.footer_entities",
+                "utils.context_processors.get_default_lang",
             ],
         },
     },

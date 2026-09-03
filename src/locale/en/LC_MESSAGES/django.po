@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-02 13:55+0200\n"
+"POT-Creation-Date: 2026-09-03 16:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -206,9 +206,7 @@ msgstr ""
 msgid "Order"
 msgstr ""
 
-msgid ""
-"Defines the display order. A value of 0 means that the order is ignored (for "
-"non-main entities)."
+msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
 msgstr ""
 
 msgid "Name"
@@ -382,6 +380,12 @@ msgstr ""
 msgid "Translation restored successfully."
 msgstr ""
 
+msgid "No thematic provided."
+msgstr ""
+
+msgid "No format provided."
+msgstr ""
+
 msgid "Thematics related to this news."
 msgstr ""
 
@@ -389,6 +393,21 @@ msgid "Entities related to this news."
 msgstr ""
 
 msgid "Format"
+msgstr ""
+
+msgid "Edit News"
+msgstr ""
+
+msgid "Create News"
+msgstr ""
+
+msgid "Common"
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Save"
 msgstr ""
 
 msgid "Manage News"
@@ -401,6 +420,12 @@ msgid "No news available."
 msgstr ""
 
 msgid "Do you really want to delete this news translation?"
+msgstr ""
+
+msgid "The news has been saved successfully."
+msgstr ""
+
+msgid "The form contains errors. Please correct the highlighted fields below."
 msgstr ""
 
 msgid "News Format"
@@ -449,9 +474,6 @@ msgid "News translation"
 msgstr ""
 
 msgid "News translations"
-msgstr ""
-
-msgid "Title"
 msgstr ""
 
 msgid "Published on"

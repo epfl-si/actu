@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% load i18n %}
 
 {% block web2018_content %}
@@ -7,45 +6,64 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <div class="list-group">
-            {% for item in news %}
-              <a href="#" class="list-group-teaser list-group-news-teaser list-group-item list-group-teaser-container link-trapeze-vertical">
-                <!-- Image -->
-                <div class="list-group-teaser-thumbnail">
-                  <img src="https://picsum.photos/400/225" alt="Illustration de la news" class="img-fluid">
-                </div>
 
-                <div class="list-group-teaser-content">
-                  <h3 class="h5 mb-1">{{ item.trans.title }}</h3>
-                    <div class="list-group-teaser-excerpt small">
-                      Naviguer dans les zones difficiles d’accès du corps humain tout en conservant une précision extrême : c’est le défi que relève...
-                    </div>
-                  <div class="mt-1 d-flex align-items-center">
-                    {% if item.format %}
-                      <span class="tag tag-sm mt-1 border-light mr-2">
-                        {{ item.format }}
-                        <svg class="icon" aria-hidden="true">
-                          <use xlink:href="{{ item.format.icon }}"></use>
-                        </svg>
-                        {% if 'vidéo' in item.format|stringformat:'s'|lower or 'podcast' in item.format|stringformat:'s'|lower %}
-                          1:30
-                        {% elif 'galerie' in item.format|stringformat:'s'|lower or 'gallery' in item.format|stringformat:'s'|lower %}
-                          5
-                        {% endif %}
-                      </span>
-                    {% endif %}
-                    <time datetime="{{ item.created_at|date:'Y-m-d' }}" class="small mb-0 text-muted">
-                      <span class="sr-only">Publié: </span>{{ item.created_at|date:'d/m/Y' }}
-                    </time>
+          {% if not news %}
+            <p class="text-muted">{% trans "No news available." %}</p>
+          {% else %}
+
+            <div class="d-flex justify-content-end mb-2">
+              <span class="text-muted small">
+                {{ page_obj.paginator.count }} {% trans "result(s) found" %}
+              </span>
+            </div>
+
+            <div class="list-group">
+              {% for item in news %}
+                <a href="#" class="list-group-teaser list-group-news-teaser list-group-item list-group-teaser-container link-trapeze-vertical">
+
+                  <div class="list-group-teaser-thumbnail">
+                    <img src="https://picsum.photos/400/225" alt="Illustration de la news" class="img-fluid">
                   </div>
-                </div>
-              </a>
-            {% endfor %}
-          </div>
+
+                  <div class="list-group-teaser-content">
+                    <h3 class="h5 mb-1">{{ item.trans.title }}</h3>
+
+                    <div class="list-group-teaser-excerpt small">
+                      Naviguer dans les zones difficiles d’accès du corps humain tout en conservant une précision extrême...
+                    </div>
+
+                    <div class="mt-1 d-flex align-items-center">
+                      {% if item.format %}
+                        <span class="tag tag-sm mt-1 border-light mr-2">
+                          {{ item.format }}
+
+                          <svg class="icon" aria-hidden="true">
+                            <use xlink:href="{{ item.format.icon|default:'#play-circle' }}"></use>
+                          </svg>
+
+                          {% if 'vidéo' in item.format.name|lower or 'podcast' in item.format.name|lower %}
+                            1:30
+                          {% elif 'galerie' in item.format.name|lower or 'gallery' in item.format.name|lower %}
+                            5
+                          {% endif %}
+                        </span>
+                      {% endif %}
+
+                      <time datetime="{{ item.created_at|date:'Y-m-d' }}" class="small mb-0 text-muted">
+                        <span class="sr-only">{% trans "Publié:" %} </span>{{ item.created_at|date:'d/m/Y' }}
+                      </time>
+                    </div>
+                  </div>
+                </a>
+              {% endfor %}
+            </div>
+
+            {% include "pagination.html" %}
+
+          {% endif %}
 
         </div>
       </div>
     </div>
-
   </main>
 {% endblock %}

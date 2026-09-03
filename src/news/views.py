@@ -19,14 +19,7 @@ from .forms import NewsWithTranslationForm
 from .models import News
 
 
-def _handle_post_action(request, language, news=None, translation=None):
-    form = NewsWithTranslationForm(
-        post_data=request.POST,
-        news_instance=news,
-        translation_instance=translation,
-        language=language,
-    )
-
+def _handle_post_action(request, form, language, news_id=None):
     if form.is_valid():
         news_id = form.save(request.user)
         if news_id:
@@ -55,7 +48,7 @@ def _initialize_view():
     return thematics, entities, formats, languages
 
 
-def _initialize_selected_values(request=None, news=None):
+def _initialize_selected_values(request=None, news_form=None):
     if request is not None and request.method == "POST":
         # Re-rendering after a failed submission: reflect what the user picked
         selected_thematic_ids = _safe_int_set(
@@ -63,13 +56,15 @@ def _initialize_selected_values(request=None, news=None):
         )
         selected_entity_ids = _safe_int_set(request.POST.getlist("entities"))
         selected_format_id = _safe_int(request.POST.get("format"))
-    elif news and news.pk:
+    elif news_form and news_form.news.instance.pk:
         # Initial load of an existing News
         selected_thematic_ids = set(
-            news.thematics.values_list("id", flat=True)
+            news_form.news.instance.thematics.values_list("id", flat=True)
         )
-        selected_entity_ids = set(news.entities.values_list("id", flat=True))
-        selected_format_id = news.format_id
+        selected_entity_ids = set(
+            news_form.news.instance.entities.values_list("id", flat=True)
+        )
+        selected_format_id = news_form.news.instance.format_id
     else:
         # Initial load of a new News (create_news)
         selected_thematic_ids = set()
@@ -82,17 +77,17 @@ def _initialize_selected_values(request=None, news=None):
 def create_news(request, lang):
     thematics, entities, formats, languages = _initialize_view()
 
-    form = NewsWithTranslationForm(language=lang)
+    form = NewsWithTranslationForm(
+        post_data=request.POST or None, language=lang
+    )
     selected_thematic_ids, selected_entity_ids, selected_format_id = (
         _initialize_selected_values(request)
     )
 
     if request.method == "POST":
-        result = _handle_post_action(request, language=lang)
+        result = _handle_post_action(request, form, language=lang)
         if result:
             return result
-
-        form = NewsWithTranslationForm(post_data=request.POST, language=lang)
 
     context = {
         "form": form,
@@ -111,32 +106,22 @@ def create_news(request, lang):
 def edit_news(request, news_id, lang):
     thematics, entities, formats, languages = _initialize_view()
 
-    news = get_object_or_404(News, id=news_id)
-    translation = news.get_translation(language=lang)
     form = NewsWithTranslationForm(
-        post_data=None,
-        news_instance=news,
-        translation_instance=translation,
+        post_data=request.POST or None,
+        news_id=news_id,
         language=lang,
     )
 
     selected_thematic_ids, selected_entity_ids, selected_format_id = (
-        _initialize_selected_values(request, news)
+        _initialize_selected_values(request, form)
     )
 
     if request.method == "POST":
         result = _handle_post_action(
-            request, language=lang, news=news, translation=translation
+            request, form, language=lang, news_id=news_id
         )
         if result:
             return result
-
-        form = NewsWithTranslationForm(
-            post_data=request.POST,
-            news_instance=news,
-            translation_instance=translation,
-            language=lang,
-        )
 
     context = {
         "form": form,

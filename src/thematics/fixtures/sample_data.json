@@ -9,12 +9,25 @@
       "label_it": "IA",
       "is_active": true,
       "is_main": true,
-      "order": 0
+      "order": 1
     }
   },
   {
     "model": "thematics.thematic",
     "pk": 2,
+    "fields": {
+      "label_fr": "Durabilité",
+      "label_en": "Sustainability",
+      "label_de": "Nachhaltigkeit",
+      "label_it": "Sostenibilità",
+      "is_active": true,
+      "is_main": true,
+      "order": 3
+    }
+  },
+  {
+    "model": "thematics.thematic",
+    "pk": 3,
     "fields": {
       "label_fr": "Santé",
       "label_en": "Health",
@@ -22,17 +35,17 @@
       "label_it": "Salute",
       "is_active": true,
       "is_main": true,
-      "order": 1
+      "order": 2
     }
   },
   {
     "model": "thematics.thematic",
-    "pk": 3,
+    "pk": 4,
     "fields": {
       "label_fr": "Energie",
       "label_en": "Energy",
-      "label_de": "Energy_de",
-      "label_it": "Energy_it",
+      "label_de": "Energie",
+      "label_it": "Energia",
       "is_active": true,
       "is_main": false,
       "order": 0
@@ -40,12 +53,77 @@
   },
   {
     "model": "thematics.thematic",
-    "pk": 3,
+    "pk": 5,
     "fields": {
-      "label_fr": "Climat",
-      "label_en": "Climate",
-      "label_de": "Klima",
-      "label_it": "Clima",
+      "label_fr": "Recherche",
+      "label_en": "Research",
+      "label_de": "Forschung",
+      "label_it": "Ricerca",
+      "is_active": true,
+      "is_main": false,
+      "order": 0
+    }
+  },
+  {
+    "model": "thematics.thematic",
+    "pk": 6,
+    "fields": {
+      "label_fr": "Construction",
+      "label_en": "Construction",
+      "label_de": "Bauwesen",
+      "label_it": "Costruzione",
+      "is_active": true,
+      "is_main": false,
+      "order": 0
+    }
+  },
+  {
+    "model": "thematics.thematic",
+    "pk": 7,
+    "fields": {
+      "label_fr": "Education",
+      "label_en": "Education",
+      "label_de": "Ausbildung",
+      "label_it": "Educazione",
+      "is_active": true,
+      "is_main": false,
+      "order": 0
+    }
+  },
+  {
+    "model": "thematics.thematic",
+    "pk": 8,
+    "fields": {
+      "label_fr": "Cybersécurité",
+      "label_en": "Cybersecurity",
+      "label_de": "Cybersicherheit",
+      "label_it": "Cibersecurity",
+      "is_active": true,
+      "is_main": false,
+      "order": 0
+    }
+  },
+  {
+    "model": "thematics.thematic",
+    "pk": 9,
+    "fields": {
+      "label_fr": "Informatique",
+      "label_en": "Computer science",
+      "label_de": "Informatik",
+      "label_it": "Informatica",
+      "is_active": true,
+      "is_main": false,
+      "order": 0
+    }
+  },
+  {
+    "model": "thematics.thematic",
+    "pk": 10,
+    "fields": {
+      "label_fr": "Innovation",
+      "label_en": "Innovation",
+      "label_de": "Innovation",
+      "label_it": "Innovazione",
       "is_active": true,
       "is_main": false,
       "order": 0

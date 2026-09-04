@@ -6,6 +6,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
+          {% include "search.html" %}
 
           {% if not news %}
             <p class="text-muted">{% trans "No news available." %}</p>

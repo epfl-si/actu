@@ -9,6 +9,9 @@ from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 
 from translations.models import NewsTranslation
+from thematics.models import Thematic
+from entities.models import Entity
+from news_formats.models import NewsFormat
 
 from .models import News
 
@@ -38,6 +41,10 @@ def list_news(request):
         .distinct()
     )
 
+    thematics = Thematic.objects.all()
+    entities = Entity.objects.all()
+    formats = NewsFormat.objects.all()
+
     paginator = Paginator(news_list, 10)
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
@@ -59,6 +66,9 @@ def list_news(request):
         "page_range": page_range,
         "paginator": paginator,
         "query_string": query_dict.urlencode(),
+        "thematics": thematics,
+        "entities": entities,
+        "formats": formats,
     }
 
     return render(request, "list.html", context)

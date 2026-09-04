@@ -1,0 +1,46 @@
+{% load django_vite %}
+
+<div class="events-filters mt-4">
+  <form id="news-form" action="" method="get">
+
+    <div class="form-group form-group-search">
+      <label for="search-field" class="sr-only">Search</label>
+      <p class="search-container icon-right">
+        <input type="search" class="form-control" name="keywords" id="text-event-keyword-filter" placeholder="Search" value="{{ request.GET.keywords }}">
+        <svg class="icon" aria-hidden="true"><use xlink:href="#icon-search"></use></svg>
+      </p>
+    </div>
+
+    <div class="form-group form-group-select">
+      <label class="sr-only">Filter by category</label>
+      <select id="select-category" name="category" class="select-multiple" multiple="multiple" data-placeholder="Category">
+        {% for format in formats %}
+          <option value="{{ format.id }}" {% if format.id in selected_categories %}selected{% endif %}>{{ format }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group form-group-select">
+      <label class="sr-only">Filter by thematic</label>
+      <select id="select-thematic" name="thematic" class="select-multiple" multiple="multiple" data-placeholder="Thematics">
+        {% for thematic in thematics %}
+          <option value="{{ thematic.id }}" {% if thematic.id in selected_thematics %}selected{% endif %}>{{ thematic }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group form-group-select">
+      <label class="sr-only">Filter by entity</label>
+      <select id="select-entity" name="entity" class="select-multiple" multiple="multiple" data-placeholder="Entity">
+        {% for entity in entities %}
+          <option value="{{ entity.id }}" {% if entity.id in selected_entities %}selected{% endif %}>{{ entity }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+  </form>
+</div>
+
+{% block web2018_extra_js %}
+  {% vite_asset 'assets/pages/search-news/search-news.js' %}
+{% endblock %}

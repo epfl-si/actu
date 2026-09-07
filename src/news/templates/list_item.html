@@ -2,7 +2,14 @@
 
 <a href="#" class="list-group-teaser list-group-news-teaser list-group-item list-group-teaser-container link-trapeze-vertical">
   <div class="list-group-teaser-thumbnail">
-    <img src="https://picsum.photos/400/225" alt="Illustration de la news" class="img-fluid">
+    <picture>
+      <source media="(min-width: 1140px)" srcset="https://picsum.photos/1440/810 1x, https://picsum.photos/1920/1080 2x">
+      <source media="(min-width: 960px)" srcset="https://picsum.photos/1080/608 1x, https://picsum.photos/1440/810 2x">
+      <source media="(min-width: 720px)" srcset="https://picsum.photos/928/520 1x, https://picsum.photos/1080/608 2x">
+      <source media="(min-width: 541px)" srcset="https://picsum.photos/768/432 1x, https://picsum.photos/928/520 2x">
+      <source media="(max-width: 540px)" srcset="https://picsum.photos/576/324 1x, https://picsum.photos/1080/608 2x">
+      <img src="https://picsum.photos/1080/608" class="img-fluid" alt="Illustration de la news">
+    </picture>
   </div>
   <div class="list-group-teaser-content">
     <h3 class="h5 mb-1">{{ item.title }}</h3>

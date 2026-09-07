@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-03 16:44+0200\n"
+"POT-Creation-Date: 2026-09-07 15:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -416,8 +416,17 @@ msgstr "Nachrichten verwalten"
 msgid "Create news"
 msgstr "Nachricht erstellen"
 
-msgid "No news available."
-msgstr "Keine Nachrichten verfügbar."
+msgid "Search..."
+msgstr "Suchen..."
+
+msgid "Creator"
+msgstr "Ersteller"
+
+msgid "Content Type"
+msgstr "Inhaltstyp"
+
+msgid "No news found."
+msgstr "Keine Nachrichten gefunden."
 
 msgid "Do you really want to delete this news translation?"
 msgstr "Möchten Sie diese Version der Nachrichtenübersetzung wirklich löschen?"

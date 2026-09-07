@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import override
 
 from news.models import News
@@ -198,6 +199,7 @@ class ListNewsViewTest(TestCase):
             status=NewsTranslation.Status.PUBLISHED,
             created_by=self.user,
             title="English Published News",
+            published_at=timezone.now(),
         )
 
         self.news_draft_en = News.objects.create(created_by=self.user)
@@ -216,6 +218,7 @@ class ListNewsViewTest(TestCase):
             status=NewsTranslation.Status.PUBLISHED,
             created_by=self.user,
             title="Actualité Publiée en Français",
+            published_at=timezone.now(),
         )
 
     def test_view_url_exists_at_desired_location_and_uses_correct_template(
@@ -231,41 +234,38 @@ class ListNewsViewTest(TestCase):
 
         with override("en"):
             response = self.client.get(url)
-            news_in_context = list(response.context["news"])
+            news_in_context = list(response.context["news_translations"])
 
-            self.assertIn(self.news_pub_en, news_in_context)
-
-            self.assertNotIn(self.news_draft_en, news_in_context)
-
-            self.assertNotIn(self.news_pub_fr, news_in_context)
+            self.assertIn(self.trans_pub_en, news_in_context)
+            self.assertNotIn(self.trans_draft_en, news_in_context)
+            self.assertNotIn(self.trans_pub_fr, news_in_context)
 
     def test_shows_only_published_news_in_french(self):
         with override("fr"):
             url = reverse("list_news")
 
             response = self.client.get(url)
-            news_in_context = list(response.context["news"])
+            news_in_context = list(response.context["news_translations"])
 
-            self.assertIn(self.news_pub_fr, news_in_context)
-            self.assertNotIn(self.news_pub_en, news_in_context)
+            self.assertIn(self.trans_pub_fr, news_in_context)
+            self.assertNotIn(self.trans_pub_en, news_in_context)
 
-    def test_trans_attribute_is_correctly_assigned(self):
+    def test_returns_news_translation_objects_directly(self):
         url = reverse("list_news")
 
         with override("en"):
             response = self.client.get(url)
-            news_list = list(response.context["news"])
+            news_list = list(response.context["news_translations"])
 
-            returned_news = next(
-                n for n in news_list if n.id == self.news_pub_en.id
+            returned_translation = next(
+                t for t in news_list if t.id == self.trans_pub_en.id
             )
-
-            self.assertTrue(hasattr(returned_news, "trans"))
 
             self.assertEqual(
-                returned_news.trans.title, "English Published News"
+                returned_translation.title, "English Published News"
             )
-            self.assertEqual(returned_news.trans.language, "en")
+            self.assertEqual(returned_translation.language, "en")
+            self.assertEqual(returned_translation.news, self.news_pub_en)
 
     def test_pagination_limits_to_10_items_per_page(self):
         with override("fr"):
@@ -277,11 +277,12 @@ class ListNewsViewTest(TestCase):
                     status=NewsTranslation.Status.PUBLISHED,
                     created_by=self.user,
                     title=f"Actualité FR {i}",
+                    published_at=timezone.now() - timezone.timedelta(days=i),
                 )
 
             url = reverse("list_news")
             response = self.client.get(url)
-            news_list = list(response.context["news"])
+            news_list = list(response.context["news_translations"])
 
             self.assertEqual(len(news_list), 10)
 
@@ -298,11 +299,12 @@ class ListNewsViewTest(TestCase):
                     status=NewsTranslation.Status.PUBLISHED,
                     created_by=self.user,
                     title=f"Actualité FR {i}",
+                    published_at=timezone.now() - timezone.timedelta(days=i),
                 )
 
             url = reverse("list_news")
             response = self.client.get(url, {"page": "2"})
-            news_list = list(response.context["news"])
+            news_list = list(response.context["news_translations"])
 
             self.assertEqual(len(news_list), 5)
             self.assertEqual(response.context["page_obj"].number, 2)
@@ -318,5 +320,4 @@ class ListNewsViewTest(TestCase):
 
             self.assertIn("category=science", query_string)
             self.assertIn("q=space", query_string)
-
             self.assertNotIn("page=", query_string)

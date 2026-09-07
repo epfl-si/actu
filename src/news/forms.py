@@ -1,10 +1,6 @@
 from django import forms
 from django.db import transaction
 from django.utils.translation import gettext_lazy as _
-
-from translations.models import NewsTranslation
-
-from django.core.exceptions import ValidationError
 from tinymce.widgets import TinyMCE
 
 from translations.models import NewsTranslation

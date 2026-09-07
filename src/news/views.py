@@ -16,29 +16,25 @@ from .models import News
 def list_news(request):
     current_lang = get_language()
 
-    translations_qs = NewsTranslation.objects.filter(
-        language=current_lang, status=NewsTranslation.Status.PUBLISHED
-    )
-
-    news_list = (
-        News.objects.filter(
-            translations__language=current_lang,
-            translations__status=NewsTranslation.Status.PUBLISHED,
+    news_translations = (
+        NewsTranslation.objects.filter(
+            language=current_lang,
+            status=NewsTranslation.Status.PUBLISHED,
+            published_at__isnull=False,
         )
-        .select_related("format", "created_by")
+        .select_related(
+            "news",
+            "news__format",
+            "news__created_by",
+        )
         .prefetch_related(
-            Prefetch(
-                "translations",
-                queryset=translations_qs,
-                to_attr="lang_translations",
-            ),
-            "thematics",
-            "entities",
+            "news__thematics",
+            "news__entities",
         )
-        .distinct()
+        .order_by("-published_at")
     )
 
-    paginator = Paginator(news_list, 10)
+    paginator = Paginator(news_translations, 10)
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
 
@@ -46,15 +42,12 @@ def list_news(request):
         page_obj.number, on_each_side=1, on_ends=1
     )
 
-    for item in page_obj:
-        item.trans = item.lang_translations[0]
-
     query_dict = request.GET.copy()
     if "page" in query_dict:
         del query_dict["page"]
 
     context = {
-        "news": page_obj,
+        "news_translations": page_obj,
         "page_obj": page_obj,
         "page_range": page_range,
         "paginator": paginator,

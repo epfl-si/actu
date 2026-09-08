@@ -2,6 +2,10 @@
 {% load i18n %}
 {% load current_label %}
 
+{% block web2018_extra_js %}
+  {{ form.translation.media }}
+{% endblock %}
+
 {% block web2018_title %}
   {% trans 'News' %} · {% if form.news.instance.pk %}{% trans "Edit News" %}{% else %}{% trans "Create News" %}{% endif %}
 {% endblock %}
@@ -124,7 +128,6 @@
               {% trans "Standfirst" %}
             </label>
             {{ form.translation.standfirst }}
-            {{ form.translation.media }}
             {% if form.translation.standfirst.errors %}
             <small class="form-text invalid-feedback">
                 {{ form.translation.standfirst.errors }}
@@ -139,7 +142,6 @@
               {% trans "Extract" %}
             </label>
             {{ form.translation.extract }}
-            {{ form.translation.media }}
           </div>
           <div class="form-group">
             <span class="text-danger">*</span>
@@ -147,7 +149,6 @@
               {% trans "Author" %}
             </label>
             {{ form.translation.author }}
-            {{ form.translation.media }}
             {% if form.translation.author.errors %}
             <small class="form-text invalid-feedback">
               {{ form.translation.author.errors }}
@@ -159,7 +160,6 @@
               {% trans "Funding" %}
             </label>
             {{ form.translation.funding }}
-            {{ form.translation.media }}
             <small class="form-text text-muted">
               {% trans "Please list any institutions or companies that have funded the reported research." %}
             </small>
@@ -169,7 +169,6 @@
               {% trans "References" %}
             </label>
             {{ form.translation.references }}
-            {{ form.translation.media }}
             <small class="form-text text-muted">
               {% trans "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research." %}
             </small>

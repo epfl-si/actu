@@ -16,20 +16,18 @@
     <div class="list-group-teaser-excerpt small">
       Naviguer dans les zones difficiles d’accès du corps humain tout en conservant une précision extrême...
     </div>
-    <div class="mt-1 d-flex align-items-center">
-      {% if translation.news.format %}
-        <span class="tag tag-sm mt-1 border-light mr-2">
-          {{ translation.news.format }}
-          {% if translation.news.format.icon %}
-            <svg class="icon" aria-hidden="true">
-              <use xlink:href="{{ translation.news.format.icon }}"></use>
-            </svg>
-          {% endif %}
-        </span>
-      {% endif %}
-      <time datetime="{{ translation.published_at|date:'Y-m-d' }}" title="{{ translation.published_at }}" class="small mb-0 text-muted">
-        {{ translation.published_at|naturaltime }}
-      </time>
-    </div>
+    {% if translation.news.format %}
+      <span class="tag tag-sm mt-1 border-light mr-2">
+        {{ translation.news.format }}
+        {% if translation.news.format.icon %}
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="{{ translation.news.format.icon }}"></use>
+          </svg>
+        {% endif %}
+      </span>
+    {% endif %}
+    <time datetime="{{ translation.published_at|date:'Y-m-d' }}" title="{{ translation.published_at }}" class="small mb-0 text-muted">
+      {{ translation.published_at|naturaltime }}
+    </time>
   </div>
 </a>

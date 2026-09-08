@@ -3,38 +3,77 @@
     "model": "entities.entity",
     "pk": 1,
     "fields": {
-      "label_fr": "Sciences de la Vie",
-      "label_en": "Life Sciences",
-      "label_de": "Lebenswissenschaften",
-      "label_it": "Scienze della Vita",
+      "label_fr": "Collège du management de la technologie - CDM",
+      "label_en": "College of Management of Technology - CDM",
+      "label_de": "College of Management of Technology - CDM",
+      "label_it": "CSM",
       "is_active": true,
       "is_main": true,
-      "order": 0
+      "order": 6
     }
   },
   {
     "model": "entities.entity",
     "pk": 2,
     "fields": {
-      "label_fr": "Sciences de Base",
-      "label_en": "Basic Science",
-      "label_de": "Grundlagenwissenschaften",
-      "label_it": "Scienze di Base",
+      "label_fr": "Faculté des sciences de la vie - SV",
+      "label_en": "School of Life Sciences - SV",
+      "label_de": "Fakultät für Lebenswissenschaften - SV",
+      "label_it": "SV",
       "is_active": true,
       "is_main": true,
-      "order": 1
+      "order": 5
     }
   },
   {
     "model": "entities.entity",
     "pk": 3,
     "fields": {
-      "label_fr": "DCSL – Laboratoire des systèmes de centres de données",
-      "label_en": "DCSL – Data Center Systems Laboratory",
-      "label_de": "DCSL – Labor für Rechenzentrumssysteme",
-      "label_it": "DCSL – Laboratorio di sistemi per data center",
+      "label_fr": "Faculté informatique et communications - IC",
+      "label_en": "School of Computer & Communication Sciences - IC",
+      "label_de": "Fakultät für Informatik und Kommunikation - IC",
+      "label_it": "IC",
       "is_active": true,
-      "is_main": false,
+      "is_main": true,
+      "order": 4
+    }
+  },
+  {
+    "model": "entities.entity",
+    "pk": 4,
+    "fields": {
+      "label_fr": "Faculté des sciences de base - SB",
+      "label_en": "School of Basic Sciences - SB",
+      "label_de": "Fakultät für Grundlagenwissenschaften - SB",
+      "label_it": "SB",
+      "is_active": true,
+      "is_main": true,
+      "order": 3
+    }
+  },
+  {
+    "model": "entities.entity",
+    "pk": 5,
+    "fields": {
+      "label_fr": "Faculté de l'environnement naturel, architectural et construit - ENAC",
+      "label_en": "School of Architecture, Civil & Environmental Engineering - ENAC",
+      "label_de": "Fakultät für Architektur, Bau- und Umweltingenieurwissenschaften - ENAC",
+      "label_it": "ENAC",
+      "is_active": true,
+      "is_main": true,
+      "order": 2
+    }
+  },
+  {
+    "model": "entities.entity",
+    "pk": 6,
+    "fields": {
+      "label_fr": "Faculté des sciences et techniques de l'ingénieur - STI",
+      "label_en": "School of Engineering - STI",
+      "label_de": "Fakultät für Ingenieurwissenschaften - STI",
+      "label_it": "STI",
+      "is_active": true,
+      "is_main": true,
       "order": 1
     }
   }

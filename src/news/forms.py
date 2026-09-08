@@ -1,6 +1,7 @@
 from django import forms
 from django.db import transaction
 from django.utils.translation import gettext_lazy as _
+from tinymce.widgets import TinyMCE
 
 from translations.models import NewsTranslation
 
@@ -35,7 +36,27 @@ class NewsForm(forms.ModelForm):
 class NewsTranslationForm(forms.ModelForm):
     class Meta:
         model = NewsTranslation
-        fields = ["title"]
+        fields = [
+            "title",
+            "standfirst",
+            "extract",
+            "author",
+            "funding",
+            "references",
+        ]
+        widgets = {
+            "author": TinyMCE(mce_attrs={"height": 130}),
+            "extract": TinyMCE(
+                mce_attrs={
+                    "height": 250,
+                    "menubar": False,
+                    "plugins": "lists link anchor code",
+                    "toolbar": "bold italic underline | bullist numlist indent"
+                    " outdent  | subscript superscript | blocks | link anchor"
+                    " | undo redo | fullscreen | code",
+                }
+            ),
+        }
 
     def save(self, user, language, news):
         is_new = self.instance.pk is None

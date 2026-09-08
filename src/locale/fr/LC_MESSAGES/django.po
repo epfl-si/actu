@@ -442,8 +442,17 @@ msgstr "Gérer les actualités"
 msgid "Create news"
 msgstr "Créer une actualité"
 
-msgid "No news available."
-msgstr "Aucune actualité disponible."
+msgid "Search..."
+msgstr "Rechercher..."
+
+msgid "Creator"
+msgstr "Créateur"
+
+msgid "Content Type"
+msgstr "Type de contenu"
+
+msgid "No news found."
+msgstr "Aucune actualité trouvée."
 
 msgid "Do you really want to delete this news translation?"
 msgstr "Voulez-vous vraiment supprimer cette traduction de l'actualité?"

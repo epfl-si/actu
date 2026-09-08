@@ -439,8 +439,17 @@ msgstr "Gestire le notizie"
 msgid "Create news"
 msgstr "Crea una notizia"
 
-msgid "No news available."
-msgstr "Nessuna notizia disponibile."
+msgid "Search..."
+msgstr "Cerca..."
+
+msgid "Creator"
+msgstr "Creatore"
+
+msgid "Content Type"
+msgstr "Tipo di contenuto"
+
+msgid "No news found."
+msgstr "Nessuna notizia trovata."
 
 msgid "Do you really want to delete this news translation?"
 msgstr "Vuoi davvero eliminare questa traduzione della notizia?"

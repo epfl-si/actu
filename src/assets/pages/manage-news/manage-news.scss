@@ -1,5 +1,13 @@
 @use 'variables';
 
+#manage-news-filters {
+  @media (min-width: 768px) {
+    .select-multiple .ms-drop, .select-multiple .ms-drop ul {
+      width: auto;
+    }
+  }
+}
+
 #manage-news-list {
 
   .badge.draft {

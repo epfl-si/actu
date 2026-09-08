@@ -1,6 +1,7 @@
 from django import utils
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Prefetch
@@ -18,6 +19,8 @@ from utils.parser import _safe_int, _safe_int_set
 
 from .forms import NewsWithTranslationForm
 from .models import News
+
+User = get_user_model()
 
 
 def _initialize_view():
@@ -120,8 +123,73 @@ def edit_news(request, news_id, lang):
     return _initialize_form_and_render_view(request, lang, news_id)
 
 
+def _get_filters(request):
+    entities = _safe_int_set(request.GET.getlist("entities"))
+    statuses = {
+        status
+        for status in request.GET.getlist("status")
+        if status in NewsTranslation.Status.values
+    }
+
+    if entities:
+        active_entity_ids = set(
+            Entity.objects.filter(is_active=True).values_list("id", flat=True)
+        )
+        if entities == active_entity_ids:
+            entities = set()
+
+    return {
+        "search": request.GET.get("search", "").strip(),
+        "status": statuses,
+        "thematics": _safe_int_set(request.GET.getlist("thematics")),
+        "entities": entities,
+        "created_by": _safe_int_set(request.GET.getlist("created_by")),
+        "formats": _safe_int_set(request.GET.getlist("formats")),
+    }
+
+
+def _apply_filters(news, filters):
+    filter_search = filters.get("search")
+    filter_statuses = filters.get("status")
+    filter_thematics = filters.get("thematics")
+    filter_entities = filters.get("entities")
+    filter_created_by = filters.get("created_by")
+    filter_formats = filters.get("formats")
+
+    if filter_search:
+        news = news.filter(translations__title__icontains=filter_search)
+
+    if filter_statuses:
+        news = news.filter(translations__status__in=filter_statuses)
+
+    if filter_thematics:
+        news = news.filter(
+            thematics__id__in=filter_thematics,
+        )
+
+    if filter_entities:
+        news = news.filter(
+            entities__id__in=filter_entities,
+        )
+
+    if filter_created_by:
+        news = news.filter(
+            created_by_id__in=filter_created_by,
+        )
+
+    if filter_formats:
+        news = news.filter(
+            format_id__in=filter_formats,
+        )
+
+    return news.distinct()
+
+
 @login_required
 def manage_news(request):
+    thematics, entities, formats, languages = _initialize_view()
+
+    filters = _get_filters(request)
 
     translations_qs = NewsTranslation.objects.select_related(
         "created_by",
@@ -133,6 +201,8 @@ def manage_news(request):
         Prefetch("translations", queryset=translations_qs)
     )
 
+    news = _apply_filters(news, filters)
+
     paginator = Paginator(news, 10)
     page_number = request.GET.get("page", 1)
     page_obj = paginator.get_page(page_number)
@@ -141,6 +211,12 @@ def manage_news(request):
     )
 
     languages = settings.LANGUAGES
+
+    creators = (
+        User.objects.filter(news_created__isnull=False)
+        .distinct()
+        .order_by("last_name", "first_name", "username")
+    )
 
     news_rows = []
     for n in page_obj:
@@ -169,6 +245,12 @@ def manage_news(request):
             "page_range": page_range,
             "paginator": paginator,
             "query_string": query_dict.urlencode(),
+            "filters": filters,
+            "statuses": NewsTranslation.Status,
+            "thematics": thematics,
+            "entities": entities,
+            "creators": creators,
+            "formats": formats,
         },
     )
 

@@ -440,7 +440,16 @@ msgstr ""
 msgid "Create news"
 msgstr ""
 
-msgid "No news available."
+msgid "Search..."
+msgstr ""
+
+msgid "Creator"
+msgstr ""
+
+msgid "Content Type"
+msgstr ""
+
+msgid "No news found."
 msgstr ""
 
 msgid "Do you really want to delete this news translation?"

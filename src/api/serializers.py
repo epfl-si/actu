@@ -34,9 +34,16 @@ class NewsSerializer(serializers.ModelSerializer):
         model = NewsTranslation
         fields = ["id", "title", "format"]
 
-    def get_format(self, obj: NewsTranslation) -> str:
-        return obj.news.format.get_label(obj.language)
+    def get_format(self, obj: NewsTranslation) -> str | None:
+        return obj.news.format.get_label(obj.language) \
+            if obj.news.format else None
 
+    def to_representation(self, instance: NewsTranslation) -> dict:
+        # Hide the format field if null in db
+        data = super().to_representation(instance)
+        if data.get("format") is None:
+            data.pop("format", None)
+        return data
 
 class LabelModelSerializer(serializers.ModelSerializer):
     class Meta:

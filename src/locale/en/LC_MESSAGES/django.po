@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-03 16:44+0200\n"
+"POT-Creation-Date: 2026-09-08 10:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -407,7 +407,10 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-msgid "Hat"
+msgid "Heading"
+msgstr ""
+
+msgid "The heading summarizes the news in a sentence or two. The heading is displayed in bold under the title."
 msgstr ""
 
 msgid "Extract"
@@ -419,7 +422,13 @@ msgstr ""
 msgid "Funding"
 msgstr ""
 
+msgid "Please list any institutions or companies that have funded the reported research."
+msgstr ""
+
 msgid "References"
+msgstr ""
+
+msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
 msgstr ""
 
 msgid "Save"

@@ -45,7 +45,7 @@ class NewsTranslation(AuditModelMixin, models.Model):
         verbose_name=_("Title"),
     )
     hat = HTMLField(
-        verbose_name=_("Hat"),
+        verbose_name=_("Heading"),
     )
     extract = HTMLField(verbose_name=_("Extract"), null=True, blank=True)
     author = HTMLField(

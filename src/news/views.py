@@ -25,11 +25,6 @@ def list_news(request):
         .select_related(
             "news",
             "news__format",
-            "news__created_by",
-        )
-        .prefetch_related(
-            "news__thematics",
-            "news__entities",
         )
         .order_by("-published_at")
     )

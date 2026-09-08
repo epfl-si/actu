@@ -36,7 +36,14 @@ class NewsForm(forms.ModelForm):
 class NewsTranslationForm(forms.ModelForm):
     class Meta:
         model = NewsTranslation
-        fields = ["title", "hat", "extract", "author", "funding", "references"]
+        fields = [
+            "title",
+            "standfirst",
+            "extract",
+            "author",
+            "funding",
+            "references",
+        ]
         widgets = {
             "author": TinyMCE(mce_attrs={"height": 130}),
             "extract": TinyMCE(

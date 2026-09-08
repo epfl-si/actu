@@ -248,7 +248,7 @@ class CreateNewsTranslationViewTest(TestCase):
             "entities": [self.entity.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
-            "hat": "This is a hat",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -290,7 +290,7 @@ class CreateNewsTranslationViewTest(TestCase):
             "entities": [self.entity.id, self.entity_2.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
-            "hat": "This is a hat",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -313,7 +313,7 @@ class CreateNewsTranslationViewTest(TestCase):
             "entities": [self.entity.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
-            "hat": "This is a hat",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -329,7 +329,7 @@ class CreateNewsTranslationViewTest(TestCase):
             "entities": [self.entity.id, self.entity_2.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
-            "hat": "This is a hat",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -355,7 +355,7 @@ class CreateNewsTranslationViewTest(TestCase):
             "entities": ["foobar", self.entity_2.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
-            "hat": "This is a hat",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -377,7 +377,7 @@ class CreateNewsTranslationViewTest(TestCase):
             "entities": [self.entity.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
-            "hat": "This is a hat",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data, follow=True)
         self.assertEqual(response.status_code, 200)
@@ -489,7 +489,7 @@ class EditNewsTranslationViewTest(TestCase):
             "entities": [self.entity_2.id],
             "format": self.format_2.id,
             "author": "Lindsey Vonn",
-            "hat": "This is a hat",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -525,7 +525,7 @@ class EditNewsTranslationViewTest(TestCase):
             "entities": [self.entity_2.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
-            "hat": "This is a hat",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)

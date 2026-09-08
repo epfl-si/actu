@@ -120,18 +120,18 @@
           </div>
           <div class="form-group">
             <span class="text-danger">*</span>
-            <label class="{% if form.translation.hat.errors %}invalid-label{% endif %}" for="hat-{{ lang.code }}">
-              {% trans "Heading" %}
+            <label class="{% if form.translation.standfirst.errors %}invalid-label{% endif %}" for="standfirst-{{ lang.code }}">
+              {% trans "Standfirst" %}
             </label>
-            {{ form.translation.hat }}
+            {{ form.translation.standfirst }}
             {{ form.translation.media }}
-            {% if form.translation.hat.errors %}
+            {% if form.translation.standfirst.errors %}
             <small class="form-text invalid-feedback">
-                {{ form.translation.hat.errors }}
+                {{ form.translation.standfirst.errors }}
             </small>
             {% endif %}
             <small class="form-text text-muted">
-              {% trans "The heading summarizes the news in a sentence or two. The heading is displayed in bold under the title." %}
+              {% trans "The standfirst summarizes the news in a sentence or two. The standfirst is displayed in bold under the title." %}
             </small>
           </div>
           <div class="form-group">

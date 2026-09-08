@@ -29,8 +29,10 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name="newstranslation",
-            name="hat",
-            field=tinymce.models.HTMLField(default="", verbose_name="Hat"),
+            name="standfirst",
+            field=tinymce.models.HTMLField(
+                default="", verbose_name="Standfirst"
+            ),
             preserve_default=False,
         ),
         migrations.AddField(

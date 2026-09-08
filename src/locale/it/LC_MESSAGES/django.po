@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-03 16:44+0200\n"
+"POT-Creation-Date: 2026-09-08 08:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -394,9 +394,6 @@ msgstr "Entità relative a questa notizia."
 msgid "Format"
 msgstr "Formato"
 
-msgid "No news available."
-msgstr "Nessuna notizia disponibile."
-
 msgid "Edit News"
 msgstr "Modificare la notizia"
 
@@ -411,6 +408,9 @@ msgstr "Titolo"
 
 msgid "Save"
 msgstr "Salva"
+
+msgid "No news available."
+msgstr "Nessuna notizia disponibile."
 
 msgid "Manage News"
 msgstr "Gestire le notizie"

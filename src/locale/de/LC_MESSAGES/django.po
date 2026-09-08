@@ -397,6 +397,7 @@ msgstr "Format"
 
 msgid "No news available."
 msgstr "Keine Nachrichten verfügbar."
+
 msgid "Edit News"
 msgstr "Nachrichten bearbeiten"
 

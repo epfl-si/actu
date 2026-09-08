@@ -27,7 +27,7 @@
       </span>
     {% endif %}
     <time datetime="{{ translation.published_at|date:'Y-m-d' }}" title="{{ translation.published_at }}" class="small mb-0 text-muted">
-      {{ translation.published_at|naturaltime }}
+      {{ translation.published_at|naturalday }}
     </time>
   </div>
 </a>

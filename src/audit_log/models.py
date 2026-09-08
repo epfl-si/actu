@@ -21,7 +21,7 @@ class AuditQuerySet(models.QuerySet):
             current_state = obj._get_current_state()
 
             formatted_details = {
-                field: ["", str(value)]
+                field: ["", _get_readable_value(obj.__class__, field, value)]
                 for field, value in current_state.items()
             }
 
@@ -60,7 +60,13 @@ class AuditQuerySet(models.QuerySet):
                 new_val = str(getattr(obj, field, ""))
 
                 if old_val != new_val:
-                    changes[field] = [old_val, new_val]
+                    readable_old = _get_readable_value(
+                        obj.__class__, field, old_val
+                    )
+                    readable_new = _get_readable_value(
+                        obj.__class__, field, new_val
+                    )
+                    changes[field] = [readable_old, readable_new]
 
             user_str = _get_user_str()
             if changes:
@@ -143,11 +149,7 @@ class AuditModelMixin(models.Model):
                 if field.name == "id" or "password" in field.name.lower():
                     continue
                 try:
-                    if field.is_relation:
-                        val = getattr(self, field.name)
-                    else:
-                        val = field.value_from_object(self)
-
+                    val = field.value_from_object(self)
                     state[field.name] = (
                         str(val) if val is not None else "Empty"
                     )
@@ -171,7 +173,10 @@ class AuditModelMixin(models.Model):
                     new_state = self._get_current_state()
                     for k, v in new_state.items():
                         if v != "Empty":
-                            modifs[k] = ["", v]
+                            readable_v = _get_readable_value(
+                                self.__class__, k, v
+                            )
+                            modifs[k] = ["", readable_v]
 
                     GlobalAuditLog.objects.create(
                         content_type=ctype,
@@ -190,7 +195,13 @@ class AuditModelMixin(models.Model):
             for field, old_val in self._initial_state.items():
                 new_val = new_state.get(field)
                 if old_val != new_val:
-                    modifs[field] = [old_val, new_val]
+                    readable_old = _get_readable_value(
+                        self.__class__, field, old_val
+                    )
+                    readable_new = _get_readable_value(
+                        self.__class__, field, new_val
+                    )
+                    modifs[field] = [readable_old, readable_new]
 
             if modifs:
 
@@ -213,3 +224,20 @@ class AuditModelMixin(models.Model):
 def _get_user_str():
     user = current_user.get()
     return str(user) if user and user.is_authenticated else "System"
+
+
+def _get_readable_value(model_class, field_name, raw_value):
+    """Translate an ID in a readable name (ex: '4' -> 'Health')"""
+    if raw_value in ["Empty", "Error", "", None]:
+        return str(raw_value) if raw_value is not None else "Empty"
+
+    try:
+        field = model_class._meta.get_field(field_name)
+        if field.is_relation and field.related_model:
+            rel_obj = field.related_model.objects.filter(pk=raw_value).first()
+            if rel_obj:
+                return str(rel_obj)
+    except Exception:
+        pass
+
+    return str(raw_value)

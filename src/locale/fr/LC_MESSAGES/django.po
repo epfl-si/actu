@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-03 12:27+0200\n"
+"POT-Creation-Date: 2026-09-03 16:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -344,7 +344,7 @@ msgid "Are you sure you want to remove permissions for this user?"
 msgstr "Etes-vous sûr d'enlever la permission à cet utilisateur ?"
 
 msgid "No SCIPER provided."
-msgstr "Aucun SCIPER n'a été fourni"
+msgstr "Aucun SCIPER n'a été fourni."
 
 msgid "This person can't be added."
 msgstr "Cette personne ne peut pas être ajouté."
@@ -382,6 +382,12 @@ msgstr "Cette traduction n'est pas archivée."
 msgid "Translation restored successfully."
 msgstr "Traduction restaurée avec succès."
 
+msgid "No thematic provided."
+msgstr "Aucun thèmatique n'a été fourni."
+
+msgid "No format provided."
+msgstr "Aucun format n'a été fourni."
+
 msgid "Thematics related to this news."
 msgstr "Thématiques liées à cette actualité."
 
@@ -393,6 +399,20 @@ msgstr "Format"
 
 msgid "No news available."
 msgstr "Aucune actualité disponible."
+msgid "Edit News"
+msgstr "Éditer l'actualité"
+
+msgid "Create News"
+msgstr "Créer une actualité"
+
+msgid "Common"
+msgstr "Commun"
+
+msgid "Title"
+msgstr "Titre"
+
+msgid "Save"
+msgstr "Enregistrer"
 
 msgid "Manage News"
 msgstr "Gérer les actualités"
@@ -402,6 +422,12 @@ msgstr "Créer une actualité"
 
 msgid "Do you really want to delete this news translation?"
 msgstr "Voulez-vous vraiment supprimer cette traduction de l'actualité?"
+
+msgid "The news has been saved successfully."
+msgstr "L'actualité a été sauvegardée correctement."
+
+msgid "The form contains errors. Please correct the highlighted fields below."
+msgstr "Le formulaire contient des erreurs. Veuillez corriger les champs surlignés ci-dessous."
 
 msgid "News Format"
 msgstr "Format d'actualités"
@@ -450,9 +476,6 @@ msgstr "Traduction d'actualité"
 
 msgid "News translations"
 msgstr "Traductions d'actualités"
-
-msgid "Title"
-msgstr "Titre"
 
 msgid "Published on"
 msgstr "Publié le"

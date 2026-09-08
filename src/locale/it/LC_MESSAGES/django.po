@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-03 12:27+0200\n"
+"POT-Creation-Date: 2026-09-03 16:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -379,6 +379,12 @@ msgstr "Questa traduzione non è archiviata."
 msgid "Translation restored successfully."
 msgstr "Traduzione ripristinata con successo."
 
+msgid "No thematic provided."
+msgstr "Nessun tematica fornita."
+
+msgid "No format provided."
+msgstr "Nessun formato fornito."
+
 msgid "Thematics related to this news."
 msgstr "Tematiche relative a questa notizia."
 
@@ -390,6 +396,20 @@ msgstr "Formato"
 
 msgid "No news available."
 msgstr "Nessuna notizia disponibile."
+msgid "Edit News"
+msgstr "Modificare la notizia"
+
+msgid "Create News"
+msgstr "Creare una notizia"
+
+msgid "Common"
+msgstr "Comune"
+
+msgid "Title"
+msgstr "Titolo"
+
+msgid "Save"
+msgstr "Salva"
 
 msgid "Manage News"
 msgstr "Gestire le notizie"
@@ -399,6 +419,12 @@ msgstr "Crea una notizia"
 
 msgid "Do you really want to delete this news translation?"
 msgstr "Vuoi davvero eliminare questa traduzione della notizia?"
+
+msgid "The news has been saved successfully."
+msgstr "La notizia è stata salvata correttamente."
+
+msgid "The form contains errors. Please correct the highlighted fields below."
+msgstr "Il formulario contiene errori. Per favore correggi i campi evidenziati qui sotto."
 
 msgid "News Format"
 msgstr "Formato notizia"
@@ -447,9 +473,6 @@ msgstr "Traduzione della notizia"
 
 msgid "News translations"
 msgstr "Traduzioni delle notizie"
-
-msgid "Title"
-msgstr "Titolo"
 
 msgid "Published on"
 msgstr "Pubblicato il"

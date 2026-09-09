@@ -190,3 +190,42 @@ class NewsTranslationModelTest(TestCase):
         self.translation.slug = None
         expected_url = f"/{self.translation.id}"
         self.assertEqual(self.translation.get_absolute_url(), expected_url)
+
+    def test_slug_generation_avoids_existing_active_slug(self):
+        news2 = News.objects.create(
+            created_by=self.user,
+            format=self.format,
+        )
+        translation2 = NewsTranslation.objects.create(
+            news=news2,
+            language="en",
+            title="Niskanen wins men's 50 km mass start classic",
+            status=NewsTranslation.Status.DRAFT,
+            created_by=self.user,
+        )
+        self.assertEqual(
+            translation2.slug, "niskanen-wins-mens-50-km-mass-start-classic-2"
+        )
+
+    def test_slug_generation_avoids_historical_slug(self):
+        original_slug = self.translation.slug
+        self.translation.title = "A totally new title for the first news"
+        self.translation.save()
+
+        self.assertTrue(
+            NewsSlugHistory.objects.filter(old_slug=original_slug).exists()
+        )
+
+        news2 = News.objects.create(
+            created_by=self.user,
+            format=self.format,
+        )
+        translation2 = NewsTranslation.objects.create(
+            news=news2,
+            language="en",
+            title="Niskanen wins men's 50 km mass start classic",
+            status=NewsTranslation.Status.DRAFT,
+            created_by=self.user,
+        )
+
+        self.assertEqual(translation2.slug, f"{original_slug}-2")

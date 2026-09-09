@@ -32,33 +32,44 @@ def list_news(request):
     formats = NewsFormat.objects.all()
 
     search_query = request.GET.get("search", "").strip()
-    selected_thematics = [int(i) for i in request.GET.getlist("thematics") if i.isdigit()]
-    selected_entities = [int(i) for i in request.GET.getlist("entities") if i.isdigit()]
-    selected_formats = [int(i) for i in request.GET.getlist("formats") if i.isdigit()]
+    selected_thematics = [
+        int(i) for i in request.GET.getlist("thematics") if i.isdigit()
+    ]
+    selected_entities = [
+        int(i) for i in request.GET.getlist("entities") if i.isdigit()
+    ]
+    selected_formats = [
+        int(i) for i in request.GET.getlist("formats") if i.isdigit()
+    ]
 
-    news_translations = (
-        NewsTranslation.objects.filter(
-            language=current_lang,
-            status=NewsTranslation.Status.PUBLISHED,
-            published_at__isnull=False,
-        )
-        .select_related(
-            "news",
-            "news__format",
-        )
+    news_translations = NewsTranslation.objects.filter(
+        language=current_lang,
+        status=NewsTranslation.Status.PUBLISHED,
+        published_at__isnull=False,
+    ).select_related(
+        "news",
+        "news__format",
     )
 
     if search_query:
-        news_translations = news_translations.filter(title__icontains=search_query)
+        news_translations = news_translations.filter(
+            title__icontains=search_query
+        )
 
     if selected_thematics:
-        news_translations = news_translations.filter(news__thematics__in=selected_thematics)
+        news_translations = news_translations.filter(
+            news__thematics__in=selected_thematics
+        )
 
     if selected_entities:
-        news_translations = news_translations.filter(news__entities__in=selected_entities)
+        news_translations = news_translations.filter(
+            news__entities__in=selected_entities
+        )
 
     if selected_formats:
-        news_translations = news_translations.filter(news__format__in=selected_formats)
+        news_translations = news_translations.filter(
+            news__format__in=selected_formats
+        )
 
     if selected_thematics or selected_entities:
         news_translations = news_translations.distinct()

@@ -350,14 +350,21 @@ class ListNewsViewTest(TestCase):
             username="bentoumi",
             sciper="99999999",
         )
+        self.thematic = Thematic.objects.create(label_en="Science")
+        self.entity = Entity.objects.create(label_en="EPFL")
+        self.format = NewsFormat.objects.create(label_en="Article")
 
-        self.news_pub_en = News.objects.create(created_by=self.user)
+        self.news_pub_en = News.objects.create(
+            created_by=self.user, format=self.format
+        )
+        self.news_pub_en.thematics.add(self.thematic)
+        self.news_pub_en.entities.add(self.entity)
         self.trans_pub_en = NewsTranslation.objects.create(
             news=self.news_pub_en,
             language="en",
             status=NewsTranslation.Status.PUBLISHED,
             created_by=self.user,
-            title="English Published News",
+            title="English Published Space News",
             published_at=timezone.now(),
         )
 
@@ -385,12 +392,16 @@ class ListNewsViewTest(TestCase):
     ):
         url = reverse("list_news")
         response = self.client.get(url)
+
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "list.html")
 
+        self.assertIn(self.thematic, response.context["thematics"])
+        self.assertIn(self.entity, response.context["entities"])
+        self.assertIn(self.format, response.context["formats"])
+
     def test_shows_only_published_news_in_english(self):
         url = reverse("list_news")
-
         with override("en"):
             response = self.client.get(url)
             news_in_context = list(response.context["news_translations"])
@@ -402,29 +413,47 @@ class ListNewsViewTest(TestCase):
     def test_shows_only_published_news_in_french(self):
         with override("fr"):
             url = reverse("list_news")
-
             response = self.client.get(url)
             news_in_context = list(response.context["news_translations"])
 
             self.assertIn(self.trans_pub_fr, news_in_context)
             self.assertNotIn(self.trans_pub_en, news_in_context)
 
-    def test_returns_news_translation_objects_directly(self):
+    def test_filters_by_search_query(self):
         url = reverse("list_news")
-
         with override("en"):
-            response = self.client.get(url)
-            news_list = list(response.context["news_translations"])
+            response = self.client.get(url, {"search": "space"})
+            news_in_context = list(response.context["news_translations"])
 
-            returned_translation = next(
-                t for t in news_list if t.id == self.trans_pub_en.id
-            )
+            self.assertIn(self.trans_pub_en, news_in_context)
+            self.assertEqual(response.context["filters"]["search"], "space")
 
+            response_empty = self.client.get(url, {"search": "foobar"})
             self.assertEqual(
-                returned_translation.title, "English Published News"
+                len(list(response_empty.context["news_translations"])), 0
             )
-            self.assertEqual(returned_translation.language, "en")
-            self.assertEqual(returned_translation.news, self.news_pub_en)
+
+    def test_filters_by_thematic_entity_and_format(self):
+        url = reverse("list_news")
+        with override("en"):
+            filters = {
+                "thematics": self.thematic.id,
+                "entities": self.entity.id,
+                "formats": self.format.id,
+            }
+            response = self.client.get(url, filters)
+            news_in_context = list(response.context["news_translations"])
+
+            self.assertIn(self.trans_pub_en, news_in_context)
+            self.assertIn(
+                self.thematic.id, response.context["filters"]["thematics"]
+            )
+            self.assertIn(
+                self.entity.id, response.context["filters"]["entities"]
+            )
+            self.assertIn(
+                self.format.id, response.context["filters"]["formats"]
+            )
 
     def test_pagination_limits_to_10_items_per_page(self):
         with override("fr"):
@@ -444,7 +473,6 @@ class ListNewsViewTest(TestCase):
             news_list = list(response.context["news_translations"])
 
             self.assertEqual(len(news_list), 10)
-
             self.assertEqual(response.context["paginator"].count, 15)
             self.assertEqual(response.context["paginator"].num_pages, 2)
 
@@ -472,13 +500,17 @@ class ListNewsViewTest(TestCase):
         with override("en"):
             url = reverse("list_news")
             response = self.client.get(
-                url, {"category": "science", "q": "space", "page": "2"}
+                url,
+                {
+                    "search": "space",
+                    "thematics": self.thematic.id,
+                    "page": "2",
+                },
             )
 
             query_string = response.context["query_string"]
-
-            self.assertIn("category=science", query_string)
-            self.assertIn("q=space", query_string)
+            self.assertIn("search=space", query_string)
+            self.assertIn(f"thematics={self.thematic.id}", query_string)
             self.assertNotIn("page=", query_string)
 
 

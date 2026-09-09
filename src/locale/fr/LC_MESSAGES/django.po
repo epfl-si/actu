@@ -436,6 +436,9 @@ msgstr "Si l'actualité se base sur une publication en revue, indiquer ici les r
 msgid "Save"
 msgstr "Enregistrer"
 
+msgid "No news available."
+msgstr "Aucune actualité disponible."
+
 msgid "Manage News"
 msgstr "Gérer les actualités"
 

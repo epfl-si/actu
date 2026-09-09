@@ -8,6 +8,7 @@ from django.db.models import Prefetch
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 
@@ -21,6 +22,45 @@ from .forms import NewsWithTranslationForm
 from .models import News
 
 User = get_user_model()
+
+
+def list_news(request):
+    current_lang = get_language()
+
+    news_translations = (
+        NewsTranslation.objects.filter(
+            language=current_lang,
+            status=NewsTranslation.Status.PUBLISHED,
+            published_at__isnull=False,
+        )
+        .select_related(
+            "news",
+            "news__format",
+        )
+        .order_by("-published_at")
+    )
+
+    paginator = Paginator(news_translations, 10)
+    page_number = request.GET.get("page", 1)
+    page_obj = paginator.get_page(page_number)
+
+    page_range = paginator.get_elided_page_range(
+        page_obj.number, on_each_side=1, on_ends=1
+    )
+
+    query_dict = request.GET.copy()
+    if "page" in query_dict:
+        del query_dict["page"]
+
+    context = {
+        "news_translations": page_obj,
+        "page_obj": page_obj,
+        "page_range": page_range,
+        "paginator": paginator,
+        "query_string": query_dict.urlencode(),
+    }
+
+    return render(request, "list.html", context)
 
 
 def _initialize_view():

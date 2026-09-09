@@ -7,6 +7,7 @@ from . import views
 register_converter(converters.LanguageConverter, "language")
 
 urlpatterns = [
+    path("news/", views.list_news, name="list_news"),
     path("news/manage/", views.manage_news, name="manage_news"),
     path(
         "news/<language:lang>/create/",

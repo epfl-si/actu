@@ -433,6 +433,9 @@ msgstr "Si prega di fornire i riferimenti completi, compreso il DOI, di tutte le
 msgid "Save"
 msgstr "Salva"
 
+msgid "No news available."
+msgstr "Nessuna notizia disponibile."
+
 msgid "Manage News"
 msgstr "Gestire le notizie"
 

@@ -434,6 +434,9 @@ msgstr "Bitte geben Sie die vollständige Referenz, einschliesslich des DOI, von
 msgid "Save"
 msgstr "Speichern"
 
+msgid "No news available."
+msgstr "Keine Nachrichten verfügbar."
+
 msgid "Manage News"
 msgstr "Nachrichten verwalten"
 

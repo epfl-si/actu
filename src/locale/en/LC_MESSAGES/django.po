@@ -434,6 +434,9 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+msgid "No news available."
+msgstr ""
+
 msgid "Manage News"
 msgstr ""
 

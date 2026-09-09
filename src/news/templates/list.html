@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n humanize %}
+
+{% block web2018_title %}{% trans 'News' %}{% endblock %}
+
+{% block web2018_content %}
+  <main id="main" class="content py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+
+          {% if not news_translations %}
+            <p class="text-muted">{% trans "No news available." %}</p>
+          {% else %}
+            <div class="d-flex justify-content-end mb-2">
+              <span class="text-muted small">
+                {{ page_obj.paginator.count }} {% trans "result(s) found" %}
+              </span>
+            </div>
+
+            <div class="list-group">
+              {% for translation in news_translations %}
+                  {% include "includes/list_item.html" %}
+              {% endfor %}
+            </div>
+
+            {% include "pagination.html" %}
+
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </main>
+{% endblock %}

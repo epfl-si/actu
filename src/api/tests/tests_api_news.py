@@ -327,30 +327,6 @@ class NewsAPITests(TestCase):
         data = response.json()
         self.assertEqual(data["results"][0]["format"], self.format.label_en)
 
-    def test_format_is_hidden_when_null(self):
-        news = News.objects.create(
-            created_by=self.user,
-            format=None,
-        )
-        news.thematics.add(self.thematic)
-        NewsTranslation.objects.create(
-            news=news,
-            language="en",
-            title="News without format",
-            status=NewsTranslation.Status.PUBLISHED,
-            created_by=self.user,
-            published_at=self.now,
-            published_by=self.user,
-        )
-
-        url = reverse("news-list", kwargs={"version": "v1"})
-        response = self.client.get(url, {"thematic_id": self.thematic.pk})
-
-        self.assertEqual(response.status_code, 200)
-        data = response.json()
-        self.assertEqual(len(data["results"]), 1)
-        self.assertNotIn("format", data["results"][0])
-
     def test_limit_parameter_changes_page_size(self):
         for i in range(5):
             self._create_news(

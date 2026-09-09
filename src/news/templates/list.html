@@ -1,11 +1,81 @@
 {% extends 'base.html' %}
-{% load i18n humanize %}
+{% load i18n humanize django_vite %}
 
 {% block web2018_title %}{% trans 'News' %}{% endblock %}
 
 {% block web2018_content %}
   <main id="main" class="content py-3">
-    <div class="container">
+    <div class="container-lg">
+
+      <div id="manage-news-filters" class="row">
+        <div class="col-lg-8 mx-auto">
+          <form method="get" class="mb-5" id="news-form" autocomplete="off">
+            <div class="form-group mb-3">
+              <label for="search" class="sr-only">{% trans "Search" %}</label>
+              <input type="text" id="search" name="search" class="form-control"
+                value="{{ request.GET.search }}" placeholder="{% trans 'Search...' %}">
+            </div>
+            <button class="collapse-title collapse-title-desktop {% if not filters.thematics and not filters.entities and not filters.formats %}collapsed{% endif %}"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#collapse-1"
+                    aria-expanded="{% if filters.thematics or filters.entities or filters.formats %}true{% else %}false{% endif %}"
+                    aria-controls="collapse-1">
+              {% trans "Filters" %}
+            </button>
+
+            <div class="collapse {% if filters.thematics or filters.entities or filters.formats %}show{% endif %}" id="collapse-1">
+              <div class="row mt-3">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="thematics" class="small">{% trans "Thematic" %}</label>
+                    <select id="thematics" name="thematics" class="select-multiple" multiple="multiple" data-filter="true">
+                      {% for thematic in thematics %}
+                      <option value="{{ thematic.id }}" {% if thematic.id in filters.thematics %}selected{% endif %}>
+                        {{ thematic }}
+                      </option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="entities" class="small">{% trans "Entity" %}</label>
+                    <select id="entities" name="entities" class="select-multiple" multiple="multiple" data-filter="true">
+                      {% for entity in entities %}
+                      <option value="{{ entity.id }}" {% if entity.id in filters.entities %}selected{% endif %}>
+                        {{ entity }}
+                      </option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="formats" class="small">{% trans "Format" %}</label>
+                    <select id="formats" name="formats" class="select-multiple" multiple="multiple" data-filter="true">
+                      {% for format in formats %}
+                      <option value="{{ format.id }}" {% if format.id in filters.formats %}selected{% endif %}>
+                        {{ format }}
+                      </option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-column flex-sm-row justify-content-sm-end mt-2">
+                <a href="?" class="btn btn-secondary mt-2 mr-sm-3">
+                  {% trans "Reset" %}
+                </a>
+                <button type="submit" class="d-none" aria-hidden="true" />
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-lg-8 mx-auto">
 
@@ -32,4 +102,9 @@
       </div>
     </div>
   </main>
+{% endblock %}
+
+{% block web2018_extra_js %}
+  {{ block.super }}
+  {% vite_asset 'assets/pages/list-news/list-news.js' %}
 {% endblock %}

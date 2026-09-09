@@ -5,6 +5,7 @@ from django.utils.timezone import localtime, now
 from news.models import News
 from news_formats.models import NewsFormat
 from translations.models import NewsSlugHistory, NewsTranslation
+from thematics.models import Thematic
 
 User = get_user_model()
 
@@ -19,10 +20,14 @@ class NewsTranslationModelTest(TestCase):
         self.format, _ = NewsFormat.objects.get_or_create(
             id=1, defaults={"label_fr": "News de test"}
         )
+        self.thematic = Thematic.objects.create(
+            label_en="Cross-Country Skiing",
+        )
         self.news = News.objects.create(
             created_by=self.user,
             format=self.format,
         )
+        self.news.thematics.add(self.thematic)
         self.translation = NewsTranslation.objects.create(
             news=self.news,
             language="en",

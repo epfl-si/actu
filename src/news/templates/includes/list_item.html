@@ -15,7 +15,7 @@
       Naviguer dans les zones difficiles d’accès du corps humain tout en conservant une précision extrême...
     </div>
     {% if translation.news.format %}
-      <span class="tag tag-sm mt-1 border-light mr-2">
+      <span class="tag tag-sm mt-1 border-light mr-1">
         {{ translation.news.format }}
         {% if translation.news.format.icon %}
           <svg class="icon" aria-hidden="true">
@@ -25,7 +25,7 @@
       </span>
     {% endif %}
     <time datetime="{{ translation.published_at|date:'Y-m-d' }}" title="{{ translation.published_at }}" class="small mb-0 text-muted">
-      {{ translation.published_at|naturalday }}
+      {{ translation.published_at|naturalday|capfirst }}
     </time>
   </div>
 </a>

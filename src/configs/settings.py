@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "mozilla_django_oidc",
     "rest_framework",
+    "tinymce",
     #
     # Applications
     "audit_log",
@@ -113,6 +114,13 @@ TEMPLATES = [
         },
     },
 ]
+
+TINYMCE_DEFAULT_CONFIG = {
+    "height": 250,  # in pixels
+    "menubar": False,
+    "plugins": "link fullscreen",
+    "toolbar": "subscript superscript | link | undo redo | fullscreen",
+}
 
 WSGI_APPLICATION = "configs.wsgi.application"
 

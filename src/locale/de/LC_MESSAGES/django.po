@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-08 08:55+0200\n"
+"POT-Creation-Date: 2026-09-08 21:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -407,6 +407,30 @@ msgstr "Gemeinde"
 msgid "Title"
 msgstr "Titel"
 
+msgid "Standfirst"
+msgstr "Kopfzeile"
+
+msgid "The standfirst summarizes the news in a sentence or two. The standfirst is displayed in bold under the title."
+msgstr "In der Kopfzeile wird die News in ein oder zwei Sätzen zusammengefasst. Die Kopfzeile wird unter dem Titel fett angezeigt."
+
+msgid "Extract"
+msgstr "Auszug"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Funding"
+msgstr "Finanzierung"
+
+msgid "Please list any institutions or companies that have funded the reported research."
+msgstr "Bitte listen Sie Einrichtungen oder Unternehmen auf, die die angegebene Forschung finanziert haben."
+
+msgid "References"
+msgstr "Literaturverzeichnis"
+
+msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
+msgstr "Bitte geben Sie die vollständige Referenz, einschliesslich des DOI, von Peer-Review-Publikationen zur angegebenen Forschung an."
+
 msgid "Save"
 msgstr "Speichern"
 
@@ -418,6 +442,15 @@ msgstr "Nachrichten verwalten"
 
 msgid "Create news"
 msgstr "Nachricht erstellen"
+
+msgid "Search..."
+msgstr "Suchen..."
+
+msgid "Creator"
+msgstr "Ersteller"
+
+msgid "No news found."
+msgstr "Keine Nachrichten gefunden."
 
 msgid "Do you really want to delete this news translation?"
 msgstr "Möchten Sie diese Version der Nachrichtenübersetzung wirklich löschen?"

@@ -39,6 +39,162 @@ class ManageNewsViewTest(TestCase):
         self.assertEqual(response.context["page_obj"].paginator.per_page, 10)
         self.assertTrue(response.context["page_obj"].has_next())
 
+    def test_filters_news_by_translation_status(self):
+        draft_news = News.objects.create(created_by=self.user)
+        NewsTranslation.objects.create(
+            news=draft_news,
+            language="en",
+            status=NewsTranslation.Status.DRAFT,
+            created_by=self.user,
+        )
+        published_news = News.objects.create(created_by=self.user)
+        NewsTranslation.objects.create(
+            news=published_news,
+            language="en",
+            status=NewsTranslation.Status.PUBLISHED,
+            created_by=self.user,
+        )
+
+        self.client.force_login(self.user)
+        response = self.client.get(
+            reverse("manage_news"),
+            {"status": NewsTranslation.Status.PUBLISHED},
+        )
+
+        self.assertEqual(
+            [row["news"] for row in response.context["news_rows"]],
+            [published_news],
+        )
+        self.assertEqual(
+            response.context["filters"]["status"],
+            {NewsTranslation.Status.PUBLISHED},
+        )
+
+    def test_filters_news_by_search_term(self):
+        matching_news = News.objects.create(created_by=self.user)
+        NewsTranslation.objects.create(
+            news=matching_news,
+            language="en",
+            title="DNS: Skis not found",
+            created_by=self.user,
+        )
+        non_matching_news = News.objects.create(created_by=self.user)
+        NewsTranslation.objects.create(
+            news=non_matching_news,
+            language="en",
+            title="DNF: Lost in the forest",
+            created_by=self.user,
+        )
+
+        self.client.force_login(self.user)
+        response = self.client.get(
+            reverse("manage_news"),
+            {"search": "dns"},
+        )
+
+        self.assertEqual(
+            [row["news"] for row in response.context["news_rows"]],
+            [matching_news],
+        )
+        self.assertEqual(response.context["filters"]["search"], "dns")
+
+    def test_filters_news_by_thematic_entity_creator_and_format(self):
+        other_user = User.objects.create_user(
+            username="cologna",
+            sciper="88888888",
+        )
+        thematic = Thematic.objects.create(label_en="Cross-country skiing")
+        other_thematic = Thematic.objects.create(label_en="Giant slalom")
+        entity = Entity.objects.create(label_en="Finland Team")
+        other_entity = Entity.objects.create(label_en="Swiss Team")
+        news_format = NewsFormat.objects.create(label_en="News")
+        other_format = NewsFormat.objects.create(label_en="Portrait")
+
+        matching_news = News.objects.create(
+            created_by=self.user,
+            format=news_format,
+        )
+        matching_news.thematics.add(thematic)
+        matching_news.entities.add(entity)
+        NewsTranslation.objects.create(
+            news=matching_news,
+            language="en",
+            title="Niskanen brings the Finnish power",
+            created_by=self.user,
+        )
+
+        non_matching_news = News.objects.create(
+            created_by=other_user,
+            format=other_format,
+        )
+        non_matching_news.thematics.add(other_thematic)
+        non_matching_news.entities.add(other_entity)
+        NewsTranslation.objects.create(
+            news=non_matching_news,
+            language="en",
+            title="Odermatt too fast for his own skis",
+            created_by=other_user,
+        )
+
+        self.client.force_login(self.user)
+        filters = {
+            "thematics": thematic.id,
+            "entities": entity.id,
+            "created_by": self.user.id,
+            "formats": news_format.id,
+        }
+        response = self.client.get(reverse("manage_news"), filters)
+
+        self.assertEqual(
+            [row["news"] for row in response.context["news_rows"]],
+            [matching_news],
+        )
+        self.assertEqual(
+            response.context["filters"]["thematics"],
+            {thematic.id},
+        )
+        self.assertEqual(response.context["filters"]["entities"], {entity.id})
+        self.assertEqual(
+            response.context["filters"]["created_by"],
+            {self.user.id},
+        )
+        self.assertEqual(
+            response.context["filters"]["formats"],
+            {news_format.id},
+        )
+
+    def test_selecting_all_active_entities_does_not_filter_news(self):
+        first_entity = Entity.objects.create(label_en="Jamaica Team")
+        second_entity = Entity.objects.create(label_en="Japan Team")
+        first_news = News.objects.create(created_by=self.user)
+        first_news.entities.add(first_entity)
+        NewsTranslation.objects.create(
+            news=first_news,
+            language="en",
+            title="Sanka asks for more ice",
+            created_by=self.user,
+        )
+        second_news = News.objects.create(created_by=self.user)
+        second_news.entities.add(second_entity)
+        NewsTranslation.objects.create(
+            news=second_news,
+            language="en",
+            title="Japan: gravity is optional",
+            created_by=self.user,
+        )
+
+        self.client.force_login(self.user)
+        response = self.client.get(
+            reverse("manage_news"),
+            {"entities": [first_entity.id, second_entity.id]},
+        )
+
+        self.assertEqual(
+            {row["news"] for row in response.context["news_rows"]},
+            {first_news, second_news},
+        )
+        self.assertEqual(response.context["filters"]["entities"], set())
+
 
 class DeleteNewsTranslationViewTest(TestCase):
 
@@ -387,6 +543,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "thematics": [self.thematic.id],
             "entities": [self.entity.id],
             "format": self.format.id,
+            "author": "Lindsey Vonn",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -427,6 +585,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "thematics": [self.thematic.id, self.thematic_2.id],
             "entities": [self.entity.id, self.entity_2.id],
             "format": self.format.id,
+            "author": "Lindsey Vonn",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -448,6 +608,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "thematics": [],
             "entities": [self.entity.id],
             "format": self.format.id,
+            "author": "Lindsey Vonn",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -462,6 +624,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "thematics": [self.thematic.id, self.thematic_2.id],
             "entities": [self.entity.id, self.entity_2.id],
             "format": self.format.id,
+            "author": "Lindsey Vonn",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -486,6 +650,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "thematics": ["foobar", self.thematic_2.id],
             "entities": ["foobar", self.entity_2.id],
             "format": self.format.id,
+            "author": "Lindsey Vonn",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -506,6 +672,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "thematics": [self.thematic.id],
             "entities": [self.entity.id],
             "format": self.format.id,
+            "author": "Lindsey Vonn",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data, follow=True)
         self.assertEqual(response.status_code, 200)
@@ -616,6 +784,8 @@ class EditNewsTranslationViewTest(TestCase):
             "thematics": [self.thematic_2.id],
             "entities": [self.entity_2.id],
             "format": self.format_2.id,
+            "author": "Lindsey Vonn",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -650,6 +820,8 @@ class EditNewsTranslationViewTest(TestCase):
             "thematics": [self.thematic_2.id],
             "entities": [self.entity_2.id],
             "format": self.format.id,
+            "author": "Lindsey Vonn",
+            "standfirst": "This is a standfirst",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)

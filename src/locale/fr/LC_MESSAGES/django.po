@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-08 08:55+0200\n"
+"POT-Creation-Date: 2026-09-08 21:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -409,6 +409,30 @@ msgstr "Commun"
 msgid "Title"
 msgstr "Titre"
 
+msgid "Standfirst"
+msgstr "Chapeau"
+
+msgid "The standfirst summarizes the news in a sentence or two. The standfirst is displayed in bold under the title."
+msgstr "Le chapeau résume l'actualité en une ou deux phrases. Le chapeau est affiché en gras sous le titre."
+
+msgid "Extract"
+msgstr "Extrait"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Funding"
+msgstr "Financement"
+
+msgid "Please list any institutions or companies that have funded the reported research."
+msgstr "Si les travaux décrits dans l'actualité ont bénéficié d'un financement externe, indiquer dans ce champ les institutions ou sociétés ayant participé."
+
+msgid "References"
+msgstr "Références"
+
+msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
+msgstr "Si l'actualité se base sur une publication en revue, indiquer ici les références bibliographiques complètes, y compris l'adresse DOI."
+
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -420,6 +444,15 @@ msgstr "Gérer les actualités"
 
 msgid "Create news"
 msgstr "Créer une actualité"
+
+msgid "Search..."
+msgstr "Rechercher..."
+
+msgid "Creator"
+msgstr "Créateur"
+
+msgid "No news found."
+msgstr "Aucune actualité trouvée."
 
 msgid "Do you really want to delete this news translation?"
 msgstr "Voulez-vous vraiment supprimer cette traduction de l'actualité?"

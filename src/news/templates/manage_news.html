@@ -72,7 +72,7 @@
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label for="formats">{% trans "Content Type" %}</label>
+                <label for="formats">{% trans "Format" %}</label>
                 <select id="formats" name="formats" class="select-multiple" multiple="multiple" data-filter="true">
                   {% for format in formats %}
                   <option value="{{ format.id }}" {% if format.id in filters.formats %}selected{% endif %}>

@@ -1,9 +1,8 @@
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-08 21:53+0200\n"
+"POT-Creation-Date: 2026-09-08 10:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -24,6 +23,17 @@ msgstr "Filtra in base alla marcatura dell'entità come principale."
 
 msgid "Filter by whether the thematic is marked as main."
 msgstr "Filtra in base alla marcatura della tematica come principale."
+
+msgid "Number of results to return per page. Defaults to the API page size."
+msgstr ""
+"Numero di risultati da restituire per pagina. Per impostazione predefinita, "
+"la dimensione della pagina dell'API."
+
+msgid "Unique identifier of the news item."
+msgstr "Identificatore univoco della notizia."
+
+msgid "Format of the news item in the requested language."
+msgstr "Formato della notizia nella lingua richiesta."
 
 msgid "Unique identifier of the entity."
 msgstr "Identificatore univoco dell'entità."
@@ -73,6 +83,45 @@ msgstr "Recupera una tematica"
 msgid "Return a single active thematic by its identifier."
 msgstr "Restituisce una singola tematica attiva in base al suo identificatore."
 
+msgid "News"
+msgstr "Notizie"
+
+msgid "List published news"
+msgstr "Elenca le notizie pubblicate"
+
+msgid ""
+"Return published news, optionally filtered by thematic identifiers, entity "
+"identifiers, format identifiers, a language, or a title search. Multiple "
+"identifiers for the same filter are combined with OR; thematic and entity "
+"filters are also combined with OR."
+msgstr ""
+"Restituisce le notizie pubblicate, eventualmente filtrate per identificatori "
+"tematici, identificatori entità, identificatori formato, lingua o ricerca "
+"per titolo. Più identificatori per lo stesso filtro sono combinati con OR; i "
+"filtri tematici e entità sono combinati anch'essi con OR."
+
+msgid "Thematic identifiers."
+msgstr "Identificatori tematici."
+
+msgid "Entity identifiers."
+msgstr "Identificatori entità."
+
+msgid "Format identifiers."
+msgstr "Identificatori formato."
+
+msgid "Language code (en, fr, de, it). Defaults to the request language."
+msgstr ""
+"Codice lingua (en, fr, de, it). Per impostazione predefinita, la lingua "
+"della richiesta."
+
+msgid "Number of results per page. Defaults to the API page size."
+msgstr ""
+"Numero di risultati per pagina. Per impostazione predefinita, la dimensione "
+"della pagina dell'API."
+
+msgid "Search in the news title."
+msgstr "Cerca nel titolo della notizia."
+
 msgid "Object Type"
 msgstr "Tipo di oggetto"
 
@@ -99,9 +148,6 @@ msgstr "Registro globale"
 
 msgid "Global Logs"
 msgstr "Registri globali"
-
-msgid "News"
-msgstr "Notizie"
 
 msgid "Audit Logs"
 msgstr "Log delle attività"
@@ -205,8 +251,12 @@ msgstr "Indica se questa entità (Scuola) viene visualizzata nel piè di pagina.
 msgid "Order"
 msgstr "Ordine"
 
-msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
-msgstr "Definisce l'ordine di visualizzazione. Un valore di 0 significa che l'ordine viene ignorato (per le entità non principali)."
+msgid ""
+"Defines the display order. A value of 0 means that the order is ignored (for "
+"non-main entities)."
+msgstr ""
+"Definisce l'ordine di visualizzazione. Un valore di 0 significa che l'ordine "
+"viene ignorato (per le entità non principali)."
 
 msgid "Name"
 msgstr "Nome"
@@ -230,10 +280,13 @@ msgid "Users"
 msgstr "Utenti"
 
 msgid "A Homepage cannot be linked to both a thematic and an entity."
-msgstr "Una pagina principale non può essere collegata contemporaneamente a una tematica e a un'entità."
+msgstr ""
+"Una pagina principale non può essere collegata contemporaneamente a una "
+"tematica e a un'entità."
 
 msgid "A Homepage must be linked to either a thematic or an entity."
-msgstr "Una pagina principale deve essere collegata a una tematica o a un'entità."
+msgstr ""
+"Una pagina principale deve essere collegata a una tematica o a un'entità."
 
 msgid "Draft"
 msgstr "Bozza"
@@ -458,7 +511,9 @@ msgid "The news has been saved successfully."
 msgstr "La notizia è stata salvata correttamente."
 
 msgid "The form contains errors. Please correct the highlighted fields below."
-msgstr "Il formulario contiene errori. Per favore correggi i campi evidenziati qui sotto."
+msgstr ""
+"Il formulario contiene errori. Per favore correggi i campi evidenziati qui "
+"sotto."
 
 msgid "News Format"
 msgstr "Formato notizia"

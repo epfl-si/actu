@@ -1,10 +1,9 @@
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-08 21:53+0200\n"
+"POT-Creation-Date: 2026-09-08 10:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,6 +25,17 @@ msgstr "Filtrer selon que l'entité est marquée comme principale ou non."
 msgid "Filter by whether the thematic is marked as main."
 msgstr "Filtrer selon que la thématique est marquée comme principale ou non."
 
+msgid "Number of results to return per page. Defaults to the API page size."
+msgstr ""
+"Nombre de résultats à retourner par page. Par défaut, la taille de page de "
+"l'API."
+
+msgid "Unique identifier of the news item."
+msgstr "Identifiant unique de l'actualité."
+
+msgid "Format of the news item in the requested language."
+msgstr "Format de l'actualité dans la langue demandée."
+
 msgid "Unique identifier of the entity."
 msgstr "Identifiant unique de l'entité."
 
@@ -41,8 +51,6 @@ msgstr "Identifiant unique de la thématique."
 msgid "Whether this thematic is marked as main."
 msgstr "Indique si cette thématique est marquée comme principale."
 
-#, fuzzy
-#| msgid "Display order of the thematic among main thematics."
 msgid "Display order of the thematic."
 msgstr "Ordre d'affichage de la thématique parmi les thématiques principales."
 
@@ -76,6 +84,41 @@ msgstr "Récupérer une thématique"
 msgid "Return a single active thematic by its identifier."
 msgstr "Retourne une thématique active unique à partir de son identifiant."
 
+msgid "News"
+msgstr "Actualités"
+
+msgid "List published news"
+msgstr "Lister les actualités publiées"
+
+msgid ""
+"Return published news, optionally filtered by thematic identifiers, entity "
+"identifiers, format identifiers, a language, or a title search. Multiple "
+"identifiers for the same filter are combined with OR; thematic and entity "
+"filters are also combined with OR."
+msgstr ""
+"Retourne les actualités publiées, éventuellement filtrées par identifiants "
+"thématiques, identifiants d'entité, identifiants de format, langue ou "
+"recherche de titre. Plusieurs identifiants pour le même filtre sont combinés "
+"avec OU ; les filtres thématiques et entité sont également combinés avec OU."
+
+msgid "Thematic identifiers."
+msgstr "Identifiants thématiques."
+
+msgid "Entity identifiers."
+msgstr "Identifiants d'entité."
+
+msgid "Format identifiers."
+msgstr "Identifiants de format."
+
+msgid "Language code (en, fr, de, it). Defaults to the request language."
+msgstr "Code de langue (en, fr, de, it). Par défaut, la langue de la requête."
+
+msgid "Number of results per page. Defaults to the API page size."
+msgstr "Nombre de résultats par page. Par défaut, la taille de page de l'API."
+
+msgid "Search in the news title."
+msgstr "Rechercher dans le titre de l'actualité."
+
 msgid "Object Type"
 msgstr "Type d'objet"
 
@@ -102,9 +145,6 @@ msgstr "Log global"
 
 msgid "Global Logs"
 msgstr "Logs Globaux"
-
-msgid "News"
-msgstr "Actualités"
 
 msgid "Audit Logs"
 msgstr "Journal d'activités"
@@ -208,8 +248,12 @@ msgstr "Indique si cette entité est affichée dans le pied de page."
 msgid "Order"
 msgstr "Ordre"
 
-msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
-msgstr "Définit l'ordre d'affichage. Une valeur de 0 signifie que l'ordre est ignoré (pour les entités non principales)."
+msgid ""
+"Defines the display order. A value of 0 means that the order is ignored (for "
+"non-main entities)."
+msgstr ""
+"Définit l'ordre d'affichage. Une valeur de 0 signifie que l'ordre est ignoré "
+"(pour les entités non principales)."
 
 msgid "Name"
 msgstr "Nom"
@@ -233,10 +277,13 @@ msgid "Users"
 msgstr "Utilisateurs"
 
 msgid "A Homepage cannot be linked to both a thematic and an entity."
-msgstr "Une page d'accueil ne peut pas être liée à la fois à une thématique et à une entité."
+msgstr ""
+"Une page d'accueil ne peut pas être liée à la fois à une thématique et à une "
+"entité."
 
 msgid "A Homepage must be linked to either a thematic or an entity."
-msgstr "Une page d'accueil doit être liée soit à une thématique, soit à une entité."
+msgstr ""
+"Une page d'accueil doit être liée soit à une thématique, soit à une entité."
 
 msgid "Draft"
 msgstr "Brouillon"
@@ -362,7 +409,8 @@ msgstr "L'utilisateur %(first)s %(last)s a été retiré avec succès."
 
 #, python-format
 msgid "The user %(first)s %(last)s has no permission to this homepage."
-msgstr "L'utilisateur %(first)s %(last)s n'a pas d'autorisation sur cette homepage."
+msgstr ""
+"L'utilisateur %(first)s %(last)s n'a pas d'autorisation sur cette homepage."
 
 msgid "A translation for this language already exists."
 msgstr "Une traduction pour cette langue existe déjà."
@@ -461,7 +509,9 @@ msgid "The news has been saved successfully."
 msgstr "L'actualité a été sauvegardée correctement."
 
 msgid "The form contains errors. Please correct the highlighted fields below."
-msgstr "Le formulaire contient des erreurs. Veuillez corriger les champs surlignés ci-dessous."
+msgstr ""
+"Le formulaire contient des erreurs. Veuillez corriger les champs surlignés "
+"ci-dessous."
 
 msgid "News Format"
 msgstr "Format d'actualités"

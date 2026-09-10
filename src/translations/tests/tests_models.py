@@ -4,8 +4,8 @@ from django.utils.timezone import localtime, now
 
 from news.models import News
 from news_formats.models import NewsFormat
-from translations.models import NewsSlugHistory, NewsTranslation
 from thematics.models import Thematic
+from translations.models import NewsSlugHistory, NewsTranslation
 
 User = get_user_model()
 

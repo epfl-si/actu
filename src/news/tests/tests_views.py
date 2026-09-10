@@ -659,7 +659,10 @@ class CreateNewsTranslationViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(News.objects.count(), 0)
         self.assertEqual(NewsTranslation.objects.count(), 0)
-        self.assertIn("No thematic provided.", response.content.decode())
+        self.assertIn(
+            "A news must have at least one thematic.",
+            response.content.decode(),
+        )
 
     def test_invalid_post_preserves_selected_values(self):
         self.client.force_login(self.user)

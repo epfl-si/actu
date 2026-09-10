@@ -422,12 +422,6 @@ msgstr ""
 msgid "Translation restored successfully."
 msgstr ""
 
-msgid "No thematic provided."
-msgstr ""
-
-msgid "No format provided."
-msgstr ""
-
 msgid "Thematics related to this news."
 msgstr ""
 

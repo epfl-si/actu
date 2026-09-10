@@ -2,7 +2,6 @@ from django import forms
 from django.db import transaction
 from django.utils.translation import gettext_lazy as _
 from django_editorjs_fields import EditorJsWidget
-from tinymce.widgets import TinyMCE
 
 from translations.models import NewsTranslation
 
@@ -13,11 +12,16 @@ class NewsForm(forms.ModelForm):
     class Meta:
         model = News
         fields = ["thematics", "entities", "format"]
-        error_messages = {
-            "thematics": {
-                "required": _("A news must have at least one thematic."),
-            },
-        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        thematics = cleaned_data.get("thematics")
+        format = cleaned_data.get("format")
+        if not thematics:
+            self.add_error("thematics", _("No thematic provided."))
+        if not format:
+            self.add_error("format", _("No format provided."))
+        return self.cleaned_data
 
     def save(self, user):
         is_new = self.instance.pk is None
@@ -32,31 +36,17 @@ class NewsForm(forms.ModelForm):
 class NewsTranslationForm(forms.ModelForm):
     class Meta:
         model = NewsTranslation
-        fields = [
-            "title",
-            "body",
-            "standfirst",
-            "extract",
-            "author",
-            "funding",
-            "references",
-        ]
+        fields = ["title", "body"]
         widgets = {
-            "body": EditorJsWidget(
-                plugins=["@editorjs/image", "@editorjs/header"],
-                config={"minHeight": 200},
-            ),
-            "author": TinyMCE(mce_attrs={"height": 130}),
-            "extract": TinyMCE(
-                mce_attrs={
-                    "height": 250,
-                    "menubar": False,
-                    "plugins": "lists link anchor code",
-                    "toolbar": "bold italic underline | bullist numlist indent"
-                    " outdent  | subscript superscript | blocks | link anchor"
-                    " | undo redo | fullscreen | code",
-                }
-            ),
+            'body': EditorJsWidget(
+                plugins=[
+                    "@editorjs/image",
+                    "@editorjs/header"
+                ],
+                config={
+                    'minHeight': 200
+                },
+            )
         }
 
     def save(self, user, language, news):

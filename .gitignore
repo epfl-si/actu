@@ -229,5 +229,8 @@ node_modules/
 # Static files built by Vite
 static/
 
+# App custom static files, need to be tracked
+!src/utils/static/
+
 # Static files collected by Django collectstatic
 src/static_root

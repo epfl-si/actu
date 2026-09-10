@@ -8,6 +8,7 @@ DEBUG = False
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # noqa: F405
+    BASE_DIR / "utils" / "static",  # noqa: F405
 ]
 
 DJANGO_VITE = {

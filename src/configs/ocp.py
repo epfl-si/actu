@@ -13,6 +13,7 @@ STATIC_ROOT = "/public/static"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # noqa: F405
+    BASE_DIR / "utils" / "static",  # noqa: F405
 ]
 
 

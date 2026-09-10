@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-08 21:53+0200\n"
+"POT-Creation-Date: 2026-09-10 15:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -422,6 +422,9 @@ msgstr ""
 msgid "Translation restored successfully."
 msgstr ""
 
+msgid "A news must have at least one thematic."
+msgstr ""
+
 msgid "Thematics related to this news."
 msgstr ""
 
@@ -429,9 +432,6 @@ msgid "Entities related to this news."
 msgstr ""
 
 msgid "Format"
-msgstr ""
-
-msgid "A news must have at least one thematic."
 msgstr ""
 
 msgid "Edit News"
@@ -449,7 +449,9 @@ msgstr ""
 msgid "Standfirst"
 msgstr ""
 
-msgid "The standfirst summarizes the news in a sentence or two. The standfirst is displayed in bold under the title."
+msgid ""
+"The standfirst summarizes the news in a sentence or two. The standfirst is "
+"displayed in bold under the title."
 msgstr ""
 
 msgid "Extract"
@@ -461,13 +463,17 @@ msgstr ""
 msgid "Funding"
 msgstr ""
 
-msgid "Please list any institutions or companies that have funded the reported research."
+msgid ""
+"Please list any institutions or companies that have funded the reported "
+"research."
 msgstr ""
 
 msgid "References"
 msgstr ""
 
-msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
+msgid ""
+"Please provide the full reference, including DOI, of any peer-review "
+"publication(s) related to the reported research."
 msgstr ""
 
 msgid "Save"

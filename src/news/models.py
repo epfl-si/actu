@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -22,7 +23,6 @@ class News(AuditModelMixin, models.Model):
 
     thematics = models.ManyToManyField(
         Thematic,
-        blank=True,
         related_name="news",
         verbose_name=_("Thematics"),
         help_text=_("Thematics related to this news."),
@@ -39,8 +39,6 @@ class News(AuditModelMixin, models.Model):
         on_delete=models.PROTECT,
         related_name="news",
         verbose_name=_("Format"),
-        null=True,
-        blank=True,
     )
     created_at = models.DateTimeField(
         auto_now_add=True,
@@ -55,6 +53,13 @@ class News(AuditModelMixin, models.Model):
 
     def __str__(self):
         return f"News #{self.pk}"
+
+    def clean(self):
+        super().clean()
+        if self.pk is not None and not self.thematics.exists():
+            raise ValidationError(
+                {"thematics": _("A news must have at least one thematic.")}
+            )
 
     def get_translation(self, language):
         """Return the translation for this news, or None if it doesn't

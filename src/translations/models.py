@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models, transaction
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
+from django_editorjs_fields import EditorJsJSONField
 from tinymce.models import HTMLField
 
 from audit_log.models import AuditModelMixin
@@ -44,6 +45,20 @@ class NewsTranslation(AuditModelMixin, models.Model):
     title = models.CharField(
         max_length=90,
         verbose_name=_("Title"),
+    )
+    body = EditorJsJSONField(
+        null=True,
+        blank=True,
+        plugins=[
+            "@editorjs/image",
+            "@editorjs/header",
+            "@editorjs/list",
+            "editorjs-github-gist-plugin",
+            "editorjs-hyperlink",
+            "@editorjs/code",
+            "@editorjs/inline-code",
+            "@editorjs/table@1.3.0",
+        ],
     )
     standfirst = HTMLField(
         verbose_name=_("Standfirst"),

@@ -1,6 +1,7 @@
 from django import forms
 from django.db import transaction
 from django.utils.translation import gettext_lazy as _
+from django_editorjs_fields import EditorJsWidget
 from tinymce.widgets import TinyMCE
 
 from translations.models import NewsTranslation
@@ -33,6 +34,7 @@ class NewsTranslationForm(forms.ModelForm):
         model = NewsTranslation
         fields = [
             "title",
+            "body",
             "standfirst",
             "extract",
             "author",
@@ -40,6 +42,10 @@ class NewsTranslationForm(forms.ModelForm):
             "references",
         ]
         widgets = {
+            "body": EditorJsWidget(
+                plugins=["@editorjs/image", "@editorjs/header"],
+                config={"minHeight": 200},
+            ),
             "author": TinyMCE(mce_attrs={"height": 130}),
             "extract": TinyMCE(
                 mce_attrs={

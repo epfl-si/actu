@@ -21,6 +21,9 @@
                     data-target="#collapse-1"
                     aria-expanded="{% if filters.thematics or filters.entities or filters.formats %}true{% else %}false{% endif %}"
                     aria-controls="collapse-1">
+              <svg class="icon" aria-hidden="true">
+                <use xlink:href="#filter"></use>
+              </svg>
               {% trans "Filters" %}
             </button>
 

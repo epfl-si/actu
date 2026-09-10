@@ -4,7 +4,7 @@ from django.utils.timezone import localtime, now
 
 from news.models import News
 from news_formats.models import NewsFormat
-from translations.models import NewsTranslation
+from translations.models import NewsSlugHistory, NewsTranslation
 
 User = get_user_model()
 
@@ -130,3 +130,102 @@ class NewsTranslationModelTest(TestCase):
 
         self.assertIn("Archived", label)
         self.assertIn(f"{self.user.first_name} {self.user.last_name}", label)
+
+    def test_slug_history_not_created_on_initial_save(self):
+        self.assertEqual(NewsSlugHistory.objects.count(), 0)
+
+    def test_slug_history_created_on_slug_change(self):
+        original_slug = self.translation.slug
+
+        self.translation.title = "A completely new title"
+        self.translation.save()
+
+        new_slug = self.translation.slug
+
+        self.assertNotEqual(original_slug, new_slug)
+
+        self.assertTrue(
+            NewsSlugHistory.objects.filter(
+                news_translation=self.translation, old_slug=original_slug
+            ).exists()
+        )
+
+    def test_slug_history_anti_loop_on_revert(self):
+        original_title = self.translation.title
+        original_slug = self.translation.slug
+
+        self.translation.title = "Second title"
+        self.translation.save()
+        second_slug = self.translation.slug
+
+        self.assertTrue(
+            NewsSlugHistory.objects.filter(
+                news_translation=self.translation, old_slug=original_slug
+            ).exists()
+        )
+
+        self.translation.title = original_title
+        self.translation.save()
+
+        self.assertEqual(self.translation.slug, original_slug)
+
+        self.assertFalse(
+            NewsSlugHistory.objects.filter(
+                news_translation=self.translation, old_slug=original_slug
+            ).exists()
+        )
+
+        self.assertTrue(
+            NewsSlugHistory.objects.filter(
+                news_translation=self.translation, old_slug=second_slug
+            ).exists()
+        )
+
+    def test_get_absolute_url_returns_slug_when_present(self):
+        self.assertTrue(bool(self.translation.slug))
+        expected_url = f"/{self.translation.slug}"
+        self.assertEqual(self.translation.get_absolute_url(), expected_url)
+
+    def test_get_absolute_url_returns_id_when_slug_is_missing(self):
+        self.translation.slug = None
+        expected_url = f"/{self.translation.id}"
+        self.assertEqual(self.translation.get_absolute_url(), expected_url)
+
+    def test_slug_generation_avoids_existing_active_slug(self):
+        news2 = News.objects.create(
+            created_by=self.user,
+            format=self.format,
+        )
+        translation2 = NewsTranslation.objects.create(
+            news=news2,
+            language="en",
+            title="Niskanen wins men's 50 km mass start classic",
+            status=NewsTranslation.Status.DRAFT,
+            created_by=self.user,
+        )
+        self.assertEqual(
+            translation2.slug, "niskanen-wins-mens-50-km-mass-start-classic-2"
+        )
+
+    def test_slug_generation_avoids_historical_slug(self):
+        original_slug = self.translation.slug
+        self.translation.title = "A totally new title for the first news"
+        self.translation.save()
+
+        self.assertTrue(
+            NewsSlugHistory.objects.filter(old_slug=original_slug).exists()
+        )
+
+        news2 = News.objects.create(
+            created_by=self.user,
+            format=self.format,
+        )
+        translation2 = NewsTranslation.objects.create(
+            news=news2,
+            language="en",
+            title="Niskanen wins men's 50 km mass start classic",
+            status=NewsTranslation.Status.DRAFT,
+            created_by=self.user,
+        )
+
+        self.assertEqual(translation2.slug, f"{original_slug}-2")

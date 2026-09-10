@@ -10,6 +10,7 @@ class NewsTranslationAdmin(admin.ModelAdmin):
         "language",
         "status",
         "news",
+        "slug",
         "created_at",
         "created_by",
         "published_at",
@@ -25,6 +26,7 @@ class NewsTranslationAdmin(admin.ModelAdmin):
     autocomplete_fields = ["news"]
 
     readonly_fields = [
+        "slug",
         "created_at",
         "created_by",
         "updated_at",

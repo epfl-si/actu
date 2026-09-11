@@ -15,58 +15,44 @@
               <input type="text" id="search" name="search" class="form-control"
                 value="{{ request.GET.search }}" placeholder="{% trans 'Search...' %}">
             </div>
-            <button class="collapse-title collapse-title-desktop {% if not filters.thematics and not filters.entities and not filters.formats %}collapsed{% endif %}"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#collapse-1"
-                    aria-expanded="{% if filters.thematics or filters.entities or filters.formats %}true{% else %}false{% endif %}"
-                    aria-controls="collapse-1">
-              <svg class="icon" aria-hidden="true">
-                <use xlink:href="#filter"></use>
-              </svg>
-              {% trans "Filters" %}
-            </button>
-
-            <div class="collapse {% if filters.thematics or filters.entities or filters.formats %}show{% endif %}" id="collapse-1">
-              <div class="row mt-3">
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <select id="thematics" name="thematics" class="select-multiple" multiple="multiple" data-filter="true" data-placeholder="{% trans 'Thematic' %}">
-                      {% for thematic in thematics %}
-                      <option value="{{ thematic.id }}" {% if thematic.id in filters.thematics %}selected{% endif %}>
-                        {{ thematic }}
-                      </option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <select id="entities" name="entities" class="select-multiple" multiple="multiple" data-filter="true" data-placeholder="{% trans 'Entity' %}">
-                      {% for entity in entities %}
-                      <option value="{{ entity.id }}" {% if entity.id in filters.entities %}selected{% endif %}>
-                        {{ entity }}
-                      </option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                </div>
-
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <select id="formats" name="formats" class="select-multiple" multiple="multiple" data-filter="true" data-placeholder="{% trans 'Format' %}">
-                      {% for format in formats %}
-                      <option value="{{ format.id }}" {% if format.id in filters.formats %}selected{% endif %}>
-                        {{ format }}
-                      </option>
-                      {% endfor %}
-                    </select>
-                  </div>
+            <div class="row mt-3">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <select id="thematics" name="thematics" class="select-multiple" multiple="multiple" data-filter="true" data-placeholder="{% trans 'Thematic' %}">
+                    {% for thematic in thematics %}
+                    <option value="{{ thematic.id }}" {% if thematic.id in filters.thematics %}selected{% endif %}>
+                      {{ thematic }}
+                    </option>
+                    {% endfor %}
+                  </select>
                 </div>
               </div>
-              <button type="submit" class="d-none" aria-hidden="true" id="btnFilter"></button>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <select id="entities" name="entities" class="select-multiple" multiple="multiple" data-filter="true" data-placeholder="{% trans 'Entity' %}">
+                    {% for entity in entities %}
+                    <option value="{{ entity.id }}" {% if entity.id in filters.entities %}selected{% endif %}>
+                      {{ entity }}
+                    </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <select id="formats" name="formats" class="select-multiple" multiple="multiple" data-filter="true" data-placeholder="{% trans 'Format' %}">
+                    {% for format in formats %}
+                    <option value="{{ format.id }}" {% if format.id in filters.formats %}selected{% endif %}>
+                      {{ format }}
+                    </option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
             </div>
+            <button type="submit" class="d-none" aria-hidden="true" id="btnFilter"></button>
           </form>
           {% if filters.search or filters.thematics or filters.entities or filters.formats %}
             <div class="tag-group mb-4">

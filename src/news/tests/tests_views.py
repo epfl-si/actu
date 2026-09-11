@@ -195,6 +195,25 @@ class ManageNewsViewTest(TestCase):
         )
         self.assertEqual(response.context["filters"]["entities"], set())
 
+    def test_manage_news_supports_show_metadata_query_parameter(self):
+        news = News.objects.create(created_by=self.user)
+        NewsTranslation.objects.create(
+            news=news,
+            language="en",
+            status=NewsTranslation.Status.DRAFT,
+            created_by=self.user,
+            title="Hidden metadata test",
+        )
+
+        self.client.force_login(self.user)
+        response = self.client.get(
+            reverse("manage_news"),
+            {"show_metadata": "1"},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.context["show_metadata"])
+
 
 class DeleteNewsTranslationViewTest(TestCase):
 

@@ -31,11 +31,16 @@
   }
 
   .d-flex.list-group-teaser-content {
-    gap: .25rem;
+    gap: .4rem;
   }
 
-  .tag.tag-sm.tag-light {
+  .tag.tag-sm.tag-lang {
     width: 30px;
+  }
+
+  .tag.metadata-entity-tag,
+  .tag.metadata-thematic-tag {
+    border-radius: 10px;
   }
 
   .btn.btn-sm.btn-actions {

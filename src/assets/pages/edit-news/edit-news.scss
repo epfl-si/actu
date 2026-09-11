@@ -10,3 +10,7 @@
 .invalid-label ~ .tox-tinymce {
   border: solid 1px #f00;
 }
+
+.is-invalid button.ms-choice  {
+  border-color: #f00;
+}

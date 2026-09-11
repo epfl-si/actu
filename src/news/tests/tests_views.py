@@ -374,12 +374,14 @@ class ListNewsViewTest(TestCase):
         )
         self.format = NewsFormat.objects.create(label_en="Article")
         self.thematic = Thematic.objects.create(label_en="Research")
+        self.entity = Entity.objects.create(label_en="EPFL")
 
         self.news_pub_en = News.objects.create(
             created_by=self.user,
             format=self.format,
         )
         self.news_pub_en.thematics.add(self.thematic)
+        self.news_pub_en.entities.add(self.entity)
         self.trans_pub_en = NewsTranslation.objects.create(
             news=self.news_pub_en,
             language="en",
@@ -394,6 +396,7 @@ class ListNewsViewTest(TestCase):
             format=self.format,
         )
         self.news_draft_en.thematics.add(self.thematic)
+        self.news_draft_en.entities.add(self.entity)
         self.trans_draft_en = NewsTranslation.objects.create(
             news=self.news_draft_en,
             language="en",
@@ -407,6 +410,7 @@ class ListNewsViewTest(TestCase):
             format=self.format,
         )
         self.news_pub_fr.thematics.add(self.thematic)
+        self.news_pub_fr.entities.add(self.entity)
         self.trans_pub_fr = NewsTranslation.objects.create(
             news=self.news_pub_fr,
             language="fr",
@@ -422,6 +426,7 @@ class ListNewsViewTest(TestCase):
             format=self.format,
         )
         news.thematics.add(self.thematic)
+        news.entities.add(self.entity)
         return news
 
     def test_view_url_exists_at_desired_location_and_uses_correct_template(

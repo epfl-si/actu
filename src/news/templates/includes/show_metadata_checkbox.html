@@ -1,0 +1,10 @@
+{% load i18n %}
+<div class="d-flex justify-content-end mb-2">
+  <div class="custom-controls-inline">
+    <div class="custom-control custom-checkbox mr-0">
+      <input type="checkbox" class="custom-control-input" id="toggle-news-metadata" name="show_metadata"
+        value="1" form="manage-news-filters-form" {% if show_metadata %}checked{% endif %}>
+      <label class="custom-control-label text-muted" for="toggle-news-metadata">{% trans "Show metadata" %}</label>
+    </div>
+  </div>
+</div>

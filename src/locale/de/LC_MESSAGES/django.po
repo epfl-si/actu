@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-10 15:52+0200\n"
+"POT-Creation-Date: 2026-09-11 08:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -499,6 +499,15 @@ msgstr ""
 msgid "Save"
 msgstr "Speichern"
 
+msgid "Search..."
+msgstr "Suchen..."
+
+msgid "Active filters"
+msgstr "Aktiv"
+
+msgid "Reset all"
+msgstr "Zurücksetzen"
+
 msgid "No news available."
 msgstr "Keine Nachrichten verfügbar."
 
@@ -507,9 +516,6 @@ msgstr "Nachrichten verwalten"
 
 msgid "Create news"
 msgstr "Nachricht erstellen"
-
-msgid "Search..."
-msgstr "Suchen..."
 
 msgid "Creator"
 msgstr "Ersteller"

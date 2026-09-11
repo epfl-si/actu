@@ -18,7 +18,8 @@
             <div class="row mt-3">
               <div class="col-md-4">
                 <div class="form-group">
-                  <select id="thematics" name="thematics" class="select-multiple" multiple="multiple" data-filter="true" data-placeholder="{% trans 'Thematic' %}">
+                  <label>{% trans "Thematic" %}</label>
+                  <select id="thematics" name="thematics" class="select-multiple" multiple="multiple" data-filter="true">
                     {% for thematic in thematics %}
                     <option value="{{ thematic.id }}" {% if thematic.id in filters.thematics %}selected{% endif %}>
                       {{ thematic }}
@@ -30,7 +31,8 @@
 
               <div class="col-md-4">
                 <div class="form-group">
-                  <select id="entities" name="entities" class="select-multiple" multiple="multiple" data-filter="true" data-placeholder="{% trans 'Entity' %}">
+                  <label>{% trans "Entity" %}</label>
+                  <select id="entities" name="entities" class="select-multiple" multiple="multiple" data-filter="true">
                     {% for entity in entities %}
                     <option value="{{ entity.id }}" {% if entity.id in filters.entities %}selected{% endif %}>
                       {{ entity }}
@@ -42,7 +44,8 @@
 
               <div class="col-md-4">
                 <div class="form-group">
-                  <select id="formats" name="formats" class="select-multiple" multiple="multiple" data-filter="true" data-placeholder="{% trans 'Format' %}">
+                  <label>{% trans "Format" %}</label>
+                  <select id="formats" name="formats" class="select-multiple" multiple="multiple" data-filter="true">
                     {% for format in formats %}
                     <option value="{{ format.id }}" {% if format.id in filters.formats %}selected{% endif %}>
                       {{ format }}

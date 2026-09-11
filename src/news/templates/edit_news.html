@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% load current_label %}
 
 {% block web2018_extra_js %}
   {{ form.translation.media }}
@@ -52,7 +51,7 @@
               >
                 {% for format in formats %}
                 <option class="" value="{{ format.id }}" {% if format.id == selected_format_id %}selected{% endif %}>
-                  {{ format|label_for }}
+                  {{ format }}
                 </option>
                 {% endfor %}
               </select>
@@ -81,7 +80,7 @@
               >
                 {% for thematic in thematics %}
                 <option class="" value="{{ thematic.id }}" {% if thematic.id in selected_thematic_ids %}selected{% endif %}>
-                  {{ thematic|label_for }}
+                  {{ thematic }}
                 </option>
                 {% endfor %}
               </select>
@@ -109,7 +108,7 @@
               >
                 {% for entity in entities %}
                 <option class="" value="{{ entity.id }}" {% if entity.id in selected_entity_ids %}selected{% endif %}>
-                  {{ entity|label_for }}
+                  {{ entity }}
                 </option>
                 {% endfor %}
               </select>
@@ -121,7 +120,9 @@
               {% trans "Title" %}
             </label>
             <input type="text" id="{{ form.translation.title.id_for_label }}" class="form-control {% if form.translation.title.errors %}is-invalid{% endif %}"
-              name="title" value="{% if form.translation.title.value %}{{ form.translation.title.value }}{% endif %}">
+              name="title" value="{% if form.translation.title.value %}{{ form.translation.title.value }}{% endif %}"
+              maxlength="{{ form.translation.title.field.max_length }}" {% if form.translation.title.field.required %}required{% endif %}
+            >
             {% if form.translation.title.errors %}
             <small class="form-text invalid-feedback">
               {{ form.translation.title.errors }}

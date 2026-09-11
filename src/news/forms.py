@@ -12,16 +12,11 @@ class NewsForm(forms.ModelForm):
     class Meta:
         model = News
         fields = ["thematics", "entities", "format"]
-
-    def clean(self):
-        cleaned_data = super().clean()
-        thematics = cleaned_data.get("thematics")
-        format = cleaned_data.get("format")
-        if not thematics:
-            self.add_error("thematics", _("No thematic provided."))
-        if not format:
-            self.add_error("format", _("No format provided."))
-        return self.cleaned_data
+        error_messages = {
+            "thematics": {
+                "required": _("A news must have at least one thematic."),
+            },
+        }
 
     def save(self, user):
         is_new = self.instance.pk is None

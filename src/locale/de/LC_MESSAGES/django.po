@@ -1,5 +1,4 @@
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
@@ -25,6 +24,17 @@ msgstr "Filtert, ob die Einheit als Haupteinheit markiert ist."
 
 msgid "Filter by whether the thematic is marked as main."
 msgstr "Filtert, ob das Thema als Hauptthema markiert ist."
+
+msgid "Number of results to return per page. Defaults to the API page size."
+msgstr ""
+"Anzahl der Ergebnisse pro Seite. Standardmäßig wird die API-Seitengröße "
+"verwendet."
+
+msgid "Unique identifier of the news item."
+msgstr "Eindeutiger Identifikator der Nachricht."
+
+msgid "Format of the news item in the requested language."
+msgstr "Format der Nachricht in der angeforderten Sprache."
 
 msgid "Unique identifier of the entity."
 msgstr "Eindeutiger Identifikator der Einheit."
@@ -74,6 +84,44 @@ msgstr "Ein Thema abrufen"
 msgid "Return a single active thematic by its identifier."
 msgstr "Gibt ein einzelnes aktives Thema anhand seiner Kennung zurück."
 
+msgid "News"
+msgstr "Nachrichten"
+
+msgid "List published news"
+msgstr "Veröffentlichte Nachrichten auflisten"
+
+msgid ""
+"Return published news, optionally filtered by thematic identifiers, entity "
+"identifiers, format identifiers, a language, or a title search. Multiple "
+"identifiers for the same filter are combined with OR; thematic and entity "
+"filters are also combined with OR."
+msgstr ""
+"Gibt veröffentlichte Nachrichten zurück, optional gefiltert nach "
+"Themenkennungen, Einheitskennungen, Formatkennungen, Sprache oder "
+"Titelsuche. Mehrere Kennungen für denselben Filter werden mit ODER "
+"kombiniert; Themen- und Einheitsfilter werden ebenfalls mit ODER kombiniert."
+
+msgid "Thematic identifiers."
+msgstr "Themenkennungen."
+
+msgid "Entity identifiers."
+msgstr "Einheitskennungen."
+
+msgid "Format identifiers."
+msgstr "Formatkennungen."
+
+msgid "Language code (en, fr, de, it). Defaults to the request language."
+msgstr ""
+"Sprachcode (en, fr, de, it). Standardmäßig wird die Anfragesprache verwendet."
+
+msgid "Number of results per page. Defaults to the API page size."
+msgstr ""
+"Anzahl der Ergebnisse pro Seite. Standardmäßig wird die API-Seitengröße "
+"verwendet."
+
+msgid "Search in the news title."
+msgstr "Im Nachrichtentitel suchen."
+
 msgid "Object Type"
 msgstr "Objekttyp"
 
@@ -100,9 +148,6 @@ msgstr "Globales Protokoll"
 
 msgid "Global Logs"
 msgstr "Globale Protokolle"
-
-msgid "News"
-msgstr "Nachrichten"
 
 msgid "Audit Logs"
 msgstr "Aktivitätslogs"
@@ -206,8 +251,12 @@ msgstr "Gibt an, ob diese Einheit (Schule) im Footer angezeigt wird."
 msgid "Order"
 msgstr "Reihenfolge"
 
-msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
-msgstr "Definiert die Anzeige-Reihenfolge. Ein Wert von 0 bedeutet, dass die Reihenfolge ignoriert wird (für nicht-haupt-Entitäten)."
+msgid ""
+"Defines the display order. A value of 0 means that the order is ignored (for "
+"non-main entities)."
+msgstr ""
+"Definiert die Anzeige-Reihenfolge. Ein Wert von 0 bedeutet, dass die "
+"Reihenfolge ignoriert wird (für nicht-haupt-Entitäten)."
 
 msgid "Name"
 msgstr "Name"
@@ -231,10 +280,14 @@ msgid "Users"
 msgstr "Benutzer"
 
 msgid "A Homepage cannot be linked to both a thematic and an entity."
-msgstr "Eine Startseite kann nicht gleichzeitig mit einem Thema und einer Einheit verknüpft sein."
+msgstr ""
+"Eine Startseite kann nicht gleichzeitig mit einem Thema und einer Einheit "
+"verknüpft sein."
 
 msgid "A Homepage must be linked to either a thematic or an entity."
-msgstr "Eine Startseite muss entweder mit einem Thema oder einer Einheit verknüpft sein."
+msgstr ""
+"Eine Startseite muss entweder mit einem Thema oder einer Einheit verknüpft "
+"sein."
 
 msgid "Draft"
 msgstr "Entwurf"
@@ -339,7 +392,9 @@ msgid "Remove user"
 msgstr "Benutzer entfernen"
 
 msgid "Are you sure you want to remove permissions for this user?"
-msgstr "Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen möchten?"
+msgstr ""
+"Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen "
+"möchten?"
 
 msgid "No SCIPER provided."
 msgstr "Keine SCIPER-Nummer angegeben."
@@ -360,7 +415,8 @@ msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich entfernt."
 
 #, python-format
 msgid "The user %(first)s %(last)s has no permission to this homepage."
-msgstr "Der Benutzer %(first)s %(last)s hat keine Berechtigung für diese Startseite."
+msgstr ""
+"Der Benutzer %(first)s %(last)s hat keine Berechtigung für diese Startseite."
 
 msgid "A translation for this language already exists."
 msgstr "Für diese Sprache existiert bereits eine Übersetzung."
@@ -380,11 +436,8 @@ msgstr "Diese Übersetzung ist nicht archiviert."
 msgid "Translation restored successfully."
 msgstr "Übersetzung erfolgreich wiederhergestellt."
 
-msgid "No thematic provided."
-msgstr "Es wurde kein Thema angegeben."
-
-msgid "No format provided."
-msgstr "Es wurde kein Format angegeben."
+msgid "A news must have at least one thematic."
+msgstr "Eine Nachricht muss mindestens eine Thematik haben."
 
 msgid "Thematics related to this news."
 msgstr "Themen, die mit dieser Nachricht verbunden sind."
@@ -410,8 +463,12 @@ msgstr "Titel"
 msgid "Standfirst"
 msgstr "Kopfzeile"
 
-msgid "The standfirst summarizes the news in a sentence or two. The standfirst is displayed in bold under the title."
-msgstr "In der Kopfzeile wird die News in ein oder zwei Sätzen zusammengefasst. Die Kopfzeile wird unter dem Titel fett angezeigt."
+msgid ""
+"The standfirst summarizes the news in a sentence or two. The standfirst is "
+"displayed in bold under the title."
+msgstr ""
+"In der Kopfzeile wird die News in ein oder zwei Sätzen zusammengefasst. Die "
+"Kopfzeile wird unter dem Titel fett angezeigt."
 
 msgid "Extract"
 msgstr "Auszug"
@@ -422,14 +479,22 @@ msgstr "Autor"
 msgid "Funding"
 msgstr "Finanzierung"
 
-msgid "Please list any institutions or companies that have funded the reported research."
-msgstr "Bitte listen Sie Einrichtungen oder Unternehmen auf, die die angegebene Forschung finanziert haben."
+msgid ""
+"Please list any institutions or companies that have funded the reported "
+"research."
+msgstr ""
+"Bitte listen Sie Einrichtungen oder Unternehmen auf, die die angegebene "
+"Forschung finanziert haben."
 
 msgid "References"
 msgstr "Literaturverzeichnis"
 
-msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
-msgstr "Bitte geben Sie die vollständige Referenz, einschliesslich des DOI, von Peer-Review-Publikationen zur angegebenen Forschung an."
+msgid ""
+"Please provide the full reference, including DOI, of any peer-review "
+"publication(s) related to the reported research."
+msgstr ""
+"Bitte geben Sie die vollständige Referenz, einschliesslich des DOI, von Peer-"
+"Review-Publikationen zur angegebenen Forschung an."
 
 msgid "Save"
 msgstr "Speichern"
@@ -465,7 +530,9 @@ msgid "The news has been saved successfully."
 msgstr "Die Nachricht wurde erfolgreich gespeichert."
 
 msgid "The form contains errors. Please correct the highlighted fields below."
-msgstr "Das Formular enthält Fehler. Bitte korrigieren Sie die unten hervorgehobenen Felder."
+msgstr ""
+"Das Formular enthält Fehler. Bitte korrigieren Sie die unten hervorgehobenen "
+"Felder."
 
 msgid "News Format"
 msgstr "Nachrichtenformat"

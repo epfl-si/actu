@@ -20,10 +20,20 @@ class ManageNewsViewTest(TestCase):
             username="bentoumi",
             sciper="99999999",
         )
+        self.format = NewsFormat.objects.create(label_en="Article")
+        self.thematic = Thematic.objects.create(label_en="Research")
+
+    def _create_news(self):
+        news = News.objects.create(
+            created_by=self.user,
+            format=self.format,
+        )
+        news.thematics.add(self.thematic)
+        return news
 
     def test_limits_to_ten_news_per_page(self):
         for index in range(12):
-            news = News.objects.create(created_by=self.user)
+            news = self._create_news()
             NewsTranslation.objects.create(
                 news=news,
                 language="en",
@@ -40,14 +50,14 @@ class ManageNewsViewTest(TestCase):
         self.assertTrue(response.context["page_obj"].has_next())
 
     def test_filters_news_by_translation_status(self):
-        draft_news = News.objects.create(created_by=self.user)
+        draft_news = self._create_news()
         NewsTranslation.objects.create(
             news=draft_news,
             language="en",
             status=NewsTranslation.Status.DRAFT,
             created_by=self.user,
         )
-        published_news = News.objects.create(created_by=self.user)
+        published_news = self._create_news()
         NewsTranslation.objects.create(
             news=published_news,
             language="en",
@@ -71,14 +81,14 @@ class ManageNewsViewTest(TestCase):
         )
 
     def test_filters_news_by_search_term(self):
-        matching_news = News.objects.create(created_by=self.user)
+        matching_news = self._create_news()
         NewsTranslation.objects.create(
             news=matching_news,
             language="en",
             title="DNS: Skis not found",
             created_by=self.user,
         )
-        non_matching_news = News.objects.create(created_by=self.user)
+        non_matching_news = self._create_news()
         NewsTranslation.objects.create(
             news=non_matching_news,
             language="en",
@@ -166,7 +176,7 @@ class ManageNewsViewTest(TestCase):
     def test_selecting_all_active_entities_does_not_filter_news(self):
         first_entity = Entity.objects.create(label_en="Jamaica Team")
         second_entity = Entity.objects.create(label_en="Japan Team")
-        first_news = News.objects.create(created_by=self.user)
+        first_news = self._create_news()
         first_news.entities.add(first_entity)
         NewsTranslation.objects.create(
             news=first_news,
@@ -174,7 +184,7 @@ class ManageNewsViewTest(TestCase):
             title="Sanka asks for more ice",
             created_by=self.user,
         )
-        second_news = News.objects.create(created_by=self.user)
+        second_news = self._create_news()
         second_news.entities.add(second_entity)
         NewsTranslation.objects.create(
             news=second_news,
@@ -203,7 +213,13 @@ class DeleteNewsTranslationViewTest(TestCase):
             username="bentoumi",
             sciper="99999999",
         )
-        self.news = News.objects.create(created_by=self.user)
+        self.format = NewsFormat.objects.create(label_en="Article")
+        self.thematic = Thematic.objects.create(label_en="Research")
+        self.news = News.objects.create(
+            created_by=self.user,
+            format=self.format,
+        )
+        self.news.thematics.add(self.thematic)
         self.translation = NewsTranslation.objects.create(
             news=self.news,
             language="en",
@@ -276,7 +292,13 @@ class RestoreNewsTranslationViewTest(TestCase):
             username="bentoumi",
             sciper="99999999",
         )
-        self.news = News.objects.create(created_by=self.user)
+        self.format = NewsFormat.objects.create(label_en="Article")
+        self.thematic = Thematic.objects.create(label_en="Research")
+        self.news = News.objects.create(
+            created_by=self.user,
+            format=self.format,
+        )
+        self.news.thematics.add(self.thematic)
         self.translation = NewsTranslation.objects.create(
             news=self.news,
             language="en",
@@ -350,15 +372,14 @@ class ListNewsViewTest(TestCase):
             username="bentoumi",
             sciper="99999999",
         )
-        self.thematic = Thematic.objects.create(label_en="Science")
-        self.entity = Entity.objects.create(label_en="EPFL")
         self.format = NewsFormat.objects.create(label_en="Article")
+        self.thematic = Thematic.objects.create(label_en="Research")
 
         self.news_pub_en = News.objects.create(
-            created_by=self.user, format=self.format
+            created_by=self.user,
+            format=self.format,
         )
         self.news_pub_en.thematics.add(self.thematic)
-        self.news_pub_en.entities.add(self.entity)
         self.trans_pub_en = NewsTranslation.objects.create(
             news=self.news_pub_en,
             language="en",
@@ -368,7 +389,11 @@ class ListNewsViewTest(TestCase):
             published_at=timezone.now(),
         )
 
-        self.news_draft_en = News.objects.create(created_by=self.user)
+        self.news_draft_en = News.objects.create(
+            created_by=self.user,
+            format=self.format,
+        )
+        self.news_draft_en.thematics.add(self.thematic)
         self.trans_draft_en = NewsTranslation.objects.create(
             news=self.news_draft_en,
             language="en",
@@ -377,7 +402,11 @@ class ListNewsViewTest(TestCase):
             title="English Draft News",
         )
 
-        self.news_pub_fr = News.objects.create(created_by=self.user)
+        self.news_pub_fr = News.objects.create(
+            created_by=self.user,
+            format=self.format,
+        )
+        self.news_pub_fr.thematics.add(self.thematic)
         self.trans_pub_fr = NewsTranslation.objects.create(
             news=self.news_pub_fr,
             language="fr",
@@ -386,6 +415,14 @@ class ListNewsViewTest(TestCase):
             title="Actualité Publiée en Français",
             published_at=timezone.now(),
         )
+
+    def _create_news(self):
+        news = News.objects.create(
+            created_by=self.user,
+            format=self.format,
+        )
+        news.thematics.add(self.thematic)
+        return news
 
     def test_view_url_exists_at_desired_location_and_uses_correct_template(
         self,
@@ -458,7 +495,7 @@ class ListNewsViewTest(TestCase):
     def test_pagination_limits_to_10_items_per_page(self):
         with override("fr"):
             for i in range(14):
-                news = News.objects.create(created_by=self.user)
+                news = self._create_news()
                 NewsTranslation.objects.create(
                     news=news,
                     language="fr",
@@ -479,7 +516,7 @@ class ListNewsViewTest(TestCase):
     def test_pagination_loads_second_page_correctly(self):
         with override("fr"):
             for i in range(14):
-                news = News.objects.create(created_by=self.user)
+                news = self._create_news()
                 NewsTranslation.objects.create(
                     news=news,
                     language="fr",
@@ -647,7 +684,10 @@ class CreateNewsTranslationViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(News.objects.count(), 0)
         self.assertEqual(NewsTranslation.objects.count(), 0)
-        self.assertIn("No thematic provided.", response.content.decode())
+        self.assertIn(
+            "A news must have at least one thematic.",
+            response.content.decode(),
+        )
 
     def test_invalid_post_preserves_selected_values(self):
         self.client.force_login(self.user)

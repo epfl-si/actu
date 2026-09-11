@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-10 10:32+0200\n"
+"POT-Creation-Date: 2026-09-11 08:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -436,9 +436,6 @@ msgstr "Speichern"
 
 msgid "Search..."
 msgstr "Suchen..."
-
-msgid "Filters"
-msgstr "Filter"
 
 msgid "Active filters"
 msgstr "Aktiv"

@@ -206,7 +206,7 @@ class ManageNewsViewTest(TestCase):
         self.assertEqual(response.context["filters"]["entities"], set())
 
     def test_manage_news_supports_show_metadata_query_parameter(self):
-        news = News.objects.create(created_by=self.user)
+        news = self._create_news()
         NewsTranslation.objects.create(
             news=news,
             language="en",

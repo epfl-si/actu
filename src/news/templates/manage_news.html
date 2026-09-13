@@ -13,7 +13,7 @@
         {% trans "Create news" %}
       </a>
       <div id="manage-news-filters">
-        <form method="get" class="mb-5">
+        <form method="get" class="mb-5" id="manage-news-filters-form">
           <div class="row">
             <div class="col-md-9">
               <div class="form-group">
@@ -94,6 +94,7 @@
         </form>
       </div>
       {% if not news_rows %}
+        {% include "includes/show_metadata_checkbox.html" %}
         <p class="text-muted">{% trans "No news found." %}</p>
       {% else %}
         <div class="d-flex justify-content-end mb-2">
@@ -101,17 +102,27 @@
             {{ page_obj.paginator.count }} {% trans "result(s) found" %}
           </span>
         </div>
+        {% include "includes/show_metadata_checkbox.html" %}
         <div id="manage-news-list" class="list-group">
           {% for row in news_rows %}
             <div class="list-group-item list-group-teaser">
               <div class="list-group-teaser-container text-sm">
                 <div class="list-group-teaser-thumbnail">
                   <img class="img-fluid" src="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-1440x810.jpg">
+                  <div class="mt-1 display-news-metadata{% if not show_metadata %} d-none{% endif %}">
+                    <a href="{% url 'manage_news' %}?formats={{ row.news.format.id }}{% if show_metadata %}&show_metadata=1{% endif %}"
+                    ><span class="tag tag-sm text-gray-700 font-weight-bold">
+                      {{ row.news.format }}
+                      {% if row.news.format.icon %}
+                        <svg class="icon" aria-hidden="true"><use xlink:href="{{ row.news.format.icon }}"></use></svg>
+                      {% endif %}
+                    </span></a>
+                  </div>
                 </div>
                 <div class="list-group-teaser-content pl-lg-0 d-flex flex-column justify-content-between">
                   {% for lang_code, lang_label, translation in row.lang_cells %}
                     <div class="d-flex align-items-center">
-                      <span class="tag tag-sm tag-light flex-shrink-0 text-center mr-2 m-0">{{ lang_code.upper }}</span>
+                      <span class="tag tag-sm tag-lang flex-shrink-0 text-center mr-2 m-0">{{ lang_code.upper }}</span>
                       {% if translation %}
                         <span class="badge {{ translation.status }} flex-shrink-0 text-center text-xs mr-2" title="{{ translation.last_activity_label }}">
                           {{ translation.get_status_display }}</span>
@@ -147,6 +158,17 @@
                       {% endif %}
                     </div>
                   {% endfor %}
+                  <div class="display-news-metadata{% if not show_metadata %} d-none{% endif %}">
+                    <hr class="mt-2 mb-2">
+                    {% for thematic in row.news.thematics.all %}
+                      <a href="{% url 'manage_news' %}?thematics={{ thematic.id }}{% if show_metadata %}&show_metadata=1{% endif %}"
+                      ><span class="tag tag-sm metadata-thematic-tag badge">{{ thematic }}</span></a>
+                    {% endfor %}
+                    {% for entity in row.news.entities.all %}
+                      <a href="{% url 'manage_news' %}?entities={{ entity.id }}{% if show_metadata %}&show_metadata=1{% endif %}"
+                      ><span class="tag tag-sm metadata-entity-tag badge">{{ entity }}</span></a>
+                    {% endfor %}
+                  </div>
                 </div>
               </div>
             </div>
@@ -186,4 +208,5 @@
 {% block web2018_extra_js %}
   {{ block.super }}
   {% vite_asset 'assets/components/modals/confirm-delete.js' %}
+  {% vite_asset 'assets/pages/manage-news/manage-news.js' %}
 {% endblock %}

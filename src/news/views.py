@@ -229,6 +229,7 @@ def _apply_filters(news, filters):
 def manage_news(request):
     thematics, entities, formats, languages = _initialize_view()
 
+    show_metadata = request.GET.get("show_metadata") == "1"
     filters = _get_filters(request)
 
     translations_qs = NewsTranslation.objects.select_related(
@@ -286,6 +287,7 @@ def manage_news(request):
             "paginator": paginator,
             "query_string": query_dict.urlencode(),
             "filters": filters,
+            "show_metadata": show_metadata,
             "statuses": NewsTranslation.Status,
             "thematics": thematics,
             "entities": entities,

@@ -25,6 +25,7 @@ export default defineConfig({
       input: {
         'modals-confirm-delete': './assets/components/modals/confirm-delete.js',
         actu: './assets/entrypoint.scss',
+        manage_news: './assets/pages/manage-news/manage-news.js',
         manage_users: './assets/pages/manage-users-homepages/manage_users.js',
       },
       output: {

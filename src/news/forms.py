@@ -99,7 +99,9 @@ class NewsWithTranslationForm:
             post_data, instance=translation_instance
         )
         self.language = language
-        self.links = NewsLinkFormSet(post_data, queryset=link_instance)
+        self.links = NewsLinkFormSet(
+            post_data, queryset=link_instance, prefix="links"
+        )
 
     def is_valid(self):
         news_valid = self.news.is_valid()

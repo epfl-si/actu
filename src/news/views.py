@@ -27,18 +27,54 @@ User = get_user_model()
 def list_news(request):
     current_lang = get_language()
 
-    news_translations = (
-        NewsTranslation.objects.filter(
-            language=current_lang,
-            status=NewsTranslation.Status.PUBLISHED,
-            published_at__isnull=False,
-        )
-        .select_related(
-            "news",
-            "news__format",
-        )
-        .order_by("-published_at")
+    thematics = Thematic.objects.all()
+    entities = Entity.objects.all()
+    formats = NewsFormat.objects.all()
+
+    search_query = request.GET.get("search", "").strip()
+    selected_thematics = [
+        int(i) for i in request.GET.getlist("thematics") if i.isdigit()
+    ]
+    selected_entities = [
+        int(i) for i in request.GET.getlist("entities") if i.isdigit()
+    ]
+    selected_formats = [
+        int(i) for i in request.GET.getlist("formats") if i.isdigit()
+    ]
+
+    news_translations = NewsTranslation.objects.filter(
+        language=current_lang,
+        status=NewsTranslation.Status.PUBLISHED,
+        published_at__isnull=False,
+    ).select_related(
+        "news",
+        "news__format",
     )
+
+    if search_query:
+        news_translations = news_translations.filter(
+            title__icontains=search_query
+        )
+
+    if selected_thematics:
+        news_translations = news_translations.filter(
+            news__thematics__in=selected_thematics
+        )
+
+    if selected_entities:
+        news_translations = news_translations.filter(
+            news__entities__in=selected_entities
+        )
+
+    if selected_formats:
+        news_translations = news_translations.filter(
+            news__format__in=selected_formats
+        )
+
+    if selected_thematics or selected_entities:
+        news_translations = news_translations.distinct()
+
+    news_translations = news_translations.order_by("-published_at")
 
     paginator = Paginator(news_translations, 10)
     page_number = request.GET.get("page", 1)
@@ -58,6 +94,15 @@ def list_news(request):
         "page_range": page_range,
         "paginator": paginator,
         "query_string": query_dict.urlencode(),
+        "thematics": thematics,
+        "entities": entities,
+        "formats": formats,
+        "filters": {
+            "search": search_query,
+            "thematics": selected_thematics,
+            "entities": selected_entities,
+            "formats": selected_formats,
+        },
     }
 
     return render(request, "list.html", context)

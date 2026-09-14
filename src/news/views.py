@@ -116,11 +116,13 @@ def _initialize_form_and_render_view(request, lang, news_id=None):
 
     language_tabs = []
     for code, name in languages:
-        language_tabs.append({
-            "code": code,
-            "name": name,
-            "translation": translations_by_lang.get(code)
-        })
+        language_tabs.append(
+            {
+                "code": code,
+                "name": name,
+                "translation": translations_by_lang.get(code),
+            }
+        )
 
     form = NewsWithTranslationForm(
         post_data=request.POST or None,

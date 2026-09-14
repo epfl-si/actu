@@ -508,6 +508,12 @@ msgstr "Literaturverzeichnis"
 msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
 msgstr "Bitte geben Sie die vollständige Referenz, einschliesslich des DOI, von Peer-Review-Publikationen zur angegebenen Forschung an."
 
+msgid "Links"
+msgstr "Links"
+
+msgid "Add a link"
+msgstr "Links hinzufügen"
+
 msgid "Save"
 msgstr "Speichern"
 

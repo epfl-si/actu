@@ -508,6 +508,12 @@ msgstr ""
 msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
 msgstr ""
 
+msgid "Links"
+msgstr ""
+
+msgid "Add a link"
+msgstr ""
+
 msgid "Save"
 msgstr ""
 

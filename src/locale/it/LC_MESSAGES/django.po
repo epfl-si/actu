@@ -507,6 +507,12 @@ msgstr "Referenze"
 msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
 msgstr "Si prega di fornire i riferimenti completi, compreso il DOI, di tutte le pubblicazioni sottoposte a revisione tra pari relative alla ricerca descritta."
 
+msgid "Links"
+msgstr "Collegamenti"
+
+msgid "Add a link"
+msgstr "Aggiungi un collegamento"
+
 msgid "Save"
 msgstr "Salva"
 

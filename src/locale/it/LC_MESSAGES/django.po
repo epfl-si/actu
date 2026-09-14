@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-11 12:20+0200\n"
+"POT-Creation-Date: 2026-09-14 08:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -462,6 +462,9 @@ msgstr "Si prega di fornire i riferimenti completi, compreso il DOI, di tutte le
 msgid "Save"
 msgstr "Salva"
 
+msgid "Show metadata"
+msgstr "Mostra metadati"
+
 msgid "Search..."
 msgstr "Cerca..."
 
@@ -470,9 +473,6 @@ msgstr "Attivo"
 
 msgid "Reset all"
 msgstr "Resetta"
-
-msgid "Show metadata"
-msgstr "Mostra metadati"
 
 msgid "No news available."
 msgstr "Nessuna notizia disponibile."

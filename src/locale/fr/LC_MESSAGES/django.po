@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-11 12:20+0200\n"
+"POT-Creation-Date: 2026-09-14 08:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -463,6 +463,9 @@ msgstr "Si l'actualité se base sur une publication en revue, indiquer ici les r
 msgid "Save"
 msgstr "Enregistrer"
 
+msgid "Show metadata"
+msgstr "Afficher les métadonnées"
+
 msgid "Search..."
 msgstr "Rechercher..."
 
@@ -471,9 +474,6 @@ msgstr "Actif"
 
 msgid "Reset all"
 msgstr "Réinitialiser"
-
-msgid "Show metadata"
-msgstr "Afficher les métadonnées"
 
 msgid "No news available."
 msgstr "Aucune actualité disponible."

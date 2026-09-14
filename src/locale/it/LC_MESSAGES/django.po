@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-14 08:33+0200\n"
+"POT-Creation-Date: 2026-09-14 18:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -411,6 +411,24 @@ msgstr "Questa traduzione non è archiviata."
 msgid "Translation restored successfully."
 msgstr "Traduzione ripristinata con successo."
 
+msgid "Link"
+msgstr "Collegamento"
+
+msgid "File"
+msgstr "File"
+
+msgid "Image"
+msgstr "Immagine"
+
+msgid "News multi-reference"
+msgstr "Notizia a riferimenti multipli"
+
+msgid "News multi-references"
+msgstr "Notizie a riferimenti multipli"
+
+msgid "Ref"
+msgstr "Riferimento"
+
 msgid "A news must have at least one thematic."
 msgstr "Una notizia deve avere almeno una tematica."
 
@@ -458,6 +476,12 @@ msgstr "Referenze"
 
 msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
 msgstr "Si prega di fornire i riferimenti completi, compreso il DOI, di tutte le pubblicazioni sottoposte a revisione tra pari relative alla ricerca descritta."
+
+msgid "Links"
+msgstr "Collegamenti"
+
+msgid "Add a link"
+msgstr "Aggiungi un collegamento"
 
 msgid "Save"
 msgstr "Salva"

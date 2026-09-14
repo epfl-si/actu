@@ -638,6 +638,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -680,6 +682,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -703,6 +707,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -722,6 +728,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -748,6 +756,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -770,6 +780,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data, follow=True)
         self.assertEqual(response.status_code, 200)
@@ -882,6 +894,8 @@ class EditNewsTranslationViewTest(TestCase):
             "format": self.format_2.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -918,6 +932,8 @@ class EditNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)

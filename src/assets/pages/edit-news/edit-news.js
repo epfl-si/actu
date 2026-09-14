@@ -1,19 +1,19 @@
 $(function () {
-  function makeLinkRow (lang) {
-    const $total = $('#id_form-TOTAL_FORMS')
+  function makeRow (prefix) {
+    const $total = $(`#id_${prefix}-TOTAL_FORMS`)
     const index = parseInt($total.val(), 10)
     $total.val(index + 1)
 
     return $(`
-      <div class="input-group mb-2 link-row">
-        <input type="url" name="form-${index}-ref" class="form-control" placeholder="https://...">
-        <span class="float-right remove-link-btn" role="button" title="{% trans "Remove" %}">
+      <div class="input-group mb-2 ${prefix}-row">
+        <input type="url" name="${prefix}-${index}-ref" class="form-control" placeholder="https://...">
+        <span class="float-right remove-${prefix}-btn" role="button" title="{% trans "Remove" %}">
           <svg class="icon feather" aria-hidden="true">
             <use xlink:href="#trash-2"></use>
           </svg>
         </span>
         <div class="d-none">
-          <input type="checkbox" name="form-${index}-DELETE" id="id_form-${index}-DELETE">
+          <input type="checkbox" name="${prefix}-${index}-DELETE" id="id_${prefix}-${index}-DELETE">
         </div>
       </div>
     `)
@@ -21,7 +21,8 @@ $(function () {
 
   $('.add-link-btn').on('click', function () {
     const $container = $('#' + $(this).data('target'))
-    $container.append(makeLinkRow($(this).data('lang')))
+    const prefix = $container.data('prefix')
+    $container.append(makeRow(prefix))
   })
 
   // For existing rows, don't remove the DOM node (that breaks id/index alignment) —

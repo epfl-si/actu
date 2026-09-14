@@ -185,7 +185,7 @@
           </div>
           <div class="form-group">
             <label>{% trans "Links" %}</label>
-            <div id="links-container">
+            <div id="links-container" data-prefix="{{ form.links.prefix }}">
               {{ form.links.management_form }}
               {% for link_form in form.links %}
                 <div class="input-group mb-2 link-row">

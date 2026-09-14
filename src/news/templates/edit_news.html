@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load django_vite %}
 
 {% block web2018_extra_js %}
+  {{ block.super }}
   {{ form.translation.media }}
+  {% vite_asset 'assets/pages/edit_news/edit-news.js' %}
 {% endblock %}
 
 {% block web2018_title %}
@@ -179,6 +182,32 @@
             <small class="form-text text-muted">
               {% trans "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research." %}
             </small>
+          </div>
+          <div class="form-group">
+            <label>{% trans "Links" %}</label>
+            <div id="links-container">
+              {{ form.links.management_form }}
+              {% for link_form in form.links %}
+                <div class="input-group mb-2 link-row">
+                  {{ link_form.id }}
+                  <input type="url" name="{{ link_form.ref.html_name }}" class="form-control"
+                        value="{{ link_form.ref.value|default_if_none:'' }}" placeholder="https://...">
+                  <span class="float-right remove-link-btn" role="button" title="{% trans "Remove" %}">
+                    <svg class="icon feather" aria-hidden="true">
+                      <use xlink:href="#trash-2"></use>
+                    </svg>
+                  </span>
+                  <div class="d-none">
+                    {{ link_form.DELETE }}
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+
+            <button type="button" class="btn btn-secondary btn-sm add-link-btn"
+              data-target="links-container">
+              {% trans "Add a link" %}
+            </button>
           </div>
           <div class="d-flex flex-wrap align-items-start">
             <div class="d-flex flex-wrap">

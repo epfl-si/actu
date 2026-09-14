@@ -1,6 +1,6 @@
 $(function () {
-  function makeLinkRow(lang) {
-    const $total = $(`#id_form-TOTAL_FORMS`) // formset is shared across the page unless you give it a prefix per language
+  function makeLinkRow (lang) {
+    const $total = $('#id_form-TOTAL_FORMS')
     const index = parseInt($total.val(), 10)
     $total.val(index + 1)
 

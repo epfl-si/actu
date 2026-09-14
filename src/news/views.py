@@ -147,12 +147,14 @@ def _initialize_form_and_render_view(request, lang, news_id=None):
 
     news = get_object_or_404(News, id=news_id) if news_id else None
     translation = news.get_translation(language=lang) if news else None
+    links = news.get_links(language=lang) if news else None
 
     form = NewsWithTranslationForm(
         post_data=request.POST or None,
         language=lang,
         news_instance=news,
         translation_instance=translation,
+        link_instance=links,
     )
 
     selected_thematic_ids, selected_entity_ids, selected_format_id = (

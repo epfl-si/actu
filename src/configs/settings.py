@@ -120,6 +120,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "menubar": False,
     "plugins": "link fullscreen",
     "toolbar": "subscript superscript | link | undo redo | fullscreen",
+    "license_key": "gpl",
 }
 
 WSGI_APPLICATION = "configs.wsgi.application"

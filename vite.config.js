@@ -27,6 +27,7 @@ export default defineConfig({
         actu: './assets/entrypoint.scss',
         manage_news: './assets/pages/manage-news/manage-news.js',
         manage_users: './assets/pages/manage-users-homepages/manage_users.js',
+        edit_news: './assets/pages/edit-news/edit-news.js',
       },
       output: {
         minify: {

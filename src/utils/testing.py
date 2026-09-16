@@ -1,4 +1,5 @@
 import socket
+from urllib.parse import urlparse
 
 from django.conf import settings
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
@@ -12,7 +13,7 @@ class PlaywrightTestCase(StaticLiveServerTestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.host = socket.gethostbyname(socket.gethostname())
+        cls.host = cls._get_live_server_host()
         super().setUpClass()
 
         cls.playwright = sync_playwright().start()
@@ -27,6 +28,37 @@ class PlaywrightTestCase(StaticLiveServerTestCase):
                 f"Could not connect to Playwright server at "
                 f"{settings.REMOTE_PLAYWRIGHT_SERVER!r}: {exc}"
             ) from exc
+
+    @classmethod
+    def _get_live_server_host(cls):
+        """Return the host the live server should bind to.
+
+        The browser may run on the same machine as Django or in a
+        separate container (Docker/CI). We pick a host that is reachable from
+        the configured Playwright server:
+
+        - For a localhost remote server, bind to 127.0.0.1.
+        - For a non-localhost remote server, bind to the container's network
+          IP so the remote browser can reach Django.
+        """
+        remote_server = getattr(settings, "REMOTE_PLAYWRIGHT_SERVER", "")
+        if remote_server and cls._is_local_address(remote_server):
+            return "127.0.0.1"
+
+        if remote_server:
+            return socket.gethostbyname(socket.gethostname())
+
+        # Fall back to Django's default when no remote server is configured.
+        return cls.host
+
+    @staticmethod
+    def _is_local_address(url):
+        """Return True if the given URL points to localhost."""
+        try:
+            hostname = urlparse(url).hostname
+        except ValueError:
+            return False
+        return hostname in ("localhost", "127.0.0.1", "::1")
 
     @classmethod
     def tearDownClass(cls):

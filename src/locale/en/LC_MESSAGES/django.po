@@ -463,6 +463,9 @@ msgstr ""
 msgid "Crop lower"
 msgstr ""
 
+msgid "Link"
+msgstr ""
+
 msgid "A news must have at least one thematic."
 msgstr ""
 

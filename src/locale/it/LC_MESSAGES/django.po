@@ -411,6 +411,12 @@ msgstr "Questa traduzione non è archiviata."
 msgid "Translation restored successfully."
 msgstr "Traduzione ripristinata con successo."
 
+msgid "News link"
+msgstr "Collegamento della notizia"
+
+msgid "News links"
+msgstr "Collegamenti delle notizie"
+
 msgid "News image"
 msgstr "Immagine della notizia"
 

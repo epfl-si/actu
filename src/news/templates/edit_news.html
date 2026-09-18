@@ -190,8 +190,8 @@
               {% for link_form in form.links %}
                 <div class="input-group mb-2 link-row">
                   {{ link_form.id }}
-                  <input type="url" name="{{ link_form.ref.html_name }}" class="form-control"
-                        value="{{ link_form.ref.value|default_if_none:'' }}" placeholder="https://...">
+                  <input type="url" name="{{ link_form.link.html_name }}" class="form-control"
+                        value="{{ link_form.link.value|default_if_none:'' }}" placeholder="https://...">
                   <span class="float-right remove-link-btn" role="button" title="{% trans "Remove" %}">
                     <svg class="icon feather" aria-hidden="true">
                       <use xlink:href="#trash-2"></use>

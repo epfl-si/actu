@@ -608,6 +608,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -650,6 +652,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -673,6 +677,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -692,6 +698,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -718,6 +726,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -740,6 +750,8 @@ class CreateNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "0",
+            "links-INITIAL_FORMS": "0",
         }
         response = self.client.post(url, data, follow=True)
         self.assertEqual(response.status_code, 200)
@@ -792,6 +804,10 @@ class EditNewsTranslationViewTest(TestCase):
             title="Original title",
             status=NewsTranslation.Status.DRAFT,
             created_by=self.user,
+        )
+        self.existing_link = self.news.links.create(
+            language="en",
+            link="https://example.com",
         )
 
     def test_redirects_anonymous_user_to_login(self):
@@ -852,6 +868,10 @@ class EditNewsTranslationViewTest(TestCase):
             "format": self.format_2.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "1",
+            "links-INITIAL_FORMS": "1",
+            "links-0-id": self.existing_link.id,
+            "links-0-link": self.existing_link.link,
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -888,6 +908,10 @@ class EditNewsTranslationViewTest(TestCase):
             "format": self.format.id,
             "author": "Lindsey Vonn",
             "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "1",
+            "links-INITIAL_FORMS": "1",
+            "links-0-id": self.existing_link.id,
+            "links-0-link": self.existing_link.link,
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -899,4 +923,70 @@ class EditNewsTranslationViewTest(TestCase):
         self.assertEqual(
             response.context["selected_entity_ids"],
             {self.entity_2.id},
+        )
+
+    def test_update_links(self):
+        self.client.force_login(self.user)
+        url = reverse(
+            "edit_news",
+            kwargs={
+                "news_id": self.news.id,
+                "lang": "en",
+            },
+        )
+        data = {
+            "title": "Original title",
+            "thematics": [self.thematic.id],
+            "entities": [self.entity.id],
+            "format": self.format.id,
+            "author": "Lindsey Vonn",
+            "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "2",
+            "links-INITIAL_FORMS": "1",
+            "links-0-id": self.existing_link.id,
+            "links-0-link": self.existing_link.link,
+            "links-1-link": "https://example.epfl.ch/article2",
+        }
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 302)
+
+        self.news.refresh_from_db()
+        self.translation.refresh_from_db()
+
+        self.assertEqual(
+            set(self.news.links.values_list("link", flat=True)),
+            {"https://example.com", "https://example.epfl.ch/article2"},
+        )
+
+    def test_delete_link(self):
+        self.client.force_login(self.user)
+        url = reverse(
+            "edit_news",
+            kwargs={
+                "news_id": self.news.id,
+                "lang": "en",
+            },
+        )
+        data = {
+            "title": "Original title",
+            "thematics": [self.thematic.id],
+            "entities": [self.entity.id],
+            "format": self.format.id,
+            "author": "Lindsey Vonn",
+            "standfirst": "This is a standfirst",
+            "links-TOTAL_FORMS": "1",
+            "links-INITIAL_FORMS": "1",
+            "links-0-id": self.existing_link.id,
+            "links-0-link": self.existing_link.link,
+            "links-0-DELETE": "on",
+        }
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 302)
+
+        self.news.refresh_from_db()
+        self.translation.refresh_from_db()
+
+        self.assertEqual(
+            set(self.news.links.values_list("link", flat=True)),
+            set(),
         )

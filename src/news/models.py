@@ -65,3 +65,8 @@ class News(AuditModelMixin, models.Model):
         """Return the translation for this news, or None if it doesn't
         exist."""
         return self.translations.filter(language=language).first()
+
+    def get_links(self, language):
+        """Return the links for this news, or None if they don't
+        exist."""
+        return self.links.filter(language=language).all()

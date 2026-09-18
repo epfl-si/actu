@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     "block_types",
     "entities",
     "homepages",
+    "links",
     "news",
     "news_formats",
     "thematics",

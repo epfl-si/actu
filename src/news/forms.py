@@ -4,7 +4,7 @@ from django.forms.models import modelformset_factory
 from django.utils.translation import gettext_lazy as _
 from tinymce.widgets import TinyMCE
 
-from multi_ref.models import NewsMultiRef
+from links.models import NewsLink
 from translations.models import NewsTranslation
 
 from .models import News
@@ -70,15 +70,15 @@ class NewsTranslationForm(forms.ModelForm):
 
 class NewsLinkForm(forms.ModelForm):
     class Meta:
-        model = NewsMultiRef
-        fields = ["ref"]
+        model = NewsLink
+        fields = ["link"]
         widgets = {
-            "ref": forms.URLInput(attrs={"placeholder": "https://..."}),
+            "link": forms.URLInput(attrs={"placeholder": "https://..."}),
         }
 
 
 NewsLinkFormSet = modelformset_factory(
-    NewsMultiRef,
+    NewsLink,
     form=NewsLinkForm,
     extra=1,
     can_delete=True,
@@ -119,7 +119,6 @@ class NewsWithTranslationForm:
             for link_form in link_forms:
                 link_form.news = news
                 link_form.language = self.language
-                link_form.type = NewsMultiRef.Type.LINK
                 link_form.save()
 
             for deleted in self.links.deleted_objects:

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-14 18:14+0200\n"
+"POT-Creation-Date: 2026-09-18 12:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -412,23 +412,14 @@ msgstr "Diese Übersetzung ist nicht archiviert."
 msgid "Translation restored successfully."
 msgstr "Übersetzung erfolgreich wiederhergestellt."
 
+msgid "News link"
+msgstr "Nachrichtenlink"
+
+msgid "News links"
+msgstr "Nachrichtenlinks"
+
 msgid "Link"
 msgstr "Link"
-
-msgid "File"
-msgstr "Datei"
-
-msgid "Image"
-msgstr "Bild"
-
-msgid "News multi-reference"
-msgstr "Nachrichten-Mehrfachreferenz"
-
-msgid "News multi-references"
-msgstr "Nachrichten-Mehrfachreferenzen"
-
-msgid "Ref"
-msgstr "Referenz"
 
 msgid "A news must have at least one thematic."
 msgstr "Eine Nachricht muss mindestens eine Thematik haben."

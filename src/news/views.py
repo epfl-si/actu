@@ -109,6 +109,21 @@ def _initialize_form_and_render_view(request, lang, news_id=None):
     news = get_object_or_404(News, id=news_id) if news_id else None
     translation = news.get_translation(language=lang) if news else None
 
+    translations_by_lang = {}
+    if news:
+        for t in news.translations.all():
+            translations_by_lang[t.language] = t
+
+    language_tabs = []
+    for code, name in languages:
+        language_tabs.append(
+            {
+                "code": code,
+                "name": name,
+                "translation": translations_by_lang.get(code),
+            }
+        )
+
     form = NewsWithTranslationForm(
         post_data=request.POST or None,
         language=lang,
@@ -146,6 +161,7 @@ def _initialize_form_and_render_view(request, lang, news_id=None):
         "entities": entities,
         "formats": formats,
         "languages": languages,
+        "language_tabs": language_tabs,
         "selected_thematic_ids": selected_thematic_ids,
         "selected_entity_ids": selected_entity_ids,
         "selected_format_id": selected_format_id,

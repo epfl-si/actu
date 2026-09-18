@@ -5,7 +5,6 @@ from django.utils import timezone
 from django.utils.translation import override
 
 from entities.models import Entity
-from multi_ref.models import NewsMultiRef
 from news.models import News
 from news_formats.models import NewsFormat
 from thematics.models import Thematic
@@ -836,10 +835,9 @@ class EditNewsTranslationViewTest(TestCase):
             status=NewsTranslation.Status.DRAFT,
             created_by=self.user,
         )
-        self.existing_link = self.news.multirefs.create(
+        self.existing_link = self.news.links.create(
             language="en",
-            ref="https://example.com",
-            type=NewsMultiRef.Type.LINK,
+            link="https://example.com",
         )
 
     def test_redirects_anonymous_user_to_login(self):
@@ -903,7 +901,7 @@ class EditNewsTranslationViewTest(TestCase):
             "links-TOTAL_FORMS": "1",
             "links-INITIAL_FORMS": "1",
             "links-0-id": self.existing_link.id,
-            "links-0-ref": self.existing_link.ref,
+            "links-0-link": self.existing_link.link,
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -943,7 +941,7 @@ class EditNewsTranslationViewTest(TestCase):
             "links-TOTAL_FORMS": "1",
             "links-INITIAL_FORMS": "1",
             "links-0-id": self.existing_link.id,
-            "links-0-ref": self.existing_link.ref,
+            "links-0-link": self.existing_link.link,
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
@@ -976,8 +974,8 @@ class EditNewsTranslationViewTest(TestCase):
             "links-TOTAL_FORMS": "2",
             "links-INITIAL_FORMS": "1",
             "links-0-id": self.existing_link.id,
-            "links-0-ref": self.existing_link.ref,
-            "links-1-ref": "https://example.epfl.ch/article2",
+            "links-0-link": self.existing_link.link,
+            "links-1-link": "https://example.epfl.ch/article2",
         }
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 302)
@@ -986,7 +984,7 @@ class EditNewsTranslationViewTest(TestCase):
         self.translation.refresh_from_db()
 
         self.assertEqual(
-            set(self.news.multirefs.values_list("ref", flat=True)),
+            set(self.news.links.values_list("link", flat=True)),
             {"https://example.com", "https://example.epfl.ch/article2"},
         )
 
@@ -1009,7 +1007,7 @@ class EditNewsTranslationViewTest(TestCase):
             "links-TOTAL_FORMS": "1",
             "links-INITIAL_FORMS": "1",
             "links-0-id": self.existing_link.id,
-            "links-0-ref": self.existing_link.ref,
+            "links-0-link": self.existing_link.link,
             "links-0-DELETE": "on",
         }
         response = self.client.post(url, data)
@@ -1019,6 +1017,6 @@ class EditNewsTranslationViewTest(TestCase):
         self.translation.refresh_from_db()
 
         self.assertEqual(
-            set(self.news.multirefs.values_list("ref", flat=True)),
+            set(self.news.links.values_list("link", flat=True)),
             set(),
         )

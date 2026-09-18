@@ -69,4 +69,4 @@ class News(AuditModelMixin, models.Model):
     def get_links(self, language):
         """Return the links for this news, or None if they don't
         exist."""
-        return self.multirefs.filter(language=language, type="link").all()
+        return self.links.filter(language=language).all()

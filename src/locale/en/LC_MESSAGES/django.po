@@ -445,25 +445,16 @@ msgstr ""
 msgid "Caption (IT)"
 msgstr ""
 
-msgid "Author"
+msgid "News links"
 msgstr ""
 
-msgid "Rights"
+msgid "News URL"
 msgstr ""
 
-msgid "Crop left"
+msgid "News URLs"
 msgstr ""
 
-msgid "Crop upper"
-msgstr ""
-
-msgid "Crop right"
-msgstr ""
-
-msgid "Crop lower"
-msgstr ""
-
-msgid "Link"
+msgid "URL"
 msgstr ""
 
 msgid "A news must have at least one thematic."
@@ -511,10 +502,10 @@ msgstr ""
 msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
 msgstr ""
 
-msgid "Links"
+msgid "URLs"
 msgstr ""
 
-msgid "Add a link"
+msgid "Add a URL"
 msgstr ""
 
 msgid "Save"

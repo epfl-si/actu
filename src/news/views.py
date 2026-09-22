@@ -32,15 +32,9 @@ def list_news(request):
     formats = NewsFormat.objects.all()
 
     search_query = request.GET.get("search", "").strip()
-    selected_thematics = [
-        int(i) for i in request.GET.getlist("thematics") if i.isdigit()
-    ]
-    selected_entities = [
-        int(i) for i in request.GET.getlist("entities") if i.isdigit()
-    ]
-    selected_formats = [
-        int(i) for i in request.GET.getlist("formats") if i.isdigit()
-    ]
+    selected_thematics = _safe_int_set(request.GET.getlist("thematics"))
+    selected_entities = _safe_int_set(request.GET.getlist("entities"))
+    selected_formats = _safe_int_set(request.GET.getlist("formats"))
 
     news_translations = NewsTranslation.objects.filter(
         language=current_lang,

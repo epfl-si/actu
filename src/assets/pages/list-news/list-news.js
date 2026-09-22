@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.getElementById('news-form')
-  const btnFilter = document.getElementById('btnFilter')
 
-  if (!form || !btnFilter) return
+  if (!form) return
 
   let hasChanged = false
 
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     $(document).on('click', function (e) {
       if (hasChanged && !$(e.target).closest('.form-group').length) {
         hasChanged = false
-        btnFilter.click()
+        form.requestSubmit()
       }
     })
 
@@ -29,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .prop('selected', false)
         .trigger('change')
 
-      btnFilter.click()
+      form.requestSubmit()
     })
   }
 })

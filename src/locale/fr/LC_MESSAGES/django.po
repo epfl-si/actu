@@ -412,14 +412,14 @@ msgstr "Cette traduction n'est pas archivée."
 msgid "Translation restored successfully."
 msgstr "Traduction restaurée avec succès."
 
-msgid "News link"
-msgstr "Lien d'actualité"
+msgid "News URL"
+msgstr "URL d'actualité"
 
-msgid "News links"
-msgstr "Liens d'actualités"
+msgid "News URLs"
+msgstr "URLs d'actualités"
 
-msgid "Link"
-msgstr "Lien"
+msgid "URL"
+msgstr "URL"
 
 msgid "A news must have at least one thematic."
 msgstr "Une actualité doit avoir au moins une thématique."
@@ -469,11 +469,11 @@ msgstr "Références"
 msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
 msgstr "Si l'actualité se base sur une publication en revue, indiquer ici les références bibliographiques complètes, y compris l'adresse DOI."
 
-msgid "Links"
-msgstr "Liens"
+msgid "URLs"
+msgstr "URLs"
 
-msgid "Add a link"
-msgstr "Ajouter un lien"
+msgid "Add a URL"
+msgstr "Ajouter une URL"
 
 msgid "Save"
 msgstr "Enregistrer"

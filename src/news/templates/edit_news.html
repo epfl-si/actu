@@ -184,29 +184,29 @@
             </small>
           </div>
           <div class="form-group">
-            <label>{% trans "Links" %}</label>
-            <div id="links-container" data-prefix="{{ form.links.prefix }}">
-              {{ form.links.management_form }}
-              {% for link_form in form.links %}
-                <div class="input-group mb-2 link-row">
-                  {{ link_form.id }}
-                  <input type="url" name="{{ link_form.link.html_name }}" class="form-control"
-                        value="{{ link_form.link.value|default_if_none:'' }}" placeholder="https://...">
-                  <span class="float-right remove-link-btn" role="button" title="{% trans "Remove" %}">
+            <label>{% trans "URLs" %}</label>
+            <div id="urls-container" data-prefix="{{ form.urls.prefix }}">
+              {{ form.urls.management_form }}
+              {% for url_form in form.urls %}
+                <div class="input-group mb-2 url-row">
+                  {{ url_form.id }}
+                  <input type="url" name="{{ url_form.url.html_name }}" class="form-control"
+                        value="{{ url_form.url.value|default_if_none:'' }}" placeholder="https://...">
+                  <span class="float-right remove-url-btn" role="button" title="{% trans "Remove" %}">
                     <svg class="icon feather" aria-hidden="true">
                       <use xlink:href="#trash-2"></use>
                     </svg>
                   </span>
                   <div class="d-none">
-                    {{ link_form.DELETE }}
+                    {{ url_form.DELETE }}
                   </div>
                 </div>
               {% endfor %}
             </div>
 
-            <button type="button" class="btn btn-secondary btn-sm add-link-btn"
-              data-target="links-container">
-              {% trans "Add a link" %}
+            <button type="button" class="btn btn-secondary btn-sm add-url-btn"
+              data-target="urls-container">
+              {% trans "Add a URL" %}
             </button>
           </div>
           <div class="d-flex flex-wrap align-items-start">

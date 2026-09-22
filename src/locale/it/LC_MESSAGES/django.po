@@ -411,14 +411,14 @@ msgstr "Questa traduzione non è archiviata."
 msgid "Translation restored successfully."
 msgstr "Traduzione ripristinata con successo."
 
-msgid "News link"
-msgstr "Collegamento della notizia"
+msgid "News URL"
+msgstr "URL della notizia"
 
-msgid "News links"
-msgstr "Collegamenti delle notizie"
+msgid "News URLs"
+msgstr "URL delle notizie"
 
-msgid "Link"
-msgstr "Collegamento"
+msgid "URL"
+msgstr "URL"
 
 msgid "A news must have at least one thematic."
 msgstr "Una notizia deve avere almeno una tematica."
@@ -468,11 +468,11 @@ msgstr "Referenze"
 msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
 msgstr "Si prega di fornire i riferimenti completi, compreso il DOI, di tutte le pubblicazioni sottoposte a revisione tra pari relative alla ricerca descritta."
 
-msgid "Links"
-msgstr "Collegamenti"
+msgid "URLs"
+msgstr "URL"
 
-msgid "Add a link"
-msgstr "Aggiungi un collegamento"
+msgid "Add a URL"
+msgstr "Aggiungi un URL"
 
 msgid "Save"
 msgstr "Salva"

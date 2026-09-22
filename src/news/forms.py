@@ -4,8 +4,8 @@ from django.forms.models import modelformset_factory
 from django.utils.translation import gettext_lazy as _
 from tinymce.widgets import TinyMCE
 
-from links.models import NewsLink
 from translations.models import NewsTranslation
+from urls.models import NewsUrl
 
 from .models import News
 
@@ -68,18 +68,18 @@ class NewsTranslationForm(forms.ModelForm):
         return translation
 
 
-class NewsLinkForm(forms.ModelForm):
+class NewsUrlForm(forms.ModelForm):
     class Meta:
-        model = NewsLink
-        fields = ["link"]
+        model = NewsUrl
+        fields = ["url"]
         widgets = {
-            "link": forms.URLInput(attrs={"placeholder": "https://..."}),
+            "url": forms.URLInput(attrs={"placeholder": "https://..."}),
         }
 
 
-NewsLinkFormSet = modelformset_factory(
-    NewsLink,
-    form=NewsLinkForm,
+NewsUrlFormSet = modelformset_factory(
+    NewsUrl,
+    form=NewsUrlForm,
     extra=1,
     can_delete=True,
 )
@@ -92,36 +92,35 @@ class NewsWithTranslationForm:
         news_instance=None,
         translation_instance=None,
         language=None,
-        link_instance=None,
+        urls_queryset=None,
     ):
         self.news = NewsForm(post_data, instance=news_instance)
         self.translation = NewsTranslationForm(
             post_data, instance=translation_instance
         )
         self.language = language
-        self.links = NewsLinkFormSet(
-            post_data, queryset=link_instance, prefix="links"
+        self.urls = NewsUrlFormSet(
+            post_data, queryset=urls_queryset, prefix="urls"
         )
 
     def is_valid(self):
         news_valid = self.news.is_valid()
         translation_valid = self.translation.is_valid()
-        links_valid = self.links.is_valid()
-        return news_valid and translation_valid and links_valid
+        urls_valid = self.urls.is_valid()
+        return news_valid and translation_valid and urls_valid
 
     def save(self, user):
         with transaction.atomic():
             news = self.news.save(user)
             self.translation.save(user, self.language, news)
 
-            link_forms = self.links.save(commit=False)
+            url_forms = self.urls.save(commit=False)
 
-            for link_form in link_forms:
-                link_form.news = news
-                link_form.language = self.language
-                link_form.save()
+            for url_form in url_forms:
+                url_form.translation = self.translation.instance
+                url_form.save()
 
-            for deleted in self.links.deleted_objects:
+            for deleted in self.urls.deleted_objects:
                 deleted.delete()
 
         return news.id

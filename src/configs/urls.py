@@ -21,9 +21,11 @@ from django.contrib import admin
 from django.urls import include, path, register_converter
 
 from api.converters import APIVersionConverter
+from utils.converters import LanguageConverter
 from utils.views import healthz
 
 register_converter(APIVersionConverter, "api_version")
+register_converter(LanguageConverter, "language")
 
 urlpatterns = [
     path("api/<api_version:version>/", include("api.urls")),

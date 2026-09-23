@@ -835,8 +835,7 @@ class EditNewsTranslationViewTest(TestCase):
             status=NewsTranslation.Status.DRAFT,
             created_by=self.user,
         )
-        self.existing_url = self.news.urls.create(
-            language="en",
+        self.existing_url = self.translation.urls.create(
             url="https://example.com",
         )
 
@@ -984,7 +983,7 @@ class EditNewsTranslationViewTest(TestCase):
         self.translation.refresh_from_db()
 
         self.assertEqual(
-            set(self.news.urls.values_list("url", flat=True)),
+            set(self.translation.urls.values_list("url", flat=True)),
             {"https://example.com", "https://example.epfl.ch/article2"},
         )
 
@@ -1017,6 +1016,6 @@ class EditNewsTranslationViewTest(TestCase):
         self.translation.refresh_from_db()
 
         self.assertEqual(
-            set(self.news.urls.values_list("url", flat=True)),
+            set(self.translation.urls.values_list("url", flat=True)),
             set(),
         )

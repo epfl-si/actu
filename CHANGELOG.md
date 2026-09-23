@@ -1,5 +1,48 @@
 # Changelog
 
+## v0.0.6 / 2026-09-22
+
+- Feature/filter news (#96)
+- [fix] Fix TinyMCE warning: add licence_key gpl (#97)
+- Fix sample data for news (#103)
+- Increase save button size on Edit news page (#102)
+- Reduce filter buttons size (#101)
+- Fix errors highlighting and display on Edit news page (#100)
+- Remove news title in Edit news page h1 (#99)
+- Optionally display news metadata in the Manage news page (#98)
+- Add samples data for news (#95)
+- Set at the Model level that it is not allowed for a news to live without a thematic or a format (#94)
+- Add news API endpoint (#88)
+- Add auto-slug to NewsTranslation with slug history table (#87)
+- Add maxlength and required properties on title of edit news page (#92)
+- Remove current_label templatetags (#93)
+- Feature/list news (#86)
+- Standardize format label (#91)
+- Add search and filters to Manage News (#90)
+- Additional TinyMCE fields for news (#76)
+- Update some sample_data to reflect what will be prod values for thematic and entities (#89)
+- Create and edit news (#68)
+- Fix Audit Log N+1 queries (#84)
+- Explain how to access the API doc (#85)
+- Add entities API endpoint (#79)
+- Add pagination on Manage News page (#83)
+- Add some sample data to have a starting dev site
+- Add thematics API endpoint (#77)
+- Improve Playwright test case setup and teardown (#82)
+- Ensure modal close aria-label is translatable (#81)
+- Avoid creating AccredServiceClient twice (#80)
+- Add homemade log audit (#75)
+- Add Manage News page (#72)
+- Configure Django REST Framework and drf-spectacular (#73)
+- Add some doc about debugging on Intellij
+- Update django-epfl-web2018 to 0.0.8 (#69)
+- Fix using too fresh NPM libraries
+- Add news_formats and block_types models (#56)
+- Add a diataxis doc structure and some guidance on how to start developing
+- Git ignore the collectstatic target folder when using django collectstatic
+- Update django to 5.2.17 (#65)
+- Configure Oxc minifier to strip console/debugger in production (#66)
+
 ## v0.0.5 / 2026-08-07
 
 - Add homepage permission page (#51)

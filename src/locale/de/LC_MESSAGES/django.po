@@ -469,6 +469,15 @@ msgstr "Speichern"
 msgid "Show metadata"
 msgstr "Metadaten anzeigen"
 
+msgid "Search..."
+msgstr "Suchen..."
+
+msgid "Active filters"
+msgstr "Aktiv"
+
+msgid "Reset all"
+msgstr "Zurücksetzen"
+
 msgid "No news available."
 msgstr "Keine Nachrichten verfügbar."
 
@@ -477,9 +486,6 @@ msgstr "Nachrichten verwalten"
 
 msgid "Create news"
 msgstr "Nachricht erstellen"
-
-msgid "Search..."
-msgstr "Suchen..."
 
 msgid "Creator"
 msgstr "Ersteller"

@@ -469,6 +469,15 @@ msgstr "Enregistrer"
 msgid "Show metadata"
 msgstr "Afficher les métadonnées"
 
+msgid "Search..."
+msgstr "Rechercher..."
+
+msgid "Active filters"
+msgstr "Actif"
+
+msgid "Reset all"
+msgstr "Réinitialiser"
+
 msgid "No news available."
 msgstr "Aucune actualité disponible."
 
@@ -477,9 +486,6 @@ msgstr "Gérer les actualités"
 
 msgid "Create news"
 msgstr "Créer une actualité"
-
-msgid "Search..."
-msgstr "Rechercher..."
 
 msgid "Creator"
 msgstr "Créateur"

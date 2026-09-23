@@ -469,6 +469,15 @@ msgstr ""
 msgid "Show metadata"
 msgstr ""
 
+msgid "Search..."
+msgstr ""
+
+msgid "Active filters"
+msgstr ""
+
+msgid "Reset all"
+msgstr ""
+
 msgid "No news available."
 msgstr ""
 
@@ -476,9 +485,6 @@ msgid "Manage News"
 msgstr ""
 
 msgid "Create news"
-msgstr ""
-
-msgid "Search..."
 msgstr ""
 
 msgid "Creator"

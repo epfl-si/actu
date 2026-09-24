@@ -1,6 +1,7 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.db import transaction
-from django.forms.models import modelformset_factory
+from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.utils.translation import gettext_lazy as _
 from tinymce.widgets import TinyMCE
 
@@ -77,9 +78,36 @@ class NewsUrlForm(forms.ModelForm):
         }
 
 
+class NewsUrlBaseFormSet(BaseModelFormSet):
+
+    def clean(self):
+        super().clean()
+        if any(self.errors):
+            return
+
+        urls = set()
+        urls_index = 0
+        for form in self.forms:
+            # Ignore rows the user whants to delete.
+            if self.can_delete and self._should_delete_form(form):
+                continue
+            url = form.cleaned_data.get("url")
+            if not url:
+                continue
+            urls_index += 1
+            # the url is not added if it's already in the set
+            urls.add(url)
+
+        # Duplicate URL within the submitted forms if the lenght of url is
+        # less than
+        if len(urls) != urls_index:
+            raise ValidationError(_("The same URL cannot be added twice."))
+
+
 NewsUrlFormSet = modelformset_factory(
     NewsUrl,
     form=NewsUrlForm,
+    formset=NewsUrlBaseFormSet,
     extra=1,
     can_delete=True,
 )
@@ -116,11 +144,11 @@ class NewsWithTranslationForm:
 
             url_forms = self.urls.save(commit=False)
 
+            for deleted in self.urls.deleted_objects:
+                deleted.delete()
+
             for url_form in url_forms:
                 url_form.translation = self.translation.instance
                 url_form.save()
-
-            for deleted in self.urls.deleted_objects:
-                deleted.delete()
 
         return news.id

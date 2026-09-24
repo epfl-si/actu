@@ -203,9 +203,9 @@
                 </div>
               {% endfor %}
             </div>
-            {% if form.translation.urls.errors %}
-            <small class="form-text invalid-feedback">
-              {{ form.translation.urls.errors }}
+            {% if form.urls.non_form_errors %}
+            <small class="form-text invalid-feedback d-block">
+              {{ form.urls.non_form_errors }}
             </small>
             {% endif %}
 

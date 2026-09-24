@@ -1019,3 +1019,37 @@ class EditNewsTranslationViewTest(TestCase):
             set(self.translation.urls.values_list("url", flat=True)),
             set(),
         )
+
+    def test_duplicate_url_in_submitted_forms_shows_error(self):
+        self.client.force_login(self.user)
+        url = reverse(
+            "edit_news",
+            kwargs={
+                "news_id": self.news.id,
+                "lang": "en",
+            },
+        )
+        data = {
+            "title": "Original title",
+            "thematics": [self.thematic.id],
+            "entities": [self.entity.id],
+            "format": self.format.id,
+            "author": "Lindsey Vonn",
+            "standfirst": "This is a standfirst",
+            "urls-TOTAL_FORMS": "2",
+            "urls-INITIAL_FORMS": "1",
+            "urls-0-id": self.existing_url.id,
+            "urls-0-url": "https://example.com",
+            "urls-1-url": "https://example.com",
+        }
+        response = self.client.post(url, data)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(
+            "The same URL cannot be added twice.",
+            response.content.decode(),
+        )
+        self.assertEqual(
+            set(self.translation.urls.values_list("url", flat=True)),
+            {"https://example.com"},
+        )

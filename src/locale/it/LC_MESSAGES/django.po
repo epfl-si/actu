@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-18 12:12+0200\n"
+"POT-Creation-Date: 2026-09-24 10:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -411,17 +411,11 @@ msgstr "Questa traduzione non è archiviata."
 msgid "Translation restored successfully."
 msgstr "Traduzione ripristinata con successo."
 
-msgid "News URL"
-msgstr "URL della notizia"
-
-msgid "News URLs"
-msgstr "URL delle notizie"
-
-msgid "URL"
-msgstr "URL"
-
 msgid "A news must have at least one thematic."
 msgstr "Una notizia deve avere almeno una tematica."
+
+msgid "The same URL cannot be added twice."
+msgstr "Lo stesso URL non può essere aggiunto due volte."
 
 msgid "Thematics related to this news."
 msgstr "Tematiche relative a questa notizia."
@@ -560,6 +554,18 @@ msgstr "Traduzione della notizia"
 
 msgid "News translations"
 msgstr "Traduzioni delle notizie"
+
+msgid "News URL"
+msgstr "URL della notizia"
+
+msgid "News URLs"
+msgstr "URL delle notizie"
+
+msgid "Translation"
+msgstr "Traduzione"
+
+msgid "URL"
+msgstr "URL"
 
 msgid "Published on"
 msgstr "Pubblicato il"

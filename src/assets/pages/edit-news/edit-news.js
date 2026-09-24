@@ -1,5 +1,5 @@
 $(function () {
-  function makeUrlRow (prefix) {
+  function makeUrlRow (prefix, removeTitle) {
     console.log('makeUrlRow', prefix)
     const $total = $(`#id_${prefix}-TOTAL_FORMS`)
     const index = parseInt($total.val(), 10)
@@ -8,7 +8,7 @@ $(function () {
     return $(`
       <div class="input-group mb-2 ${prefix}-row">
         <input type="url" name="${prefix}-${index}-url" class="form-control" placeholder="https://...">
-        <span class="float-right remove-${prefix}-btn" role="button" title="{% trans "Remove" %}">
+        <span class="float-right remove-${prefix}-btn" role="button" title="${removeTitle}">
           <svg class="icon feather" aria-hidden="true">
             <use xlink:href="#trash-2"></use>
           </svg>
@@ -23,7 +23,8 @@ $(function () {
   $('.add-url-btn').on('click', function () {
     const $container = $('#' + $(this).data('target'))
     const prefix = $container.data('prefix')
-    $container.append(makeUrlRow(prefix))
+    const removeTitle = $(this).data('remove-title')
+    $container.append(makeUrlRow(prefix, removeTitle))
   })
 
   // For existing rows, don't remove the DOM node (that breaks id/index alignment) —

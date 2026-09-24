@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
+import sys
 from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
@@ -265,7 +266,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Django Debug Toolbar
 # https://django-debug-toolbar.readthedocs.io/en/latest/configuration.html
 
-if DEBUG:
+# check if the app is running in debug or test mode,
+# as debug-toolbar should not be enabled in this modes
+ENABLE_DEBUG_TOOLBAR = DEBUG and "test" not in sys.argv
+
+if ENABLE_DEBUG_TOOLBAR:
     INSTALLED_APPS += ("debug_toolbar",)
     MIDDLEWARE += ("debug_toolbar.middleware.DebugToolbarMiddleware",)
 

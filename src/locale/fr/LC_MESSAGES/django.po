@@ -475,6 +475,9 @@ msgstr "URL"
 msgid "A news must have at least one thematic."
 msgstr "Une actualité doit avoir au moins une thématique."
 
+msgid "The same URL cannot be added twice."
+msgstr "La même URL ne peut pas être ajoutée deux fois."
+
 msgid "Thematics related to this news."
 msgstr "Thématiques liées à cette actualité."
 
@@ -609,6 +612,18 @@ msgstr "Traduction d'actualité"
 
 msgid "News translations"
 msgstr "Traductions d'actualités"
+
+msgid "News URL"
+msgstr "URL d'actualité"
+
+msgid "News URLs"
+msgstr "URLs d'actualités"
+
+msgid "Translation"
+msgstr "Traduction"
+
+msgid "URL"
+msgstr "URL"
 
 msgid "Published on"
 msgstr "Publié le"

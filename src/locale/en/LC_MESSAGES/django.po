@@ -448,16 +448,10 @@ msgstr ""
 msgid "News links"
 msgstr ""
 
-msgid "News URL"
-msgstr ""
-
-msgid "News URLs"
-msgstr ""
-
-msgid "URL"
-msgstr ""
-
 msgid "A news must have at least one thematic."
+msgstr ""
+
+msgid "The same URL cannot be added twice."
 msgstr ""
 
 msgid "Thematics related to this news."
@@ -593,6 +587,18 @@ msgid "News translation"
 msgstr ""
 
 msgid "News translations"
+msgstr ""
+
+msgid "News URL"
+msgstr ""
+
+msgid "News URLs"
+msgstr ""
+
+msgid "Translation"
+msgstr ""
+
+msgid "URL"
 msgstr ""
 
 msgid "Published on"

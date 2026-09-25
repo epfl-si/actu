@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-23 10:00+0200\n"
+"POT-Creation-Date: 2026-09-25 15:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -412,6 +412,57 @@ msgstr "Cette traduction n'est pas archivée."
 msgid "Translation restored successfully."
 msgstr "Traduction restaurée avec succès."
 
+msgid "News image"
+msgstr "Image de l'actualité"
+
+msgid "News images"
+msgstr "Images de l'actualité"
+
+msgid "Image"
+msgstr "Image"
+
+msgid "Alt text (FR)"
+msgstr "Texte alternatif (FR)"
+
+msgid "Alt text (EN)"
+msgstr "Texte alternatif (EN)"
+
+msgid "Alt text (DE)"
+msgstr "Texte alternatif (DE)"
+
+msgid "Alt text (IT)"
+msgstr "Texte alternatif (IT)"
+
+msgid "Caption (FR)"
+msgstr "Légende (FR)"
+
+msgid "Caption (EN)"
+msgstr "Légende (EN)"
+
+msgid "Caption (DE)"
+msgstr "Légende (DE)"
+
+msgid "Caption (IT)"
+msgstr "Légende (IT)"
+
+msgid "Author"
+msgstr "Auteur/trice"
+
+msgid "Rights"
+msgstr "Droits"
+
+msgid "Crop left"
+msgstr "Crop gauche"
+
+msgid "Crop upper"
+msgstr "Crop haut"
+
+msgid "Crop right"
+msgstr "Crop droite"
+
+msgid "Crop lower"
+msgstr "Crop bas"
+
 msgid "A news must have at least one thematic."
 msgstr "Une actualité doit avoir au moins une thématique."
 
@@ -444,9 +495,6 @@ msgstr "Le chapeau résume l'actualité en une ou deux phrases. Le chapeau est a
 
 msgid "Extract"
 msgstr "Extrait"
-
-msgid "Author"
-msgstr "Auteur"
 
 msgid "Funding"
 msgstr "Financement"

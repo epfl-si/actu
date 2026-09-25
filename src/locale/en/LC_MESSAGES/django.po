@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-23 10:00+0200\n"
+"POT-Creation-Date: 2026-09-25 15:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -412,6 +412,57 @@ msgstr ""
 msgid "Translation restored successfully."
 msgstr ""
 
+msgid "News image"
+msgstr ""
+
+msgid "News images"
+msgstr ""
+
+msgid "Image"
+msgstr ""
+
+msgid "Alt text (FR)"
+msgstr ""
+
+msgid "Alt text (EN)"
+msgstr ""
+
+msgid "Alt text (DE)"
+msgstr ""
+
+msgid "Alt text (IT)"
+msgstr ""
+
+msgid "Caption (FR)"
+msgstr ""
+
+msgid "Caption (EN)"
+msgstr ""
+
+msgid "Caption (DE)"
+msgstr ""
+
+msgid "Caption (IT)"
+msgstr ""
+
+msgid "Author"
+msgstr ""
+
+msgid "Rights"
+msgstr ""
+
+msgid "Crop left"
+msgstr ""
+
+msgid "Crop upper"
+msgstr ""
+
+msgid "Crop right"
+msgstr ""
+
+msgid "Crop lower"
+msgstr ""
+
 msgid "A news must have at least one thematic."
 msgstr ""
 
@@ -443,9 +494,6 @@ msgid "The standfirst summarizes the news in a sentence or two. The standfirst i
 msgstr ""
 
 msgid "Extract"
-msgstr ""
-
-msgid "Author"
 msgstr ""
 
 msgid "Funding"

@@ -1,6 +1,5 @@
 $(function () {
   function makeUrlRow (prefix, removeTitle) {
-    console.log('makeUrlRow', prefix)
     const $total = $(`#id_${prefix}-TOTAL_FORMS`)
     const index = parseInt($total.val(), 10)
     $total.val(index + 1)

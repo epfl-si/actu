@@ -26,7 +26,7 @@
           aria-selected="{% if form.language == tab.code %}true{% else %}false{% endif %}">
           {% trans tab.name %}
           {% if tab.translation %}
-            <span class="badge {{ tab.translation.status }} flex-shrink-0 align-middle text-center text-xs ml-1" title="{{ tab.translation.last_activity_label }}">
+            <span class="badge {{ tab.translation.status }} flex-shrink-0 align-middle text-center text-xs ml-1">
               {{ tab.translation.get_status_display }}
             </span>
           {% else %}

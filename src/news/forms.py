@@ -1,5 +1,4 @@
 from django import forms
-from django.core.exceptions import ValidationError
 from django.db import transaction
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.utils.translation import gettext_lazy as _
@@ -85,8 +84,7 @@ class NewsUrlBaseFormSet(BaseModelFormSet):
         if any(self.errors):
             return
 
-        urls = set()
-        urls_count = 0
+        url_to_forms = {}
         for form in self.forms:
             # Ignore rows the user wants to delete.
             if self.can_delete and self._should_delete_form(form):
@@ -94,14 +92,15 @@ class NewsUrlBaseFormSet(BaseModelFormSet):
             url = form.cleaned_data.get("url")
             if not url:
                 continue
-            urls_count += 1
-            # the url is not added if it's already in the set
-            urls.add(url)
+            url_to_forms.setdefault(url, []).append(form)
 
-        # Duplicate URLs within the submitted forms if the length of url is
-        # less than
-        if len(urls) != urls_count:
-            raise ValidationError(_("The same link cannot be added twice."))
+        for duplicate_forms in url_to_forms.values():
+            if len(duplicate_forms) > 1:
+                for form in duplicate_forms:
+                    form.add_error(
+                        "url",
+                        _("The same link cannot be added twice."),
+                    )
 
 
 NewsUrlFormSet = modelformset_factory(

@@ -190,7 +190,7 @@
               {% for url_form in form.urls %}
                 <div class="input-group mb-2 url-row">
                   {{ url_form.id }}
-                  <input type="url" name="{{ url_form.url.html_name }}" class="form-control"
+                  <input type="url" name="{{ url_form.url.html_name }}" class="form-control {% if url_form.url.errors %}is-invalid{% endif %}"
                         value="{{ url_form.url.value|default_if_none:'' }}" placeholder="https://...">
                   <span class="float-right remove-url-btn" role="button" title="{% trans "Remove" %}">
                     <svg class="icon feather" aria-hidden="true">
@@ -201,13 +201,13 @@
                     {{ url_form.DELETE }}
                   </div>
                 </div>
+                {% if url_form.url.errors %}
+                <small class="form-text invalid-feedback d-block">
+                  {{ url_form.url.errors }}
+                </small>
+                {% endif %}
               {% endfor %}
             </div>
-            {% if form.urls.non_form_errors %}
-            <small class="form-text invalid-feedback d-block">
-              {{ form.urls.non_form_errors }}
-            </small>
-            {% endif %}
 
             <button type="button" class="btn btn-secondary btn-sm add-url-btn"
               data-target="urls-container"

@@ -204,6 +204,11 @@ STATIC_ROOT = BASE_DIR / "static_root"
 
 STATIC_URL = "static/"
 
+# User-uploaded files (news images)
+MEDIA_ROOT = BASE_DIR / "public" / "uploads"
+
+MEDIA_URL = "/uploads/"
+
 DJANGO_VITE = {
     "default": {
         "dev_mode": DEBUG,

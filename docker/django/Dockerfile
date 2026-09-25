@@ -8,7 +8,7 @@ RUN \
     python3=* \
     python3-pip=* && \
   rm -rf /var/lib/apt/lists/* && \
-  mkdir -p /public/static
+  mkdir -p /public/static /public/uploads
 
 WORKDIR /app
 
@@ -97,6 +97,7 @@ RUN \
   chmod +x /entrypoint.sh
 
 VOLUME /public/static
+VOLUME /public/uploads
 USER 1000
 EXPOSE 8000
 ENTRYPOINT ["/entrypoint.sh"]

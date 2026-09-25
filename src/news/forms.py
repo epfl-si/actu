@@ -1,9 +1,11 @@
 from django import forms
 from django.db import transaction
+from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.utils.translation import gettext_lazy as _
 from tinymce.widgets import TinyMCE
 
 from translations.models import NewsTranslation
+from urls.models import NewsUrl
 
 from .models import News
 
@@ -66,6 +68,50 @@ class NewsTranslationForm(forms.ModelForm):
         return translation
 
 
+class NewsUrlForm(forms.ModelForm):
+    class Meta:
+        model = NewsUrl
+        fields = ["url"]
+        widgets = {
+            "url": forms.URLInput(attrs={"placeholder": "https://..."}),
+        }
+
+
+class NewsUrlBaseFormSet(BaseModelFormSet):
+
+    def clean(self):
+        super().clean()
+        if any(self.errors):
+            return
+
+        url_to_forms = {}
+        for form in self.forms:
+            # Ignore rows the user wants to delete.
+            if self.can_delete and self._should_delete_form(form):
+                continue
+            url = form.cleaned_data.get("url")
+            if not url:
+                continue
+            url_to_forms.setdefault(url, []).append(form)
+
+        for duplicate_forms in url_to_forms.values():
+            if len(duplicate_forms) > 1:
+                for form in duplicate_forms:
+                    form.add_error(
+                        "url",
+                        _("The same link cannot be added twice."),
+                    )
+
+
+NewsUrlFormSet = modelformset_factory(
+    NewsUrl,
+    form=NewsUrlForm,
+    formset=NewsUrlBaseFormSet,
+    extra=1,
+    can_delete=True,
+)
+
+
 class NewsWithTranslationForm:
     def __init__(
         self,
@@ -73,21 +119,35 @@ class NewsWithTranslationForm:
         news_instance=None,
         translation_instance=None,
         language=None,
+        urls_queryset=None,
     ):
         self.news = NewsForm(post_data, instance=news_instance)
         self.translation = NewsTranslationForm(
             post_data, instance=translation_instance
         )
         self.language = language
+        self.urls = NewsUrlFormSet(
+            post_data, queryset=urls_queryset, prefix="urls"
+        )
 
     def is_valid(self):
         news_valid = self.news.is_valid()
         translation_valid = self.translation.is_valid()
-        return news_valid and translation_valid
+        urls_valid = self.urls.is_valid()
+        return news_valid and translation_valid and urls_valid
 
     def save(self, user):
         with transaction.atomic():
             news = self.news.save(user)
             self.translation.save(user, self.language, news)
+
+            url_forms = self.urls.save(commit=False)
+
+            for deleted in self.urls.deleted_objects:
+                deleted.delete()
+
+            for url_form in url_forms:
+                url_form.translation = self.translation.instance
+                url_form.save()
 
         return news.id

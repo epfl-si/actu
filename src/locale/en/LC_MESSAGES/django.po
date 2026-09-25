@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-14 08:33+0200\n"
+"POT-Creation-Date: 2026-09-25 13:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -415,6 +415,9 @@ msgstr ""
 msgid "A news must have at least one thematic."
 msgstr ""
 
+msgid "The same link cannot be added twice."
+msgstr ""
+
 msgid "Thematics related to this news."
 msgstr ""
 
@@ -458,6 +461,12 @@ msgid "References"
 msgstr ""
 
 msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
+msgstr ""
+
+msgid "Links"
+msgstr ""
+
+msgid "Add a link"
 msgstr ""
 
 msgid "Save"
@@ -545,6 +554,18 @@ msgid "News translation"
 msgstr ""
 
 msgid "News translations"
+msgstr ""
+
+msgid "News URL"
+msgstr ""
+
+msgid "News URLs"
+msgstr ""
+
+msgid "Translation"
+msgstr ""
+
+msgid "URL"
 msgstr ""
 
 msgid "Published on"

@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load django_vite %}
 
 {% block web2018_extra_js %}
+  {{ block.super }}
   {{ form.translation.media }}
+  {% vite_asset 'assets/pages/edit-news/edit-news.js' %}
 {% endblock %}
 
 {% block web2018_title %}
@@ -179,6 +182,38 @@
             <small class="form-text text-muted">
               {% trans "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research." %}
             </small>
+          </div>
+          <div class="form-group">
+            <label>{% trans "Links" %}</label>
+            <div id="urls-container" data-prefix="{{ form.urls.prefix }}">
+              {{ form.urls.management_form }}
+              {% for url_form in form.urls %}
+                <div class="input-group mb-2 url-row">
+                  {{ url_form.id }}
+                  <input type="url" name="{{ url_form.url.html_name }}" class="form-control {% if url_form.url.errors %}is-invalid{% endif %}"
+                        value="{{ url_form.url.value|default_if_none:'' }}" placeholder="https://...">
+                  <span class="float-right remove-url-btn" role="button" title="{% trans "Remove" %}">
+                    <svg class="icon feather" aria-hidden="true">
+                      <use xlink:href="#trash-2"></use>
+                    </svg>
+                  </span>
+                  <div class="d-none">
+                    {{ url_form.DELETE }}
+                  </div>
+                </div>
+                {% if url_form.url.errors %}
+                <small class="form-text invalid-feedback d-block">
+                  {{ url_form.url.errors }}
+                </small>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            <button type="button" class="btn btn-secondary btn-sm add-url-btn"
+              data-target="urls-container"
+              data-remove-title="{% trans "Remove" %}">
+              {% trans "Add a link" %}
+            </button>
           </div>
           <div class="d-flex flex-wrap align-items-start">
             <div class="d-flex flex-wrap">

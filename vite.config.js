@@ -28,6 +28,7 @@ export default defineConfig({
         manage_news: './assets/pages/manage-news/manage-news.js',
         manage_users: './assets/pages/manage-users-homepages/manage_users.js',
         list_news: './assets/pages/list-news/list-news.js',
+        edit_news: './assets/pages/edit-news/edit-news.js',
       },
       output: {
         minify: {

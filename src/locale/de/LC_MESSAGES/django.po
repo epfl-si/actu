@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-14 08:33+0200\n"
+"POT-Creation-Date: 2026-09-25 13:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -415,6 +415,9 @@ msgstr "Übersetzung erfolgreich wiederhergestellt."
 msgid "A news must have at least one thematic."
 msgstr "Eine Nachricht muss mindestens eine Thematik haben."
 
+msgid "The same link cannot be added twice."
+msgstr "Die gleiche link kann nicht zweimal hinzugefügt werden."
+
 msgid "Thematics related to this news."
 msgstr "Themen, die mit dieser Nachricht verbunden sind."
 
@@ -459,6 +462,12 @@ msgstr "Literaturverzeichnis"
 
 msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
 msgstr "Bitte geben Sie die vollständige Referenz, einschliesslich des DOI, von Peer-Review-Publikationen zur angegebenen Forschung an."
+
+msgid "Links"
+msgstr "Links"
+
+msgid "Add a link"
+msgstr "Link hinzufügen"
 
 msgid "Save"
 msgstr "Speichern"
@@ -546,6 +555,18 @@ msgstr "Nachrichtenübersetzung"
 
 msgid "News translations"
 msgstr "Nachrichtenübersetzungen"
+
+msgid "News URL"
+msgstr "Nachrichten-URL"
+
+msgid "News URLs"
+msgstr "Nachrichten-URLs"
+
+msgid "Translation"
+msgstr "Übersetzung"
+
+msgid "URL"
+msgstr "URL"
 
 msgid "Published on"
 msgstr "Veröffentlicht am"

@@ -466,6 +466,9 @@ msgstr "Speichern"
 msgid "Show metadata"
 msgstr "Metadaten anzeigen"
 
+msgid "Search news"
+msgstr "Nachrichten suchen"
+
 msgid "Search..."
 msgstr "Suchen..."
 

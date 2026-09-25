@@ -466,6 +466,9 @@ msgstr ""
 msgid "Show metadata"
 msgstr ""
 
+msgid "Search news"
+msgstr ""
+
 msgid "Search..."
 msgstr ""
 

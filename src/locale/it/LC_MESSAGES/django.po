@@ -465,6 +465,9 @@ msgstr "Salva"
 msgid "Show metadata"
 msgstr "Mostra metadati"
 
+msgid "Search news"
+msgstr "Cercare notizie"
+
 msgid "Search..."
 msgstr "Cerca..."
 

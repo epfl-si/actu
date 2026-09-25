@@ -1046,7 +1046,7 @@ class EditNewsTranslationViewTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(
-            "The same URL cannot be added twice.",
+            "The same link cannot be added twice.",
             response.content.decode(),
         )
         self.assertEqual(

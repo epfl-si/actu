@@ -1,10 +1,6 @@
-from django.urls import path, register_converter
-
-from utils import converters
+from django.urls import path
 
 from . import views
-
-register_converter(converters.LanguageConverter, "language")
 
 urlpatterns = [
     path("news/", views.list_news, name="list_news"),

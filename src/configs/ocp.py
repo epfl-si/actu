@@ -10,6 +10,7 @@ ALLOWED_HOSTS = ["*"]
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_ROOT = "/public/static"
+MEDIA_ROOT = "/public/uploads"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",  # noqa: F405

@@ -16,19 +16,29 @@
     {% include 'includes/title.inc.html' %}
 
     <ul class="nav nav-tabs" role="tablist">
-      {% for code, name in languages %}
+      {% for tab in language_tabs %}
       <li class="nav-item">
-        <a class="nav-link {% if form.language == code %}active{% endif %}"
-          id="{{ code }}-tab"
-          href="{% if form.news.instance.pk %}{% url 'edit_news' news_id=form.news.instance.pk lang=code %}
-          {% else %}{% url 'create_news' lang=code %}{% endif %}"
+        <a class="nav-link {% if form.language == tab.code %}active{% endif %}"
+          id="{{ tab.code }}-tab"
+          href="{% if form.news.instance.pk %}{% url 'edit_news' news_id=form.news.instance.pk lang=tab.code %}{% else %}{% url 'create_news' lang=tab.code %}{% endif %}"
           role="tab"
-          aria-controls="{{ code }}"
-          aria-selected="{% if form.language == code %}true{% else %}false{% endif %}">{% trans name %}</a>
+          aria-controls="{{ tab.code }}"
+          aria-selected="{% if form.language == tab.code %}true{% else %}false{% endif %}">
+          {% trans tab.name %}
+          {% if tab.translation %}
+            <span class="badge {{ tab.translation.status }} flex-shrink-0 align-middle text-center text-xs ml-1">
+              {{ tab.translation.get_status_display }}
+            </span>
+          {% else %}
+            <span class="badge badge-light bg-white border text-gray-700 flex-shrink-0 align-middle text-center text-xs ml-1">
+              <svg class="icon feather" aria-hidden="true"><use xlink:href="#plus"></use></svg>
+              {% trans "Create" %}
+            </span>
+          {% endif %}
+        </a>
       </li>
       {% endfor %}
     </ul>
-
     <div class="tab-content p-3">
       <div class="tab-pane fade show active" id="{{ form.language }}" role="tabpanel" aria-labelledby="{{ form.language }}-tab">
         <form id="addFormNews-{{ form.language }}" method="POST">

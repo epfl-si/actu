@@ -231,3 +231,7 @@ static/
 
 # Static files collected by Django collectstatic
 src/static_root
+
+# User uploaded media files (keep the upload directory with .gitkeep)
+public/uploads/*
+!public/uploads/.gitkeep

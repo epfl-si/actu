@@ -86,22 +86,22 @@ class NewsUrlBaseFormSet(BaseModelFormSet):
             return
 
         urls = set()
-        urls_index = 0
+        urls_count = 0
         for form in self.forms:
-            # Ignore rows the user whants to delete.
+            # Ignore rows the user wants to delete.
             if self.can_delete and self._should_delete_form(form):
                 continue
             url = form.cleaned_data.get("url")
             if not url:
                 continue
-            urls_index += 1
+            urls_count += 1
             # the url is not added if it's already in the set
             urls.add(url)
 
-        # Duplicate URL within the submitted forms if the lenght of url is
+        # Duplicate URLs within the submitted forms if the length of url is
         # less than
-        if len(urls) != urls_index:
-            raise ValidationError(_("The same URL cannot be added twice."))
+        if len(urls) != urls_count:
+            raise ValidationError(_("The same link cannot be added twice."))
 
 
 NewsUrlFormSet = modelformset_factory(

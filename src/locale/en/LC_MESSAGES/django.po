@@ -451,7 +451,7 @@ msgstr ""
 msgid "A news must have at least one thematic."
 msgstr ""
 
-msgid "The same URL cannot be added twice."
+msgid "The same link cannot be added twice."
 msgstr ""
 
 msgid "Thematics related to this news."
@@ -496,10 +496,10 @@ msgstr ""
 msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
 msgstr ""
 
-msgid "URLs"
+msgid "Links"
 msgstr ""
 
-msgid "Add a URL"
+msgid "Add a link"
 msgstr ""
 
 msgid "Save"

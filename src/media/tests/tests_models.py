@@ -46,7 +46,8 @@ class NewsImageModelTest(TestCase):
             created_by=self.user,
         )
         self.assertEqual(
-            str(news_image), f"Image #{news_image.pk} (news/images/test.jpg)"
+            str(news_image),
+            f"Image #{news_image.pk} (news/images/{self.news.pk}/test.jpg)",
         )
 
     @override_settings(MEDIA_ROOT=tempfile.mkdtemp())

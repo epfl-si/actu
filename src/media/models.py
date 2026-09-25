@@ -5,6 +5,11 @@ from django.utils.translation import gettext_lazy as _
 from news.models import News
 
 
+def news_image_upload_path(instance, filename):
+    """Return the upload path for a news image, grouped by news id."""
+    return f"news/images/{instance.news_id}/{filename}"
+
+
 class NewsImage(models.Model):
     """
     An image attached to a news item.
@@ -25,7 +30,7 @@ class NewsImage(models.Model):
         verbose_name=_("News"),
     )
     image = models.ImageField(
-        upload_to="news/images/",
+        upload_to=news_image_upload_path,
         verbose_name=_("Image"),
     )
 

@@ -1,7 +1,10 @@
 from django.conf import settings
 from django.db import models
+from django.db.models.signals import post_delete, pre_save
+from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 
+from audit_log.models import AuditModelMixin
 from news.models import News
 
 
@@ -10,7 +13,7 @@ def news_image_upload_path(instance, filename):
     return f"news/images/{instance.news_id}/{filename}"
 
 
-class NewsImage(models.Model):
+class NewsImage(AuditModelMixin, models.Model):
     """
     An image attached to a news item.
 
@@ -129,3 +132,28 @@ class NewsImage(models.Model):
     def get_caption(self, language):
         """Return the caption for the given language, falling back to EN."""
         return getattr(self, f"caption_{language}", "") or self.caption_en
+
+
+@receiver(pre_save, sender=NewsImage)
+def delete_old_image_file(sender, instance, **kwargs):
+    """Delete the previous image file when a new one is uploaded."""
+    if not instance.pk:
+        return
+
+    try:
+        old_instance = sender.objects.get(pk=instance.pk)
+    except sender.DoesNotExist:
+        return
+
+    old_file = old_instance.image
+    new_file = instance.image
+
+    if old_file and old_file.name and old_file.name != new_file.name:
+        old_file.delete(save=False)
+
+
+@receiver(post_delete, sender=NewsImage)
+def delete_image_file(sender, instance, **kwargs):
+    """Delete the image file when the NewsImage instance is deleted."""
+    if instance.image:
+        instance.image.delete(save=False)

@@ -876,6 +876,10 @@ class EditNewsTranslationViewTest(TestCase):
             form.translation.initial["title"],
             "Original title",
         )
+        self.assertEqual(
+            response.context["news_blocks_editor_props"],
+            {"newsId": self.news.id, "language": "en"},
+        )
 
     def test_post_updates_news_and_translation(self):
         self.client.force_login(self.user)

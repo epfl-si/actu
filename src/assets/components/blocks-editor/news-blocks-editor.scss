@@ -1,0 +1,8 @@
+@use 'variables';
+
+.news-blocks-editor {
+  margin: 1rem 0 0;
+  border-left: 4px solid variables.$leman;
+  font-size: 0.875rem;
+  color: variables.$canard-dark;
+}

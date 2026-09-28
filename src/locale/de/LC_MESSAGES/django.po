@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-25 15:59+0200\n"
+"POT-Creation-Date: 2026-09-28 14:42+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -412,12 +412,6 @@ msgstr "Diese Übersetzung ist nicht archiviert."
 msgid "Translation restored successfully."
 msgstr "Übersetzung erfolgreich wiederhergestellt."
 
-msgid "News URL"
-msgstr "Nachrichten-URL"
-
-msgid "News URLs"
-msgstr "Nachrichten-URLs"
-
 msgid "News image"
 msgstr "Nachrichtenbild"
 
@@ -468,9 +462,6 @@ msgstr "Crop rechts"
 
 msgid "Crop lower"
 msgstr "Crop unten"
-
-msgid "URL"
-msgstr "URL"
 
 msgid "A news must have at least one thematic."
 msgstr "Eine Nachricht muss mindestens eine Thematik haben."

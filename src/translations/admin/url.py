@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import NewsUrl
+from ..models.url import NewsUrl
 
 
 @admin.register(NewsUrl)

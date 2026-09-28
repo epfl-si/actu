@@ -4,8 +4,7 @@ from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.utils.translation import gettext_lazy as _
 from tinymce.widgets import TinyMCE
 
-from translations.models import NewsTranslation
-from urls.models import NewsUrl
+from translations.models import NewsTranslation, NewsUrl
 
 from .models import News
 

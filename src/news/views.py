@@ -15,8 +15,7 @@ from django.views.decorators.http import require_POST
 from entities.models import Entity
 from news_formats.models import NewsFormat
 from thematics.models import Thematic
-from translations.models import NewsTranslation
-from urls.models import NewsUrl
+from translations.models import NewsTranslation, NewsUrl
 from utils.parser import _safe_int, _safe_int_set
 
 from .forms import NewsWithTranslationForm

@@ -1,0 +1,37 @@
+from django.db import models
+from django.db.models.constraints import UniqueConstraint
+from django.db.models.fields import URLField
+from django.utils.translation import gettext_lazy as _
+
+from .translation import NewsTranslation
+
+
+class NewsUrl(models.Model):
+    """
+    URLs of a news item.
+    """
+
+    class Meta:
+        app_label = "translations"
+        verbose_name = _("News URL")
+        verbose_name_plural = _("News URLs")
+        constraints = [
+            UniqueConstraint(
+                fields=["translation", "url"],
+                name="unique_translation_url",
+            ),
+        ]
+
+    translation = models.ForeignKey(
+        NewsTranslation,
+        on_delete=models.CASCADE,
+        related_name="urls",
+        verbose_name=_("Translation"),
+    )
+    url = URLField(
+        max_length=512,
+        verbose_name=_("URL"),
+    )
+
+    def __str__(self):
+        return f"{self.url}"

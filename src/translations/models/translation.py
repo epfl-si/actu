@@ -20,6 +20,7 @@ class NewsTranslation(AuditModelMixin, models.Model):
         ARCHIVED = "archived", _("Archived")
 
     class Meta:
+        app_label = "translations"
         verbose_name = _("News translation")
         verbose_name_plural = _("News translations")
         constraints = [
@@ -163,6 +164,9 @@ class NewsTranslation(AuditModelMixin, models.Model):
 
 
 class NewsSlugHistory(models.Model):
+    class Meta:
+        app_label = "translations"
+
     news_translation = models.ForeignKey(
         "NewsTranslation",
         on_delete=models.CASCADE,

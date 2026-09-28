@@ -3,7 +3,7 @@ from django.db.models.constraints import UniqueConstraint
 from django.db.models.fields import URLField
 from django.utils.translation import gettext_lazy as _
 
-from translations.models import NewsTranslation
+from .translation import NewsTranslation
 
 
 class NewsUrl(models.Model):
@@ -12,6 +12,7 @@ class NewsUrl(models.Model):
     """
 
     class Meta:
+        app_label = "translations"
         verbose_name = _("News URL")
         verbose_name_plural = _("News URLs")
         constraints = [

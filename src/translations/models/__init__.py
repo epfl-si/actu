@@ -1,5 +1,5 @@
-from .translation import NewsSlugHistory, NewsTranslation
-from .url import NewsUrl
+from translations.models.translation import NewsSlugHistory, NewsTranslation
+from translations.models.url import NewsUrl
 
 __all__ = [
     "NewsSlugHistory",

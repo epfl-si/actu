@@ -149,7 +149,7 @@ assets-build:
 .PHONY: test
 test: lint assets-build
 	@docker exec -it --user root local-django-actu bash -c \
-		"DJANGO_SETTINGS_MODULE='configs.ci' python src/manage.py test src --top-level-directory=src"
+		"DJANGO_SETTINGS_MODULE='configs.ci' python src/manage.py test"
 
 .PHONY: translation
 translation:
@@ -159,14 +159,14 @@ translation:
 .PHONY: coverage
 coverage:
 	@docker exec -it --user root local-django-actu bash -c \
-		"DJANGO_SETTINGS_MODULE='configs.ci' coverage run src/manage.py test src --top-level-directory=src"
+		"DJANGO_SETTINGS_MODULE='configs.ci' coverage run src/manage.py test"
 	@docker exec -it --user root local-django-actu bash -c \
 		"coverage report"
 
 .PHONY: coverage-html
 coverage-html:
 	@docker exec -it --user root local-django-actu bash -c \
-		"DJANGO_SETTINGS_MODULE='configs.ci' coverage run src/manage.py test src --top-level-directory=src"
+		"DJANGO_SETTINGS_MODULE='configs.ci' coverage run src/manage.py test"
 	@docker exec -it --user root local-django-actu bash -c \
 		"coverage html"
 	@docker cp local-django-actu:/app/htmlcov .

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-23 10:00+0200\n"
+"POT-Creation-Date: 2026-09-25 15:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -412,6 +412,57 @@ msgstr "Diese Übersetzung ist nicht archiviert."
 msgid "Translation restored successfully."
 msgstr "Übersetzung erfolgreich wiederhergestellt."
 
+msgid "News image"
+msgstr "Nachrichtenbild"
+
+msgid "News images"
+msgstr "Nachrichtenbilder"
+
+msgid "Image"
+msgstr "Bild"
+
+msgid "Alt text (FR)"
+msgstr "Alternativtext (FR)"
+
+msgid "Alt text (EN)"
+msgstr "Alternativtext (EN)"
+
+msgid "Alt text (DE)"
+msgstr "Alternativtext (DE)"
+
+msgid "Alt text (IT)"
+msgstr "Alternativtext (IT)"
+
+msgid "Caption (FR)"
+msgstr "Unterschrift (FR)"
+
+msgid "Caption (EN)"
+msgstr "Bildlegende (EN)"
+
+msgid "Caption (DE)"
+msgstr "Bildlegende (DE)"
+
+msgid "Caption (IT)"
+msgstr "Bildlegende (IT)"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Rights"
+msgstr "Rechte"
+
+msgid "Crop left"
+msgstr "Crop links"
+
+msgid "Crop upper"
+msgstr "Crop oben"
+
+msgid "Crop right"
+msgstr "Crop rechts"
+
+msgid "Crop lower"
+msgstr "Crop unten"
+
 msgid "A news must have at least one thematic."
 msgstr "Eine Nachricht muss mindestens eine Thematik haben."
 
@@ -444,9 +495,6 @@ msgstr "In der Kopfzeile wird die News in ein oder zwei Sätzen zusammengefasst.
 
 msgid "Extract"
 msgstr "Auszug"
-
-msgid "Author"
-msgstr "Autor"
 
 msgid "Funding"
 msgstr "Finanzierung"

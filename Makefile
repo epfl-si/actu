@@ -38,6 +38,7 @@ help:
 	@echo "  make stylelint            — Lint SCSS code with stylelint"
 	@echo "  make test                 — Run test suite"
 	@echo "  make translation          — Update translation files"
+	@echo "  make db-seed              — Seed db with sample_data"
 	@echo "Local development:"
 	@echo "  make local-build          — Build actu for local development"
 	@echo "  make local-build-force    — Force build actu for local development"
@@ -155,6 +156,11 @@ test: lint assets-build
 translation:
 	@docker exec -it --user root local-django-actu bash -c \
 		"python src/manage.py makemessages --all --no-location --no-wrap"
+
+.PHONY: db-seed
+db-seed:
+	@docker exec -it --user root local-django-actu bash -c \
+		"python src/manage.py loaddata sample_data"
 
 .PHONY: coverage
 coverage:

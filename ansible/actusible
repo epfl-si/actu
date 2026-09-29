@@ -68,6 +68,7 @@ declare -a ansible_args
 ansible_args=(-e "actusible_suitcase_dir=$PWD/ansible-deps-cache")
 inventory_mode="dev"
 cluster_url="https://api.ocpitsd0001.xaas.epfl.ch:6443"
+namespace="svc0016d-actus"
 while [ "$#" -gt 0 ]; do
     case "$1" in
         --help)
@@ -77,10 +78,12 @@ while [ "$#" -gt 0 ]; do
         --test | --staging)
             inventory_mode="test"
             cluster_url="https://api.ocpitst0001.xaas.epfl.ch:6443"
+            namespace="svc0016t-actus"
             shift ;;
         --prod)
             inventory_mode="prod"
             cluster_url="https://api.ocpitsp0001.xaas.epfl.ch:6443"
+            namespace="svc0016p-actus"
             shift ;;
         *)
             ansible_args+=("$1")

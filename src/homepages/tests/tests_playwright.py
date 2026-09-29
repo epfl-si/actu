@@ -3,7 +3,7 @@ from django.urls import reverse
 from playwright.sync_api import expect
 
 from homepages.models import Homepage, HomepageTranslation
-from thematics.models import Thematic
+from topics.models import Topic
 from utils.testing import PlaywrightTestCase
 
 User = get_user_model()
@@ -20,13 +20,13 @@ class ManageHomepagesPlaywrightTests(PlaywrightTestCase):
         )
         self.login_as(self.user)
 
-        self.thematic = Thematic.objects.create(
+        self.topic = Topic.objects.create(
             label_en="AI",
             label_fr="IA",
         )
         self.homepage = Homepage.objects.create(
             slug="ai",
-            thematic=self.thematic,
+            topic=self.topic,
         )
         self.homepage.users.add(self.user)
         self.translation = HomepageTranslation.objects.create(

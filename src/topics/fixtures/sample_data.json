@@ -1,6 +1,6 @@
 [
   {
-    "model": "thematics.thematic",
+    "model": "topics.topic",
     "pk": 1,
     "fields": {
       "label_fr": "IA",
@@ -13,7 +13,7 @@
     }
   },
   {
-    "model": "thematics.thematic",
+    "model": "topics.topic",
     "pk": 2,
     "fields": {
       "label_fr": "Durabilité",
@@ -26,7 +26,7 @@
     }
   },
   {
-    "model": "thematics.thematic",
+    "model": "topics.topic",
     "pk": 3,
     "fields": {
       "label_fr": "Santé",
@@ -39,7 +39,7 @@
     }
   },
   {
-    "model": "thematics.thematic",
+    "model": "topics.topic",
     "pk": 4,
     "fields": {
       "label_fr": "Energie",
@@ -52,7 +52,7 @@
     }
   },
   {
-    "model": "thematics.thematic",
+    "model": "topics.topic",
     "pk": 5,
     "fields": {
       "label_fr": "Recherche",
@@ -65,7 +65,7 @@
     }
   },
   {
-    "model": "thematics.thematic",
+    "model": "topics.topic",
     "pk": 6,
     "fields": {
       "label_fr": "Construction",
@@ -78,7 +78,7 @@
     }
   },
   {
-    "model": "thematics.thematic",
+    "model": "topics.topic",
     "pk": 7,
     "fields": {
       "label_fr": "Education",
@@ -91,7 +91,7 @@
     }
   },
   {
-    "model": "thematics.thematic",
+    "model": "topics.topic",
     "pk": 8,
     "fields": {
       "label_fr": "Cybersécurité",
@@ -104,7 +104,7 @@
     }
   },
   {
-    "model": "thematics.thematic",
+    "model": "topics.topic",
     "pk": 9,
     "fields": {
       "label_fr": "Informatique",
@@ -117,7 +117,7 @@
     }
   },
   {
-    "model": "thematics.thematic",
+    "model": "topics.topic",
     "pk": 10,
     "fields": {
       "label_fr": "Innovation",

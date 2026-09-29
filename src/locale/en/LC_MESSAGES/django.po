@@ -22,7 +22,7 @@ msgstr ""
 msgid "Filter by whether the entity is marked as main."
 msgstr ""
 
-msgid "Filter by whether the thematic is marked as main."
+msgid "Filter by whether the topic is marked as main."
 msgstr ""
 
 msgid "Number of results to return per page. Defaults to the API page size."
@@ -43,13 +43,13 @@ msgstr ""
 msgid "Display order of the entity among main entities."
 msgstr ""
 
-msgid "Unique identifier of the thematic."
+msgid "Unique identifier of the topic."
 msgstr ""
 
-msgid "Whether this thematic is marked as main."
+msgid "Whether this topic is marked as main."
 msgstr ""
 
-msgid "Display order of the thematic."
+msgid "Display order of the topic."
 msgstr ""
 
 msgid "Entities"
@@ -67,19 +67,19 @@ msgstr ""
 msgid "Return a single active entity by its identifier."
 msgstr ""
 
-msgid "Thematics"
+msgid "Topics"
 msgstr ""
 
-msgid "List active thematics"
+msgid "List active topics"
 msgstr ""
 
-msgid "Return all active thematics ordered by identifier."
+msgid "Return all active topics ordered by identifier."
 msgstr ""
 
-msgid "Retrieve a thematic"
+msgid "Retrieve a topic"
 msgstr ""
 
-msgid "Return a single active thematic by its identifier."
+msgid "Return a single active topic by its identifier."
 msgstr ""
 
 msgid "News"
@@ -88,11 +88,11 @@ msgstr ""
 msgid "List published news"
 msgstr ""
 
-msgid "Return published news, optionally filtered by thematic identifiers, entity identifiers, format identifiers, a language, or a title search. Multiple identifiers for the same filter are combined with OR; thematic and entity filters are also combined with OR."
-msgstr "Return published news, optionally filtered by thematic identifiers, entity identifiers, format identifiers, a language, or a title search. Multiple identifiers for the same filter are combined with OR; thematic and entity filters are also combined with OR."
+msgid "Return published news, optionally filtered by topic identifiers, entity identifiers, format identifiers, a language, or a title search. Multiple identifiers for the same filter are combined with OR; topic and entity filters are also combined with OR."
+msgstr "Return published news, optionally filtered by topic identifiers, entity identifiers, format identifiers, a language, or a title search. Multiple identifiers for the same filter are combined with OR; topic and entity filters are also combined with OR."
 
-msgid "Thematic identifiers."
-msgstr "Thematic identifiers."
+msgid "Topic identifiers."
+msgstr "Topic identifiers."
 
 msgid "Entity identifiers."
 msgstr "Entity identifiers."
@@ -256,16 +256,16 @@ msgstr ""
 msgid "Define the Slug of this Homepage"
 msgstr ""
 
-msgid "Thematic"
+msgid "Topic"
 msgstr ""
 
 msgid "Users"
 msgstr ""
 
-msgid "A Homepage cannot be linked to both a thematic and an entity."
+msgid "A Homepage cannot be linked to both a topic and an entity."
 msgstr ""
 
-msgid "A Homepage must be linked to either a thematic or an entity."
+msgid "A Homepage must be linked to either a topic or an entity."
 msgstr ""
 
 msgid "Draft"
@@ -463,13 +463,13 @@ msgstr ""
 msgid "Crop lower"
 msgstr ""
 
-msgid "A news must have at least one thematic."
+msgid "A news must have at least one topic."
 msgstr ""
 
 msgid "The same link cannot be added twice."
 msgstr ""
 
-msgid "Thematics related to this news."
+msgid "Topics related to this news."
 msgstr ""
 
 msgid "Entities related to this news."
@@ -592,10 +592,10 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-msgid "Designates whether this thematic is active and visible in the system."
+msgid "Designates whether this topic is active and visible in the system."
 msgstr ""
 
-msgid "Designates whether this thematic is displayed on the main menu."
+msgid "Designates whether this topic is displayed on the main menu."
 msgstr ""
 
 msgid "Defines the display order."

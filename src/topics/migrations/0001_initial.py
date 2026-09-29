@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name="Thematic",
+            name="Topic",
             fields=[
                 (
                     "id",
@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
                     "is_active",
                     models.BooleanField(
                         default=True,
-                        help_text="Designates whether this thematic is active and visible in the system.",
+                        help_text="Designates whether this topic is active and visible in the system.",
                         verbose_name="Active",
                     ),
                 ),
@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
                     "is_main",
                     models.BooleanField(
                         default=False,
-                        help_text="Designates whether this thematic is displayed on the main menu.",
+                        help_text="Designates whether this topic is displayed on the main menu.",
                         verbose_name="Main",
                     ),
                 ),
@@ -74,7 +74,7 @@ class Migration(migrations.Migration):
                     "has_homepage",
                     models.BooleanField(
                         default=False,
-                        help_text="Designates whether this thematic has a dedicated homepage.",
+                        help_text="Designates whether this topic has a dedicated homepage.",
                         verbose_name="Has Homepage",
                     ),
                 ),
@@ -88,8 +88,8 @@ class Migration(migrations.Migration):
                 ),
             ],
             options={
-                "verbose_name": "Thematic",
-                "verbose_name_plural": "Thematics",
+                "verbose_name": "Topic",
+                "verbose_name_plural": "Topics",
             },
         ),
     ]

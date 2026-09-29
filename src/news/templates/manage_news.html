@@ -36,11 +36,11 @@
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label for="thematics">{% trans "Thematic" %}</label>
-                <select id="thematics" name="thematics" class="select-multiple" multiple="multiple" data-filter="true">
-                  {% for thematic in thematics %}
-                  <option value="{{ thematic.id }}" {% if thematic.id in filters.thematics %}selected{% endif %}>
-                    {{ thematic }}
+                <label for="topics">{% trans "Topic" %}</label>
+                <select id="topics" name="topics" class="select-multiple" multiple="multiple" data-filter="true">
+                  {% for topic in topics %}
+                  <option value="{{ topic.id }}" {% if topic.id in filters.topics %}selected{% endif %}>
+                    {{ topic }}
                   </option>
                   {% endfor %}
                 </select>
@@ -160,9 +160,9 @@
                   {% endfor %}
                   <div class="display-news-metadata{% if not show_metadata %} d-none{% endif %}">
                     <hr class="mt-2 mb-2">
-                    {% for thematic in row.news.thematics.all %}
-                      <a href="{% url 'manage_news' %}?thematics={{ thematic.id }}{% if show_metadata %}&show_metadata=1{% endif %}"
-                      ><span class="tag tag-sm metadata-thematic-tag badge">{{ thematic }}</span></a>
+                    {% for topic in row.news.topics.all %}
+                      <a href="{% url 'manage_news' %}?topics={{ topic.id }}{% if show_metadata %}&show_metadata=1{% endif %}"
+                      ><span class="tag tag-sm metadata-topic-tag badge">{{ topic }}</span></a>
                     {% endfor %}
                     {% for entity in row.news.entities.all %}
                       <a href="{% url 'manage_news' %}?entities={{ entity.id }}{% if show_metadata %}&show_metadata=1{% endif %}"

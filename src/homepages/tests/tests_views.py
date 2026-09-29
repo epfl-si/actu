@@ -9,7 +9,7 @@ from django.urls import NoReverseMatch, reverse
 from django.utils import translation
 
 from homepages.models import Homepage, HomepageTranslation
-from thematics.models import Thematic
+from topics.models import Topic
 
 User = get_user_model()
 
@@ -54,10 +54,10 @@ class HomepageUsersManageViewTests(TestCase):
             email="ester.ledecka@epfl.ch",
         )
 
-        self.thematic = Thematic.objects.create()
+        self.topic = Topic.objects.create()
 
         self.homepage = Homepage.objects.create(
-            slug="test-homepage-slug", thematic=self.thematic
+            slug="test-homepage-slug", topic=self.topic
         )
 
         self.homepage.users.add(self.attached_user)
@@ -243,13 +243,13 @@ class CreateHomepageTranslationViewTest(TestCase):
             username="odermatt",
             sciper="88888888",
         )
-        self.thematic = Thematic.objects.create(
+        self.topic = Topic.objects.create(
             label_en="AI",
             label_fr="IA",
         )
         self.homepage = Homepage.objects.create(
             slug="ai",
-            thematic=self.thematic,
+            topic=self.topic,
         )
         self.homepage.users.add(self.user)
 
@@ -333,13 +333,13 @@ class DeleteHomepageTranslationViewTest(TestCase):
             username="odermatt",
             sciper="88888888",
         )
-        self.thematic = Thematic.objects.create(
+        self.topic = Topic.objects.create(
             label_en="AI",
             label_fr="IA",
         )
         self.homepage = Homepage.objects.create(
             slug="ai",
-            thematic=self.thematic,
+            topic=self.topic,
         )
         self.homepage.users.add(self.user)
         self.translation = HomepageTranslation.objects.create(
@@ -427,13 +427,13 @@ class RestoreHomepageTranslationViewTest(TestCase):
             username="odermatt",
             sciper="88888888",
         )
-        self.thematic = Thematic.objects.create(
+        self.topic = Topic.objects.create(
             label_en="AI",
             label_fr="IA",
         )
         self.homepage = Homepage.objects.create(
             slug="ai",
-            thematic=self.thematic,
+            topic=self.topic,
         )
         self.homepage.users.add(self.user)
         self.translation = HomepageTranslation.objects.create(

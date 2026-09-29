@@ -5,7 +5,7 @@ from django.db import migrations, models
 from django.db.models import Count
 
 
-def check_no_news_without_format_or_thematics(apps, schema_editor):
+def check_no_news_without_format_or_topics(apps, schema_editor):
     News = apps.get_model("news", "News")
 
     if News.objects.filter(format__isnull=True).exists():
@@ -15,13 +15,13 @@ def check_no_news_without_format_or_thematics(apps, schema_editor):
         )
 
     if (
-        News.objects.annotate(thematic_count=Count("thematics"))
-        .filter(thematic_count=0)
+        News.objects.annotate(topic_count=Count("topics"))
+        .filter(topic_count=0)
         .exists()
     ):
         raise migrations.exceptions.MigrationError(
-            "Cannot apply migration: some News objects have no thematics. "
-            "Please assign at least one thematic to every News before "
+            "Cannot apply migration: some News objects have no topics. "
+            "Please assign at least one topic to every News before "
             "migrating."
         )
 
@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RunPython(
-            check_no_news_without_format_or_thematics,
+            check_no_news_without_format_or_topics,
             reverse_check,
         ),
         migrations.AlterField(
@@ -53,12 +53,12 @@ class Migration(migrations.Migration):
         ),
         migrations.AlterField(
             model_name="news",
-            name="thematics",
+            name="topics",
             field=models.ManyToManyField(
-                help_text="Thematics related to this news.",
+                help_text="Topics related to this news.",
                 related_name="news",
-                to="thematics.thematic",
-                verbose_name="Thematics",
+                to="topics.topic",
+                verbose_name="Topics",
             ),
         ),
     ]

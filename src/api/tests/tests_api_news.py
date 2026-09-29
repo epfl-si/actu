@@ -10,7 +10,7 @@ from api.pagination import NewsPagination
 from entities.models import Entity
 from news.models import News
 from news_formats.models import NewsFormat
-from thematics.models import Thematic
+from topics.models import Topic
 from translations.models import NewsTranslation
 
 User = get_user_model()
@@ -30,11 +30,11 @@ class NewsAPITests(TestCase):
             label_de="Anderes Format",
             label_it="Altro formato",
         )
-        self.thematic = Thematic.objects.create(
+        self.topic = Topic.objects.create(
             label_en="AI",
             is_active=True,
         )
-        self.other_thematic = Thematic.objects.create(
+        self.other_topic = Topic.objects.create(
             label_en="Health",
             is_active=True,
         )
@@ -52,7 +52,7 @@ class NewsAPITests(TestCase):
     def _create_news(
         self,
         title,
-        thematic=None,
+        topic=None,
         entity=None,
         format=None,
         published_at=None,
@@ -62,8 +62,8 @@ class NewsAPITests(TestCase):
             created_by=self.user,
             format=format or self.format,
         )
-        if thematic:
-            news.thematics.add(thematic)
+        if topic:
+            news.topics.add(topic)
         if entity:
             news.entities.add(entity)
         translation = NewsTranslation.objects.create(
@@ -77,41 +77,41 @@ class NewsAPITests(TestCase):
         )
         return news, translation
 
-    def test_list_news_by_thematic(self):
+    def test_list_news_by_topic(self):
         for i in range(5):
             self._create_news(
                 title=f"News {i}",
-                thematic=self.thematic,
+                topic=self.topic,
                 published_at=self.now - timedelta(days=i),
             )
 
         url = reverse("news-list", kwargs={"version": "v1"})
-        response = self.client.get(url, {"thematic_id": self.thematic.pk})
+        response = self.client.get(url, {"topic_id": self.topic.pk})
 
         self.assertEqual(response.status_code, 200)
         data = response.json()
         self.assertEqual(len(data["results"]), 5)
         self.assertEqual(data["results"][0]["title"], "News 0")
 
-    def test_filters_by_thematic(self):
+    def test_filters_by_topic(self):
         self._create_news(
-            title="Thematic news",
-            thematic=self.thematic,
+            title="Topic news",
+            topic=self.topic,
             published_at=self.now,
         )
         self._create_news(
-            title="Other thematic news",
-            thematic=self.other_thematic,
+            title="Other topic news",
+            topic=self.other_topic,
             published_at=self.now,
         )
 
         url = reverse("news-list", kwargs={"version": "v1"})
-        response = self.client.get(url, {"thematic_id": self.thematic.pk})
+        response = self.client.get(url, {"topic_id": self.topic.pk})
 
         self.assertEqual(response.status_code, 200)
         data = response.json()
         self.assertEqual(len(data["results"]), 1)
-        self.assertEqual(data["results"][0]["title"], "Thematic news")
+        self.assertEqual(data["results"][0]["title"], "Topic news")
 
     def test_list_news_by_entity(self):
         for i in range(5):
@@ -153,7 +153,7 @@ class NewsAPITests(TestCase):
         for i in range(5):
             self._create_news(
                 title=f"News {i}",
-                thematic=self.thematic,
+                topic=self.topic,
                 published_at=self.now - timedelta(days=i),
             )
 
@@ -165,10 +165,10 @@ class NewsAPITests(TestCase):
         self.assertEqual(len(data["results"]), 5)
         self.assertEqual(data["results"][0]["title"], "News 0")
 
-    def test_filters_by_thematic_and_entity_combined(self):
+    def test_filters_by_topic_and_entity_combined(self):
         self._create_news(
-            title="Thematic news",
-            thematic=self.thematic,
+            title="Topic news",
+            topic=self.topic,
             published_at=self.now,
         )
         self._create_news(
@@ -178,13 +178,13 @@ class NewsAPITests(TestCase):
         )
         self._create_news(
             title="Both news",
-            thematic=self.thematic,
+            topic=self.topic,
             entity=self.entity,
             published_at=self.now,
         )
         self._create_news(
             title="Other news",
-            thematic=self.other_thematic,
+            topic=self.other_topic,
             entity=self.other_entity,
             published_at=self.now,
         )
@@ -193,7 +193,7 @@ class NewsAPITests(TestCase):
         response = self.client.get(
             url,
             {
-                "thematic_id": self.thematic.pk,
+                "topic_id": self.topic.pk,
                 "entity_id": self.entity.pk,
             },
         )
@@ -204,7 +204,7 @@ class NewsAPITests(TestCase):
         titles = {result["title"] for result in data["results"]}
         self.assertEqual(
             titles,
-            {"Thematic news", "Entity news", "Both news"},
+            {"Topic news", "Entity news", "Both news"},
         )
 
     def test_respects_language(self):
@@ -212,7 +212,7 @@ class NewsAPITests(TestCase):
             created_by=self.user,
             format=self.format,
         )
-        news.thematics.add(self.thematic)
+        news.topics.add(self.topic)
         NewsTranslation.objects.create(
             news=news,
             language="en",
@@ -235,7 +235,7 @@ class NewsAPITests(TestCase):
         url = reverse("news-list", kwargs={"version": "v1"})
         response = self.client.get(
             url,
-            {"thematic_id": self.thematic.pk, "language": "fr"},
+            {"topic_id": self.topic.pk, "language": "fr"},
         )
 
         self.assertEqual(response.status_code, 200)
@@ -246,19 +246,19 @@ class NewsAPITests(TestCase):
     def test_excludes_non_published_statuses(self):
         self._create_news(
             title="Draft news",
-            thematic=self.thematic,
+            topic=self.topic,
             published_at=self.now,
             status=NewsTranslation.Status.DRAFT,
         )
         self._create_news(
             title="Archived news",
-            thematic=self.thematic,
+            topic=self.topic,
             published_at=self.now,
             status=NewsTranslation.Status.ARCHIVED,
         )
 
         url = reverse("news-list", kwargs={"version": "v1"})
-        response = self.client.get(url, {"thematic_id": self.thematic.pk})
+        response = self.client.get(url, {"topic_id": self.topic.pk})
 
         self.assertEqual(response.status_code, 200)
         data = response.json()
@@ -269,7 +269,7 @@ class NewsAPITests(TestCase):
             created_by=self.user,
             format=self.format,
         )
-        news.thematics.add(self.thematic)
+        news.topics.add(self.topic)
         NewsTranslation.objects.create(
             news=news,
             language="en",
@@ -281,7 +281,7 @@ class NewsAPITests(TestCase):
         )
 
         url = reverse("news-list", kwargs={"version": "v1"})
-        response = self.client.get(url, {"thematic_id": self.thematic.pk})
+        response = self.client.get(url, {"topic_id": self.topic.pk})
 
         self.assertEqual(response.status_code, 200)
         data = response.json()
@@ -292,7 +292,7 @@ class NewsAPITests(TestCase):
             created_by=self.user,
             format=self.format,
         )
-        news.thematics.add(self.thematic)
+        news.topics.add(self.topic)
         NewsTranslation.objects.create(
             news=news,
             language="fr",
@@ -306,7 +306,7 @@ class NewsAPITests(TestCase):
         url = reverse("news-list", kwargs={"version": "v1"})
         response = self.client.get(
             url,
-            {"thematic_id": self.thematic.pk, "language": "fr"},
+            {"topic_id": self.topic.pk, "language": "fr"},
         )
 
         self.assertEqual(response.status_code, 200)
@@ -316,12 +316,12 @@ class NewsAPITests(TestCase):
     def test_format_defaults_to_english_label(self):
         self._create_news(
             title="News with format",
-            thematic=self.thematic,
+            topic=self.topic,
             published_at=self.now,
         )
 
         url = reverse("news-list", kwargs={"version": "v1"})
-        response = self.client.get(url, {"thematic_id": self.thematic.pk})
+        response = self.client.get(url, {"topic_id": self.topic.pk})
 
         self.assertEqual(response.status_code, 200)
         data = response.json()
@@ -331,14 +331,14 @@ class NewsAPITests(TestCase):
         for i in range(5):
             self._create_news(
                 title=f"News {i}",
-                thematic=self.thematic,
+                topic=self.topic,
                 published_at=self.now - timedelta(days=i),
             )
 
         url = reverse("news-list", kwargs={"version": "v1"})
         response = self.client.get(
             url,
-            {"thematic_id": self.thematic.pk, "limit": 2},
+            {"topic_id": self.topic.pk, "limit": 2},
         )
 
         self.assertEqual(response.status_code, 200)
@@ -351,14 +351,14 @@ class NewsAPITests(TestCase):
         for i in range(5):
             self._create_news(
                 title=f"News {i}",
-                thematic=self.thematic,
+                topic=self.topic,
                 published_at=self.now - timedelta(days=i),
             )
 
         url = reverse("news-list", kwargs={"version": "v1"})
         response = self.client.get(
             url,
-            {"thematic_id": self.thematic.pk, "limit": 2, "page": 2},
+            {"topic_id": self.topic.pk, "limit": 2, "page": 2},
         )
 
         self.assertEqual(response.status_code, 200)
@@ -374,14 +374,14 @@ class NewsAPITests(TestCase):
         for i in range(4):
             self._create_news(
                 title=f"News {i}",
-                thematic=self.thematic,
+                topic=self.topic,
                 published_at=self.now - timedelta(days=i),
             )
 
         url = reverse("news-list", kwargs={"version": "v1"})
         response = self.client.get(
             url,
-            {"thematic_id": self.thematic.pk, "limit": 3},
+            {"topic_id": self.topic.pk, "limit": 3},
         )
 
         self.assertEqual(response.status_code, 200)
@@ -398,12 +398,12 @@ class NewsAPITests(TestCase):
         for i in range(total):
             self._create_news(
                 title=f"News {i}",
-                thematic=self.thematic,
+                topic=self.topic,
                 published_at=self.now - timedelta(days=i),
             )
 
         url = reverse("news-list", kwargs={"version": "v1"})
-        response = self.client.get(url, {"thematic_id": self.thematic.pk})
+        response = self.client.get(url, {"topic_id": self.topic.pk})
 
         self.assertEqual(response.status_code, 200)
         data = response.json()
@@ -415,19 +415,19 @@ class NewsAPITests(TestCase):
     def test_search_by_title(self):
         self._create_news(
             title="Energy research breakthrough",
-            thematic=self.thematic,
+            topic=self.topic,
             published_at=self.now,
         )
         self._create_news(
             title="AI in healthcare",
-            thematic=self.thematic,
+            topic=self.topic,
             published_at=self.now,
         )
 
         url = reverse("news-list", kwargs={"version": "v1"})
         response = self.client.get(
             url,
-            {"thematic_id": self.thematic.pk, "search": "energy"},
+            {"topic_id": self.topic.pk, "search": "energy"},
         )
 
         self.assertEqual(response.status_code, 200)
@@ -440,14 +440,14 @@ class NewsAPITests(TestCase):
     def test_search_is_case_insensitive(self):
         self._create_news(
             title="Energy research breakthrough",
-            thematic=self.thematic,
+            topic=self.topic,
             published_at=self.now,
         )
 
         url = reverse("news-list", kwargs={"version": "v1"})
         response = self.client.get(
             url,
-            {"thematic_id": self.thematic.pk, "search": "ENERGY"},
+            {"topic_id": self.topic.pk, "search": "ENERGY"},
         )
 
         self.assertEqual(response.status_code, 200)
@@ -460,14 +460,14 @@ class NewsAPITests(TestCase):
     def test_search_is_partial_match(self):
         self._create_news(
             title="Energy research breakthrough",
-            thematic=self.thematic,
+            topic=self.topic,
             published_at=self.now,
         )
 
         url = reverse("news-list", kwargs={"version": "v1"})
         response = self.client.get(
             url,
-            {"thematic_id": self.thematic.pk, "search": "ener"},
+            {"topic_id": self.topic.pk, "search": "ener"},
         )
 
         self.assertEqual(response.status_code, 200)
@@ -482,7 +482,7 @@ class NewsAPITests(TestCase):
             created_by=self.user,
             format=self.format,
         )
-        news.thematics.add(self.thematic)
+        news.topics.add(self.topic)
         NewsTranslation.objects.create(
             news=news,
             language="en",
@@ -506,7 +506,7 @@ class NewsAPITests(TestCase):
         response = self.client.get(
             url,
             {
-                "thematic_id": self.thematic.pk,
+                "topic_id": self.topic.pk,
                 "language": "fr",
                 "search": "énergie",
             },
@@ -553,14 +553,14 @@ class NewsAPITests(TestCase):
     def test_search_with_whitespace_returns_unfiltered(self):
         self._create_news(
             title="Energy research breakthrough",
-            thematic=self.thematic,
+            topic=self.topic,
             published_at=self.now,
         )
 
         url = reverse("news-list", kwargs={"version": "v1"})
         response = self.client.get(
             url,
-            {"thematic_id": self.thematic.pk, "search": "   "},
+            {"topic_id": self.topic.pk, "search": "   "},
         )
 
         self.assertEqual(response.status_code, 200)
@@ -570,14 +570,14 @@ class NewsAPITests(TestCase):
     def test_search_with_no_match_returns_empty(self):
         self._create_news(
             title="Energy research breakthrough",
-            thematic=self.thematic,
+            topic=self.topic,
             published_at=self.now,
         )
 
         url = reverse("news-list", kwargs={"version": "v1"})
         response = self.client.get(
             url,
-            {"thematic_id": self.thematic.pk, "search": "quantum"},
+            {"topic_id": self.topic.pk, "search": "quantum"},
         )
 
         self.assertEqual(response.status_code, 200)
@@ -587,13 +587,13 @@ class NewsAPITests(TestCase):
     def test_filters_by_format(self):
         self._create_news(
             title="Format news",
-            thematic=self.thematic,
+            topic=self.topic,
             format=self.format,
             published_at=self.now,
         )
         self._create_news(
             title="Other format news",
-            thematic=self.thematic,
+            topic=self.topic,
             format=self.other_format,
             published_at=self.now,
         )
@@ -601,7 +601,7 @@ class NewsAPITests(TestCase):
         url = reverse("news-list", kwargs={"version": "v1"})
         response = self.client.get(
             url,
-            {"thematic_id": self.thematic.pk, "format_id": self.format.pk},
+            {"topic_id": self.topic.pk, "format_id": self.format.pk},
         )
 
         self.assertEqual(response.status_code, 200)
@@ -609,22 +609,22 @@ class NewsAPITests(TestCase):
         self.assertEqual(len(data["results"]), 1)
         self.assertEqual(data["results"][0]["title"], "Format news")
 
-    def test_filters_by_format_combined_with_thematic(self):
+    def test_filters_by_format_combined_with_topic(self):
         self._create_news(
-            title="Thematic and format news",
-            thematic=self.thematic,
+            title="Topic and format news",
+            topic=self.topic,
             format=self.format,
             published_at=self.now,
         )
         self._create_news(
-            title="Thematic only news",
-            thematic=self.thematic,
+            title="Topic only news",
+            topic=self.topic,
             format=self.other_format,
             published_at=self.now,
         )
         self._create_news(
             title="Format only news",
-            thematic=self.other_thematic,
+            topic=self.other_topic,
             format=self.format,
             published_at=self.now,
         )
@@ -633,7 +633,7 @@ class NewsAPITests(TestCase):
         response = self.client.get(
             url,
             {
-                "thematic_id": self.thematic.pk,
+                "topic_id": self.topic.pk,
                 "format_id": self.format.pk,
             },
         )
@@ -643,19 +643,19 @@ class NewsAPITests(TestCase):
         self.assertEqual(len(data["results"]), 1)
         self.assertEqual(
             data["results"][0]["title"],
-            "Thematic and format news",
+            "Topic and format news",
         )
 
     def test_filters_by_format_combined_with_search(self):
         self._create_news(
             title="Energy format news",
-            thematic=self.thematic,
+            topic=self.topic,
             format=self.format,
             published_at=self.now,
         )
         self._create_news(
             title="AI format news",
-            thematic=self.thematic,
+            topic=self.topic,
             format=self.format,
             published_at=self.now,
         )
@@ -664,7 +664,7 @@ class NewsAPITests(TestCase):
         response = self.client.get(
             url,
             {
-                "thematic_id": self.thematic.pk,
+                "topic_id": self.topic.pk,
                 "format_id": self.format.pk,
                 "search": "energy",
             },
@@ -681,7 +681,7 @@ class NewsAPITests(TestCase):
     def test_filters_by_format_with_invalid_id_returns_empty(self):
         self._create_news(
             title="Format news",
-            thematic=self.thematic,
+            topic=self.topic,
             format=self.format,
             published_at=self.now,
         )
@@ -689,22 +689,22 @@ class NewsAPITests(TestCase):
         url = reverse("news-list", kwargs={"version": "v1"})
         response = self.client.get(
             url,
-            {"thematic_id": self.thematic.pk, "format_id": "not-an-id"},
+            {"topic_id": self.topic.pk, "format_id": "not-an-id"},
         )
 
         self.assertEqual(response.status_code, 200)
         data = response.json()
         self.assertEqual(len(data["results"]), 0)
 
-    def test_filters_by_multiple_thematics(self):
+    def test_filters_by_multiple_topics(self):
         self._create_news(
-            title="Thematic news",
-            thematic=self.thematic,
+            title="Topic news",
+            topic=self.topic,
             published_at=self.now,
         )
         self._create_news(
-            title="Other thematic news",
-            thematic=self.other_thematic,
+            title="Other topic news",
+            topic=self.other_topic,
             published_at=self.now,
         )
 
@@ -712,7 +712,7 @@ class NewsAPITests(TestCase):
         response = self.client.get(
             url,
             {
-                "thematic_id": [self.thematic.pk, self.other_thematic.pk],
+                "topic_id": [self.topic.pk, self.other_topic.pk],
             },
         )
 
@@ -722,7 +722,7 @@ class NewsAPITests(TestCase):
         titles = {result["title"] for result in data["results"]}
         self.assertEqual(
             titles,
-            {"Thematic news", "Other thematic news"},
+            {"Topic news", "Other topic news"},
         )
 
     def test_filters_by_multiple_entities(self):
@@ -757,13 +757,13 @@ class NewsAPITests(TestCase):
     def test_filters_by_multiple_formats(self):
         self._create_news(
             title="Format news",
-            thematic=self.thematic,
+            topic=self.topic,
             format=self.format,
             published_at=self.now,
         )
         self._create_news(
             title="Other format news",
-            thematic=self.thematic,
+            topic=self.topic,
             format=self.other_format,
             published_at=self.now,
         )
@@ -772,7 +772,7 @@ class NewsAPITests(TestCase):
         response = self.client.get(
             url,
             {
-                "thematic_id": self.thematic.pk,
+                "topic_id": self.topic.pk,
                 "format_id": [self.format.pk, self.other_format.pk],
             },
         )
@@ -786,10 +786,10 @@ class NewsAPITests(TestCase):
             {"Format news", "Other format news"},
         )
 
-    def test_filters_by_multiple_thematics_with_invalid_id_returns_empty(self):
+    def test_filters_by_multiple_topics_with_invalid_id_returns_empty(self):
         self._create_news(
-            title="Thematic news",
-            thematic=self.thematic,
+            title="Topic news",
+            topic=self.topic,
             published_at=self.now,
         )
 
@@ -797,7 +797,7 @@ class NewsAPITests(TestCase):
         response = self.client.get(
             url,
             {
-                "thematic_id": [self.thematic.pk, "not-an-id"],
+                "topic_id": [self.topic.pk, "not-an-id"],
             },
         )
 
@@ -827,7 +827,7 @@ class NewsAPITests(TestCase):
     def test_filters_by_multiple_formats_with_invalid_id_returns_empty(self):
         self._create_news(
             title="Format news",
-            thematic=self.thematic,
+            topic=self.topic,
             format=self.format,
             published_at=self.now,
         )
@@ -836,7 +836,7 @@ class NewsAPITests(TestCase):
         response = self.client.get(
             url,
             {
-                "thematic_id": self.thematic.pk,
+                "topic_id": self.topic.pk,
                 "format_id": [self.format.pk, "not-an-id"],
             },
         )

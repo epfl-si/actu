@@ -78,7 +78,7 @@ INSTALLED_APPS = [
     "media",
     "news",
     "news_formats",
-    "thematics",
+    "topics",
     "translations",
     "users",
 ]
@@ -109,7 +109,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "thematics.context_processors.global_thematics",
+                "topics.context_processors.global_topics",
                 "entities.context_processors.footer_entities",
                 "utils.context_processors.get_default_lang",
             ],

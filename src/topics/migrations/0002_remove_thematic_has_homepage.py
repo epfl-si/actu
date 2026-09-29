@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("thematics", "0001_initial"),
+        ("topics", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name="thematic",
+            model_name="topic",
             name="has_homepage",
         ),
     ]

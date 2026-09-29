@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from entities.models import Entity
-from thematics.models import Thematic
+from topics.models import Topic
 
 
 class LabelModelFilter(django_filters.FilterSet):
@@ -45,10 +45,10 @@ class EntityFilter(LabelModelFilter):
         model = Entity
 
 
-class ThematicFilter(LabelModelFilter):
+class TopicFilter(LabelModelFilter):
     is_main = django_filters.BooleanFilter(
-        help_text=_("Filter by whether the thematic is marked as main."),
+        help_text=_("Filter by whether the topic is marked as main."),
     )
 
     class Meta(LabelModelFilter.Meta):
-        model = Thematic
+        model = Topic

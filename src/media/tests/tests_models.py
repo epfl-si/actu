@@ -10,7 +10,7 @@ from django.test import TestCase, override_settings
 from media.models import NewsImage
 from news.models import News
 from news_formats.models import NewsFormat
-from thematics.models import Thematic
+from topics.models import Topic
 
 User = get_user_model()
 
@@ -46,12 +46,12 @@ class NewsImageModelTest(TestCase):
             sciper="99999999",
         )
         self.format = NewsFormat.objects.create(label_en="Article")
-        self.thematic = Thematic.objects.create(label_en="Research")
+        self.topic = Topic.objects.create(label_en="Research")
         self.news = News.objects.create(
             created_by=self.user,
             format=self.format,
         )
-        self.news.thematics.add(self.thematic)
+        self.news.topics.add(self.topic)
 
     def test_str_returns_image_id_and_name(self):
         news_image = NewsImage.objects.create(

@@ -3,7 +3,7 @@ from django.urls import NoReverseMatch, reverse
 
 from homepages.models import Homepage
 from homepages.views import User
-from thematics.models import Thematic
+from topics.models import Topic
 
 
 class ConvertersTest(TestCase):
@@ -13,13 +13,13 @@ class ConvertersTest(TestCase):
             username="niskanen",
             sciper="99999999",
         )
-        self.thematic = Thematic.objects.create(
+        self.topic = Topic.objects.create(
             label_en="AI",
             label_fr="IA",
         )
         self.homepage = Homepage.objects.create(
             slug="ai",
-            thematic=self.thematic,
+            topic=self.topic,
         )
 
     def test_invalid_language_gets_404(self):

@@ -6,7 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from audit_log.models import AuditModelMixin
 from entities.models import Entity
 from news_formats.models import NewsFormat
-from thematics.models import Thematic
+from topics.models import Topic
 
 
 class News(AuditModelMixin, models.Model):
@@ -21,11 +21,11 @@ class News(AuditModelMixin, models.Model):
         verbose_name_plural = _("News")
         ordering = ["-created_at"]
 
-    thematics = models.ManyToManyField(
-        Thematic,
+    topics = models.ManyToManyField(
+        Topic,
         related_name="news",
-        verbose_name=_("Thematics"),
-        help_text=_("Thematics related to this news."),
+        verbose_name=_("Topics"),
+        help_text=_("Topics related to this news."),
     )
     entities = models.ManyToManyField(
         Entity,
@@ -56,9 +56,9 @@ class News(AuditModelMixin, models.Model):
 
     def clean(self):
         super().clean()
-        if self.pk is not None and not self.thematics.exists():
+        if self.pk is not None and not self.topics.exists():
             raise ValidationError(
-                {"thematics": _("A news must have at least one thematic.")}
+                {"topics": _("A news must have at least one topic.")}
             )
 
     def get_translation(self, language):

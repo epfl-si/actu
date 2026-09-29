@@ -22,7 +22,7 @@ msgstr "Sortiert die Ergebnisse nach dem ausgewählten Feld."
 msgid "Filter by whether the entity is marked as main."
 msgstr "Filtert, ob die Einheit als Haupteinheit markiert ist."
 
-msgid "Filter by whether the thematic is marked as main."
+msgid "Filter by whether the topic is marked as main."
 msgstr "Filtert, ob das Thema als Hauptthema markiert ist."
 
 msgid "Number of results to return per page. Defaults to the API page size."
@@ -43,13 +43,13 @@ msgstr "Gibt an, ob diese Einheit als Haupteinheit markiert ist."
 msgid "Display order of the entity among main entities."
 msgstr "Anzeigereihenfolge der Einheit unter den Haupteinheiten."
 
-msgid "Unique identifier of the thematic."
+msgid "Unique identifier of the topic."
 msgstr "Eindeutiger Identifikator des Themas."
 
-msgid "Whether this thematic is marked as main."
+msgid "Whether this topic is marked as main."
 msgstr "Gibt an, ob dieses Thema als Hauptthema markiert ist."
 
-msgid "Display order of the thematic."
+msgid "Display order of the topic."
 msgstr "Anzeigereihenfolge des Themas."
 
 msgid "Entities"
@@ -67,19 +67,19 @@ msgstr "Eine Einheit abrufen"
 msgid "Return a single active entity by its identifier."
 msgstr "Gibt eine einzelne aktive Einheit anhand ihrer Kennung zurück."
 
-msgid "Thematics"
+msgid "Topics"
 msgstr "Themen"
 
-msgid "List active thematics"
+msgid "List active topics"
 msgstr "Aktive Themen auflisten"
 
-msgid "Return all active thematics ordered by identifier."
+msgid "Return all active topics ordered by identifier."
 msgstr "Gibt alle aktiven Themen sortiert nach Kennung zurück."
 
-msgid "Retrieve a thematic"
+msgid "Retrieve a topic"
 msgstr "Ein Thema abrufen"
 
-msgid "Return a single active thematic by its identifier."
+msgid "Return a single active topic by its identifier."
 msgstr "Gibt ein einzelnes aktives Thema anhand seiner Kennung zurück."
 
 msgid "News"
@@ -88,10 +88,10 @@ msgstr "Nachrichten"
 msgid "List published news"
 msgstr "Veröffentlichte Nachrichten auflisten"
 
-msgid "Return published news, optionally filtered by thematic identifiers, entity identifiers, format identifiers, a language, or a title search. Multiple identifiers for the same filter are combined with OR; thematic and entity filters are also combined with OR."
+msgid "Return published news, optionally filtered by topic identifiers, entity identifiers, format identifiers, a language, or a title search. Multiple identifiers for the same filter are combined with OR; topic and entity filters are also combined with OR."
 msgstr "Gibt veröffentlichte Nachrichten zurück, optional gefiltert nach Themenkennungen, Einheitskennungen, Formatkennungen, Sprache oder Titelsuche. Mehrere Kennungen für denselben Filter werden mit ODER kombiniert; Themen- und Einheitsfilter werden ebenfalls mit ODER kombiniert."
 
-msgid "Thematic identifiers."
+msgid "Topic identifiers."
 msgstr "Themenkennungen."
 
 msgid "Entity identifiers."
@@ -256,16 +256,16 @@ msgstr "Slug"
 msgid "Define the Slug of this Homepage"
 msgstr "Definiert den Slug dieser Startseite"
 
-msgid "Thematic"
+msgid "Topic"
 msgstr "Thema"
 
 msgid "Users"
 msgstr "Benutzer"
 
-msgid "A Homepage cannot be linked to both a thematic and an entity."
+msgid "A Homepage cannot be linked to both a topic and an entity."
 msgstr "Eine Startseite kann nicht gleichzeitig mit einem Thema und einer Einheit verknüpft sein."
 
-msgid "A Homepage must be linked to either a thematic or an entity."
+msgid "A Homepage must be linked to either a topic or an entity."
 msgstr "Eine Startseite muss entweder mit einem Thema oder einer Einheit verknüpft sein."
 
 msgid "Draft"
@@ -463,13 +463,13 @@ msgstr "Crop rechts"
 msgid "Crop lower"
 msgstr "Crop unten"
 
-msgid "A news must have at least one thematic."
+msgid "A news must have at least one topic."
 msgstr "Eine Nachricht muss mindestens eine Thematik haben."
 
 msgid "The same link cannot be added twice."
 msgstr "Die gleiche link kann nicht zweimal hinzugefügt werden."
 
-msgid "Thematics related to this news."
+msgid "Topics related to this news."
 msgstr "Themen, die mit dieser Nachricht verbunden sind."
 
 msgid "Entities related to this news."
@@ -592,10 +592,10 @@ msgstr "Abmelden"
 msgid "Login"
 msgstr "Anmelden"
 
-msgid "Designates whether this thematic is active and visible in the system."
+msgid "Designates whether this topic is active and visible in the system."
 msgstr "Gibt an, ob dieses Thema aktiv und im System sichtbar ist."
 
-msgid "Designates whether this thematic is displayed on the main menu."
+msgid "Designates whether this topic is displayed on the main menu."
 msgstr "Gibt an, ob dieses Thema im Hauptmenü angezeigt wird."
 
 msgid "Defines the display order."

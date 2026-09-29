@@ -14,7 +14,7 @@ from django.views.decorators.http import require_POST
 
 from entities.models import Entity
 from news_formats.models import NewsFormat
-from thematics.models import Thematic
+from topics.models import Topic
 from translations.models import NewsTranslation, NewsUrl
 from utils.parser import _safe_int, _safe_int_set
 
@@ -27,12 +27,12 @@ User = get_user_model()
 def list_news(request):
     current_lang = get_language()
 
-    thematics = Thematic.objects.all()
+    topics = Topic.objects.all()
     entities = Entity.objects.all()
     formats = NewsFormat.objects.all()
 
     search_query = request.GET.get("search", "").strip()
-    selected_thematics = _safe_int_set(request.GET.getlist("thematics"))
+    selected_topics = _safe_int_set(request.GET.getlist("topics"))
     selected_entities = _safe_int_set(request.GET.getlist("entities"))
     selected_formats = _safe_int_set(request.GET.getlist("formats"))
 
@@ -50,9 +50,9 @@ def list_news(request):
             title__icontains=search_query
         )
 
-    if selected_thematics:
+    if selected_topics:
         news_translations = news_translations.filter(
-            news__thematics__in=selected_thematics
+            news__topics__in=selected_topics
         )
 
     if selected_entities:
@@ -65,7 +65,7 @@ def list_news(request):
             news__format__in=selected_formats
         )
 
-    if selected_thematics or selected_entities:
+    if selected_topics or selected_entities:
         news_translations = news_translations.distinct()
 
     news_translations = news_translations.order_by("-published_at")
@@ -88,12 +88,12 @@ def list_news(request):
         "page_range": page_range,
         "paginator": paginator,
         "query_string": query_dict.urlencode(),
-        "thematics": thematics,
+        "topics": topics,
         "entities": entities,
         "formats": formats,
         "filters": {
             "search": search_query,
-            "thematics": selected_thematics,
+            "topics": selected_topics,
             "entities": selected_entities,
             "formats": selected_formats,
         },
@@ -103,7 +103,7 @@ def list_news(request):
 
 
 def _initialize_view():
-    thematics = Thematic.objects.filter(is_active=True).order_by(
+    topics = Topic.objects.filter(is_active=True).order_by(
         f"label_{utils.translation.get_language()}"
     )
     entities = Entity.objects.filter(is_active=True).order_by(
@@ -114,21 +114,19 @@ def _initialize_view():
     )
     languages = settings.LANGUAGES
 
-    return thematics, entities, formats, languages
+    return topics, entities, formats, languages
 
 
 def _initialize_selected_values(request=None, news_form=None):
     if request is not None and request.method == "POST":
         # Re-rendering after a failed submission: reflect what the user picked
-        selected_thematic_ids = _safe_int_set(
-            request.POST.getlist("thematics")
-        )
+        selected_topic_ids = _safe_int_set(request.POST.getlist("topics"))
         selected_entity_ids = _safe_int_set(request.POST.getlist("entities"))
         selected_format_id = _safe_int(request.POST.get("format"))
     elif news_form and news_form.news.instance.pk:
         # Initial load of an existing News
-        selected_thematic_ids = set(
-            news_form.news.instance.thematics.values_list("id", flat=True)
+        selected_topic_ids = set(
+            news_form.news.instance.topics.values_list("id", flat=True)
         )
         selected_entity_ids = set(
             news_form.news.instance.entities.values_list("id", flat=True)
@@ -136,14 +134,14 @@ def _initialize_selected_values(request=None, news_form=None):
         selected_format_id = news_form.news.instance.format_id
     else:
         # Initial load of a new News (create_news)
-        selected_thematic_ids = set()
+        selected_topic_ids = set()
         selected_entity_ids = set()
         selected_format_id = None
-    return selected_thematic_ids, selected_entity_ids, selected_format_id
+    return selected_topic_ids, selected_entity_ids, selected_format_id
 
 
 def _initialize_form_and_render_view(request, lang, news_id=None):
-    thematics, entities, formats, languages = _initialize_view()
+    topics, entities, formats, languages = _initialize_view()
 
     news = get_object_or_404(News, id=news_id) if news_id else None
     translation = news.get_translation(language=lang) if news else None
@@ -172,7 +170,7 @@ def _initialize_form_and_render_view(request, lang, news_id=None):
         urls_queryset=urls,
     )
 
-    selected_thematic_ids, selected_entity_ids, selected_format_id = (
+    selected_topic_ids, selected_entity_ids, selected_format_id = (
         _initialize_selected_values(request, form)
     )
 
@@ -198,12 +196,12 @@ def _initialize_form_and_render_view(request, lang, news_id=None):
 
     context = {
         "form": form,
-        "thematics": thematics,
+        "topics": topics,
         "entities": entities,
         "formats": formats,
         "languages": languages,
         "language_tabs": language_tabs,
-        "selected_thematic_ids": selected_thematic_ids,
+        "selected_topic_ids": selected_topic_ids,
         "selected_entity_ids": selected_entity_ids,
         "selected_format_id": selected_format_id,
     }
@@ -238,7 +236,7 @@ def _get_filters(request):
     return {
         "search": request.GET.get("search", "").strip(),
         "status": statuses,
-        "thematics": _safe_int_set(request.GET.getlist("thematics")),
+        "topics": _safe_int_set(request.GET.getlist("topics")),
         "entities": entities,
         "created_by": _safe_int_set(request.GET.getlist("created_by")),
         "formats": _safe_int_set(request.GET.getlist("formats")),
@@ -248,7 +246,7 @@ def _get_filters(request):
 def _apply_filters(news, filters):
     filter_search = filters.get("search")
     filter_statuses = filters.get("status")
-    filter_thematics = filters.get("thematics")
+    filter_topics = filters.get("topics")
     filter_entities = filters.get("entities")
     filter_created_by = filters.get("created_by")
     filter_formats = filters.get("formats")
@@ -259,9 +257,9 @@ def _apply_filters(news, filters):
     if filter_statuses:
         news = news.filter(translations__status__in=filter_statuses)
 
-    if filter_thematics:
+    if filter_topics:
         news = news.filter(
-            thematics__id__in=filter_thematics,
+            topics__id__in=filter_topics,
         )
 
     if filter_entities:
@@ -284,7 +282,7 @@ def _apply_filters(news, filters):
 
 @login_required
 def manage_news(request):
-    thematics, entities, formats, languages = _initialize_view()
+    topics, entities, formats, languages = _initialize_view()
 
     show_metadata = request.GET.get("show_metadata") == "1"
     filters = _get_filters(request)
@@ -346,7 +344,7 @@ def manage_news(request):
             "filters": filters,
             "show_metadata": show_metadata,
             "statuses": NewsTranslation.Status,
-            "thematics": thematics,
+            "topics": topics,
             "entities": entities,
             "creators": creators,
             "formats": formats,

@@ -18,11 +18,11 @@
         <div class="row mt-3">
           <div class="col-md-4">
             <div class="form-group">
-              <label>{% trans "Thematic" %}</label>
-              <select id="thematics" name="thematics" class="select-multiple" multiple="multiple" data-filter="true">
-                {% for thematic in thematics %}
-                <option value="{{ thematic.id }}" {% if thematic.id in filters.thematics %}selected{% endif %}>
-                  {{ thematic }}
+              <label>{% trans "Topic" %}</label>
+              <select id="topics" name="topics" class="select-multiple" multiple="multiple" data-filter="true">
+                {% for topic in topics %}
+                <option value="{{ topic.id }}" {% if topic.id in filters.topics %}selected{% endif %}>
+                  {{ topic }}
                 </option>
                 {% endfor %}
               </select>
@@ -55,15 +55,15 @@
         </div>
         <button type="submit" class="d-none" aria-hidden="true"></button>
       </form>
-      {% if filters.thematics or filters.entities or filters.formats %}
+      {% if filters.topics or filters.entities or filters.formats %}
         <div class="tag-group mt-2">
           <label class="sr-only">{% trans "Active filters" %}</label>
           <div>
             <a class="tag tag-plain removeAll" href="?">{% trans "Reset all" %}</a>
-            {% for thematic in thematics %}
-              {% if thematic.id in filters.thematics %}
-                <a href="#" class="tag tag-primary filter-remove" data-type="thematics" data-val="{{ thematic.id }}">
-                  {{ thematic.label_en }} <span class="remove removeTag" tabindex="-1" title="{% trans 'Remove' %}">×</span>
+            {% for topic in topics %}
+              {% if topic.id in filters.topics %}
+                <a href="#" class="tag tag-primary filter-remove" data-type="topics" data-val="{{ topic.id }}">
+                  {{ topic.label_en }} <span class="remove removeTag" tabindex="-1" title="{% trans 'Remove' %}">×</span>
                 </a>
               {% endif %}
             {% endfor %}

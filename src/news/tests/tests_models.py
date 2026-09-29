@@ -6,7 +6,7 @@ from django.test import TestCase
 from entities.models import Entity
 from news.models import News
 from news_formats.models import NewsFormat
-from thematics.models import Thematic
+from topics.models import Topic
 
 User = get_user_model()
 
@@ -19,7 +19,7 @@ class NewsModelTest(TestCase):
             password="99999999",
         )
         self.format = NewsFormat.objects.get(id=1)
-        self.thematic = Thematic.objects.create(
+        self.topic = Topic.objects.create(
             label_fr="Ski de fond",
             label_en="Cross-Country Skiing",
             label_de="Langlauf",
@@ -35,20 +35,20 @@ class NewsModelTest(TestCase):
             created_by=self.user,
             format=self.format,
         )
-        self.news.thematics.add(self.thematic)
+        self.news.topics.add(self.topic)
 
     def test_str_returns_news_id(self):
         self.assertEqual(str(self.news), f"News #{self.news.pk}")
 
-    def test_can_add_thematic(self):
-        new_thematic = Thematic.objects.create(
+    def test_can_add_topic(self):
+        new_topic = Topic.objects.create(
             label_fr="Saut à ski",
             label_en="Ski Jumping",
             label_de="Skispringen",
             label_it="Salto con gli sci",
         )
-        self.news.thematics.add(new_thematic)
-        self.assertIn(new_thematic, self.news.thematics.all())
+        self.news.topics.add(new_topic)
+        self.assertIn(new_topic, self.news.topics.all())
 
     def test_can_add_entity(self):
         self.news.entities.add(self.entity)
@@ -57,8 +57,8 @@ class NewsModelTest(TestCase):
     def test_entities_is_optional(self):
         self.assertEqual(self.news.entities.count(), 0)
 
-    def test_thematics_is_mandatory(self):
-        self.news.thematics.clear()
+    def test_topics_is_mandatory(self):
+        self.news.topics.clear()
         with self.assertRaises(ValidationError):
             self.news.full_clean()
 
@@ -77,7 +77,7 @@ class NewsModelTest(TestCase):
             created_by=self.user,
             format=self.format,
         )
-        news2.thematics.add(self.thematic)
+        news2.topics.add(self.topic)
         news_list = list(News.objects.all())
         self.assertEqual(news_list[0], news2)
         self.assertEqual(news_list[1], self.news)

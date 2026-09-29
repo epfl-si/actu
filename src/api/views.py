@@ -8,15 +8,15 @@ from drf_spectacular.utils import (
 from rest_framework import mixins, viewsets
 from rest_framework.permissions import AllowAny
 
-from api.filters import EntityFilter, ThematicFilter
+from api.filters import EntityFilter, TopicFilter
 from api.pagination import NewsPagination
 from api.serializers import (
     EntitySerializer,
     NewsSerializer,
-    ThematicSerializer,
+    TopicSerializer,
 )
 from entities.models import Entity
-from thematics.models import Thematic
+from topics.models import Topic
 from translations.models import NewsTranslation
 
 
@@ -46,22 +46,22 @@ class EntityViewSet(viewsets.ReadOnlyModelViewSet):
     filterset_class = EntityFilter
 
 
-@extend_schema(tags=[_("Thematics")])
+@extend_schema(tags=[_("Topics")])
 @extend_schema_view(
     list=extend_schema(
-        summary=_("List active thematics"),
-        description=_("Return all active thematics ordered by identifier."),
+        summary=_("List active topics"),
+        description=_("Return all active topics ordered by identifier."),
     ),
     retrieve=extend_schema(
-        summary=_("Retrieve a thematic"),
-        description=_("Return a single active thematic by its identifier."),
+        summary=_("Retrieve a topic"),
+        description=_("Return a single active topic by its identifier."),
     ),
 )
-class ThematicViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Thematic.objects.filter(is_active=True).order_by("id")
-    serializer_class = ThematicSerializer
+class TopicViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Topic.objects.filter(is_active=True).order_by("id")
+    serializer_class = TopicSerializer
     permission_classes = [AllowAny]
-    filterset_class = ThematicFilter
+    filterset_class = TopicFilter
 
 
 @extend_schema(tags=[_("News")])
@@ -69,20 +69,20 @@ class ThematicViewSet(viewsets.ReadOnlyModelViewSet):
     list=extend_schema(
         summary=_("List published news"),
         description=_(
-            "Return published news, optionally filtered by thematic "
+            "Return published news, optionally filtered by topic "
             "identifiers, entity identifiers, format identifiers, a "
             "language, or a title search. Multiple identifiers for the "
-            "same filter are combined with OR; thematic and entity "
+            "same filter are combined with OR; topic and entity "
             "filters are also combined with OR."
         ),
         parameters=[
             OpenApiParameter(
-                name="thematic_id",
+                name="topic_id",
                 type=int,
                 location=OpenApiParameter.QUERY,
                 required=False,
                 many=True,
-                description=_("Thematic identifiers."),
+                description=_("Topic identifiers."),
             ),
             OpenApiParameter(
                 name="entity_id",
@@ -150,16 +150,16 @@ class NewsViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             published_at__isnull=False,
         )
 
-        thematic_ids = _parse_id_list(self.request.query_params, "thematic_id")
+        topic_ids = _parse_id_list(self.request.query_params, "topic_id")
         entity_ids = _parse_id_list(self.request.query_params, "entity_id")
         format_ids = _parse_id_list(self.request.query_params, "format_id")
 
-        if thematic_ids is None or entity_ids is None or format_ids is None:
+        if topic_ids is None or entity_ids is None or format_ids is None:
             translations_qs = translations_qs.none()
         else:
             filter_q = Q()
-            if thematic_ids:
-                filter_q |= Q(news__thematics__id__in=thematic_ids)
+            if topic_ids:
+                filter_q |= Q(news__topics__id__in=topic_ids)
             if entity_ids:
                 filter_q |= Q(news__entities__id__in=entity_ids)
             if filter_q:

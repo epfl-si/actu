@@ -12,25 +12,25 @@ class HomepageAdmin(admin.ModelAdmin):
     list_display = (
         "slug",
         "display_name",
-        "thematic",
+        "topic",
         "entity",
     )
 
     list_filter = (
-        "thematic",
+        "topic",
         "entity",
     )
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        return qs.select_related("thematic", "entity")
+        return qs.select_related("topic", "entity")
 
     @admin.display(description=_("Name"))
     def display_name(self, obj):
         return obj.display_name
 
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
-        if db_field.name in ["thematic", "entity"]:
+        if db_field.name in ["topic", "entity"]:
             object_id = request.resolver_match.kwargs.get("object_id")
 
             if object_id:

@@ -3,11 +3,11 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.permissions import AllowAny
 from rest_framework.routers import DefaultRouter
 
-from api.views import EntityViewSet, NewsViewSet, ThematicViewSet
+from api.views import EntityViewSet, NewsViewSet, TopicViewSet
 
 router = DefaultRouter()
 router.register(r"entities", EntityViewSet, basename="entity")
-router.register(r"thematics", ThematicViewSet, basename="thematic")
+router.register(r"topics", TopicViewSet, basename="topic")
 router.register(r"news", NewsViewSet, basename="news")
 
 

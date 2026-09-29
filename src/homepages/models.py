@@ -16,8 +16,8 @@ class Homepage(AuditModelMixin, models.Model):
         constraints = [
             models.CheckConstraint(
                 condition=(
-                    models.Q(thematic__isnull=True, entity__isnull=False)
-                    | models.Q(thematic__isnull=False, entity__isnull=True)
+                    models.Q(topic__isnull=True, entity__isnull=False)
+                    | models.Q(topic__isnull=False, entity__isnull=True)
                 ),
                 name="homepage_must_have_exactly_one_relation",
             )
@@ -30,13 +30,13 @@ class Homepage(AuditModelMixin, models.Model):
         help_text=_("Define the Slug of this Homepage"),
     )
 
-    thematic = models.OneToOneField(
-        "thematics.Thematic",
+    topic = models.OneToOneField(
+        "topics.Topic",
         on_delete=models.CASCADE,
         related_name="homepage",
         null=True,
         blank=True,
-        verbose_name=_("Thematic"),
+        verbose_name=_("Topic"),
     )
 
     entity = models.OneToOneField(
@@ -60,26 +60,26 @@ class Homepage(AuditModelMixin, models.Model):
 
     @property
     def display_name(self):
-        if self.thematic:
-            return str(self.thematic)
+        if self.topic:
+            return str(self.topic)
         return str(self.entity)
 
     def clean(self):
         super().clean()
 
-        if self.thematic and self.entity:
+        if self.topic and self.entity:
             raise ValidationError(
                 _(
                     "A Homepage cannot be linked to both a "
-                    "thematic and an entity."
+                    "topic and an entity."
                 )
             )
 
-        if not self.thematic and not self.entity:
+        if not self.topic and not self.entity:
             raise ValidationError(
                 _(
                     "A Homepage must be linked to either a "
-                    "thematic or an entity."
+                    "topic or an entity."
                 )
             )
 

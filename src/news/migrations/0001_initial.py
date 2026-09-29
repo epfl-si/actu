@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("entities", "0001_initial"),
-        ("thematics", "0001_initial"),
+        ("topics", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -54,13 +54,13 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "thematics",
+                    "topics",
                     models.ManyToManyField(
                         blank=True,
-                        help_text="Thematics related to this news.",
+                        help_text="Topics related to this news.",
                         related_name="news",
-                        to="thematics.thematic",
-                        verbose_name="Thematics",
+                        to="topics.topic",
+                        verbose_name="Topics",
                     ),
                 ),
             ],

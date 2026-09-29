@@ -7,7 +7,7 @@ from django.utils.translation import override
 from entities.models import Entity
 from news.models import News
 from news_formats.models import NewsFormat
-from thematics.models import Thematic
+from topics.models import Topic
 from translations.models import NewsTranslation
 
 User = get_user_model()
@@ -21,14 +21,14 @@ class ManageNewsViewTest(TestCase):
             sciper="99999999",
         )
         self.format = NewsFormat.objects.create(label_en="Article")
-        self.thematic = Thematic.objects.create(label_en="Research")
+        self.topic = Topic.objects.create(label_en="Research")
 
     def _create_news(self):
         news = News.objects.create(
             created_by=self.user,
             format=self.format,
         )
-        news.thematics.add(self.thematic)
+        news.topics.add(self.topic)
         return news
 
     def test_limits_to_ten_news_per_page(self):
@@ -108,13 +108,13 @@ class ManageNewsViewTest(TestCase):
         )
         self.assertEqual(response.context["filters"]["search"], "dns")
 
-    def test_filters_news_by_thematic_entity_creator_and_format(self):
+    def test_filters_news_by_topic_entity_creator_and_format(self):
         other_user = User.objects.create_user(
             username="cologna",
             sciper="88888888",
         )
-        thematic = Thematic.objects.create(label_en="Cross-country skiing")
-        other_thematic = Thematic.objects.create(label_en="Giant slalom")
+        topic = Topic.objects.create(label_en="Cross-country skiing")
+        other_topic = Topic.objects.create(label_en="Giant slalom")
         entity = Entity.objects.create(label_en="Finland Team")
         other_entity = Entity.objects.create(label_en="Swiss Team")
         news_format = NewsFormat.objects.create(label_en="News")
@@ -124,7 +124,7 @@ class ManageNewsViewTest(TestCase):
             created_by=self.user,
             format=news_format,
         )
-        matching_news.thematics.add(thematic)
+        matching_news.topics.add(topic)
         matching_news.entities.add(entity)
         NewsTranslation.objects.create(
             news=matching_news,
@@ -137,7 +137,7 @@ class ManageNewsViewTest(TestCase):
             created_by=other_user,
             format=other_format,
         )
-        non_matching_news.thematics.add(other_thematic)
+        non_matching_news.topics.add(other_topic)
         non_matching_news.entities.add(other_entity)
         NewsTranslation.objects.create(
             news=non_matching_news,
@@ -148,7 +148,7 @@ class ManageNewsViewTest(TestCase):
 
         self.client.force_login(self.user)
         filters = {
-            "thematics": thematic.id,
+            "topics": topic.id,
             "entities": entity.id,
             "created_by": self.user.id,
             "formats": news_format.id,
@@ -160,8 +160,8 @@ class ManageNewsViewTest(TestCase):
             [matching_news],
         )
         self.assertEqual(
-            response.context["filters"]["thematics"],
-            {thematic.id},
+            response.context["filters"]["topics"],
+            {topic.id},
         )
         self.assertEqual(response.context["filters"]["entities"], {entity.id})
         self.assertEqual(
@@ -233,12 +233,12 @@ class DeleteNewsTranslationViewTest(TestCase):
             sciper="99999999",
         )
         self.format = NewsFormat.objects.create(label_en="Article")
-        self.thematic = Thematic.objects.create(label_en="Research")
+        self.topic = Topic.objects.create(label_en="Research")
         self.news = News.objects.create(
             created_by=self.user,
             format=self.format,
         )
-        self.news.thematics.add(self.thematic)
+        self.news.topics.add(self.topic)
         self.translation = NewsTranslation.objects.create(
             news=self.news,
             language="en",
@@ -312,12 +312,12 @@ class RestoreNewsTranslationViewTest(TestCase):
             sciper="99999999",
         )
         self.format = NewsFormat.objects.create(label_en="Article")
-        self.thematic = Thematic.objects.create(label_en="Research")
+        self.topic = Topic.objects.create(label_en="Research")
         self.news = News.objects.create(
             created_by=self.user,
             format=self.format,
         )
-        self.news.thematics.add(self.thematic)
+        self.news.topics.add(self.topic)
         self.translation = NewsTranslation.objects.create(
             news=self.news,
             language="en",
@@ -392,14 +392,14 @@ class ListNewsViewTest(TestCase):
             sciper="99999999",
         )
         self.format = NewsFormat.objects.create(label_en="Article")
-        self.thematic = Thematic.objects.create(label_en="Research")
+        self.topic = Topic.objects.create(label_en="Research")
         self.entity = Entity.objects.create(label_en="EPFL")
 
         self.news_pub_en = News.objects.create(
             created_by=self.user,
             format=self.format,
         )
-        self.news_pub_en.thematics.add(self.thematic)
+        self.news_pub_en.topics.add(self.topic)
         self.news_pub_en.entities.add(self.entity)
         self.trans_pub_en = NewsTranslation.objects.create(
             news=self.news_pub_en,
@@ -414,7 +414,7 @@ class ListNewsViewTest(TestCase):
             created_by=self.user,
             format=self.format,
         )
-        self.news_draft_en.thematics.add(self.thematic)
+        self.news_draft_en.topics.add(self.topic)
         self.news_draft_en.entities.add(self.entity)
         self.trans_draft_en = NewsTranslation.objects.create(
             news=self.news_draft_en,
@@ -428,7 +428,7 @@ class ListNewsViewTest(TestCase):
             created_by=self.user,
             format=self.format,
         )
-        self.news_pub_fr.thematics.add(self.thematic)
+        self.news_pub_fr.topics.add(self.topic)
         self.news_pub_fr.entities.add(self.entity)
         self.trans_pub_fr = NewsTranslation.objects.create(
             news=self.news_pub_fr,
@@ -444,7 +444,7 @@ class ListNewsViewTest(TestCase):
             created_by=self.user,
             format=self.format,
         )
-        news.thematics.add(self.thematic)
+        news.topics.add(self.topic)
         news.entities.add(self.entity)
         return news
 
@@ -457,7 +457,7 @@ class ListNewsViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "list.html")
 
-        self.assertIn(self.thematic, response.context["thematics"])
+        self.assertIn(self.topic, response.context["topics"])
         self.assertIn(self.entity, response.context["entities"])
         self.assertIn(self.format, response.context["formats"])
 
@@ -494,11 +494,11 @@ class ListNewsViewTest(TestCase):
                 len(list(response_empty.context["news_translations"])), 0
             )
 
-    def test_filters_by_thematic_entity_and_format(self):
+    def test_filters_by_topic_entity_and_format(self):
         url = reverse("list_news")
         with override("en"):
             filters = {
-                "thematics": self.thematic.id,
+                "topics": self.topic.id,
                 "entities": self.entity.id,
                 "formats": self.format.id,
             }
@@ -506,9 +506,7 @@ class ListNewsViewTest(TestCase):
             news_in_context = list(response.context["news_translations"])
 
             self.assertIn(self.trans_pub_en, news_in_context)
-            self.assertIn(
-                self.thematic.id, response.context["filters"]["thematics"]
-            )
+            self.assertIn(self.topic.id, response.context["filters"]["topics"])
             self.assertIn(
                 self.entity.id, response.context["filters"]["entities"]
             )
@@ -564,14 +562,14 @@ class ListNewsViewTest(TestCase):
                 url,
                 {
                     "search": "space",
-                    "thematics": self.thematic.id,
+                    "topics": self.topic.id,
                     "page": "2",
                 },
             )
 
             query_string = response.context["query_string"]
             self.assertIn("search=space", query_string)
-            self.assertIn(f"thematics={self.thematic.id}", query_string)
+            self.assertIn(f"topics={self.topic.id}", query_string)
             self.assertNotIn("page=", query_string)
 
 
@@ -581,10 +579,8 @@ class CreateNewsTranslationViewTest(TestCase):
             username="bentoumi",
             sciper="99999999",
         )
-        self.thematic = Thematic.objects.create(
-            label_en="Research", is_active=True
-        )
-        self.thematic_2 = Thematic.objects.create(
+        self.topic = Topic.objects.create(label_en="Research", is_active=True)
+        self.topic_2 = Topic.objects.create(
             label_en="Innovation", is_active=True
         )
         self.entity = Entity.objects.create(label_en="EPFL", is_active=True)
@@ -608,24 +604,24 @@ class CreateNewsTranslationViewTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "edit_news.html")
-        self.assertIn(self.thematic, response.context["thematics"])
+        self.assertIn(self.topic, response.context["topics"])
         self.assertIn(self.entity, response.context["entities"])
         self.assertIn(self.format, response.context["formats"])
-        self.assertEqual(response.context["selected_thematic_ids"], set())
+        self.assertEqual(response.context["selected_topic_ids"], set())
         self.assertEqual(response.context["selected_entity_ids"], set())
         self.assertIsNone(response.context["selected_format_id"])
 
-    def test_get_excludes_inactive_thematics_and_entities(self):
-        Thematic.objects.create(label_en="Old Thematic", is_active=False)
+    def test_get_excludes_inactive_topics_and_entities(self):
+        Topic.objects.create(label_en="Old Topic", is_active=False)
         Entity.objects.create(label_en="Old Entity", is_active=False)
 
         self.client.force_login(self.user)
         url = reverse("create_news", args=["en"])
         response = self.client.get(url)
 
-        thematic_labels = {t.label_en for t in response.context["thematics"]}
+        topic_labels = {t.label_en for t in response.context["topics"]}
         entity_labels = {e.label_en for e in response.context["entities"]}
-        self.assertNotIn("Old Thematic", thematic_labels)
+        self.assertNotIn("Old Topic", topic_labels)
         self.assertNotIn("Old Entity", entity_labels)
 
     def test_valid_post_creates_news_and_translation(self):
@@ -633,7 +629,7 @@ class CreateNewsTranslationViewTest(TestCase):
         url = reverse("create_news", args=["en"])
         data = {
             "title": "New EPFL article",
-            "thematics": [self.thematic.id],
+            "topics": [self.topic.id],
             "entities": [self.entity.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
@@ -647,8 +643,8 @@ class CreateNewsTranslationViewTest(TestCase):
         news = News.objects.get()
         self.assertEqual(news.created_by, self.user)
         self.assertEqual(
-            set(news.thematics.values_list("id", flat=True)),
-            {self.thematic.id},
+            set(news.topics.values_list("id", flat=True)),
+            {self.topic.id},
         )
         self.assertEqual(
             set(news.entities.values_list("id", flat=True)),
@@ -672,12 +668,12 @@ class CreateNewsTranslationViewTest(TestCase):
             ),
         )
 
-    def test_valid_post_with_multiple_thematics_and_entities(self):
+    def test_valid_post_with_multiple_topics_and_entities(self):
         self.client.force_login(self.user)
         url = reverse("create_news", args=["en"])
         data = {
             "title": "Research and education",
-            "thematics": [self.thematic.id, self.thematic_2.id],
+            "topics": [self.topic.id, self.topic_2.id],
             "entities": [self.entity.id, self.entity_2.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
@@ -689,8 +685,8 @@ class CreateNewsTranslationViewTest(TestCase):
         self.assertEqual(response.status_code, 302)
         news = News.objects.get()
         self.assertEqual(
-            set(news.thematics.values_list("id", flat=True)),
-            {self.thematic.id, self.thematic_2.id},
+            set(news.topics.values_list("id", flat=True)),
+            {self.topic.id, self.topic_2.id},
         )
         self.assertEqual(
             set(news.entities.values_list("id", flat=True)),
@@ -702,7 +698,7 @@ class CreateNewsTranslationViewTest(TestCase):
         url = reverse("create_news", args=["en"])
         data = {
             "title": "Incomplete article",
-            "thematics": [],
+            "topics": [],
             "entities": [self.entity.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
@@ -715,7 +711,7 @@ class CreateNewsTranslationViewTest(TestCase):
         self.assertEqual(News.objects.count(), 0)
         self.assertEqual(NewsTranslation.objects.count(), 0)
         self.assertIn(
-            "A news must have at least one thematic.",
+            "A news must have at least one topic.",
             response.content.decode(),
         )
 
@@ -723,7 +719,7 @@ class CreateNewsTranslationViewTest(TestCase):
         self.client.force_login(self.user)
         url = reverse("create_news", args=["en"])
         data = {
-            "thematics": [self.thematic.id, self.thematic_2.id],
+            "topics": [self.topic.id, self.topic_2.id],
             "entities": [self.entity.id, self.entity_2.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
@@ -734,8 +730,8 @@ class CreateNewsTranslationViewTest(TestCase):
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
-            response.context["selected_thematic_ids"],
-            {self.thematic.id, self.thematic_2.id},
+            response.context["selected_topic_ids"],
+            {self.topic.id, self.topic_2.id},
         )
         self.assertEqual(
             response.context["selected_entity_ids"],
@@ -751,7 +747,7 @@ class CreateNewsTranslationViewTest(TestCase):
         self.client.force_login(self.user)
         url = reverse("create_news", args=["en"])
         data = {
-            "thematics": ["foobar", self.thematic_2.id],
+            "topics": ["foobar", self.topic_2.id],
             "entities": ["foobar", self.entity_2.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
@@ -762,8 +758,8 @@ class CreateNewsTranslationViewTest(TestCase):
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
-            response.context["selected_thematic_ids"],
-            {self.thematic_2.id},
+            response.context["selected_topic_ids"],
+            {self.topic_2.id},
         )
         self.assertEqual(
             response.context["selected_entity_ids"],
@@ -775,7 +771,7 @@ class CreateNewsTranslationViewTest(TestCase):
         url = reverse("create_news", args=["en"])
         data = {
             "title": "New article",
-            "thematics": [self.thematic.id],
+            "topics": [self.topic.id],
             "entities": [self.entity.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
@@ -800,11 +796,11 @@ class EditNewsTranslationViewTest(TestCase):
             username="bentoumi",
             sciper="99999999",
         )
-        self.thematic = Thematic.objects.create(
+        self.topic = Topic.objects.create(
             label_en="Research",
             is_active=True,
         )
-        self.thematic_2 = Thematic.objects.create(
+        self.topic_2 = Topic.objects.create(
             label_en="Education",
             is_active=True,
         )
@@ -826,7 +822,7 @@ class EditNewsTranslationViewTest(TestCase):
             created_by=self.user,
             format=self.format,
         )
-        self.news.thematics.add(self.thematic)
+        self.news.topics.add(self.topic)
         self.news.entities.add(self.entity)
         self.translation = NewsTranslation.objects.create(
             news=self.news,
@@ -863,8 +859,8 @@ class EditNewsTranslationViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "edit_news.html")
         self.assertEqual(
-            response.context["selected_thematic_ids"],
-            {self.thematic.id},
+            response.context["selected_topic_ids"],
+            {self.topic.id},
         )
         self.assertEqual(
             response.context["selected_entity_ids"],
@@ -892,7 +888,7 @@ class EditNewsTranslationViewTest(TestCase):
         )
         data = {
             "title": "Updated title",
-            "thematics": [self.thematic_2.id],
+            "topics": [self.topic_2.id],
             "entities": [self.entity_2.id],
             "format": self.format_2.id,
             "author": "Lindsey Vonn",
@@ -909,8 +905,8 @@ class EditNewsTranslationViewTest(TestCase):
         self.translation.refresh_from_db()
 
         self.assertEqual(
-            set(self.news.thematics.values_list("id", flat=True)),
-            {self.thematic_2.id},
+            set(self.news.topics.values_list("id", flat=True)),
+            {self.topic_2.id},
         )
         self.assertEqual(
             set(self.news.entities.values_list("id", flat=True)),
@@ -932,7 +928,7 @@ class EditNewsTranslationViewTest(TestCase):
         )
         data = {
             "title": "",
-            "thematics": [self.thematic_2.id],
+            "topics": [self.topic_2.id],
             "entities": [self.entity_2.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
@@ -946,8 +942,8 @@ class EditNewsTranslationViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("This field is required.", response.content.decode())
         self.assertEqual(
-            response.context["selected_thematic_ids"],
-            {self.thematic_2.id},
+            response.context["selected_topic_ids"],
+            {self.topic_2.id},
         )
         self.assertEqual(
             response.context["selected_entity_ids"],
@@ -965,7 +961,7 @@ class EditNewsTranslationViewTest(TestCase):
         )
         data = {
             "title": "Original title",
-            "thematics": [self.thematic.id],
+            "topics": [self.topic.id],
             "entities": [self.entity.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
@@ -998,7 +994,7 @@ class EditNewsTranslationViewTest(TestCase):
         )
         data = {
             "title": "Original title",
-            "thematics": [self.thematic.id],
+            "topics": [self.topic.id],
             "entities": [self.entity.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",
@@ -1031,7 +1027,7 @@ class EditNewsTranslationViewTest(TestCase):
         )
         data = {
             "title": "Original title",
-            "thematics": [self.thematic.id],
+            "topics": [self.topic.id],
             "entities": [self.entity.id],
             "format": self.format.id,
             "author": "Lindsey Vonn",

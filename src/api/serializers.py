@@ -3,7 +3,7 @@ from drf_spectacular.utils import OpenApiExample, extend_schema_serializer
 from rest_framework import serializers
 
 from entities.models import Entity
-from thematics.models import Thematic
+from topics.models import Topic
 from translations.models import NewsTranslation
 
 
@@ -85,10 +85,10 @@ class EntitySerializer(LabelModelSerializer):
 
 
 @extend_schema_serializer(
-    component_name="Thematic",
+    component_name="Topic",
     examples=[
         OpenApiExample(
-            "Main thematic",
+            "Main topic",
             value={
                 "id": 1,
                 "label_fr": "Intelligence artificielle",
@@ -101,13 +101,13 @@ class EntitySerializer(LabelModelSerializer):
         ),
     ],
 )
-class ThematicSerializer(LabelModelSerializer):
+class TopicSerializer(LabelModelSerializer):
     class Meta(LabelModelSerializer.Meta):
-        model = Thematic
+        model = Topic
         extra_kwargs = {
-            "id": {"help_text": _("Unique identifier of the thematic.")},
+            "id": {"help_text": _("Unique identifier of the topic.")},
             "is_main": {
-                "help_text": _("Whether this thematic is marked as main.")
+                "help_text": _("Whether this topic is marked as main.")
             },
-            "order": {"help_text": _("Display order of the thematic.")},
+            "order": {"help_text": _("Display order of the topic.")},
         }

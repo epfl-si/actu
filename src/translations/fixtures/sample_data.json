@@ -194,7 +194,7 @@
     "fields": {
       "news": 7,
       "language": "en",
-      "title": "Standalone campus update (news with thematic only)",
+      "title": "Standalone campus update (news with topic only)",
       "status": "published",
       "created_at": "2026-08-04T10:00:00.000Z",
       "created_by": 1,

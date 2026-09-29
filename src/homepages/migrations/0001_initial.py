@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("entities", "0002_remove_entity_has_homepage"),
-        ("thematics", "0002_remove_thematic_has_homepage"),
+        ("topics", "0002_remove_thematic_has_homepage"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
@@ -49,14 +49,14 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "thematic",
+                    "topic",
                     models.OneToOneField(
                         blank=True,
                         null=True,
                         on_delete=django.db.models.deletion.CASCADE,
                         related_name="homepage",
-                        to="thematics.thematic",
-                        verbose_name="Thematic",
+                        to="topics.topic",
+                        verbose_name="Topic",
                     ),
                 ),
                 (
@@ -77,11 +77,11 @@ class Migration(migrations.Migration):
                         condition=models.Q(
                             models.Q(
                                 ("entity__isnull", False),
-                                ("thematic__isnull", True),
+                                ("topic__isnull", True),
                             ),
                             models.Q(
                                 ("entity__isnull", True),
-                                ("thematic__isnull", False),
+                                ("topic__isnull", False),
                             ),
                             _connector="OR",
                         ),

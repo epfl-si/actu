@@ -6,14 +6,14 @@ from django.utils.timezone import localtime, now
 
 from entities.models import Entity
 from homepages.models import Homepage, HomepageTranslation
-from thematics.models import Thematic
+from topics.models import Topic
 
 User = get_user_model()
 
 
 class HomepageModelTest(TestCase):
     def setUp(self):
-        self.thematic = Thematic.objects.create(
+        self.topic = Topic.objects.create(
             label_en="Artificial Intelligence",
             label_fr="Intelligence Artificielle",
         )
@@ -23,14 +23,12 @@ class HomepageModelTest(TestCase):
             label_fr="Sciences de Base",
         )
 
-    def test_create_homepage_with_thematic_only(self):
-        homepage = Homepage.objects.create(
-            slug="ai-home", thematic=self.thematic
-        )
+    def test_create_homepage_with_topic_only(self):
+        homepage = Homepage.objects.create(slug="ai-home", topic=self.topic)
 
         homepage.full_clean()
 
-        self.assertEqual(homepage.thematic, self.thematic)
+        self.assertEqual(homepage.topic, self.topic)
         self.assertIsNone(homepage.entity)
 
     def test_create_homepage_with_entity_only(self):
@@ -39,12 +37,12 @@ class HomepageModelTest(TestCase):
         homepage.full_clean()
 
         self.assertEqual(homepage.entity, self.entity)
-        self.assertIsNone(homepage.thematic)
+        self.assertIsNone(homepage.topic)
 
     def test_clean_raises_error_if_both_relations_are_set(self):
         homepage = Homepage(
             slug="invalid-home",
-            thematic=self.thematic,
+            topic=self.topic,
             entity=self.entity,
         )
 
@@ -75,7 +73,7 @@ class HomepageModelTest(TestCase):
         with self.assertRaises(IntegrityError):
             Homepage.objects.create(
                 slug="invalid-home",
-                thematic=self.thematic,
+                topic=self.topic,
                 entity=self.entity,
             )
 
@@ -93,13 +91,13 @@ class HomepageTranslationModelTest(TestCase):
             first_name="Franjo",
             last_name="Von Allmen",
         )
-        self.thematic = Thematic.objects.create(
+        self.topic = Topic.objects.create(
             label_en="AI",
             label_fr="IA",
         )
         self.homepage = Homepage.objects.create(
             slug="ai",
-            thematic=self.thematic,
+            topic=self.topic,
         )
         self.translation = HomepageTranslation.objects.create(
             homepage=self.homepage,

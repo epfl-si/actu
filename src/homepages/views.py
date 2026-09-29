@@ -163,9 +163,9 @@ def manage_homepages(request):
 
     homepages = (
         Homepage.objects.filter(users=request.user)
-        .select_related("thematic", "entity")
+        .select_related("topic", "entity")
         .prefetch_related(Prefetch("translations", queryset=translations_qs))
-        .order_by("thematic__order", "entity__order")
+        .order_by("topic__order", "entity__order")
     )
 
     languages = settings.LANGUAGES

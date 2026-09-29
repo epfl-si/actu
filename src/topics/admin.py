@@ -1,12 +1,12 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from .models import Thematic
+from .models import Topic
 
 
-@admin.register(Thematic)
-class ThematicAdmin(admin.ModelAdmin):
-    search_fields = Thematic.search_fields
+@admin.register(Topic)
+class TopicAdmin(admin.ModelAdmin):
+    search_fields = Topic.search_fields
 
     list_display = (
         "label_en",
@@ -33,4 +33,4 @@ class ThematicAdmin(admin.ModelAdmin):
 
     def delete_queryset(self, request, queryset):
         super().delete_queryset(request, queryset)
-        Thematic.reorder_everything()
+        Topic.reorder_everything()

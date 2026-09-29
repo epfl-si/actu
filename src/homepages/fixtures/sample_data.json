@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "slug": "AI",
-      "thematic": 1,
+      "topic": 1,
       "entity": null,
       "users": [
         1

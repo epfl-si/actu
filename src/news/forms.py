@@ -12,10 +12,10 @@ from .models import News
 class NewsForm(forms.ModelForm):
     class Meta:
         model = News
-        fields = ["thematics", "entities", "format"]
+        fields = ["topics", "entities", "format"]
         error_messages = {
-            "thematics": {
-                "required": _("A news must have at least one thematic."),
+            "topics": {
+                "required": _("A news must have at least one topic."),
             },
         }
 

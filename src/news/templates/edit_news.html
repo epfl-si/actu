@@ -76,8 +76,8 @@
             </div>
             <div class="form-group col-md-3">
               <span class="text-danger">*</span>
-              <label for="{{ form.news.thematics.id_for_label }}" class="{% if form.news.thematics.errors %}invalid-label{% endif %}">
-                {% trans "Thematics" %}
+              <label for="{{ form.news.topics.id_for_label }}" class="{% if form.news.topics.errors %}invalid-label{% endif %}">
+                {% trans "Topics" %}
               </label>
               <span class="float-right" title="{% trans "Common" %}">
               <svg class="icon feather" aria-hidden="true">
@@ -87,19 +87,19 @@
               <select
                 multiple
                 data-filter="True"
-                class="select-multiple {% if form.news.thematics.errors %}is-invalid{% endif %}"
-                name="thematics"
-                id="{{ form.news.thematics.id_for_label }}"
+                class="select-multiple {% if form.news.topics.errors %}is-invalid{% endif %}"
+                name="topics"
+                id="{{ form.news.topics.id_for_label }}"
               >
-                {% for thematic in thematics %}
-                <option class="" value="{{ thematic.id }}" {% if thematic.id in selected_thematic_ids %}selected{% endif %}>
-                  {{ thematic }}
+                {% for topic in topics %}
+                <option class="" value="{{ topic.id }}" {% if topic.id in selected_topic_ids %}selected{% endif %}>
+                  {{ topic }}
                 </option>
                 {% endfor %}
               </select>
-              {% if form.news.thematics.errors %}
+              {% if form.news.topics.errors %}
               <small class="form-text invalid-feedback">
-                {{ form.news.thematics.errors }}
+                {{ form.news.topics.errors }}
               </small>
               {% endif %}
             </div>

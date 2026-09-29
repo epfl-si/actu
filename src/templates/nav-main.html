@@ -5,9 +5,9 @@
   <div class="nav-wrapper">
     <div class="nav-container current-menu-parent">
       <ul class="nav-menu">
-        {% for thematic in main_thematics %}
-          <li id="menu-item-{{ thematic.id }}">
-            <a class="nav-item" href="#">{{ thematic }}</a>
+        {% for topic in main_topics %}
+          <li id="menu-item-{{ topic.id }}">
+            <a class="nav-item" href="#">{{ topic }}</a>
           </li>
         {% endfor %}
         <li class="menu-item-has-children">
@@ -19,9 +19,9 @@
                 {% trans "Others" %}
               </a>
             </li>
-            {% for thematic in other_thematics %}
+            {% for topic in other_topics %}
               <li>
-                <a href="#">{{ thematic }}</a>
+                <a href="#">{{ topic }}</a>
               </li>
             {% endfor %}
           </ul>

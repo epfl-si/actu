@@ -160,8 +160,7 @@
     ('nginx.restart' in ansible_run_tags)
     or
     ( (_nginx_configmap | default({})) is changed )
-  local_action:
-    module: shell
+  ansible.builtin.shell:
     cmd: "oc patch deployment/nginx --namespace {{ openshift_namespace }} --patch
       '{
           \"spec\": {
@@ -174,4 +173,5 @@
             }
           }
         }'"
+  delegate_to: localhost
   tags: nginx.restart

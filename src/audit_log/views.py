@@ -59,30 +59,46 @@ def _apply_filters(logs, filters):
 
 
 def _format_single_log(log):
-    changes_dict = log.details
+    raw_details = log.details if isinstance(log.details, dict) else {}
 
-    if not isinstance(changes_dict, dict):
-        changes_dict = {}
-
-    model_class = log.content_type.model_class()
+    model_class = log.content_type.model_class() if log.content_type else None
     target_table = (
         str(model_class._meta.verbose_name)
         if model_class
-        else log.content_type.model
+        else (log.content_type.model if log.content_type else _("Unknown"))
     )
 
+    changes_to_process = raw_details.get("changes", raw_details)
     translated_changes = {}
-    for field, values in changes_dict.items():
+
+    for field, values in changes_to_process.items():
+        if field == "changes":
+            continue
+
         field_name = field
         if model_class:
             try:
-                django_field = model_class._meta.get_field(field)
-                field_name = str(django_field.verbose_name)
+                field_name = str(
+                    model_class._meta.get_field(field).verbose_name
+                )
             except Exception:
                 pass
 
-        val_0 = _("Empty") if values[0] == "Empty" else values[0]
-        val_1 = _("Empty") if values[1] == "Empty" else values[1]
+        val_0, val_1 = "", ""
+        if (
+            log.action == "Edit"
+            and isinstance(values, list)
+            and len(values) == 2
+        ):
+            val_0, val_1 = values[0], values[1]
+        elif log.action == "Delete":
+            val_0 = values
+        else:
+            val_1 = values
+
+        val_0 = _("Empty") if val_0 == "Empty" else val_0
+        val_1 = _("Empty") if val_1 == "Empty" else val_1
+
         translated_changes[field_name] = [val_0, val_1]
 
     return {

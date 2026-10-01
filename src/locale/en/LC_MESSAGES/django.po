@@ -196,6 +196,9 @@ msgstr ""
 msgid "No result"
 msgstr ""
 
+msgid "Unknown"
+msgstr ""
+
 msgid "Empty"
 msgstr ""
 

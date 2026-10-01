@@ -1,3 +1,5 @@
+import json
+import os
 import socket
 from urllib.parse import urlparse
 
@@ -21,6 +23,8 @@ class PlaywrightTestCase(StaticLiveServerTestCase):
             cls.browser = cls.playwright.chromium.connect(
                 settings.REMOTE_PLAYWRIGHT_SERVER,
                 timeout=cls.PLAYWRIGHT_CONNECT_TIMEOUT,
+                headers=cls._get_connect_headers(),
+                slow_mo=cls._get_slow_mo(),
             )
         except Exception as exc:
             cls.playwright.stop()
@@ -59,6 +63,25 @@ class PlaywrightTestCase(StaticLiveServerTestCase):
         except ValueError:
             return False
         return hostname in ("localhost", "127.0.0.1", "::1")
+
+    @classmethod
+    def _get_connect_headers(cls):
+        """Build connect() headers from the environment.
+
+        With PLAYWRIGHT_HEADED set, the remote server launches a headed
+        browser, so the tests can be watched live on the host's display.
+        """
+        headers = {}
+        if os.getenv("PLAYWRIGHT_HEADED"):
+            headers["x-playwright-launch-options"] = json.dumps(
+                {"headless": False}
+            )
+        return headers
+
+    @staticmethod
+    def _get_slow_mo():
+        """Return the slow_mo for connect() from PLAYWRIGHT_SLOW_MO (ms)."""
+        return float(os.getenv("PLAYWRIGHT_SLOW_MO", "0") or 0)
 
     @classmethod
     def tearDownClass(cls):

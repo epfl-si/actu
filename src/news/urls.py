@@ -25,4 +25,24 @@ urlpatterns = [
         views.restore_news_translation,
         name="restore_news_translation",
     ),
+    path(
+        "news/preview/<slug:slug>/",
+        views.news_preview,
+        name="news_preview",
+    ),
+    path(
+        "news/<slug:slug>/",
+        views.news_detail,
+        name="news_detail",
+    ),
+    path(
+        "news/preview/<slug:slug>/publish/",
+        views.publish_news_translation,
+        name="publish_news_translation",
+    ),
+    path(
+        "news/preview/<slug:slug>/unpublish/",
+        views.unpublish_news_translation,
+        name="unpublish_news_translation",
+    ),
 ]

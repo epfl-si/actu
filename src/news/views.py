@@ -8,6 +8,7 @@ from django.db.models import Prefetch
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
@@ -390,3 +391,94 @@ def restore_news_translation(request, news_id, lang):
     messages.success(request, _("Translation restored successfully."))
 
     return redirect("manage_news")
+
+
+@login_required
+def news_preview(request, slug):
+    translation = get_object_or_404(
+        NewsTranslation.objects.select_related("news").prefetch_related(
+            "news__topics",
+            "news__entities",
+        ),
+        slug=slug,
+        status__in=[
+            NewsTranslation.Status.DRAFT,
+            NewsTranslation.Status.PUBLISHED,
+        ],
+    )
+
+    return render(
+        request,
+        "news_detail.html",
+        {
+            "translation": translation,
+            "is_preview": True,
+        },
+    )
+
+
+def news_detail(request, slug):
+    language = get_language()
+
+    translation = get_object_or_404(
+        NewsTranslation.objects.select_related("news").prefetch_related(
+            "news__topics",
+            "news__entities",
+        ),
+        slug=slug,
+        status=NewsTranslation.Status.PUBLISHED,
+    )
+
+    # Slug existe, but in another language
+    if translation.language != language:
+        translated = translation.news.translations.filter(
+            language=language,
+            status=NewsTranslation.Status.PUBLISHED,
+        ).first()
+
+        if translated:
+            return redirect(
+                "news_detail",
+                slug=translated.slug,
+            )
+
+    return render(
+        request,
+        "news_detail.html",
+        {
+            "translation": translation,
+        },
+    )
+
+
+@login_required
+def publish_news_translation(request, slug):
+    translation = get_object_or_404(
+        NewsTranslation,
+        slug=slug,
+        status=NewsTranslation.Status.DRAFT,
+    )
+
+    translation.status = NewsTranslation.Status.PUBLISHED
+    translation.published_at = timezone.now()
+    translation.save(update_fields=["status", "published_at", "updated_at"])
+
+    messages.success(request, _("The news has been published."))
+
+    return redirect("news_preview", slug=translation.slug)
+
+
+@login_required
+def unpublish_news_translation(request, slug):
+    translation = get_object_or_404(
+        NewsTranslation,
+        slug=slug,
+        status=NewsTranslation.Status.PUBLISHED,
+    )
+
+    translation.status = NewsTranslation.Status.DRAFT
+    translation.save(update_fields=["status", "updated_at"])
+
+    messages.success(request, _("The news has been unpublished."))
+
+    return redirect("news_preview", slug=translation.slug)

@@ -58,6 +58,8 @@
                 env:
                   - name: ACTU_DJANGO_EMAIL_BACKEND
                     value: "{{ django_email_backend }}"
+                  - name: ACTU_AUDIT_LOG_PATH
+                    value: "/audit"
                 resources:
                   requests:
                     cpu: 10m
@@ -76,6 +78,9 @@
                   - name: "web-volume"
                     mountPath: /public
                     subPath: public
+                  - name: "web-volume"
+                    mountPath: /audit
+                    subPath: audit
             volumes:
               - name: "web-volume"
                 persistentVolumeClaim:

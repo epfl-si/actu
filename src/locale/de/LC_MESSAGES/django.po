@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 14:42+0200\n"
+"POT-Creation-Date: 2026-10-01 10:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -189,6 +189,9 @@ msgstr "Keine Details"
 
 msgid "No result"
 msgstr "Kein Ergebnis"
+
+msgid "Unknown"
+msgstr "Unbekannt"
 
 msgid "Empty"
 msgstr "Leer"

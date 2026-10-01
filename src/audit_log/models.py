@@ -1,9 +1,52 @@
+import json
+import logging
+
 from django.contrib.contenttypes.models import ContentType
 from django.db import models, transaction
+from django.utils.timezone import now
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import override
 
-from .middleware import current_user
+from .middleware import current_request, current_user
+
+logger = logging.getLogger("opdo_audit")
+
+
+def _get_request_url():
+    request = current_request.get()
+    if request:
+        return request.build_absolute_uri()
+    return "system-background-task"
+
+
+def _write_audit_to_file(audit_log):
+    """Formats the GlobalAuditLog object in the format expected by OPDo"""
+
+    action_mapping = {
+        "Create": "c",
+        "Edit": "u",
+        "Delete": "d",
+    }
+    crudt_action = action_mapping.get(audit_log.action, "update")
+
+    timestamp = audit_log.created_at if audit_log.created_at else now()
+    iso_timestamp = timestamp.isoformat()
+
+    payload_dict = {
+        "object_name": str(audit_log.object_repr),
+        "details": audit_log.details,
+    }
+
+    log_data = {
+        "@timestamp": iso_timestamp,
+        "crudt": crudt_action,
+        "handled_id": _get_request_url(),
+        "handler_id": str(audit_log.user),
+        "source": "actu-opdo",
+        "payload": json.dumps(payload_dict),
+    }
+
+    logger.info(json.dumps(log_data))
 
 
 class AuditQuerySet(models.QuerySet):
@@ -21,8 +64,9 @@ class AuditQuerySet(models.QuerySet):
             current_state = obj._get_current_state()
 
             formatted_details = {
-                field: ["", _get_readable_value(obj.__class__, field, value)]
+                field: _get_readable_value(obj.__class__, field, value)
                 for field, value in current_state.items()
+                if value != "Empty"
             }
 
             logs.append(
@@ -37,6 +81,9 @@ class AuditQuerySet(models.QuerySet):
             )
 
         GlobalAuditLog.objects.bulk_create(logs)
+
+        for log in logs:
+            _write_audit_to_file(log)
 
         return created_objs
 
@@ -54,6 +101,13 @@ class AuditQuerySet(models.QuerySet):
             if not old_obj:
                 continue
 
+            current_state = obj._get_current_state()
+            full_state = {
+                k: _get_readable_value(obj.__class__, k, v)
+                for k, v in current_state.items()
+                if v != "Empty"
+            }
+
             changes = {}
             for field in fields:
                 old_val = str(getattr(old_obj, field, ""))
@@ -70,6 +124,7 @@ class AuditQuerySet(models.QuerySet):
 
             user_str = _get_user_str()
             if changes:
+                full_state["changes"] = changes
                 logs.append(
                     GlobalAuditLog(
                         content_type=ctype,
@@ -77,12 +132,15 @@ class AuditQuerySet(models.QuerySet):
                         object_repr=str(obj),
                         action="Edit",
                         user=user_str,
-                        details=changes,
+                        details=full_state,
                     )
                 )
 
         if logs:
             GlobalAuditLog.objects.bulk_create(logs)
+
+        for log in logs:
+            _write_audit_to_file(log)
 
         return super().bulk_update(objs, fields, batch_size=batch_size)
 
@@ -131,6 +189,10 @@ class GlobalAuditLog(models.Model):
     def __str__(self):
         return f"{self.created_at} - {self.content_type} ({self.object_id})"
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        _write_audit_to_file(self)
+
 
 class AuditModelMixin(models.Model):
     objects = AuditQuerySet.as_manager()
@@ -173,10 +235,9 @@ class AuditModelMixin(models.Model):
                     new_state = self._get_current_state()
                     for k, v in new_state.items():
                         if v != "Empty":
-                            readable_v = _get_readable_value(
+                            modifs[k] = _get_readable_value(
                                 self.__class__, k, v
                             )
-                            modifs[k] = ["", readable_v]
 
                     GlobalAuditLog.objects.create(
                         content_type=ctype,
@@ -190,6 +251,13 @@ class AuditModelMixin(models.Model):
             transaction.on_commit(make_create_log)
         else:
             new_state = self._get_current_state()
+
+            full_state = {
+                field: _get_readable_value(self.__class__, field, val)
+                for field, val in new_state.items()
+                if val != "Empty"
+            }
+
             modifs = {}
 
             for field, old_val in self._initial_state.items():
@@ -204,6 +272,7 @@ class AuditModelMixin(models.Model):
                     modifs[field] = [readable_old, readable_new]
 
             if modifs:
+                full_state["changes"] = modifs
 
                 def make_edit_log():
                     with override("en"):
@@ -213,7 +282,7 @@ class AuditModelMixin(models.Model):
                             object_repr=str(self),
                             action="Edit",
                             user=user_str,
-                            details=modifs,
+                            details=full_state,
                         )
 
                 transaction.on_commit(make_edit_log)

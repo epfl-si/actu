@@ -1,11 +1,13 @@
-from unittest.mock import patch
+import json
+from unittest.mock import Mock, patch
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.contrib.contenttypes.models import ContentType
 from django.test import TestCase
+from django.utils.translation import gettext_lazy as _
 
-from audit_log.models import GlobalAuditLog
+from audit_log.models import GlobalAuditLog, _write_audit_to_file
 from audit_log.signals import _get_m2m_field_name
 
 User = get_user_model()
@@ -56,7 +58,8 @@ class GlobalAuditLogTests(TestCase):
         log_edit = GlobalAuditLog.objects.filter(
             content_type=self.user_ctype, action="Edit", object_id=user.pk
         ).first()
-        self.assertIn("groups", log_edit.details)
+
+        self.assertIn("groups", log_edit.details.get("changes", {}))
 
     def test_audit_model_mixin_m2m_changed_normal(self):
         user = User.objects.create(username="m2m_normal", sciper="333333")
@@ -70,7 +73,7 @@ class GlobalAuditLogTests(TestCase):
         ).last()
 
         self.assertIsNotNone(log_edit)
-        self.assertIn("groups", log_edit.details)
+        self.assertIn("groups", log_edit.details.get("changes", {}))
 
     def test_audit_m2m_changed_reverse(self):
         user = User.objects.create(username="m2m_reverse", sciper="444444")
@@ -84,7 +87,7 @@ class GlobalAuditLogTests(TestCase):
         ).last()
 
         self.assertIsNotNone(log_edit)
-        self.assertIn("groups", log_edit.details)
+        self.assertIn("groups", log_edit.details.get("changes", {}))
 
     def test_audit_model_mixin_delete(self):
         user = User.objects.create(username="delete_test", sciper="555555")
@@ -110,9 +113,9 @@ class GlobalAuditLogTests(TestCase):
         self.assertEqual(logs.count(), 3)
 
         first_log_details = logs.first().details
-        self.assertIsInstance(first_log_details["username"], list)
-        self.assertEqual(len(first_log_details["username"]), 2)
-        self.assertEqual(first_log_details["username"][0], "")
+
+        self.assertIsInstance(first_log_details["username"], str)
+        self.assertTrue(first_log_details["username"].startswith("bulk_c_"))
 
     def test_audit_model_bulk_update(self):
         u1 = User.objects.create(username="old_u1", sciper="777771")
@@ -127,10 +130,10 @@ class GlobalAuditLogTests(TestCase):
         )
         self.assertEqual(logs.count(), 2)
 
-        first_log_details = logs[1].details
-        self.assertEqual(len(first_log_details["sciper"]), 2)
-        self.assertEqual(first_log_details["sciper"][0], "777771")
-        self.assertEqual(first_log_details["sciper"][1], "888881")
+        changes = logs[1].details.get("changes", {})
+        self.assertEqual(len(changes["sciper"]), 2)
+        self.assertEqual(changes["sciper"][0], "777771")
+        self.assertEqual(changes["sciper"][1], "888881")
 
     def test_audit_model_bulk_delete(self):
         User.objects.create(username="del_1", sciper="999991")
@@ -158,4 +161,52 @@ class GlobalAuditLogTests(TestCase):
         ).first()
 
         self.assertIsNotNone(log)
-        self.assertEqual(log.details["sciper"][1], "12341234")
+        self.assertEqual(log.details["sciper"], "12341234")
+
+    @patch("audit_log.models.logger.info")
+    def test_write_audit_to_file_edge_cases(self, mock_logger):
+        with self.captureOnCommitCallbacks(execute=True):
+            User.objects.create(username="opdo_user", sciper="777888")
+
+        self.assertTrue(mock_logger.called)
+
+        log_json_string = mock_logger.call_args[0][0]
+        log_data = json.loads(log_json_string)
+
+        self.assertIn("@timestamp", log_data)
+        self.assertEqual(log_data["crudt"], "c")
+        self.assertEqual(log_data["source"], "actu-opdo")
+        self.assertEqual(log_data["handler_id"], "System")
+
+        self.assertTrue(
+            log_data["handled_id"].startswith("http://testserver/")
+        )
+
+        payload = json.loads(log_data["payload"])
+        self.assertIn("object_name", payload)
+        self.assertEqual(payload["details"]["username"], "opdo_user")
+
+    @patch("audit_log.models.logger.info")
+    def test_write_audit_to_file_cleaning_and_lazy_text(self, mock_logger):
+        mock_log = Mock()
+        mock_log.content_type = "Thematics | Thematic"
+        mock_log.object_id = "42"
+        mock_log.object_repr = "Lazy Title"
+        mock_log.action = "Delete"
+        mock_log.user = _("System")
+        mock_log.details = {"foo": "bar"}
+        mock_log.created_at = None
+
+        _write_audit_to_file(mock_log)
+
+        log_json_string = mock_logger.call_args[0][0]
+        log_data = json.loads(log_json_string)
+
+        self.assertEqual(log_data["crudt"], "d")
+        self.assertTrue(
+            log_data["handled_id"].startswith("http://testserver/")
+        )
+        self.assertEqual(log_data["handler_id"], "System")
+
+        payload = json.loads(log_data["payload"])
+        self.assertEqual(payload["object_name"], "Lazy Title")

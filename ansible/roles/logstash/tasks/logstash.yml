@@ -1,0 +1,92 @@
+- name: ConfigMap/LogStash-pipeline-conf
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: logstash-audit-logs-pipeline-conf
+        namespace: "{{ openshift_namespace }}"
+      data:
+        audit-logs-to-security.conf: "{{ lookup('template', 'audit-logs-to-security.conf.j2') }}"
+
+- name: ConfigMap/LogStash-pipelines-yml
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: logstash-configs-yml
+        namespace: "{{ openshift_namespace }}"
+      data:
+        logstash.yml: |
+          pipeline:
+            batch:
+              size: ${BATCH_SIZE:125}
+              delay: ${BATCH_DELAY:50}
+          node:
+            name: "logstash-actu"
+        pipelines.yml: |
+          - pipeline.id: audit-logs-to-security
+            path.config: "/etc/logstash/conf.d/audit-logs-to-security.conf"
+
+- name: StatefulSet/LogStash
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: apps/v1
+      kind: StatefulSet
+      metadata:
+        name: logstash-actu
+        namespace: "{{ openshift_namespace }}"
+      spec:
+        selector:
+          matchLabels:
+            app: logstash
+        replicas: 1
+        template:
+          metadata:
+            labels:
+              app: logstash
+          spec:
+            terminationGracePeriodSeconds: 0
+            containers:
+              - name: logstash
+                image: docker.elastic.co/logstash/logstash:9.2.1
+                resources:
+                  limits:
+                    memory: "700Mi"
+                  requests:
+                    cpu: 10m
+                    memory: "700Mi"
+                ports:
+                  - containerPort: 9600
+                    name: monitoring
+                volumeMounts:
+                  - name: opdo-ca
+                    mountPath: /usr/local/share/ca-certificates
+                  - name: audit
+                    mountPath: /audit
+                    subPath : audit
+                  - name: audit-logs-pipeline-conf
+                    mountPath: /etc/logstash/conf.d
+                  - name: configs-yml
+                    mountPath: /usr/share/logstash/config
+                envFrom:
+                  - secretRef:
+                      name: opdo-logstash
+
+            volumes:
+              - name: audit
+                persistentVolumeClaim:
+                  claimName: actu
+              - name: opdo-ca
+                configMap:
+                  name: opdo-ca
+              - name: audit-logs-pipeline-conf
+                configMap:
+                  name: logstash-audit-logs-pipeline-conf
+              - name: configs-yml
+                configMap:
+                  name: logstash-configs-yml

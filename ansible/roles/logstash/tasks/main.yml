@@ -1,0 +1,7 @@
+- name: Serving LogStash Secrets
+  include_tasks:
+    file: secrets.yml
+
+- name: LogStash
+  include_tasks:
+    file: logstash.yml

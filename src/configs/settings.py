@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 import sys
+from datetime import datetime
 from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
@@ -289,3 +290,39 @@ def show_debug_toolbar(request):
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": show_debug_toolbar,
 }
+
+AUDIT_LOG_FOLDER = os.getenv("ACTU_AUDIT_LOG_PATH", str(BASE_DIR))
+
+date = datetime.now().strftime("%Y-%m-%d")
+file_name = f"actu-audit-{date}.jsonl"
+
+AUDIT_LOG_FILE_PATH = os.path.join(AUDIT_LOG_FOLDER, file_name)
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "json_raw": {
+            "format": "%(message)s",
+        },
+    },
+    "handlers": {
+        "opdo_file": {
+            "level": "INFO",
+            "class": "logging.handlers.WatchedFileHandler",
+            "filename": AUDIT_LOG_FILE_PATH,
+            "formatter": "json_raw",
+        },
+    },
+    "loggers": {
+        "opdo_audit": {
+            "handlers": ["opdo_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}
+
+if "test" in sys.argv or "pytest" in sys.modules:
+    LOGGING["handlers"]["opdo_file"]["class"] = "logging.NullHandler"
+    LOGGING["handlers"]["opdo_file"].pop("filename", None)

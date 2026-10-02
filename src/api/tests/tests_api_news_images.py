@@ -116,7 +116,7 @@ class NewsImagesAPITests(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_image_files_are_cleaned_up_after_tests(self):
+    def test_image_file_exists_after_creation(self):
         news_image = NewsImage.objects.create(
             news=self.news,
             image=_create_image_file("cleanup.jpg"),

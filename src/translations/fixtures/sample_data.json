@@ -272,5 +272,93 @@
       "translation": 10,
       "url": "https://infoscience.epfl.ch/search?configuration=schoolsAndColleges"
     }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 5,
+    "fields": {
+      "translation": 3,
+      "url": "https://www.epfl.ch/innovation/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 6,
+    "fields": {
+      "translation": 4,
+      "url": "https://www.epfl.ch/education/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 7,
+    "fields": {
+      "translation": 5,
+      "url": "https://www.epfl.ch/about/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 8,
+    "fields": {
+      "translation": 11,
+      "url": "https://www.epfl.ch/campus/en/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 9,
+    "fields": {
+      "translation": 7,
+      "url": "https://www.epfl.ch/education/continuing-education/en/continuing-education/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 10,
+    "fields": {
+      "translation": 8,
+      "url": "https://www.epfl.ch/education/educational-initiatives/en/educational-initiatives/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 11,
+    "fields": {
+      "translation": 9,
+      "url": "https://www.epfl.ch/education/education-and-science-outreach/en/education-and-science-outreach/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 12,
+    "fields": {
+      "translation": 1,
+      "url": "https://www.epfl.ch/education/programme-shs/en/social-sciences-and-humanities-shs-program/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 13,
+    "fields": {
+      "translation": 2,
+      "url": "https://www.epfl.ch/education/studies/en/rules-and-procedures/academic-calendar/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 14,
+    "fields": {
+      "translation": 6,
+      "url": "https://www.epfl.ch/education/studies/en/support-and-health/special-study-arrangements/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 15,
+    "fields": {
+      "translation": 10,
+      "url": "https://www.epfl.ch/about/overview/regulations-and-guidelines/disclaimer/"
+    }
   }
 ]

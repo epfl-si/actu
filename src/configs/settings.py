@@ -287,6 +287,8 @@ DEBUG_TOOLBAR_CONFIG = {
 
 AUDIT_LOG_FOLDER = os.getenv("ACTU_AUDIT_LOG_PATH", str(BASE_DIR))
 
+os.makedirs(AUDIT_LOG_FOLDER, exist_ok=True)
+
 date = datetime.now().strftime("%Y-%m-%d")
 file_name = f"actu-audit-{date}.jsonl"
 

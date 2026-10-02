@@ -204,6 +204,10 @@ def _initialize_form_and_render_view(request, lang, news_id=None):
         "selected_topic_ids": selected_topic_ids,
         "selected_entity_ids": selected_entity_ids,
         "selected_format_id": selected_format_id,
+        "news_blocks_editor_props": {
+            "newsId": news.pk if news else None,
+            "language": lang,
+        },
     }
     return render(request, "edit_news.html", context)
 

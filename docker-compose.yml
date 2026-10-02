@@ -4,6 +4,7 @@ services:
     container_name: prod-nginx-actu
     volumes:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./public/uploads:/public/uploads
       - static:/public/static
     ports:
       - "80:8080"
@@ -33,6 +34,7 @@ services:
       - ACTU_API_PASSWORD=${ACTU_API_PASSWORD}
       - ACTU_API_RIGHT_ID=${ACTU_API_RIGHT_ID}
     volumes:
+      - ./public/uploads:/public/uploads
       - static:/public/static
     healthcheck:
       test: [

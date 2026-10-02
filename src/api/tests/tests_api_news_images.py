@@ -28,7 +28,6 @@ def _create_image_file(name="test.jpg"):
     return SimpleUploadedFile(name, buffer.read(), content_type="image/jpeg")
 
 
-@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
 class NewsImagesAPITests(TestCase):
 
     @classmethod

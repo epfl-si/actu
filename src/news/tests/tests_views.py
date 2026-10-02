@@ -1049,3 +1049,320 @@ class EditNewsTranslationViewTest(TestCase):
             set(self.translation.urls.values_list("url", flat=True)),
             {"https://example.com"},
         )
+
+
+class PreviewNewsTranslationViewTest(TestCase):
+
+    def setUp(self):
+        self.user = User.objects.create_user(
+            username="bentoumi",
+            sciper="99999999",
+        )
+        self.format = NewsFormat.objects.create(label_en="Article")
+        self.topic = Topic.objects.create(label_en="Research")
+
+    def _create_news(self):
+        news = News.objects.create(
+            created_by=self.user,
+            format=self.format,
+        )
+        news.topics.add(self.topic)
+        return news
+
+    def _create_translation(
+        self,
+        news,
+        language="en",
+        status=NewsTranslation.Status.DRAFT,
+        **kwargs,
+    ):
+        return NewsTranslation.objects.create(
+            news=news,
+            language=language,
+            title=f"Test news {language}",
+            status=status,
+            created_by=self.user,
+            **kwargs,
+        )
+
+    def test_news_preview_displays_draft(self):
+        news = self._create_news()
+        translation = self._create_translation(
+            news,
+            language="en",
+            status=NewsTranslation.Status.DRAFT,
+        )
+
+        self.client.force_login(self.user)
+
+        response = self.client.get(
+            reverse(
+                "news_preview",
+                kwargs={"slug": translation.slug},
+            )
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "news_detail.html")
+        self.assertEqual(
+            response.context["translation"],
+            translation,
+        )
+        self.assertTrue(response.context["is_preview"])
+
+    def test_news_preview_displays_published_translation(self):
+        news = self._create_news()
+        translation = self._create_translation(
+            news,
+            language="en",
+            status=NewsTranslation.Status.PUBLISHED,
+            published_at=timezone.now(),
+        )
+
+        self.client.force_login(self.user)
+
+        response = self.client.get(
+            reverse(
+                "news_preview",
+                kwargs={"slug": translation.slug},
+            )
+        )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "news_detail.html")
+        self.assertEqual(
+            response.context["translation"],
+            translation,
+        )
+        self.assertTrue(response.context["is_preview"])
+
+    def test_news_detail_displays_published_translation(self):
+        news = self._create_news()
+        translation = self._create_translation(
+            news,
+            language="en",
+            status=NewsTranslation.Status.PUBLISHED,
+            published_at=timezone.now(),
+        )
+
+        with override("en"):
+            response = self.client.get(
+                reverse(
+                    "news_detail",
+                    kwargs={"slug": translation.slug},
+                )
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "news_detail.html")
+        self.assertEqual(
+            response.context["translation"],
+            translation,
+        )
+
+    def test_news_detail_does_not_display_draft(self):
+        news = self._create_news()
+        translation = self._create_translation(
+            news,
+            language="en",
+            status=NewsTranslation.Status.DRAFT,
+        )
+
+        response = self.client.get(
+            reverse(
+                "news_detail",
+                kwargs={"slug": translation.slug},
+            )
+        )
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_news_detail_redirects_to_current_language_translation(self):
+        news = self._create_news()
+
+        fr_translation = self._create_translation(
+            news,
+            language="fr",
+            status=NewsTranslation.Status.PUBLISHED,
+            published_at=timezone.now(),
+        )
+
+        en_translation = self._create_translation(
+            news,
+            language="en",
+            status=NewsTranslation.Status.PUBLISHED,
+            published_at=timezone.now(),
+        )
+
+        with override("en"):
+            response = self.client.get(
+                reverse(
+                    "news_detail",
+                    kwargs={"slug": fr_translation.slug},
+                )
+            )
+
+        self.assertRedirects(
+            response,
+            reverse(
+                "news_detail",
+                kwargs={"slug": en_translation.slug},
+            ),
+        )
+
+    def test_news_detail_keeps_translation_when_current_language_is_unavailable(
+        self,
+    ):
+        news = self._create_news()
+
+        fr_translation = self._create_translation(
+            news,
+            language="fr",
+            status=NewsTranslation.Status.PUBLISHED,
+            published_at=timezone.now(),
+        )
+
+        self._create_translation(
+            news,
+            language="en",
+            status=NewsTranslation.Status.DRAFT,
+        )
+
+        with override("en"):
+            response = self.client.get(
+                reverse(
+                    "news_detail",
+                    kwargs={"slug": fr_translation.slug},
+                )
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(
+            response.context["translation"],
+            fr_translation,
+        )
+
+    def test_publish_news_translation_publishes_draft(self):
+        news = self._create_news()
+
+        translation = self._create_translation(
+            news,
+            language="en",
+            status=NewsTranslation.Status.DRAFT,
+        )
+
+        self.client.force_login(self.user)
+
+        before = timezone.now()
+
+        response = self.client.post(
+            reverse(
+                "publish_news_translation",
+                kwargs={"slug": translation.slug},
+            )
+        )
+
+        after = timezone.now()
+
+        translation.refresh_from_db()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(
+            response,
+            reverse(
+                "news_preview",
+                kwargs={"slug": translation.slug},
+            ),
+        )
+
+        self.assertEqual(
+            translation.status,
+            NewsTranslation.Status.PUBLISHED,
+        )
+        self.assertIsNotNone(translation.published_at)
+        self.assertGreaterEqual(translation.published_at, before)
+        self.assertLessEqual(translation.published_at, after)
+
+    def test_publish_news_translation_does_not_publish_published_translation(self):
+        news = self._create_news()
+
+        translation = self._create_translation(
+            news,
+            language="en",
+            status=NewsTranslation.Status.PUBLISHED,
+            published_at=timezone.now(),
+        )
+
+        self.client.force_login(self.user)
+
+        response = self.client.post(
+            reverse(
+                "publish_news_translation",
+                kwargs={"slug": translation.slug},
+            )
+        )
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_unpublish_news_translation_changes_published_to_draft(self):
+        news = self._create_news()
+
+        published_at = timezone.now()
+
+        translation = self._create_translation(
+            news,
+            language="en",
+            status=NewsTranslation.Status.PUBLISHED,
+            published_at=published_at,
+        )
+
+        self.client.force_login(self.user)
+
+        response = self.client.post(
+            reverse(
+                "unpublish_news_translation",
+                kwargs={"slug": translation.slug},
+            )
+        )
+
+        translation.refresh_from_db()
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(
+            response,
+            reverse(
+                "news_preview",
+                kwargs={"slug": translation.slug},
+            ),
+        )
+
+        self.assertEqual(
+            translation.status,
+            NewsTranslation.Status.DRAFT,
+        )
+
+        # La date de publication est conservée.
+        self.assertEqual(
+            translation.published_at,
+            published_at,
+        )
+
+    def test_unpublish_news_translation_does_not_unpublish_draft(self):
+        news = self._create_news()
+
+        translation = self._create_translation(
+            news,
+            language="en",
+            status=NewsTranslation.Status.DRAFT,
+        )
+
+        self.client.force_login(self.user)
+
+        response = self.client.post(
+            reverse(
+                "unpublish_news_translation",
+                kwargs={"slug": translation.slug},
+            )
+        )
+
+        self.assertEqual(response.status_code, 404)

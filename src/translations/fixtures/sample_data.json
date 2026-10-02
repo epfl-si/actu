@@ -6,6 +6,7 @@
       "news": 1,
       "language": "en",
       "title": "AI advances in life sciences (published AI news)",
+      "slug": "ai-advances-in-life-sciences",
       "status": "published",
       "created_at": "2026-08-10T13:18:43.943Z",
       "created_by": 1,
@@ -27,6 +28,7 @@
       "news": 2,
       "language": "fr",
       "title": "Percée énergétique en sciences de base (published energy news in French)",
+      "slug": "percee-energetique-en-sciences-de-base",
       "status": "published",
       "created_at": "2026-08-09T10:00:00.000Z",
       "created_by": 1,
@@ -48,6 +50,7 @@
       "news": 3,
       "language": "en",
       "title": "AI draft discovery (draft news)",
+      "slug": "ai-draft-discovery",
       "status": "draft",
       "created_at": "2026-08-08T10:00:00.000Z",
       "created_by": 1,
@@ -69,6 +72,7 @@
       "news": 4,
       "language": "en",
       "title": "AI old discovery (archived news)",
+      "slug": "ai-old-discovery",
       "status": "archived",
       "created_at": "2026-08-07T10:00:00.000Z",
       "created_by": 1,
@@ -90,6 +94,7 @@
       "news": 5,
       "language": "en",
       "title": "AI pending release (published status)",
+      "slug": "ai-pending-release",
       "status": "published",
       "created_at": "2026-08-06T10:00:00.000Z",
       "created_by": 1,
@@ -111,6 +116,7 @@
       "news": 6,
       "language": "en",
       "title": "Health research at DCSL (multilingual news)",
+      "slug": "health-research-at-dcsl",
       "status": "published",
       "created_at": "2026-08-05T10:00:00.000Z",
       "created_by": 1,
@@ -132,6 +138,7 @@
       "news": 6,
       "language": "fr",
       "title": "Recherche santé au DCSL (multilingual news)",
+      "slug": "recherche-sante-au-dcsl",
       "status": "published",
       "created_at": "2026-08-05T10:00:00.000Z",
       "created_by": 1,
@@ -153,6 +160,7 @@
       "news": 6,
       "language": "de",
       "title": "Gesundheitsforschung am DCSL (multilingual news)",
+      "slug": "gesundheitsforschung-am-dcsl",
       "status": "published",
       "created_at": "2026-08-05T10:00:00.000Z",
       "created_by": 1,
@@ -174,6 +182,7 @@
       "news": 6,
       "language": "it",
       "title": "Ricerca sanitaria al DCSL (multilingual news)",
+      "slug": "ricerca-sanitaria-al-dcsl",
       "status": "published",
       "created_at": "2026-08-05T10:00:00.000Z",
       "created_by": 1,
@@ -195,6 +204,7 @@
       "news": 7,
       "language": "en",
       "title": "Standalone campus update (news with topic only)",
+      "slug": "standalone-campus-update",
       "status": "published",
       "created_at": "2026-08-04T10:00:00.000Z",
       "created_by": 1,
@@ -216,6 +226,7 @@
       "news": 8,
       "language": "en",
       "title": "Energy policy update (search test news)",
+      "slug": "energy-policy-update",
       "status": "published",
       "created_at": "2026-08-03T10:00:00.000Z",
       "created_by": 1,
@@ -228,6 +239,126 @@
       "extract": null,
       "funding": null,
       "references": ""
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 1,
+    "fields": {
+      "translation": 1,
+      "url": "https://infoscience.epfl.ch/search?configuration=researchCentersAndPlatforms"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 2,
+    "fields": {
+      "translation": 2,
+      "url": "https://infoscience.epfl.ch/search?configuration=sections"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 3,
+    "fields": {
+      "translation": 6,
+      "url": "https://infoscience.epfl.ch/search?configuration=doctoralSchools"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 4,
+    "fields": {
+      "translation": 10,
+      "url": "https://infoscience.epfl.ch/search?configuration=schoolsAndColleges"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 5,
+    "fields": {
+      "translation": 3,
+      "url": "https://www.epfl.ch/innovation/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 6,
+    "fields": {
+      "translation": 4,
+      "url": "https://www.epfl.ch/education/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 7,
+    "fields": {
+      "translation": 5,
+      "url": "https://www.epfl.ch/about/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 8,
+    "fields": {
+      "translation": 11,
+      "url": "https://www.epfl.ch/campus/en/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 9,
+    "fields": {
+      "translation": 7,
+      "url": "https://www.epfl.ch/education/continuing-education/en/continuing-education/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 10,
+    "fields": {
+      "translation": 8,
+      "url": "https://www.epfl.ch/education/educational-initiatives/en/educational-initiatives/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 11,
+    "fields": {
+      "translation": 9,
+      "url": "https://www.epfl.ch/education/education-and-science-outreach/en/education-and-science-outreach/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 12,
+    "fields": {
+      "translation": 1,
+      "url": "https://www.epfl.ch/education/programme-shs/en/social-sciences-and-humanities-shs-program/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 13,
+    "fields": {
+      "translation": 2,
+      "url": "https://www.epfl.ch/education/studies/en/rules-and-procedures/academic-calendar/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 14,
+    "fields": {
+      "translation": 6,
+      "url": "https://www.epfl.ch/education/studies/en/support-and-health/special-study-arrangements/"
+    }
+  },
+  {
+    "model": "translations.newsurl",
+    "pk": 15,
+    "fields": {
+      "translation": 10,
+      "url": "https://www.epfl.ch/about/overview/regulations-and-guidelines/disclaimer/"
     }
   }
 ]

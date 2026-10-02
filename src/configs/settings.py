@@ -258,6 +258,12 @@ SPECTACULAR_SETTINGS = {
 }
 
 
+# WebSocket URL of the Playwright server. When set, tests connect to a remote
+# browser (used in Docker/CI and, if the user want,
+# on a local or remote server).
+REMOTE_PLAYWRIGHT_SERVER = os.getenv("REMOTE_PLAYWRIGHT_SERVER", "")
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 

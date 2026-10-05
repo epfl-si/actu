@@ -163,14 +163,14 @@ db-seed:
 		"python src/manage.py loaddata sample_data"
 
 .PHONY: coverage
-coverage:
+coverage: assets-build
 	@docker exec -it --user root local-django-actu bash -c \
 		"DJANGO_SETTINGS_MODULE='configs.ci' coverage run src/manage.py test"
 	@docker exec -it --user root local-django-actu bash -c \
 		"coverage report"
 
 .PHONY: coverage-html
-coverage-html:
+coverage-html: assets-build
 	@docker exec -it --user root local-django-actu bash -c \
 		"DJANGO_SETTINGS_MODULE='configs.ci' coverage run src/manage.py test"
 	@docker exec -it --user root local-django-actu bash -c \

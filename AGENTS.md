@@ -52,9 +52,10 @@ organized by reader's need, not project structure. Start from [docs/index.md](do
 
 - One topic per page, kebab-case filenames (e.g. `debug-on-intellij.md`).
 - Keep commands consistent with the Makefile; link, don't copy whole command lists.
-- If a change makes an existing doc stale, update it in the same change
-  (e.g. new test env var → `docs/how-to/run-playwright-tests.md`).
-- Add a new page when introducing a non-obvious workflow, tool, or env var.
+- If a change makes an existing doc stale, suggest the update to the user instead of
+  doing it unasked (e.g. new test env var → `docs/how-to/run-playwright-tests.md`).
+- When introducing a non-obvious workflow, tool, or env var, suggest a new page;
+  write it only if the user confirms.
 - Don't duplicate AGENTS.md content: AGENTS.md is agent-oriented (rules, gotchas);
   `docs/` is human-oriented.
 

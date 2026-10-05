@@ -79,6 +79,13 @@ organized by reader's need, not project structure. Start from [docs/index.md](do
   - Docs: https://epfl-si.github.io/elements/#/
   - Repo: https://github.com/epfl-si/elements
 - Introduce custom CSS/JS only if not available within Elements.
+- React may be used, but keep it for highly interactive user experiences (e.g. the block
+  editor) — it needs intense API interaction and may shadow Django features, like 
+  Forms. So don't use it for simple screens.
+- React ships as small islands inside Django templates, not an SPA: components
+  live in `src/assets/components/<feature>/`, island entries in
+  `src/assets/pages/<page-dir>/`; TypeScript is recommended. Recipe:
+  [docs/how-to/add-react-to-a-page.md](docs/how-to/add-react-to-a-page.md).
 - Assets (SCSS/JS) live in `src/assets/`, built with Vite.
 
 ## Git

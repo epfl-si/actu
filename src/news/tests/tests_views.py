@@ -1088,7 +1088,7 @@ class PreviewNewsTranslationViewTest(TestCase):
     def test_news_preview_displays_draft(self):
         news = self._create_news()
         translation = self._create_translation(
-            news,
+            news=news,
             language="en",
             status=NewsTranslation.Status.DRAFT,
         )
@@ -1110,7 +1110,7 @@ class PreviewNewsTranslationViewTest(TestCase):
     def test_news_preview_displays_published_translation(self):
         news = self._create_news()
         translation = self._create_translation(
-            news,
+            news=news,
             language="en",
             status=NewsTranslation.Status.PUBLISHED,
             published_at=timezone.now(),
@@ -1133,7 +1133,7 @@ class PreviewNewsTranslationViewTest(TestCase):
     def test_news_detail_displays_published_translation(self):
         news = self._create_news()
         translation = self._create_translation(
-            news,
+            news=news,
             language="en",
             status=NewsTranslation.Status.PUBLISHED,
             published_at=timezone.now(),
@@ -1154,7 +1154,7 @@ class PreviewNewsTranslationViewTest(TestCase):
     def test_news_detail_does_not_display_draft(self):
         news = self._create_news()
         translation = self._create_translation(
-            news,
+            news=news,
             language="en",
             status=NewsTranslation.Status.DRAFT,
         )
@@ -1172,14 +1172,14 @@ class PreviewNewsTranslationViewTest(TestCase):
         news = self._create_news()
 
         fr_translation = self._create_translation(
-            news,
+            news=news,
             language="fr",
             status=NewsTranslation.Status.PUBLISHED,
             published_at=timezone.now(),
         )
 
         en_translation = self._create_translation(
-            news,
+            news=news,
             language="en",
             status=NewsTranslation.Status.PUBLISHED,
             published_at=timezone.now(),
@@ -1201,18 +1201,20 @@ class PreviewNewsTranslationViewTest(TestCase):
             ),
         )
 
-    def test_news_detail_keeps_translation_when_current_language_is_unavailable(self):
+    def test_news_detail_keeps_transl_when_current_language_is_unavailable(
+        self,
+    ):
         news = self._create_news()
 
         fr_translation = self._create_translation(
-            news,
+            news=news,
             language="fr",
             status=NewsTranslation.Status.PUBLISHED,
             published_at=timezone.now(),
         )
 
         self._create_translation(
-            news,
+            news=news,
             language="en",
             status=NewsTranslation.Status.DRAFT,
         )
@@ -1232,7 +1234,7 @@ class PreviewNewsTranslationViewTest(TestCase):
         news = self._create_news()
 
         translation = self._create_translation(
-            news,
+            news=news,
             language="en",
             status=NewsTranslation.Status.DRAFT,
         )
@@ -1266,11 +1268,13 @@ class PreviewNewsTranslationViewTest(TestCase):
         self.assertGreaterEqual(translation.published_at, before)
         self.assertLessEqual(translation.published_at, after)
 
-    def test_publish_news_translation_does_not_publish_published_translation(self):
+    def test_publish_news_translation_does_not_publish_published_translation(
+        self,
+    ):
         news = self._create_news()
 
         translation = self._create_translation(
-            news,
+            news=news,
             language="en",
             status=NewsTranslation.Status.PUBLISHED,
             published_at=timezone.now(),
@@ -1293,7 +1297,7 @@ class PreviewNewsTranslationViewTest(TestCase):
         published_at = timezone.now()
 
         translation = self._create_translation(
-            news,
+            news=news,
             language="en",
             status=NewsTranslation.Status.PUBLISHED,
             published_at=published_at,
@@ -1326,7 +1330,7 @@ class PreviewNewsTranslationViewTest(TestCase):
         news = self._create_news()
 
         translation = self._create_translation(
-            news,
+            news=news,
             language="en",
             status=NewsTranslation.Status.DRAFT,
         )

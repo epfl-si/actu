@@ -19,6 +19,9 @@ Site languages: French, English, German, Italian.
 - `NewsTranslation` = language-specific fields (one per language, unique per `(news, language)`).
 - Publication status belongs to `NewsTranslation`, never `News`.
 - A translation can be published independently of the other languages.
+- News pages need a good SEO score and are cached — keep the
+  public frontoffice server-rendered; dynamic client content like React is not
+  welcome there.
 
 ## URL structure — frequent source of confusion
 

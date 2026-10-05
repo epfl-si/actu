@@ -291,14 +291,25 @@ DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": show_debug_toolbar,
 }
 
-AUDIT_LOG_FOLDER = os.getenv("ACTU_AUDIT_LOG_PATH", str(BASE_DIR))
+AUDIT_LOG_FOLDER = os.getenv("ACTU_AUDIT_LOG_PATH")
 
-os.makedirs(AUDIT_LOG_FOLDER, exist_ok=True)
+if AUDIT_LOG_FOLDER:
+    os.makedirs(AUDIT_LOG_FOLDER, exist_ok=True)
+    date = datetime.now().strftime("%Y-%m-%d")
+    file_name = f"actu-audit-{date}.jsonl"
+    AUDIT_LOG_FILE_PATH = os.path.join(AUDIT_LOG_FOLDER, file_name)
 
-date = datetime.now().strftime("%Y-%m-%d")
-file_name = f"actu-audit-{date}.jsonl"
-
-AUDIT_LOG_FILE_PATH = os.path.join(AUDIT_LOG_FOLDER, file_name)
+    handler_config = {
+        "level": "INFO",
+        "class": "logging.FileHandler",
+        "filename": AUDIT_LOG_FILE_PATH,
+        "formatter": "json_raw",
+    }
+else:
+    handler_config = {
+        "level": "INFO",
+        "class": "logging.NullHandler",
+    }
 
 LOGGING = {
     "version": 1,
@@ -309,12 +320,7 @@ LOGGING = {
         },
     },
     "handlers": {
-        "opdo_file": {
-            "level": "INFO",
-            "class": "logging.handlers.WatchedFileHandler",
-            "filename": AUDIT_LOG_FILE_PATH,
-            "formatter": "json_raw",
-        },
+        "opdo_file": handler_config,
     },
     "loggers": {
         "opdo_audit": {

@@ -4,6 +4,17 @@ Context for an AI agent (Claude Code, OpenCode, etc.) working on this project. I
 
 For exact commands, read the `Makefile` directly rather than trusting a stale copy here. For human-oriented setup/release instructions, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
+## Communication
+
+- Reply in the language the user writes the prompt in.
+- Code, code comments, docs, and commit messages are always in English. Exception: translation files and user-facing strings (fr/en/de/it).
+- Human-facing text (comments, commit messages, replies): fewest words possible. Pick each word deliberately. Less is more.
+- Applies to prose replies and comments. Not to docs or docstrings, which stay complete.
+- No praise, no superlatives. No "you're absolutely right". State the facts, including unwelcome ones.
+- Ask when a business rule is ambiguous. Don't guess.
+- Before changes spanning several layers or models, propose a plan first.
+- Final reply: list changed files and commands to run.
+
 ## Project overview
 
 EPFL news management app (Django, Python, PostgreSQL, Django REST Framework for the API, Vite for assets), split in 2 parts:
@@ -62,7 +73,7 @@ organized by reader's need, not project structure. Start from [docs/index.md](do
 - Don't duplicate AGENTS.md content: AGENTS.md is agent-oriented (rules, gotchas);
   `docs/` is human-oriented.
 
-## Conventions
+## Implementation
 
 - Function-based views (no class-based views).
 - Multi-model forms should receive the acting user explicitly.
@@ -72,6 +83,43 @@ organized by reader's need, not project structure. Start from [docs/index.md](do
 - HTML content fields use TinyMCE (`HTMLField`).
 - User-facing strings must be translatable (`gettext_lazy`), including model verbose names and choices.
 - Update translation files with `make translation` when adding new strings.
+- One migration per change. Never mix data and schema migrations.
+- Follow `.editorconfig` and at the repo root.
+- Python: `black` and `isort` (profile black), line length 79. `flake8` for linting. Config in `pyproject.toml` and `.flake8`.
+- JS: `eslint`. SCSS: `stylelint`. Dockerfiles: `hadolint`.
+- Extract recurring or domain-specific values into constants or enums; keep self-explanatory one-off values inline. Use framework constants for standard values such as HTTP status codes where available.
+- OnceAndOnlyOnce: no duplication. Extract shared logic.
+- Prefer concise, descriptive function names; do not impose a fixed length limit.
+- Use booleans for genuinely binary options and enums for meaningful multi-state values.
+- Separate logical blocks with blank lines. Add comments only when they clarify non-obvious intent.
+- Don't touch code unrelated to the feature. No comments on code you didn't create or modify. Minimize changed lines.
+- No opportunistic refactoring.
+- No `print`. Use `logging`.
+
+## Architecture
+
+- Follow the 12-factor methodology: https://12factor.net/
+- In OpenShift, Ansible reads secrets from Keybase, creates a Kubernetes Secret, and exposes its values to the container as environment variables via `envFrom.secretRef`.
+- Django reads secrets and deployment-specific configuration from environment variables. Stable application defaults may be defined in Django settings; do not hardcode secrets or deployment-specific values in application logic.
+
+## Boundaries
+
+Ask before:
+
+- Adding a dependency (pip/npm).
+- Editing `docker-compose*.yml`, CI config, or `src/configs/`.
+
+Never:
+
+- Edit an existing migration. Create a new one.
+- Edit generated files (compiled `.mo`, Vite build output).
+
+## Testing
+
+- Framework: Django test runner (`python src/manage.py test`, `configs.ci` settings). Use `make test`, never run it on the host.
+- `make test` runs `make lint` and `make assets-build` first. Run it before declaring a task done.
+- Use `make coverage` to check coverage of new code.
+- Never delete, skip, or weaken a test to make it pass.
 
 ## UI
 
@@ -87,6 +135,7 @@ organized by reader's need, not project structure. Start from [docs/index.md](do
   `src/assets/pages/<page-dir>/`; TypeScript is recommended. Recipe:
   [docs/how-to/add-react-to-a-page.md](docs/how-to/add-react-to-a-page.md).
 - Assets (SCSS/JS) live in `src/assets/`, built with Vite.
+- If the style guide lacks a needed element, create `TODO-styleguide.md` at the repo root. One line per missing element: component and page concerned.
 
 ## Git
 
@@ -94,3 +143,13 @@ organized by reader's need, not project structure. Start from [docs/index.md](do
 - Never push to origin unless explicitly asked.
 - Never force-push or rewrite history, and never skip hooks.
 - Never commit secrets or credentials (Keybase files, `ACTU_*` env values).
+- Commit subjects and bodies are always in English, whatever language the user writes in.
+- Commit messages follow these rules:
+  - Subject prefixed with a tag: `[bump]` (dependency/version update), `[doc]`, `[feature]`, `[fix]`, `[hotfix]` (urgent production fix), `[refactor]`, `[unfeature]` (feature removal).
+  - Single blank line between subject and body.
+  - Subject: 50 characters max (72 hard limit).
+  - Capitalize the first letter after the tag.
+  - No period at the end of the subject.
+  - Imperative mood. Test: "If applied, this commit will [subject]". Example: `[fix] Correct null check`.
+  - Wrap body at 72 characters.
+  - Body explains what and why, not how.

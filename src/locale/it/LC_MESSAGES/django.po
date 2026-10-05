@@ -511,7 +511,7 @@ msgid "Please provide the full reference, including DOI, of any peer-review publ
 msgstr "Si prega di fornire i riferimenti completi, compreso il DOI, di tutte le pubblicazioni sottoposte a revisione tra pari relative alla ricerca descritta."
 
 msgid "License"
-msgstr ""
+msgstr "Licenza"
 
 msgid "Display the Creative Commons license (CC BY-SA) at the bottom of the article."
 msgstr "Visualizza la licenza Creative Commons (CC BY-SA) in fondo all’articolo."

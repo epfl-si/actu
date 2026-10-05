@@ -512,7 +512,7 @@ msgid "Please provide the full reference, including DOI, of any peer-review publ
 msgstr "Bitte geben Sie die vollständige Referenz, einschliesslich des DOI, von Peer-Review-Publikationen zur angegebenen Forschung an."
 
 msgid "License"
-msgstr ""
+msgstr "Lizenz"
 
 msgid "Display the Creative Commons license (CC BY-SA) at the bottom of the article."
 msgstr "Anzeige der Creative Commons Lizenz (CC BY-SA) am Ende des Artikels."

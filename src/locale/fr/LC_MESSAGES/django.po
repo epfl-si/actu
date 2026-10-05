@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 14:42+0200\n"
+"POT-Creation-Date: 2026-10-05 00:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -553,11 +553,23 @@ msgstr "Aucune actualité trouvée."
 msgid "Do you really want to delete this news translation?"
 msgstr "Voulez-vous vraiment supprimer cette traduction de l'actualité?"
 
+msgid "Publish"
+msgstr "Publier"
+
+msgid "Unpublish"
+msgstr "Arrêter la publication"
+
 msgid "The news has been saved successfully."
 msgstr "L'actualité a été sauvegardée correctement."
 
 msgid "The form contains errors. Please correct the highlighted fields below."
 msgstr "Le formulaire contient des erreurs. Veuillez corriger les champs surlignés ci-dessous."
+
+msgid "The news has been published."
+msgstr "L'actualité a été publiée."
+
+msgid "The news has been unpublished."
+msgstr "L'actualité a été dépubliée."
 
 msgid "News Format"
 msgstr "Format d'actualités"
@@ -618,6 +630,28 @@ msgstr "Traduction"
 
 msgid "URL"
 msgstr "URL"
+
+msgid "today"
+msgstr "aujourd'hui"
+
+msgid "yesterday"
+msgstr "hier"
+
+#, python-format
+msgid "Published %(date)s at %(time)s"
+msgstr "Publié %(date)s à %(time)s"
+
+#, python-format
+msgid "Published on %(date)s at %(time)s"
+msgstr "Publié le %(date)s à %(time)s"
+
+#, python-format
+msgid "modified %(date)s at %(time)s"
+msgstr "modifié %(date)s à %(time)s"
+
+#, python-format
+msgid "modified on %(date)s at %(time)s"
+msgstr "modified le %(date)s à %(time)s"
 
 msgid "Published on"
 msgstr "Publié le"

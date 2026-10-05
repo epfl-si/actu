@@ -1104,10 +1104,7 @@ class PreviewNewsTranslationViewTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "news_detail.html")
-        self.assertEqual(
-            response.context["translation"],
-            translation,
-        )
+        self.assertEqual(response.context["translation"], translation)
         self.assertTrue(response.context["is_preview"])
 
     def test_news_preview_displays_published_translation(self):
@@ -1130,10 +1127,7 @@ class PreviewNewsTranslationViewTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "news_detail.html")
-        self.assertEqual(
-            response.context["translation"],
-            translation,
-        )
+        self.assertEqual(response.context["translation"], translation)
         self.assertTrue(response.context["is_preview"])
 
     def test_news_detail_displays_published_translation(self):
@@ -1155,10 +1149,7 @@ class PreviewNewsTranslationViewTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "news_detail.html")
-        self.assertEqual(
-            response.context["translation"],
-            translation,
-        )
+        self.assertEqual(response.context["translation"], translation)
 
     def test_news_detail_does_not_display_draft(self):
         news = self._create_news()
@@ -1210,9 +1201,7 @@ class PreviewNewsTranslationViewTest(TestCase):
             ),
         )
 
-    def test_news_detail_keeps_translation_when_current_language_is_unavailable(
-        self,
-    ):
+    def test_news_detail_keeps_translation_when_current_language_is_unavailable(self):
         news = self._create_news()
 
         fr_translation = self._create_translation(
@@ -1237,10 +1226,7 @@ class PreviewNewsTranslationViewTest(TestCase):
             )
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.context["translation"],
-            fr_translation,
-        )
+        self.assertEqual(response.context["translation"], fr_translation)
 
     def test_publish_news_translation_publishes_draft(self):
         news = self._create_news()
@@ -1275,10 +1261,7 @@ class PreviewNewsTranslationViewTest(TestCase):
             ),
         )
 
-        self.assertEqual(
-            translation.status,
-            NewsTranslation.Status.PUBLISHED,
-        )
+        self.assertEqual(translation.status, NewsTranslation.Status.PUBLISHED)
         self.assertIsNotNone(translation.published_at)
         self.assertGreaterEqual(translation.published_at, before)
         self.assertLessEqual(translation.published_at, after)
@@ -1336,16 +1319,8 @@ class PreviewNewsTranslationViewTest(TestCase):
             ),
         )
 
-        self.assertEqual(
-            translation.status,
-            NewsTranslation.Status.DRAFT,
-        )
-
-        # La date de publication est conservée.
-        self.assertEqual(
-            translation.published_at,
-            published_at,
-        )
+        self.assertEqual(translation.status, NewsTranslation.Status.DRAFT)
+        self.assertEqual(translation.published_at, published_at)
 
     def test_unpublish_news_translation_does_not_unpublish_draft(self):
         news = self._create_news()

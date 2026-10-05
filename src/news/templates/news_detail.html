@@ -18,20 +18,20 @@
           <form method="post" action="{% url 'publish_news_translation' slug=translation.slug %}" class="mr-2">
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">
-              Published
+              {% trans "Publish" %}
             </button>
           </form>
         {% elif translation.status == "published" %}
           <form method="post" action="{% url 'unpublish_news_translation' slug=translation.slug %}" class="mr-2">
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">
-              Unpublished
+              {% trans "Unpublish" %}
             </button>
           </form>
         {% endif %}
 
         <a href="{% url 'edit_news' news_id=translation.news.id lang=translation.language %}" class="btn btn-outline-dark">
-          Edit
+          {% trans "Edit" %}
         </a>
 
       </div>

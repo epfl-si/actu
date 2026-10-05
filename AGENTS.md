@@ -36,8 +36,9 @@ Never confuse these two.
 - Everything runs via Docker (`docker-compose-dev.yml` for dev, `docker-compose.yml` for prod-like).
 - Main containers: `local-django-actu` (backend), `local-assets-actu` (assets), `local-postgres-actu` (database).
 - Lint and tests run **inside the containers**, not on the host — the dev stack must be up (`make local-up`) before linting, testing, or seeding.
-- Run `make help` for the full, up-to-date command list. Frequent entry points: `local-up`, `lint`, `test`, `translation`.
+- Run `make help` for the full, up-to-date command list. Frequent entry points: `local-up`, `lint`, `test`, `translation`, `db-seed`.
 - Django settings modules live in `src/configs/`: `settings.py` (local dev), `ci.py` (tests/CI), `ocp.py` (OpenShift).
+- Demo data: each app ships a `sample_data.json` fixture (`src/<app>/fixtures/`, e.g. `news`, `homepages`, `users`). `make db-seed` loads them all for a demo-ready site — beware, it may overwrite existing data. Human-oriented instructions: [docs/tutorial/load-some-sample-data.md](docs/tutorial/load-some-sample-data.md).
 
 ## Conventions
 

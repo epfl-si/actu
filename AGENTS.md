@@ -136,6 +136,8 @@ Never:
   [docs/how-to/add-react-to-a-page.md](docs/how-to/add-react-to-a-page.md).
 - Assets (SCSS/JS) live in `src/assets/`, built with Vite.
 - If the style guide lacks a needed element, create `TODO-styleguide.md` at the repo root. One line per missing element: component and page concerned.
+- Design source: Penpot, team ISA-FSD, project Actu: https://ait-penpot.epfl.ch/#/dashboard/files?team-id=0ba4abe3-fd81-816f-8008-a5c241a4a1fe&project-id=79de8261-3fae-80f8-8008-a8641ea9184f
+- Before changing anything in Penpot, save a version first (Penpot's version history). Never edit without a restore point.
 
 ## Git
 

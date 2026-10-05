@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 14:42+0200\n"
+"POT-Creation-Date: 2026-10-01 12:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -108,6 +108,12 @@ msgstr "Anzahl der Ergebnisse pro Seite. Standardmäßig wird die API-Seitengrö
 
 msgid "Search in the news title."
 msgstr "Im Nachrichtentitel suchen."
+
+msgid "List images for a news item"
+msgstr "Bilder für eine Nachricht auflisten"
+
+msgid "Return all images attached to a given news item."
+msgstr "Gibt alle Bilder zurück, die einer bestimmten Nachricht zugeordnet sind."
 
 msgid "Object Type"
 msgstr "Objekttyp"

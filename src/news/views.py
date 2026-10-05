@@ -394,13 +394,14 @@ def restore_news_translation(request, news_id, lang):
 
 
 @login_required
-def news_preview(request, slug):
+def news_preview(request, news_id, lang):
     translation = get_object_or_404(
         NewsTranslation.objects.select_related("news").prefetch_related(
             "news__topics",
             "news__entities",
         ),
-        slug=slug,
+        news_id=news_id,
+        language=lang,
         status__in=[
             NewsTranslation.Status.DRAFT,
             NewsTranslation.Status.PUBLISHED,
@@ -429,18 +430,21 @@ def news_detail(request, slug):
         status=NewsTranslation.Status.PUBLISHED,
     )
 
-    # Slug existe, but in another language
+    # The slug exists, but not with the selected language
     if translation.language != language:
-        translated = translation.news.translations.filter(
+        translated = get_object_or_404(
+            translation.news.translations.select_related("news").prefetch_related(
+                "news__topics",
+                "news__entities",
+            ),
             language=language,
             status=NewsTranslation.Status.PUBLISHED,
-        ).first()
+        )
 
-        if translated:
-            return redirect(
-                "news_detail",
-                slug=translated.slug,
-            )
+        return redirect(
+            "news_detail",
+            slug=translated.slug,
+        )
 
     return render(
         request,
@@ -452,10 +456,11 @@ def news_detail(request, slug):
 
 
 @login_required
-def publish_news_translation(request, slug):
+def publish_news_translation(request, news_id, lang):
     translation = get_object_or_404(
         NewsTranslation,
-        slug=slug,
+        news_id=news_id,
+        language=lang,
         status=NewsTranslation.Status.DRAFT,
     )
 
@@ -465,14 +470,19 @@ def publish_news_translation(request, slug):
 
     messages.success(request, _("The news has been published."))
 
-    return redirect("news_preview", slug=translation.slug)
+    return redirect(
+        "news_preview",
+        news_id=translation.news_id,
+        lang=translation.language,
+    )
 
 
 @login_required
-def unpublish_news_translation(request, slug):
+def unpublish_news_translation(request, news_id, lang):
     translation = get_object_or_404(
         NewsTranslation,
-        slug=slug,
+        news_id=news_id,
+        language=lang,
         status=NewsTranslation.Status.PUBLISHED,
     )
 
@@ -481,4 +491,8 @@ def unpublish_news_translation(request, slug):
 
     messages.success(request, _("The news has been unpublished."))
 
-    return redirect("news_preview", slug=translation.slug)
+    return redirect(
+        "news_preview",
+        news_id=translation.news_id,
+        lang=translation.language,
+    )

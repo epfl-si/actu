@@ -130,7 +130,7 @@
                         <div class="d-flex flex-shrink-0 align-items-center">
                           {% if translation.status == 'published' or translation.status == 'draft' %}
                             {% if translation.slug %}
-                            <a href="{% url 'news_preview' slug=translation.slug %}" class="btn btn-sm btn-actions btn-outline-dark mr-1" title="{% trans "Preview and publish" %}">
+                            <a href="{% url 'news_preview' news_id=translation.news_id lang=translation.language %}" class="btn btn-sm btn-actions btn-outline-dark mr-1" title="{% trans "Preview and publish" %}">
                               <svg class="icon feather" aria-hidden="true"><use xlink:href="#eye"></use></svg></a>
                             {% else %}
                              <a href="#" class="btn btn-sm btn-actions btn-outline-dark mr-1" title="{% trans "Preview and publish" %}">

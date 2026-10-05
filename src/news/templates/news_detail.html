@@ -11,18 +11,18 @@
 {% block web2018_content %}
 <div class="container">
   {% if is_preview %}
-    <div class="col-md-10 offset-md-1 mb-3">
+    <div class="mb-3">
       <div class="d-flex justify-content-end">
 
         {% if translation.status == "draft" %}
-          <form method="post" action="{% url 'publish_news_translation' slug=translation.slug %}" class="mr-2">
+          <form method="post" action="{% url 'publish_news_translation' news_id=translation.news_id lang=translation.language %}" class="mr-2">
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">
               {% trans "Publish" %}
             </button>
           </form>
         {% elif translation.status == "published" %}
-          <form method="post" action="{% url 'unpublish_news_translation' slug=translation.slug %}" class="mr-2">
+          <form method="post" action="{% url 'unpublish_news_translation' news_id=translation.news_id lang=translation.language %}" class="mr-2">
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">
               {% trans "Unpublish" %}

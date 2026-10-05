@@ -40,6 +40,24 @@ Never confuse these two.
 - Django settings modules live in `src/configs/`: `settings.py` (local dev), `ci.py` (tests/CI), `ocp.py` (OpenShift).
 - Demo data: each app ships a `sample_data.json` fixture (`src/<app>/fixtures/`, e.g. `news`, `homepages`, `users`). `make db-seed` loads them all for a demo-ready site — beware, it may overwrite existing data. Human-oriented instructions: [docs/tutorial/load-some-sample-data.md](docs/tutorial/load-some-sample-data.md).
 
+## Documentation
+
+Docs live in `docs/` and follow the [Diátaxis](https://diataxis.fr/) framework —
+organized by reader's need, not project structure. Start from [docs/index.md](docs/index.md).
+
+- `docs/tutorial/` — guided learning experiences for newcomers.
+- `docs/how-to/` — recipes for a specific task (dev workflows, debugging). Title pages "How to …".
+- `docs/reference/` — precise technical lookups (API, settings).
+- `docs/explanation/` — concepts, architecture, decisions (the "why").
+
+- One topic per page, kebab-case filenames (e.g. `debug-on-intellij.md`).
+- Keep commands consistent with the Makefile; link, don't copy whole command lists.
+- If a change makes an existing doc stale, update it in the same change
+  (e.g. new test env var → `docs/how-to/run-playwright-tests.md`).
+- Add a new page when introducing a non-obvious workflow, tool, or env var.
+- Don't duplicate AGENTS.md content: AGENTS.md is agent-oriented (rules, gotchas);
+  `docs/` is human-oriented.
+
 ## Conventions
 
 - Function-based views (no class-based views).

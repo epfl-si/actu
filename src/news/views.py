@@ -433,7 +433,9 @@ def news_detail(request, slug):
     # The slug exists, but not with the selected language
     if translation.language != language:
         translated = get_object_or_404(
-            translation.news.translations.select_related("news").prefetch_related(
+            translation.news.translations.select_related(
+                "news"
+            ).prefetch_related(
                 "news__topics",
                 "news__entities",
             ),

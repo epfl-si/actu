@@ -50,6 +50,7 @@ class News(AuditModelMixin, models.Model):
         related_name="news_created",
         verbose_name=_("Created by"),
     )
+    is_under_cc_license = models.BooleanField(null=False, default=False)
 
     def __str__(self):
         return f"News #{self.pk}"

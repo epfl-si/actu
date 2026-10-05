@@ -194,6 +194,16 @@
             </small>
           </div>
           <div class="form-group">
+            <label>{% trans "License" %}</label>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="{{ form.news.is_under_cc_license.id_for_label }}"
+                name="{{ form.news.is_under_cc_license.name }}"{% if form.news.is_under_cc_license.value %} checked{% endif %}>
+              <label class="custom-control-label" for="{{ form.news.is_under_cc_license.id_for_label }}">
+                {% trans "Display the Creative Commons license (CC BY-SA) at the bottom of the article." %}
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
             <label>{% trans "Links" %}</label>
             <div id="urls-container" data-prefix="{{ form.urls.prefix }}">
               {{ form.urls.management_form }}

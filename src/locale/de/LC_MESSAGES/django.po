@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 14:42+0200\n"
+"POT-Creation-Date: 2026-10-05 13:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -510,6 +510,12 @@ msgstr "Literaturverzeichnis"
 
 msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
 msgstr "Bitte geben Sie die vollständige Referenz, einschliesslich des DOI, von Peer-Review-Publikationen zur angegebenen Forschung an."
+
+msgid "License"
+msgstr ""
+
+msgid "Display the Creative Commons license (CC BY-SA) at the bottom of the article."
+msgstr "Anzeige der Creative Commons Lizenz (CC BY-SA) am Ende des Artikels."
 
 msgid "Links"
 msgstr "Links"

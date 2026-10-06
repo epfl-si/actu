@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 12:36+0200\n"
+"POT-Creation-Date: 2026-10-06 15:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -522,6 +522,12 @@ msgstr "Links"
 
 msgid "Add a link"
 msgstr "Link hinzufügen"
+
+msgid "License"
+msgstr "Lizenz"
+
+msgid "Display the Creative Commons license (CC BY-SA) at the bottom of the article."
+msgstr "Anzeige der Creative Commons Lizenz (CC BY-SA) am Ende des Artikels."
 
 msgid "Save"
 msgstr "Speichern"

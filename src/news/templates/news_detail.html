@@ -1,8 +1,5 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% load humanize %}
-{% load django_vite %}
-{% load translation_tags %}
 
 {% block web2018_title %}
   {{ translation.title }} · {% trans "News" %}
@@ -10,69 +7,6 @@
 
 {% block web2018_content %}
 <div class="container">
-  {% if is_preview %}
-    <div class="mb-3">
-      <div class="d-flex justify-content-end">
-
-        {% if translation.status == "draft" %}
-          <form method="post" action="{% url 'publish_news_translation' news_id=translation.news_id lang=translation.language %}" class="mr-2">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">
-              {% trans "Publish" %}
-            </button>
-          </form>
-        {% elif translation.status == "published" %}
-          <form method="post" action="{% url 'unpublish_news_translation' news_id=translation.news_id lang=translation.language %}" class="mr-2">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">
-              {% trans "Stop publishing" %}
-            </button>
-          </form>
-        {% endif %}
-
-        <a href="{% url 'edit_news' news_id=translation.news.id lang=translation.language %}" class="btn btn-outline-dark">
-          {% trans "Edit" %}
-        </a>
-
-      </div>
-    </div>
-  {% endif %}
-
-  <article class="row" itemscope itemtype="https://schema.org/NewsArticle">
-    <div class="col-md-12 pl-0 pr-0">
-      <figure class="cover">
-        <picture>
-          <source
-            media="(min-width: 1140px)"
-            srcset="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-2240x1260.jpg 2x">
-          <source
-            media="(min-width: 960px)"
-            srcset="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-2240x1260.jpg 2x">
-          <source
-            media="(min-width: 720px)"
-            srcset="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-1920x1080.jpg 2x">
-          <source
-            media="(min-width: 541px)"
-            srcset="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-1440x810.jpg 2x">
-          <source
-            media="(max-width: 540px)"
-            srcset="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-1080x608.jpg 2x">
-          <img src="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-1920x1080.jpg" class="img-fluid" alt="Cover description">
-        </picture>
-      </figure>
-    </div>
-
-    <section class="offset-md-1 col-md-10 px-4 py-3 bg-white mt-0 mt-md-n5 mt-lg-n6 mx-md-auto">
-      <h1 class="mb-4" itemprop="name">{{ translation.title }}</h1>
-      <p class="h4 font-weight-bold" itemprop="abstract">{{ translation.standfirst|safe }}</p>
-      <time class="font-weight-bold text-muted opacity-70" datetime="{{ translation.published_at|date:'Y-m-d' }}" itemprop="datePublished">
-        {% localized_datetime translation.published_at "published" %}{% if translation.updated_at %}, {% localized_datetime translation.updated_at "modified" %}{% endif %}
-      </time>
-    </section>
-
-    <section class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 mt-4 px-md-0" itemprop="articleBody">
-      {{ translation.extract|safe }}
-    </section>
-  </article>
+  {% include "includes/news_item.html" %}
 </div>
 {% endblock %}

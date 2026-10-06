@@ -408,14 +408,7 @@ def news_preview(request, news_id, lang):
         ],
     )
 
-    return render(
-        request,
-        "news_detail.html",
-        {
-            "translation": translation,
-            "is_preview": True,
-        },
-    )
+    return render(request, "preview_news.html", {"translation": translation})
 
 
 def news_detail(request, slug):
@@ -448,13 +441,7 @@ def news_detail(request, slug):
             slug=translated.slug,
         )
 
-    return render(
-        request,
-        "news_detail.html",
-        {
-            "translation": translation,
-        },
-    )
+    return render(request, "news_detail.html", {"translation": translation})
 
 
 @login_required

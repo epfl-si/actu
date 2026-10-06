@@ -1106,9 +1106,8 @@ class PreviewNewsTranslationViewTest(TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "news_detail.html")
+        self.assertTemplateUsed(response, "preview_news.html")
         self.assertEqual(response.context["translation"], translation)
-        self.assertTrue(response.context["is_preview"])
 
     def test_news_preview_displays_published_translation(self):
         news = self._create_news()
@@ -1132,9 +1131,8 @@ class PreviewNewsTranslationViewTest(TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "news_detail.html")
+        self.assertTemplateUsed(response, "preview_news.html")
         self.assertEqual(response.context["translation"], translation)
-        self.assertTrue(response.context["is_preview"])
 
     def test_news_detail_displays_published_translation(self):
         news = self._create_news()

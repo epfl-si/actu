@@ -129,16 +129,12 @@
                         <div class="flex-grow-1 text-truncate mr-2">{{ translation.title|default:"-" }}</div>
                         <div class="d-flex flex-shrink-0 align-items-center">
                           {% if translation.status == 'published' or translation.status == 'draft' %}
-                            {% if translation.slug %}
                             <a href="{% url 'news_preview' news_id=translation.news_id lang=translation.language %}" class="btn btn-sm btn-actions btn-outline-dark mr-1" title="{% trans "Preview and publish" %}">
-                              <svg class="icon feather" aria-hidden="true"><use xlink:href="#eye"></use></svg></a>
-                            {% else %}
-                             <a href="#" class="btn btn-sm btn-actions btn-outline-dark mr-1" title="{% trans "Preview and publish" %}">
-                               <svg class="icon feather" aria-hidden="true"><use xlink:href="#eye"></use></svg></a>
-                            {% endif %}
+                              <svg class="icon feather" aria-hidden="true"><use xlink:href="#eye"></use></svg>
+                            </a>
                             <a href="{% url 'edit_news' news_id=row.news.id lang=lang_code %}" class="btn btn-sm btn-actions btn-outline-tertiary mr-1" title="{% trans "Edit" %}">
-                              <svg class="icon feather" aria-hidden="true"><use xlink:href="#edit-2"></use>
-                              </svg></a>
+                              <svg class="icon feather" aria-hidden="true"><use xlink:href="#edit-2"></use></svg>
+                            </a>
                             <form method="post" action="{% url 'delete_news_translation' row.news.id lang_code %}" class="d-inline">
                               {% csrf_token %}
                               <button type="button" class="btn btn-sm btn-actions btn-outline-danger" title="{% trans "Delete" %}"
@@ -159,19 +155,22 @@
                         </div>
                       {% else %}
                         <a href="{% url 'edit_news' news_id=row.news.id lang=lang_code %}" class="btn btn-sm btn-actions btn-secondary text-small mr-1" title="{% trans "Create" %}">
-                          <svg class="icon feather" aria-hidden="true"><use xlink:href="#plus"></use></svg>{% trans 'Create' %}</a>
+                          <svg class="icon feather" aria-hidden="true"><use xlink:href="#plus"></use></svg>{% trans 'Create' %}
+                        </a>
                       {% endif %}
                     </div>
                   {% endfor %}
                   <div class="display-news-metadata{% if not show_metadata %} d-none{% endif %}">
                     <hr class="mt-2 mb-2">
                     {% for topic in row.news.topics.all %}
-                      <a href="{% url 'manage_news' %}?topics={{ topic.id }}{% if show_metadata %}&show_metadata=1{% endif %}"
-                      ><span class="tag tag-sm metadata-topic-tag badge">{{ topic }}</span></a>
+                      <a href="{% url 'manage_news' %}?topics={{ topic.id }}{% if show_metadata %}&show_metadata=1{% endif %}">
+                        <span class="tag tag-sm metadata-topic-tag badge">{{ topic }}</span>
+                      </a>
                     {% endfor %}
                     {% for entity in row.news.entities.all %}
-                      <a href="{% url 'manage_news' %}?entities={{ entity.id }}{% if show_metadata %}&show_metadata=1{% endif %}"
-                      ><span class="tag tag-sm metadata-entity-tag badge">{{ entity }}</span></a>
+                      <a href="{% url 'manage_news' %}?entities={{ entity.id }}{% if show_metadata %}&show_metadata=1{% endif %}">
+                        <span class="tag tag-sm metadata-entity-tag badge">{{ entity }}</span>
+                      </a>
                     {% endfor %}
                   </div>
                 </div>

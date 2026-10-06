@@ -25,7 +25,7 @@
           <form method="post" action="{% url 'unpublish_news_translation' news_id=translation.news_id lang=translation.language %}" class="mr-2">
             {% csrf_token %}
             <button type="submit" class="btn btn-primary">
-              {% trans "Unpublish" %}
+              {% trans "Stop publishing" %}
             </button>
           </form>
         {% endif %}

@@ -24,7 +24,7 @@
               {% csrf_token %}
               <input type="hidden" name="language" value="{{ code }}">
               <input type="hidden" name="next" value="{% language_url code %}">
-              <buttontype="submit" class="dropdown-item" aria-label="{% trans name %}">
+              <button type="submit" class="dropdown-item" aria-label="{% trans name %}">
                 {{ code|upper }}
               </button>
             </form>
@@ -34,3 +34,4 @@
     </ul>
   </div>
 </nav>
+a

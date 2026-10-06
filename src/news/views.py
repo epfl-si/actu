@@ -445,6 +445,7 @@ def news_detail(request, slug):
 
 
 @login_required
+@require_POST
 def publish_news_translation(request, news_id, lang):
     translation = get_object_or_404(
         NewsTranslation,
@@ -467,6 +468,7 @@ def publish_news_translation(request, news_id, lang):
 
 
 @login_required
+@require_POST
 def unpublish_news_translation(request, news_id, lang):
     translation = get_object_or_404(
         NewsTranslation,

@@ -6,6 +6,7 @@
   {{ block.super }}
   {{ form.translation.media }}
   {% vite_asset 'assets/pages/edit-news/edit-news.js' %}
+  {% vite_asset 'assets/pages/edit-news/news-blocks-editor.tsx' %}
 {% endblock %}
 
 {% block web2018_title %}
@@ -234,6 +235,9 @@
                 {% trans "Display the Creative Commons license (CC BY-SA) at the bottom of the article." %}
               </label>
             </div>
+          </div>
+          {{ news_blocks_editor_props|json_script:"news-blocks-editor-props" }}
+          <div id="news-blocks-editor-root" class="form-group">
           </div>
           <div class="d-flex flex-wrap align-items-start">
             <div class="d-flex flex-wrap">

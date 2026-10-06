@@ -207,7 +207,7 @@ STATIC_ROOT = BASE_DIR / "static_root"
 STATIC_URL = "static/"
 
 # User-uploaded files (news images)
-MEDIA_ROOT = BASE_DIR / "public" / "uploads"
+MEDIA_ROOT = BASE_DIR.parent / "public" / "uploads"
 
 MEDIA_URL = "/uploads/"
 
@@ -256,6 +256,12 @@ SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
     "SWAGGER_UI_FAVICON_HREF": "https://web2018.epfl.ch/logo/favicon.ico",
 }
+
+
+# WebSocket URL of the Playwright server. When set, tests connect to a remote
+# browser (used in Docker/CI and, if the user want,
+# on a local or remote server).
+REMOTE_PLAYWRIGHT_SERVER = os.getenv("REMOTE_PLAYWRIGHT_SERVER", "")
 
 
 # Default primary key field type

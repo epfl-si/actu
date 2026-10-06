@@ -1,7 +1,10 @@
 import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 import path from 'path'
 
 export default defineConfig({
+
+  plugins: [react()],
 
   root: path.resolve(__dirname, './src'),
 
@@ -29,6 +32,7 @@ export default defineConfig({
         manage_users: './assets/pages/manage-users-homepages/manage_users.js',
         list_news: './assets/pages/list-news/list-news.js',
         edit_news: './assets/pages/edit-news/edit-news.js',
+        news_blocks_editor: './assets/pages/edit-news/news-blocks-editor.tsx',
       },
       output: {
         minify: {

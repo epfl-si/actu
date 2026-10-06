@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-05 13:18+0200\n"
+"POT-Creation-Date: 2026-10-06 15:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -510,17 +510,17 @@ msgstr "Referenze"
 msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
 msgstr "Si prega di fornire i riferimenti completi, compreso il DOI, di tutte le pubblicazioni sottoposte a revisione tra pari relative alla ricerca descritta."
 
-msgid "License"
-msgstr "Licenza"
-
-msgid "Display the Creative Commons license (CC BY-SA) at the bottom of the article."
-msgstr "Visualizza la licenza Creative Commons (CC BY-SA) in fondo all’articolo."
-
 msgid "Links"
 msgstr "Link"
 
 msgid "Add a link"
 msgstr "Aggiungi un link"
+
+msgid "License"
+msgstr "Licenza"
+
+msgid "Display the Creative Commons license (CC BY-SA) at the bottom of the article."
+msgstr "Visualizza la licenza Creative Commons (CC BY-SA) in fondo all’articolo."
 
 msgid "Save"
 msgstr "Salva"

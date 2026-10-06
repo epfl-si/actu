@@ -1098,7 +1098,10 @@ class PreviewNewsTranslationViewTest(TestCase):
         response = self.client.get(
             reverse(
                 "news_preview",
-                kwargs={"slug": translation.slug},
+                kwargs={
+                    "news_id": news.id,
+                    "lang": translation.language,
+                },
             )
         )
 
@@ -1121,7 +1124,10 @@ class PreviewNewsTranslationViewTest(TestCase):
         response = self.client.get(
             reverse(
                 "news_preview",
-                kwargs={"slug": translation.slug},
+                kwargs={
+                    "news_id": news.id,
+                    "lang": translation.language,
+                },
             )
         )
 
@@ -1159,12 +1165,13 @@ class PreviewNewsTranslationViewTest(TestCase):
             status=NewsTranslation.Status.DRAFT,
         )
 
-        response = self.client.get(
-            reverse(
-                "news_detail",
-                kwargs={"slug": translation.slug},
+        with override("en"):
+            response = self.client.get(
+                reverse(
+                    "news_detail",
+                    kwargs={"slug": translation.slug},
+                )
             )
-        )
 
         self.assertEqual(response.status_code, 404)
 
@@ -1201,7 +1208,7 @@ class PreviewNewsTranslationViewTest(TestCase):
             ),
         )
 
-    def test_news_detail_keeps_transl_when_current_language_is_unavailable(
+    def test_news_detail_returns_404_when_current_language_is_unavailable(
         self,
     ):
         news = self._create_news()
@@ -1227,8 +1234,7 @@ class PreviewNewsTranslationViewTest(TestCase):
                 )
             )
 
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context["translation"], fr_translation)
+        self.assertEqual(response.status_code, 404)
 
     def test_publish_news_translation_publishes_draft(self):
         news = self._create_news()
@@ -1246,7 +1252,10 @@ class PreviewNewsTranslationViewTest(TestCase):
         response = self.client.post(
             reverse(
                 "publish_news_translation",
-                kwargs={"slug": translation.slug},
+                kwargs={
+                    "news_id": news.id,
+                    "lang": translation.language,
+                },
             )
         )
 
@@ -1259,11 +1268,17 @@ class PreviewNewsTranslationViewTest(TestCase):
             response,
             reverse(
                 "news_preview",
-                kwargs={"slug": translation.slug},
+                kwargs={
+                    "news_id": news.id,
+                    "lang": translation.language,
+                },
             ),
         )
 
-        self.assertEqual(translation.status, NewsTranslation.Status.PUBLISHED)
+        self.assertEqual(
+            translation.status,
+            NewsTranslation.Status.PUBLISHED,
+        )
         self.assertIsNotNone(translation.published_at)
         self.assertGreaterEqual(translation.published_at, before)
         self.assertLessEqual(translation.published_at, after)
@@ -1285,7 +1300,10 @@ class PreviewNewsTranslationViewTest(TestCase):
         response = self.client.post(
             reverse(
                 "publish_news_translation",
-                kwargs={"slug": translation.slug},
+                kwargs={
+                    "news_id": news.id,
+                    "lang": translation.language,
+                },
             )
         )
 
@@ -1308,7 +1326,10 @@ class PreviewNewsTranslationViewTest(TestCase):
         response = self.client.post(
             reverse(
                 "unpublish_news_translation",
-                kwargs={"slug": translation.slug},
+                kwargs={
+                    "news_id": news.id,
+                    "lang": translation.language,
+                },
             )
         )
 
@@ -1319,11 +1340,17 @@ class PreviewNewsTranslationViewTest(TestCase):
             response,
             reverse(
                 "news_preview",
-                kwargs={"slug": translation.slug},
+                kwargs={
+                    "news_id": news.id,
+                    "lang": translation.language,
+                },
             ),
         )
 
-        self.assertEqual(translation.status, NewsTranslation.Status.DRAFT)
+        self.assertEqual(
+            translation.status,
+            NewsTranslation.Status.DRAFT,
+        )
         self.assertEqual(translation.published_at, published_at)
 
     def test_unpublish_news_translation_does_not_unpublish_draft(self):
@@ -1340,7 +1367,10 @@ class PreviewNewsTranslationViewTest(TestCase):
         response = self.client.post(
             reverse(
                 "unpublish_news_translation",
-                kwargs={"slug": translation.slug},
+                kwargs={
+                    "news_id": news.id,
+                    "lang": translation.language,
+                },
             )
         )
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 15:26+0200\n"
+"POT-Creation-Date: 2026-10-07 16:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,7 +26,9 @@ msgid "Filter by whether the topic is marked as main."
 msgstr "Filtert, ob das Thema als Hauptthema markiert ist."
 
 msgid "Number of results to return per page. Defaults to the API page size."
-msgstr "Anzahl der Ergebnisse pro Seite. Standardmäßig wird die API-Seitengröße verwendet."
+msgstr ""
+"Anzahl der Ergebnisse pro Seite. Standardmäßig wird die API-Seitengröße "
+"verwendet."
 
 msgid "Unique identifier of the news item."
 msgstr "Eindeutiger Identifikator der Nachricht."
@@ -88,8 +90,16 @@ msgstr "Nachrichten"
 msgid "List published news"
 msgstr "Veröffentlichte Nachrichten auflisten"
 
-msgid "Return published news, optionally filtered by topic identifiers, entity identifiers, format identifiers, a language, or a title search. Multiple identifiers for the same filter are combined with OR; topic and entity filters are also combined with OR."
-msgstr "Gibt veröffentlichte Nachrichten zurück, optional gefiltert nach Themenkennungen, Einheitskennungen, Formatkennungen, Sprache oder Titelsuche. Mehrere Kennungen für denselben Filter werden mit ODER kombiniert; Themen- und Einheitsfilter werden ebenfalls mit ODER kombiniert."
+msgid ""
+"Return published news, optionally filtered by topic identifiers, entity "
+"identifiers, format identifiers, a language, or a title search. Multiple "
+"identifiers for the same filter are combined with OR; topic and entity "
+"filters are also combined with OR."
+msgstr ""
+"Gibt veröffentlichte Nachrichten zurück, optional gefiltert nach "
+"Themenkennungen, Einheitskennungen, Formatkennungen, Sprache oder "
+"Titelsuche. Mehrere Kennungen für denselben Filter werden mit ODER "
+"kombiniert; Themen- und Einheitsfilter werden ebenfalls mit ODER kombiniert."
 
 msgid "Topic identifiers."
 msgstr "Themenkennungen."
@@ -101,10 +111,13 @@ msgid "Format identifiers."
 msgstr "Formatkennungen."
 
 msgid "Language code (en, fr, de, it). Defaults to the request language."
-msgstr "Sprachcode (en, fr, de, it). Standardmäßig wird die Anfragesprache verwendet."
+msgstr ""
+"Sprachcode (en, fr, de, it). Standardmäßig wird die Anfragesprache verwendet."
 
 msgid "Number of results per page. Defaults to the API page size."
-msgstr "Anzahl der Ergebnisse pro Seite. Standardmäßig wird die API-Seitengröße verwendet."
+msgstr ""
+"Anzahl der Ergebnisse pro Seite. Standardmäßig wird die API-Seitengröße "
+"verwendet."
 
 msgid "Search in the news title."
 msgstr "Im Nachrichtentitel suchen."
@@ -113,7 +126,8 @@ msgid "List images for a news item"
 msgstr "Bilder für eine Nachricht auflisten"
 
 msgid "Return all images attached to a given news item."
-msgstr "Gibt alle Bilder zurück, die einer bestimmten Nachricht zugeordnet sind."
+msgstr ""
+"Gibt alle Bilder zurück, die einer bestimmten Nachricht zugeordnet sind."
 
 msgid "Object Type"
 msgstr "Objekttyp"
@@ -244,17 +258,15 @@ msgstr "Gibt an, ob diese Einheit (Schule) im Footer angezeigt wird."
 msgid "Order"
 msgstr "Reihenfolge"
 
-msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
-msgstr "Definiert die Anzeige-Reihenfolge. Ein Wert von 0 bedeutet, dass die Reihenfolge ignoriert wird (für nicht-haupt-Entitäten)."
+msgid ""
+"Defines the display order. A value of 0 means that the order is ignored (for "
+"non-main entities)."
+msgstr ""
+"Definiert die Anzeige-Reihenfolge. Ein Wert von 0 bedeutet, dass die "
+"Reihenfolge ignoriert wird (für nicht-haupt-Entitäten)."
 
 msgid "Name"
 msgstr "Name"
-
-msgid "Homepage"
-msgstr "Startseite"
-
-msgid "Homepages"
-msgstr "Startseiten"
 
 msgid "Slug"
 msgstr "Slug"
@@ -268,11 +280,21 @@ msgstr "Thema"
 msgid "Users"
 msgstr "Benutzer"
 
+msgid "Homepage"
+msgstr "Startseite"
+
+msgid "Homepages"
+msgstr "Startseiten"
+
 msgid "A Homepage cannot be linked to both a topic and an entity."
-msgstr "Eine Startseite kann nicht gleichzeitig mit einem Thema und einer Einheit verknüpft sein."
+msgstr ""
+"Eine Startseite kann nicht gleichzeitig mit einem Thema und einer Einheit "
+"verknüpft sein."
 
 msgid "A Homepage must be linked to either a topic or an entity."
-msgstr "Eine Startseite muss entweder mit einem Thema oder einer Einheit verknüpft sein."
+msgstr ""
+"Eine Startseite muss entweder mit einem Thema oder einer Einheit verknüpft "
+"sein."
 
 msgid "Draft"
 msgstr "Entwurf"
@@ -282,12 +304,6 @@ msgstr "Veröffentlicht"
 
 msgid "Archived"
 msgstr "Archiviert"
-
-msgid "Homepage translation"
-msgstr "Startseitenübersetzung"
-
-msgid "Homepage translations"
-msgstr "Startseitenübersetzungen"
 
 msgid "Language"
 msgstr "Sprache"
@@ -312,6 +328,12 @@ msgstr "Veröffentlicht am"
 
 msgid "Published by"
 msgstr "Veröffentlicht von"
+
+msgid "Homepage translation"
+msgstr "Startseitenübersetzung"
+
+msgid "Homepage translations"
+msgstr "Startseitenübersetzungen"
 
 msgid "My Homepages"
 msgstr "My Startseiten"
@@ -377,7 +399,9 @@ msgid "Remove user"
 msgstr "Benutzer entfernen"
 
 msgid "Are you sure you want to remove permissions for this user?"
-msgstr "Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen möchten?"
+msgstr ""
+"Sind Sie sicher, dass Sie die Berechtigungen für diesen Benutzer entfernen "
+"möchten?"
 
 msgid "No SCIPER provided."
 msgstr "Keine SCIPER-Nummer angegeben."
@@ -398,7 +422,8 @@ msgstr "Der Benutzer %(first)s %(last)s wurde erfolgreich entfernt."
 
 #, python-format
 msgid "The user %(first)s %(last)s has no permission to this homepage."
-msgstr "Der Benutzer %(first)s %(last)s hat keine Berechtigung für diese Startseite."
+msgstr ""
+"Der Benutzer %(first)s %(last)s hat keine Berechtigung für diese Startseite."
 
 msgid "A translation for this language already exists."
 msgstr "Für diese Sprache existiert bereits eine Übersetzung."
@@ -417,12 +442,6 @@ msgstr "Diese Übersetzung ist nicht archiviert."
 
 msgid "Translation restored successfully."
 msgstr "Übersetzung erfolgreich wiederhergestellt."
-
-msgid "News image"
-msgstr "Nachrichtenbild"
-
-msgid "News images"
-msgstr "Nachrichtenbilder"
 
 msgid "Image"
 msgstr "Bild"
@@ -469,6 +488,12 @@ msgstr "Crop rechts"
 msgid "Crop lower"
 msgstr "Crop unten"
 
+msgid "News image"
+msgstr "Nachrichtenbild"
+
+msgid "News images"
+msgstr "Nachrichtenbilder"
+
 msgid "A news must have at least one topic."
 msgstr "Eine Nachricht muss mindestens eine Thematik haben."
 
@@ -499,8 +524,12 @@ msgstr "Titel"
 msgid "Standfirst"
 msgstr "Kopfzeile"
 
-msgid "The standfirst summarizes the news in a sentence or two. The standfirst is displayed in bold under the title."
-msgstr "In der Kopfzeile wird die News in ein oder zwei Sätzen zusammengefasst. Die Kopfzeile wird unter dem Titel fett angezeigt."
+msgid ""
+"The standfirst summarizes the news in a sentence or two. The standfirst is "
+"displayed in bold under the title."
+msgstr ""
+"In der Kopfzeile wird die News in ein oder zwei Sätzen zusammengefasst. Die "
+"Kopfzeile wird unter dem Titel fett angezeigt."
 
 msgid "Extract"
 msgstr "Auszug"
@@ -508,14 +537,22 @@ msgstr "Auszug"
 msgid "Funding"
 msgstr "Finanzierung"
 
-msgid "Please list any institutions or companies that have funded the reported research."
-msgstr "Bitte listen Sie Einrichtungen oder Unternehmen auf, die die angegebene Forschung finanziert haben."
+msgid ""
+"Please list any institutions or companies that have funded the reported "
+"research."
+msgstr ""
+"Bitte listen Sie Einrichtungen oder Unternehmen auf, die die angegebene "
+"Forschung finanziert haben."
 
 msgid "References"
 msgstr "Literaturverzeichnis"
 
-msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
-msgstr "Bitte geben Sie die vollständige Referenz, einschliesslich des DOI, von Peer-Review-Publikationen zur angegebenen Forschung an."
+msgid ""
+"Please provide the full reference, including DOI, of any peer-review "
+"publication(s) related to the reported research."
+msgstr ""
+"Bitte geben Sie die vollständige Referenz, einschliesslich des DOI, von Peer-"
+"Review-Publikationen zur angegebenen Forschung an."
 
 msgid "Links"
 msgstr "Links"
@@ -526,7 +563,8 @@ msgstr "Link hinzufügen"
 msgid "License"
 msgstr "Lizenz"
 
-msgid "Display the Creative Commons license (CC BY-SA) at the bottom of the article."
+msgid ""
+"Display the Creative Commons license (CC BY-SA) at the bottom of the article."
 msgstr "Anzeige der Creative Commons Lizenz (CC BY-SA) am Ende des Artikels."
 
 msgid "Save"
@@ -569,7 +607,9 @@ msgid "The news has been saved successfully."
 msgstr "Die Nachricht wurde erfolgreich gespeichert."
 
 msgid "The form contains errors. Please correct the highlighted fields below."
-msgstr "Das Formular enthält Fehler. Bitte korrigieren Sie die unten hervorgehobenen Felder."
+msgstr ""
+"Das Formular enthält Fehler. Bitte korrigieren Sie die unten hervorgehobenen "
+"Felder."
 
 msgid "News Format"
 msgstr "Nachrichtenformat"
@@ -619,17 +659,17 @@ msgstr "Nachrichtenübersetzung"
 msgid "News translations"
 msgstr "Nachrichtenübersetzungen"
 
-msgid "News URL"
-msgstr "Nachrichten-URL"
-
-msgid "News URLs"
-msgstr "Nachrichten-URLs"
-
 msgid "Translation"
 msgstr "Übersetzung"
 
 msgid "URL"
 msgstr "URL"
+
+msgid "News URL"
+msgstr "Nachrichten-URL"
+
+msgid "News URLs"
+msgstr "Nachrichten-URLs"
 
 msgid "Published on"
 msgstr "Veröffentlicht am"

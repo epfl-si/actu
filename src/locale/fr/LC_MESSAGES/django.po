@@ -487,6 +487,12 @@ msgstr "Entités liées à cette actualité."
 msgid "Format"
 msgstr "Format"
 
+msgid "History"
+msgstr "Historique"
+
+msgid "Edit on the site"
+msgstr "Modifier sur le site"
+
 msgid "Edit News"
 msgstr "Éditer l'actualité"
 

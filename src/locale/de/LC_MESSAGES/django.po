@@ -487,6 +487,12 @@ msgstr "Einheiten, die mit dieser Nachricht verbunden sind."
 msgid "Format"
 msgstr "Format"
 
+msgid "History"
+msgstr "Historie"
+
+msgid "Edit on the site"
+msgstr "Auf der Website bearbeiten"
+
 msgid "Edit News"
 msgstr "Nachrichten bearbeiten"
 

@@ -17,7 +17,6 @@ User = get_user_model()
 
 
 class NewsAPITests(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(
             username="bentoumi",
@@ -847,7 +846,6 @@ class NewsAPITests(TestCase):
 
 
 class NewsPaginationTests(TestCase):
-
     def test_page_size_matches_rest_framework_settings(self):
         self.assertEqual(
             NewsPagination.page_size,

@@ -77,7 +77,6 @@ class NewsUrlForm(forms.ModelForm):
 
 
 class NewsUrlBaseFormSet(BaseModelFormSet):
-
     def clean(self):
         super().clean()
         if any(self.errors):

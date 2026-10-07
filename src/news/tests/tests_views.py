@@ -14,7 +14,6 @@ User = get_user_model()
 
 
 class ManageNewsViewTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(
             username="bentoumi",
@@ -32,7 +31,7 @@ class ManageNewsViewTest(TestCase):
         return news
 
     def test_limits_to_ten_news_per_page(self):
-        for index in range(12):
+        for _ in range(12):
             news = self._create_news()
             NewsTranslation.objects.create(
                 news=news,
@@ -226,7 +225,6 @@ class ManageNewsViewTest(TestCase):
 
 
 class DeleteNewsTranslationViewTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(
             username="bentoumi",
@@ -305,7 +303,6 @@ class DeleteNewsTranslationViewTest(TestCase):
 
 
 class RestoreNewsTranslationViewTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(
             username="bentoumi",
@@ -385,7 +382,6 @@ class RestoreNewsTranslationViewTest(TestCase):
 
 
 class ListNewsViewTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(
             username="bentoumi",
@@ -790,7 +786,6 @@ class CreateNewsTranslationViewTest(TestCase):
 
 
 class EditNewsTranslationViewTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(
             username="bentoumi",

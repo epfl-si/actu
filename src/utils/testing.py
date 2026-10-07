@@ -10,7 +10,6 @@ from playwright.sync_api import sync_playwright
 
 
 class PlaywrightTestCase(StaticLiveServerTestCase):
-
     PLAYWRIGHT_CONNECT_TIMEOUT = 30000  # milliseconds
 
     @classmethod

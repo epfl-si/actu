@@ -5,7 +5,6 @@ from news_formats.models import NewsFormat
 
 
 class NewsFormatModelTest(TestCase):
-
     def setUp(self):
         self.block = BlockType.objects.create(
             label_fr="Test Block", label_en="Test Block EN"

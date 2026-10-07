@@ -8,7 +8,6 @@ from utils.models import get_last_activity_label
 
 
 class Homepage(AuditModelMixin, models.Model):
-
     class Meta:
         verbose_name = _("Homepage")
         verbose_name_plural = _("Homepages")
@@ -69,18 +68,12 @@ class Homepage(AuditModelMixin, models.Model):
 
         if self.topic and self.entity:
             raise ValidationError(
-                _(
-                    "A Homepage cannot be linked to both a "
-                    "topic and an entity."
-                )
+                _("A Homepage cannot be linked to both a topic and an entity.")
             )
 
         if not self.topic and not self.entity:
             raise ValidationError(
-                _(
-                    "A Homepage must be linked to either a "
-                    "topic or an entity."
-                )
+                _("A Homepage must be linked to either a topic or an entity.")
             )
 
 

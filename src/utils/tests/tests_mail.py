@@ -8,7 +8,6 @@ from ..mail import ToAdminEmailBackend
 
 
 class ToAdminEmailBackendTestCase(TestCase):
-
     def setUp(self):
         self.original_admins = settings.ADMINS
 

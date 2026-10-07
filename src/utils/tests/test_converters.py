@@ -7,7 +7,6 @@ from topics.models import Topic
 
 
 class ConvertersTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(
             username="niskanen",

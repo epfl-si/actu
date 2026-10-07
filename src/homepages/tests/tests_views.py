@@ -233,7 +233,6 @@ class HomepageUsersManageViewTests(TestCase):
 
 
 class CreateHomepageTranslationViewTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(
             username="niskanen",
@@ -323,7 +322,6 @@ class CreateHomepageTranslationViewTest(TestCase):
 
 
 class DeleteHomepageTranslationViewTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(
             username="niskanen",
@@ -417,7 +415,6 @@ class DeleteHomepageTranslationViewTest(TestCase):
 
 
 class RestoreHomepageTranslationViewTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(
             username="niskanen",

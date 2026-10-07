@@ -6,7 +6,6 @@ from topics.models import Topic
 
 
 class TopicAPITests(TestCase):
-
     def setUp(self):
         self.sl_topic = Topic.objects.create(
             label_en="Slalom",

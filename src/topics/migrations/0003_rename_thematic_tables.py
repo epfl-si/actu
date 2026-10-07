@@ -56,7 +56,6 @@ def align_database_names(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("topics", "0002_remove_thematic_has_homepage"),
     ]

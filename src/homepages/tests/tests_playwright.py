@@ -10,7 +10,6 @@ User = get_user_model()
 
 
 class ManageHomepagesPlaywrightTests(PlaywrightTestCase):
-
     def setUp(self):
         super().setUp()
 

@@ -85,7 +85,8 @@ organized by reader's need, not project structure. Start from [docs/index.md](do
 - Update translation files with `make translation` when adding new strings.
 - One migration per change. Never mix data and schema migrations.
 - Follow `.editorconfig` and at the repo root.
-- Python: `black` and `isort` (profile black), line length 79. `flake8` for linting. Config in `pyproject.toml` and `.flake8`.
+- Python: `ruff format` and `ruff check` (rules E, W, F, I,
+  C901, UP, B, DJ), line length 79. Config in `pyproject.toml`.
 - JS: `eslint`. SCSS: `stylelint`. Dockerfiles: `hadolint`.
 - Extract recurring or domain-specific values into constants or enums; keep self-explanatory one-off values inline. Use framework constants for standard values such as HTTP status codes where available.
 - OnceAndOnlyOnce: no duplication. Extract shared logic.

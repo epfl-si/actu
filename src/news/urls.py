@@ -27,8 +27,8 @@ urlpatterns = [
     ),
     path(
         "news/<int:news_id>/<language:lang>/preview/",
-        views.news_preview,
-        name="news_preview",
+        views.preview_news,
+        name="preview_news",
     ),
     path(
         "news/<int:news_id>/<language:lang>/preview/publish/",
@@ -42,7 +42,7 @@ urlpatterns = [
     ),
     path(
         "news/<slug:slug>/",
-        views.news_detail,
-        name="news_detail",
+        views.view_news,
+        name="view_news",
     ),
 ]

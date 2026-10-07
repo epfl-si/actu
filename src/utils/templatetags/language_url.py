@@ -14,7 +14,7 @@ def language_url(context, language_code):
     resolver_match = request.resolver_match
 
     # News detail page
-    if resolver_match and resolver_match.url_name == "news_detail":
+    if resolver_match and resolver_match.url_name == "view_news":
         slug = resolver_match.kwargs.get("slug")
 
         if slug:
@@ -36,7 +36,7 @@ def language_url(context, language_code):
                 with override(language_code):
                     if translated:
                         return reverse(
-                            "news_detail",
+                            "view_news",
                             kwargs={"slug": translated.slug},
                         )
 

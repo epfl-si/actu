@@ -394,7 +394,7 @@ def restore_news_translation(request, news_id, lang):
 
 
 @login_required
-def news_preview(request, news_id, lang):
+def preview_news(request, news_id, lang):
     translation = get_object_or_404(
         NewsTranslation.objects.select_related("news").prefetch_related(
             "news__topics",
@@ -411,7 +411,7 @@ def news_preview(request, news_id, lang):
     return render(request, "preview_news.html", {"translation": translation})
 
 
-def news_detail(request, slug):
+def view_news(request, slug):
     language = get_language()
 
     translation = get_object_or_404(
@@ -437,11 +437,11 @@ def news_detail(request, slug):
         )
 
         return redirect(
-            "news_detail",
+            "view_news",
             slug=translated.slug,
         )
 
-    return render(request, "news_detail.html", {"translation": translation})
+    return render(request, "view_news.html", {"translation": translation})
 
 
 @login_required
@@ -461,7 +461,7 @@ def publish_news_translation(request, news_id, lang):
     messages.success(request, _("The news has been published."))
 
     return redirect(
-        "news_preview",
+        "preview_news",
         news_id=translation.news_id,
         lang=translation.language,
     )
@@ -483,7 +483,7 @@ def unpublish_news_translation(request, news_id, lang):
     messages.success(request, _("The news has been unpublished."))
 
     return redirect(
-        "news_preview",
+        "preview_news",
         news_id=translation.news_id,
         lang=translation.language,
     )

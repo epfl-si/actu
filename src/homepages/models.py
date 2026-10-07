@@ -8,20 +8,6 @@ from utils.models import get_last_activity_label
 
 
 class Homepage(AuditModelMixin, models.Model):
-    class Meta:
-        verbose_name = _("Homepage")
-        verbose_name_plural = _("Homepages")
-
-        constraints = [
-            models.CheckConstraint(
-                condition=(
-                    models.Q(topic__isnull=True, entity__isnull=False)
-                    | models.Q(topic__isnull=False, entity__isnull=True)
-                ),
-                name="homepage_must_have_exactly_one_relation",
-            )
-        ]
-
     slug = models.SlugField(
         max_length=200,
         unique=True,
@@ -53,6 +39,20 @@ class Homepage(AuditModelMixin, models.Model):
         blank=True,
         verbose_name=_("Users"),
     )
+
+    class Meta:
+        verbose_name = _("Homepage")
+        verbose_name_plural = _("Homepages")
+
+        constraints = [
+            models.CheckConstraint(
+                condition=(
+                    models.Q(topic__isnull=True, entity__isnull=False)
+                    | models.Q(topic__isnull=False, entity__isnull=True)
+                ),
+                name="homepage_must_have_exactly_one_relation",
+            )
+        ]
 
     def __str__(self):
         return self.slug
@@ -86,17 +86,6 @@ class HomepageTranslation(AuditModelMixin, models.Model):
         DRAFT = "draft", _("Draft")
         PUBLISHED = "published", _("Published")
         ARCHIVED = "archived", _("Archived")
-
-    class Meta:
-        verbose_name = _("Homepage translation")
-        verbose_name_plural = _("Homepage translations")
-        constraints = [
-            models.UniqueConstraint(
-                fields=["homepage", "language"],
-                name="unique_homepage_translation_per_language",
-            )
-        ]
-        ordering = ["-created_at"]
 
     homepage = models.ForeignKey(
         Homepage,
@@ -150,6 +139,17 @@ class HomepageTranslation(AuditModelMixin, models.Model):
         related_name="homepage_translations_published",
         verbose_name=_("Published by"),
     )
+
+    class Meta:
+        verbose_name = _("Homepage translation")
+        verbose_name_plural = _("Homepage translations")
+        constraints = [
+            models.UniqueConstraint(
+                fields=["homepage", "language"],
+                name="unique_homepage_translation_per_language",
+            )
+        ]
+        ordering = ["-created_at"]
 
     def __str__(self):
         return f"{self.homepage.display_name} [{self.language}]"

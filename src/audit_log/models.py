@@ -142,21 +142,6 @@ class AuditModelMixin(models.Model):
         super().__init__(*args, **kwargs)
         self._initial_state = self._get_current_state()
 
-    def _get_current_state(self):
-        state = {}
-        with override("en"):
-            for field in self._meta.fields:
-                if field.name == "id" or "password" in field.name.lower():
-                    continue
-                try:
-                    val = field.value_from_object(self)
-                    state[field.name] = (
-                        str(val) if val is not None else "Empty"
-                    )
-                except Exception:
-                    state[field.name] = "Error"
-        return state
-
     def save(self, *args, **kwargs):
         is_new = self.pk is None
         user_str = _get_user_str()
@@ -219,6 +204,21 @@ class AuditModelMixin(models.Model):
                 transaction.on_commit(make_edit_log)
 
         self._initial_state = self._get_current_state()
+
+    def _get_current_state(self):
+        state = {}
+        with override("en"):
+            for field in self._meta.fields:
+                if field.name == "id" or "password" in field.name.lower():
+                    continue
+                try:
+                    val = field.value_from_object(self)
+                    state[field.name] = (
+                        str(val) if val is not None else "Empty"
+                    )
+                except Exception:
+                    state[field.name] = "Error"
+        return state
 
 
 def _get_user_str():

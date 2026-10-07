@@ -16,11 +16,6 @@ class News(AuditModelMixin, models.Model):
     All translated news lives in NewsTranslation (translations app).
     """
 
-    class Meta:
-        verbose_name = _("News")
-        verbose_name_plural = _("News")
-        ordering = ["-created_at"]
-
     topics = models.ManyToManyField(
         Topic,
         related_name="news",
@@ -51,6 +46,11 @@ class News(AuditModelMixin, models.Model):
         verbose_name=_("Created by"),
     )
     is_under_cc_license = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = _("News")
+        verbose_name_plural = _("News")
+        ordering = ["-created_at"]
 
     def __str__(self):
         return f"News #{self.pk}"

@@ -60,12 +60,12 @@ class LabelModel(models.Model):
         "label_it",
     ]
 
+    class Meta:
+        abstract = True
+
     def __str__(self):
         lang = utils.translation.get_language()
         return self.__getattribute__("label_" + lang)
 
     def get_label(self, lang):
         return self.__getattribute__("label_" + lang)
-
-    class Meta:
-        abstract = True

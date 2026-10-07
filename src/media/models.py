@@ -21,11 +21,6 @@ class NewsImage(AuditModelMixin, models.Model):
     images to download or inside dynamic blocks.
     """
 
-    class Meta:
-        verbose_name = _("News image")
-        verbose_name_plural = _("News images")
-        ordering = ["-created_at"]
-
     news = models.ForeignKey(
         News,
         on_delete=models.CASCADE,
@@ -121,6 +116,11 @@ class NewsImage(AuditModelMixin, models.Model):
         related_name="news_images_created",
         verbose_name=_("Created by"),
     )
+
+    class Meta:
+        verbose_name = _("News image")
+        verbose_name_plural = _("News images")
+        ordering = ["-created_at"]
 
     def __str__(self):
         return f"Image #{self.pk} ({self.image.name or '-'})"

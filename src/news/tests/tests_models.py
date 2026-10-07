@@ -12,7 +12,6 @@ User = get_user_model()
 
 
 class NewsModelTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create_user(
             username="niskanen",

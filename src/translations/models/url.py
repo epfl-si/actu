@@ -11,17 +11,6 @@ class NewsUrl(models.Model):
     URLs of a news item.
     """
 
-    class Meta:
-        app_label = "translations"
-        verbose_name = _("News URL")
-        verbose_name_plural = _("News URLs")
-        constraints = [
-            UniqueConstraint(
-                fields=["translation", "url"],
-                name="unique_translation_url",
-            ),
-        ]
-
     translation = models.ForeignKey(
         NewsTranslation,
         on_delete=models.CASCADE,
@@ -32,6 +21,17 @@ class NewsUrl(models.Model):
         max_length=512,
         verbose_name=_("URL"),
     )
+
+    class Meta:
+        app_label = "translations"
+        verbose_name = _("News URL")
+        verbose_name_plural = _("News URLs")
+        constraints = [
+            UniqueConstraint(
+                fields=["translation", "url"],
+                name="unique_translation_url",
+            ),
+        ]
 
     def __str__(self):
         return f"{self.url}"

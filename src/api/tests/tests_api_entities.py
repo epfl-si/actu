@@ -6,7 +6,6 @@ from entities.models import Entity
 
 
 class EntityAPITests(TestCase):
-
     def setUp(self):
         self.st_entity = Entity.objects.create(
             label_en="Streif",  # Kitzbühel

@@ -3,7 +3,6 @@ from django.urls import reverse
 
 
 class APIInfrastructureTests(TestCase):
-
     def test_docs_url(self):
         url = reverse("api-docs", kwargs={"version": "v1"})
         response = self.client.get(url)

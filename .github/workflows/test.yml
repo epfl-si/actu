@@ -47,20 +47,15 @@ jobs:
             -e DJANGO_SETTINGS_MODULE='configs.ci' django python src/manage.py makemessages -a --no-location --no-wrap
           git diff --numstat | awk '{if ($1>0 || $2>0) { exit 1 }}'
 
-      - name: Black
+      - name: Ruff format
         run: |
           docker compose -f docker-compose-dev.yml exec \
-            django black --check --diff .
+            django ruff format --check --diff .
 
-      - name: isort
+      - name: Ruff check
         run: |
           docker compose -f docker-compose-dev.yml exec \
-            django isort --check-only --diff .
-
-      - name: Flake8
-        run: |
-          docker compose -f docker-compose-dev.yml exec \
-            django flake8
+            django ruff check .
 
       - name: Stylelint
         run: |

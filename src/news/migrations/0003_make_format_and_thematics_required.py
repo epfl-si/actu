@@ -31,7 +31,6 @@ def reverse_check(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("news", "0002_news_format"),
     ]

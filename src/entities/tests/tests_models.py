@@ -5,7 +5,6 @@ from entities.models import Entity
 
 
 class EntityModelTest(TestCase):
-
     def setUp(self):
         self.entity = Entity.objects.create(
             label_en="Life Sciences",

@@ -83,7 +83,6 @@ class HomepageModelTest(TestCase):
 
 
 class HomepageTranslationModelTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create(
             username="vonallmen",
@@ -126,7 +125,7 @@ class HomepageTranslationModelTest(TestCase):
         self.assertTrue(self.translation.is_published)
 
     def test_unique_together_homepage_and_language(self):
-        with self.assertRaises(Exception):
+        with self.assertRaises(IntegrityError):
             HomepageTranslation.objects.create(
                 homepage=self.homepage,
                 language="en",

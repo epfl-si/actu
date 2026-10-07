@@ -23,17 +23,16 @@ help:
 	@echo "  make help                 — Display this help"
 	@echo "Utilities:"
 	@echo "  make assets-build         — Build assets with Vite"
-	@echo "  make black                — Lint Python code with black"
 	@echo "  make coverage             — Run test suite with text coverage"
 	@echo "  make coverage-html        — Run test suite with html coverage"
 	@echo "  make create-venv          — Create Python venv with Pyenv"
 	@echo "  make delete-venv          — Delete Python venv"
 	@echo "  make eslint               — Lint JS code with eslint"
-	@echo "  make flake8               — Lint Python code with flake8"
+	@echo "  make format               — Format Python code with ruff"
 	@echo "  make hadolint             — Lint Dockerfile with hadolint"
-	@echo "  make isort                — Lint Python code with isort"
 	@echo "  make lint                 — Lint code"
 	@echo "  make print-env            — Print environment variables"
+	@echo "  make ruff                 — Lint Python code with ruff"
 	@echo "  make scan                 — Scan latest app image"
 	@echo "  make stylelint            — Lint SCSS code with stylelint"
 	@echo "  make test                 — Run test suite"
@@ -110,24 +109,19 @@ delete-venv:
 	@pyenv virtualenv-delete --force ${PYTHON_VENV}
 	@rm .python-version
 
-.PHONY: black
-black:
+.PHONY: format
+format:
 	@docker exec -it --user root local-django-actu bash -c \
-		"black --check --diff ."
+		"ruff format . && ruff check --fix ."
 
-.PHONY: flake8
-flake8:
+.PHONY: ruff
+ruff:
 	@docker exec -it --user root local-django-actu bash -c \
-		"flake8"
+		"ruff format --check --diff . && ruff check ."
 
 .PHONY: hadolint
 hadolint:
 	@${HADOLINT} sh -c "hadolint /host/docker/*/Dockerfile"
-
-.PHONY: isort
-isort:
-	@docker exec -it --user root local-django-actu bash -c \
-		"isort --check-only --diff ."
 
 .PHONY: eslint
 eslint:
@@ -140,7 +134,7 @@ stylelint:
 		"npm run stylelint"
 
 .PHONY: lint
-lint: hadolint black isort flake8 stylelint eslint
+lint: hadolint ruff stylelint eslint
 
 .PHONY: assets-build
 assets-build:

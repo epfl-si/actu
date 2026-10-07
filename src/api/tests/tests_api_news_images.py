@@ -29,7 +29,6 @@ def _create_image_file(name="test.jpg"):
 
 
 class NewsImagesAPITests(TestCase):
-
     @classmethod
     def setUpClass(cls):
         cls._media_root = tempfile.mkdtemp()

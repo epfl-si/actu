@@ -99,7 +99,6 @@ def reverse_populate_data(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("news_formats", "0001_initial"),
         ("block_types", "0001_initial"),

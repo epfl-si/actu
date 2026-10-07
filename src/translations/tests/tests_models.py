@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.db.utils import IntegrityError
 from django.test import TestCase
 from django.utils.timezone import localtime, now
 
@@ -11,7 +12,6 @@ User = get_user_model()
 
 
 class NewsTranslationModelTest(TestCase):
-
     def setUp(self):
         self.user = User.objects.create(
             username="iivo.niskanen",
@@ -54,7 +54,7 @@ class NewsTranslationModelTest(TestCase):
         self.assertTrue(self.translation.is_published)
 
     def test_unique_together_news_and_language(self):
-        with self.assertRaises(Exception):
+        with self.assertRaises(IntegrityError):
             NewsTranslation.objects.create(
                 news=self.news,
                 language="en",

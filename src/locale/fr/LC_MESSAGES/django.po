@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 15:26+0200\n"
+"POT-Creation-Date: 2026-10-07 16:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -26,7 +26,9 @@ msgid "Filter by whether the topic is marked as main."
 msgstr "Filtrer selon que la thématique est marquée comme principale ou non."
 
 msgid "Number of results to return per page. Defaults to the API page size."
-msgstr "Nombre de résultats à retourner par page. Par défaut, la taille de page de l'API."
+msgstr ""
+"Nombre de résultats à retourner par page. Par défaut, la taille de page de "
+"l'API."
 
 msgid "Unique identifier of the news item."
 msgstr "Identifiant unique de l'actualité."
@@ -88,8 +90,16 @@ msgstr "Actualités"
 msgid "List published news"
 msgstr "Lister les actualités publiées"
 
-msgid "Return published news, optionally filtered by topic identifiers, entity identifiers, format identifiers, a language, or a title search. Multiple identifiers for the same filter are combined with OR; topic and entity filters are also combined with OR."
-msgstr "Retourne les actualités publiées, éventuellement filtrées par identifiants thématiques, identifiants d'entité, identifiants de format, langue ou recherche de titre. Plusieurs identifiants pour le même filtre sont combinés avec OU ; les filtres thématiques et entité sont également combinés avec OU."
+msgid ""
+"Return published news, optionally filtered by topic identifiers, entity "
+"identifiers, format identifiers, a language, or a title search. Multiple "
+"identifiers for the same filter are combined with OR; topic and entity "
+"filters are also combined with OR."
+msgstr ""
+"Retourne les actualités publiées, éventuellement filtrées par identifiants "
+"thématiques, identifiants d'entité, identifiants de format, langue ou "
+"recherche de titre. Plusieurs identifiants pour le même filtre sont combinés "
+"avec OU ; les filtres thématiques et entité sont également combinés avec OU."
 
 msgid "Topic identifiers."
 msgstr "Identifiants thématiques."
@@ -244,17 +254,15 @@ msgstr "Indique si cette entité est affichée dans le pied de page."
 msgid "Order"
 msgstr "Ordre"
 
-msgid "Defines the display order. A value of 0 means that the order is ignored (for non-main entities)."
-msgstr "Définit l'ordre d'affichage. Une valeur de 0 signifie que l'ordre est ignoré (pour les entités non principales)."
+msgid ""
+"Defines the display order. A value of 0 means that the order is ignored (for "
+"non-main entities)."
+msgstr ""
+"Définit l'ordre d'affichage. Une valeur de 0 signifie que l'ordre est ignoré "
+"(pour les entités non principales)."
 
 msgid "Name"
 msgstr "Nom"
-
-msgid "Homepage"
-msgstr "Page d'accueil"
-
-msgid "Homepages"
-msgstr "Pages d'accueil"
 
 msgid "Slug"
 msgstr "Slug"
@@ -268,11 +276,20 @@ msgstr "Thématique"
 msgid "Users"
 msgstr "Utilisateurs"
 
+msgid "Homepage"
+msgstr "Page d'accueil"
+
+msgid "Homepages"
+msgstr "Pages d'accueil"
+
 msgid "A Homepage cannot be linked to both a topic and an entity."
-msgstr "Une page d'accueil ne peut pas être liée à la fois à une thématique et à une entité."
+msgstr ""
+"Une page d'accueil ne peut pas être liée à la fois à une thématique et à une "
+"entité."
 
 msgid "A Homepage must be linked to either a topic or an entity."
-msgstr "Une page d'accueil doit être liée soit à une thématique, soit à une entité."
+msgstr ""
+"Une page d'accueil doit être liée soit à une thématique, soit à une entité."
 
 msgid "Draft"
 msgstr "Brouillon"
@@ -282,12 +299,6 @@ msgstr "Publié"
 
 msgid "Archived"
 msgstr "Archivé"
-
-msgid "Homepage translation"
-msgstr "Traduction de page d'accueil"
-
-msgid "Homepage translations"
-msgstr "Traductions de pages d'accueil"
 
 msgid "Language"
 msgstr "Langue"
@@ -312,6 +323,12 @@ msgstr "Publié le"
 
 msgid "Published by"
 msgstr "Publié par"
+
+msgid "Homepage translation"
+msgstr "Traduction de page d'accueil"
+
+msgid "Homepage translations"
+msgstr "Traductions de pages d'accueil"
 
 msgid "My Homepages"
 msgstr "Mes pages d'accueil"
@@ -398,7 +415,8 @@ msgstr "L'utilisateur %(first)s %(last)s a été retiré avec succès."
 
 #, python-format
 msgid "The user %(first)s %(last)s has no permission to this homepage."
-msgstr "L'utilisateur %(first)s %(last)s n'a pas d'autorisation sur cette homepage."
+msgstr ""
+"L'utilisateur %(first)s %(last)s n'a pas d'autorisation sur cette homepage."
 
 msgid "A translation for this language already exists."
 msgstr "Une traduction pour cette langue existe déjà."
@@ -417,12 +435,6 @@ msgstr "Cette traduction n'est pas archivée."
 
 msgid "Translation restored successfully."
 msgstr "Traduction restaurée avec succès."
-
-msgid "News image"
-msgstr "Image de l'actualité"
-
-msgid "News images"
-msgstr "Images de l'actualité"
 
 msgid "Image"
 msgstr "Image"
@@ -469,6 +481,12 @@ msgstr "Crop droite"
 msgid "Crop lower"
 msgstr "Crop bas"
 
+msgid "News image"
+msgstr "Image de l'actualité"
+
+msgid "News images"
+msgstr "Images de l'actualité"
+
 msgid "A news must have at least one topic."
 msgstr "Une actualité doit avoir au moins une thématique."
 
@@ -499,8 +517,12 @@ msgstr "Titre"
 msgid "Standfirst"
 msgstr "Chapeau"
 
-msgid "The standfirst summarizes the news in a sentence or two. The standfirst is displayed in bold under the title."
-msgstr "Le chapeau résume l'actualité en une ou deux phrases. Le chapeau est affiché en gras sous le titre."
+msgid ""
+"The standfirst summarizes the news in a sentence or two. The standfirst is "
+"displayed in bold under the title."
+msgstr ""
+"Le chapeau résume l'actualité en une ou deux phrases. Le chapeau est affiché "
+"en gras sous le titre."
 
 msgid "Extract"
 msgstr "Extrait"
@@ -508,14 +530,22 @@ msgstr "Extrait"
 msgid "Funding"
 msgstr "Financement"
 
-msgid "Please list any institutions or companies that have funded the reported research."
-msgstr "Si les travaux décrits dans l'actualité ont bénéficié d'un financement externe, indiquer dans ce champ les institutions ou sociétés ayant participé."
+msgid ""
+"Please list any institutions or companies that have funded the reported "
+"research."
+msgstr ""
+"Si les travaux décrits dans l'actualité ont bénéficié d'un financement "
+"externe, indiquer dans ce champ les institutions ou sociétés ayant participé."
 
 msgid "References"
 msgstr "Références"
 
-msgid "Please provide the full reference, including DOI, of any peer-review publication(s) related to the reported research."
-msgstr "Si l'actualité se base sur une publication en revue, indiquer ici les références bibliographiques complètes, y compris l'adresse DOI."
+msgid ""
+"Please provide the full reference, including DOI, of any peer-review "
+"publication(s) related to the reported research."
+msgstr ""
+"Si l'actualité se base sur une publication en revue, indiquer ici les "
+"références bibliographiques complètes, y compris l'adresse DOI."
 
 msgid "Links"
 msgstr "Liens"
@@ -526,7 +556,8 @@ msgstr "Ajouter un lien"
 msgid "License"
 msgstr "Licence"
 
-msgid "Display the Creative Commons license (CC BY-SA) at the bottom of the article."
+msgid ""
+"Display the Creative Commons license (CC BY-SA) at the bottom of the article."
 msgstr "Afficher en bas d'article la licence Creative Commons (CC BY-SA)."
 
 msgid "Save"
@@ -569,7 +600,9 @@ msgid "The news has been saved successfully."
 msgstr "L'actualité a été sauvegardée correctement."
 
 msgid "The form contains errors. Please correct the highlighted fields below."
-msgstr "Le formulaire contient des erreurs. Veuillez corriger les champs surlignés ci-dessous."
+msgstr ""
+"Le formulaire contient des erreurs. Veuillez corriger les champs surlignés "
+"ci-dessous."
 
 msgid "News Format"
 msgstr "Format d'actualités"
@@ -619,17 +652,17 @@ msgstr "Traduction d'actualité"
 msgid "News translations"
 msgstr "Traductions d'actualités"
 
-msgid "News URL"
-msgstr "URL d'actualité"
-
-msgid "News URLs"
-msgstr "URLs d'actualités"
-
 msgid "Translation"
 msgstr "Traduction"
 
 msgid "URL"
 msgstr "URL"
+
+msgid "News URL"
+msgstr "URL d'actualité"
+
+msgid "News URLs"
+msgstr "URLs d'actualités"
 
 msgid "Published on"
 msgstr "Publié le"

@@ -19,18 +19,6 @@ class NewsTranslation(AuditModelMixin, models.Model):
         PUBLISHED = "published", _("Published")
         ARCHIVED = "archived", _("Archived")
 
-    class Meta:
-        app_label = "translations"
-        verbose_name = _("News translation")
-        verbose_name_plural = _("News translations")
-        constraints = [
-            models.UniqueConstraint(
-                fields=["news", "language"],
-                name="unique_translation_per_language",
-            )
-        ]
-        ordering = ["-created_at"]
-
     news = models.ForeignKey(
         News,
         on_delete=models.CASCADE,
@@ -103,20 +91,20 @@ class NewsTranslation(AuditModelMixin, models.Model):
         verbose_name=_("Published by"),
     )
 
+    class Meta:
+        app_label = "translations"
+        verbose_name = _("News translation")
+        verbose_name_plural = _("News translations")
+        constraints = [
+            models.UniqueConstraint(
+                fields=["news", "language"],
+                name="unique_translation_per_language",
+            )
+        ]
+        ordering = ["-created_at"]
+
     def __str__(self):
         return f"{self.title} [{self.language}]"
-
-    @property
-    def is_published(self):
-        return self.status == self.Status.PUBLISHED
-
-    @property
-    def last_activity_label(self):
-        return get_last_activity_label(instance=self)
-
-    def get_absolute_url(self):
-        identifier = self.slug if self.slug else self.id
-        return f"/{identifier}"
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -162,14 +150,29 @@ class NewsTranslation(AuditModelMixin, models.Model):
         self._original_slug = self.slug
         self._original_title = self.title
 
+    def get_absolute_url(self):
+        identifier = self.slug if self.slug else self.id
+        return f"/{identifier}"
+
+    @property
+    def is_published(self):
+        return self.status == self.Status.PUBLISHED
+
+    @property
+    def last_activity_label(self):
+        return get_last_activity_label(instance=self)
+
 
 class NewsSlugHistory(models.Model):
-    class Meta:
-        app_label = "translations"
-
     news_translation = models.ForeignKey(
         "NewsTranslation",
         on_delete=models.CASCADE,
         related_name="historical_slugs",
     )
     old_slug = models.CharField(max_length=255, db_index=True, unique=True)
+
+    class Meta:
+        app_label = "translations"
+
+    def __str__(self):
+        return self.old_slug

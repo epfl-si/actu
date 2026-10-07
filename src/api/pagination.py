@@ -10,6 +10,5 @@ class NewsPagination(PageNumberPagination):
     page_size_query_param = "limit"
     max_page_size = 100
     page_size_query_description = _(
-        "Number of results to return per page. "
-        "Defaults to the API page size."
+        "Number of results to return per page. Defaults to the API page size."
     )

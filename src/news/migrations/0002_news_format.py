@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("news", "0001_initial"),
         ("news_formats", "0002_populate_formats_and_blocks"),

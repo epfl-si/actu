@@ -6,7 +6,7 @@ from utils.models import LabelModel
 
 
 class NewsFormat(LabelModel):
-    icon = models.CharField(max_length=255, blank=True, null=True)
+    icon = models.CharField(max_length=255, blank=True)
     allowed_blocks = models.ManyToManyField(
         BlockType,
         blank=True,

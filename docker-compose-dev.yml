@@ -44,7 +44,6 @@ services:
       - ./src:/app/src
       - ./docker:/app/docker
       - ./public/uploads:/app/public/uploads
-      - ./.flake8:/app/.flake8
       - ./.coveragerc:/app/.coveragerc
       - ./pyproject.toml:/app/pyproject.toml
     ports:

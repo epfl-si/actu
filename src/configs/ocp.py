@@ -2,6 +2,7 @@
 Django specific settings for OpenShift Container Platform.
 """
 
+import logging
 import os
 from datetime import datetime
 
@@ -54,18 +55,38 @@ REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [  # noqa: F405
     "rest_framework.renderers.JSONRenderer",
 ]
 
+
+class DailyFileHandler(logging.FileHandler):
+    """Custom FileHandler that create new file every day."""
+
+    def __init__(self, folder, mode="a", encoding=None, delay=False):
+        self.folder = folder
+        filename = self._get_filename()
+        super().__init__(filename, mode, encoding, delay)
+
+    def _get_filename(self):
+        date_str = datetime.now().strftime("%Y-%m-%d")
+        return os.path.join(self.folder, f"actu-audit-{date_str}.jsonl")
+
+    def emit(self, record):
+        current_file = self._get_filename()
+        if self.baseFilename != os.path.abspath(current_file):
+            if self.stream:
+                self.stream.close()
+                self.stream = None
+            self.baseFilename = current_file
+        super().emit(record)
+
+
 AUDIT_LOG_FOLDER = os.getenv("ACTU_AUDIT_LOG_PATH")
 
 if AUDIT_LOG_FOLDER:
     os.makedirs(AUDIT_LOG_FOLDER, exist_ok=True)
-    date = datetime.now().strftime("%Y-%m-%d")
-    file_name = f"actu-audit-{date}.jsonl"
-    AUDIT_LOG_FILE_PATH = os.path.join(AUDIT_LOG_FOLDER, file_name)
 
     handler_config = {
         "level": "INFO",
-        "class": "logging.FileHandler",
-        "filename": AUDIT_LOG_FILE_PATH,
+        "class": "configs.ocp.DailyFileHandler",
+        "folder": AUDIT_LOG_FOLDER,
         "formatter": "json_raw",
     }
 else:

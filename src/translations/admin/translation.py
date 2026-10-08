@@ -1,4 +1,7 @@
 from django.contrib import admin
+from django.urls import reverse
+from django.utils.html import format_html
+from django.utils.translation import gettext_lazy as _
 
 from ..models import NewsTranslation
 
@@ -9,7 +12,7 @@ class NewsTranslationAdmin(admin.ModelAdmin):
         "title",
         "language",
         "status",
-        "news",
+        "news_link",
         "slug",
         "created_at",
         "created_by",
@@ -25,6 +28,8 @@ class NewsTranslationAdmin(admin.ModelAdmin):
 
     autocomplete_fields = ["news"]
 
+    list_select_related = ["news", "created_by"]
+
     readonly_fields = [
         "slug",
         "created_at",
@@ -34,6 +39,11 @@ class NewsTranslationAdmin(admin.ModelAdmin):
         "published_at",
         "published_by",
     ]
+
+    @admin.display(description=_("News"), ordering="news")
+    def news_link(self, obj):
+        url = reverse("admin:news_news_change", args=[obj.news_id])
+        return format_html('<a href="{}">{}</a>', url, obj.news)
 
     def save_model(self, request, obj, form, change):
         if not obj.pk:

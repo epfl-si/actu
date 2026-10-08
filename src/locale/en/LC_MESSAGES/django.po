@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 15:26+0200\n"
+"POT-Creation-Date: 2026-10-08 10:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -467,6 +467,9 @@ msgid "Crop right"
 msgstr ""
 
 msgid "Crop lower"
+msgstr ""
+
+msgid "Translations"
 msgstr ""
 
 msgid "A news must have at least one topic."

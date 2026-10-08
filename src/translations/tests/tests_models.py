@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.utils.timezone import localtime, now
@@ -52,6 +54,16 @@ class NewsTranslationModelTest(TestCase):
         self.translation.status = NewsTranslation.Status.PUBLISHED
         self.translation.save()
         self.assertTrue(self.translation.is_published)
+
+    def test_is_modified_after_publication_false_when_not_published(self):
+        self.assertFalse(self.translation.is_modified_after_publication)
+
+    def test_is_modified_after_publication_true_when_updated_after_publication(
+        self,
+    ):
+        self.translation.published_at = now() - timedelta(minutes=10)
+        self.translation.save()
+        self.assertTrue(self.translation.is_modified_after_publication)
 
     def test_unique_together_news_and_language(self):
         with self.assertRaises(Exception):

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 13:46+0200\n"
+"POT-Creation-Date: 2026-10-08 14:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -519,6 +519,14 @@ msgstr "Aggiungi un link"
 msgid "Save"
 msgstr "Salva"
 
+#, python-format
+msgid "Published on %(published_date)s at %(published_time)s, modified on %(updated_date)s at %(updated_time)s"
+msgstr "Pubblicato il %(published_date)s alle %(published_time)s, modificato il %(updated_date)s alle %(updated_time)s"
+
+#, python-format
+msgid "Published on %(date)s at %(time)s"
+msgstr "Pubblicata il %(date)s alle %(time)s"
+
 msgid "Show metadata"
 msgstr "Mostra metadati"
 
@@ -555,8 +563,8 @@ msgstr "Vuoi davvero eliminare questa traduzione della notizia?"
 msgid "Publish"
 msgstr "Pubblicare"
 
-msgid "Stop publishing"
-msgstr "Annulare la pubblicazione"
+msgid "Unpublish"
+msgstr "Rimuovi pubblicazione"
 
 msgid "The news has been saved successfully."
 msgstr "La notizia è stata salvata correttamente."
@@ -639,10 +647,6 @@ msgstr "ieri"
 #, python-format
 msgid "Published %(date)s at %(time)s"
 msgstr "Pubblicata %(date)s alle %(time)s"
-
-#, python-format
-msgid "Published on %(date)s at %(time)s"
-msgstr "Pubblicata il %(date)s alle %(time)s"
 
 #, python-format
 msgid "modified %(date)s at %(time)s"

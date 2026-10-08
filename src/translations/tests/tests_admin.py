@@ -42,7 +42,9 @@ class NewsTranslationAdminTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(
             response,
-            reverse("edit_news", args=[self.news.pk, self.translation.language]),
+            reverse(
+                "edit_news", args=[self.news.pk, self.translation.language]
+            ),
         )
 
     def test_change_form_shows_edit_on_the_site_button(self):

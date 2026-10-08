@@ -6,16 +6,21 @@ from drf_spectacular.utils import (
     extend_schema_view,
 )
 from rest_framework import mixins, viewsets
-from rest_framework.permissions import AllowAny
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
 
 from api.filters import EntityFilter, TopicFilter
 from api.pagination import NewsPagination
 from api.serializers import (
     EntitySerializer,
+    NewsImageSerializer,
     NewsSerializer,
     TopicSerializer,
 )
 from entities.models import Entity
+from news.models import News
 from topics.models import Topic
 from translations.models import NewsTranslation
 
@@ -177,3 +182,22 @@ class NewsViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             )
 
         return translations_qs.select_related("news").order_by("-published_at")
+
+
+@extend_schema(
+    tags=[_("News")],
+    summary=_("List images for a news item"),
+    description=_("Return all images attached to a given news item."),
+    responses={200: NewsImageSerializer(many=True)},
+)
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def news_images(request, version, news_pk):
+    """Return the list of images for the requested news item."""
+    news = get_object_or_404(News, pk=news_pk)
+    serializer = NewsImageSerializer(
+        news.images.all(),
+        many=True,
+        context={"request": request},
+    )
+    return Response(serializer.data)

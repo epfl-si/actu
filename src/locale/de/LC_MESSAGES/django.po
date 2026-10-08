@@ -109,6 +109,12 @@ msgstr "Anzahl der Ergebnisse pro Seite. Standardmäßig wird die API-Seitengrö
 msgid "Search in the news title."
 msgstr "Im Nachrichtentitel suchen."
 
+msgid "List images for a news item"
+msgstr "Bilder für eine Nachricht auflisten"
+
+msgid "Return all images attached to a given news item."
+msgstr "Gibt alle Bilder zurück, die einer bestimmten Nachricht zugeordnet sind."
+
 msgid "Object Type"
 msgstr "Objekttyp"
 
@@ -516,6 +522,12 @@ msgstr "Links"
 
 msgid "Add a link"
 msgstr "Link hinzufügen"
+
+msgid "License"
+msgstr "Lizenz"
+
+msgid "Display the Creative Commons license (CC BY-SA) at the bottom of the article."
+msgstr "Anzeige der Creative Commons Lizenz (CC BY-SA) am Ende des Artikels."
 
 msgid "Save"
 msgstr "Speichern"

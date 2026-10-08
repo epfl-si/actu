@@ -109,6 +109,12 @@ msgstr ""
 msgid "Search in the news title."
 msgstr ""
 
+msgid "List images for a news item"
+msgstr ""
+
+msgid "Return all images attached to a given news item."
+msgstr ""
+
 msgid "Object Type"
 msgstr ""
 
@@ -515,6 +521,12 @@ msgid "Links"
 msgstr ""
 
 msgid "Add a link"
+msgstr ""
+
+msgid "License"
+msgstr ""
+
+msgid "Display the Creative Commons license (CC BY-SA) at the bottom of the article."
 msgstr ""
 
 msgid "Save"

@@ -108,6 +108,12 @@ msgstr "Numero di risultati per pagina. Per impostazione predefinita, la dimensi
 msgid "Search in the news title."
 msgstr "Cerca nel titolo della notizia."
 
+msgid "List images for a news item"
+msgstr "Elenca le immagini di una notizia"
+
+msgid "Return all images attached to a given news item."
+msgstr "Restituisce tutte le immagini associate a una determinata notizia."
+
 msgid "Object Type"
 msgstr "Tipo di oggetto"
 
@@ -515,6 +521,12 @@ msgstr "Link"
 
 msgid "Add a link"
 msgstr "Aggiungi un link"
+
+msgid "License"
+msgstr "Licenza"
+
+msgid "Display the Creative Commons license (CC BY-SA) at the bottom of the article."
+msgstr "Visualizza la licenza Creative Commons (CC BY-SA) in fondo all’articolo."
 
 msgid "Save"
 msgstr "Salva"

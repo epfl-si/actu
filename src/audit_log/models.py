@@ -27,7 +27,7 @@ def _write_audit_to_file(audit_log):
         "Edit": "u",
         "Delete": "d",
     }
-    crudt_action = action_mapping.get(audit_log.action, "update")
+    crudt_action = action_mapping.get(audit_log.action, "u")
 
     timestamp = audit_log.created_at if audit_log.created_at else now()
     iso_timestamp = timestamp.isoformat()

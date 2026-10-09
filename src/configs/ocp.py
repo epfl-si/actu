@@ -56,7 +56,7 @@ REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [  # noqa: F405
 ]
 
 
-class DailyFileHandler(logging.FileHandler):
+class AuditLogDailyFileHandler(logging.FileHandler):
     """Custom FileHandler that create new file every day."""
 
     def __init__(self, folder, mode="a", encoding=None, delay=False):
@@ -85,7 +85,7 @@ if AUDIT_LOG_FOLDER:
 
     handler_config = {
         "level": "INFO",
-        "class": "configs.ocp.DailyFileHandler",
+        "class": "configs.ocp.AuditLogDailyFileHandler",
         "folder": AUDIT_LOG_FOLDER,
         "formatter": "json_raw",
     }

@@ -72,8 +72,6 @@ def _format_single_log(log):
     translated_changes = {}
 
     for field, values in changes_to_process.items():
-        if field == "changes":
-            continue
 
         field_name = field
         if model_class:

@@ -178,9 +178,7 @@ class GlobalAuditLogTests(TestCase):
         self.assertEqual(log_data["source"], "actu-opdo")
         self.assertEqual(log_data["handler_id"], "System")
 
-        self.assertTrue(
-            log_data["handled_id"].startswith("http://testserver/")
-        )
+        self.assertEqual(log_data["handled_id"], "system-background-task")
 
         payload = json.loads(log_data["payload"])
         self.assertIn("object_name", payload)
@@ -203,9 +201,7 @@ class GlobalAuditLogTests(TestCase):
         log_data = json.loads(log_json_string)
 
         self.assertEqual(log_data["crudt"], "d")
-        self.assertTrue(
-            log_data["handled_id"].startswith("http://testserver/")
-        )
+        self.assertEqual(log_data["handled_id"], "system-background-task")
         self.assertEqual(log_data["handler_id"], "System")
 
         payload = json.loads(log_data["payload"])

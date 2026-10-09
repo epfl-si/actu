@@ -10,12 +10,13 @@ class AuditUserMiddleware:
 
     def __call__(self, request):
         user = request.user
-        token = current_user.set(user)
-        current_request.set(request)
+        user_token = current_user.set(user)
+        request_token = current_request.set(request)
 
         try:
             response = self.get_response(request)
         finally:
-            current_user.reset(token)
+            current_user.reset(user_token)
+            current_request.reset(request_token)
 
         return response

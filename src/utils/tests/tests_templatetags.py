@@ -76,6 +76,23 @@ class LanguageUrlTagTest(TestCase):
         url = self.render_tag("/fr/news/", "en")
         self.assertEqual(url, "/en/news/")
 
+    def test_news_page_tag_is_memoized_per_request(self):
+        path = f"/fr/news/{self.fr.slug}/"
+        template = Template(
+            "{% load language_url %}"
+            "{% language_url 'en' %}{% language_url 'it' %}"
+            "{% language_url 'de' %}"
+        )
+        request = self.factory.get(path)
+        # Emulates LocaleMiddleware: i18n_patterns only resolves the
+        # active language's prefix.
+        with translation.override("fr"):
+            request.resolver_match = resolve(path)
+
+        # First call fetches slug + siblings; the rest read the cache.
+        with self.assertNumQueries(2):
+            template.render(Context({"request": request}))
+
 
 class PublicPageCacheSafetyTest(TestCase):
 

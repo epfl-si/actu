@@ -18,22 +18,31 @@ def language_url(context, language_code):
         slug = resolver_match.kwargs.get("slug")
 
         if slug:
-            translation = (
-                NewsTranslation.objects.filter(
-                    slug=slug,
-                    status=NewsTranslation.Status.PUBLISHED,
-                )
-                .select_related("news")
-                .first()
+            # Menu calls this tag once per language; cache the lookups
+            # for the whole render.
+            published_translations = getattr(
+                request, "_language_url_translations", None
             )
-
-            if translation:
-                translated = translation.news.translations.filter(
-                    language=language_code,
+            if published_translations is None:
+                translation = NewsTranslation.objects.filter(
+                    slug=slug,
                     status=NewsTranslation.Status.PUBLISHED,
                 ).first()
 
+                if translation:
+                    published_translations = {
+                        t.language: t
+                        for t in NewsTranslation.objects.filter(
+                            news_id=translation.news_id,
+                            status=NewsTranslation.Status.PUBLISHED,
+                        )
+                    }
+                    request._language_url_translations = published_translations
+
+            if published_translations:
                 with override(language_code):
+                    translated = published_translations.get(language_code)
+
                     if translated:
                         return reverse(
                             "view_news",

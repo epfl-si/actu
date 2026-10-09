@@ -24,29 +24,32 @@ def language_url(context, language_code):
                 request, "_language_url_translations", None
             )
             if published_translations is None:
-                translation = NewsTranslation.objects.filter(
-                    slug=slug,
-                    status=NewsTranslation.Status.PUBLISHED,
-                ).first()
+                news_id = (
+                    NewsTranslation.objects.filter(
+                        slug=slug,
+                        status=NewsTranslation.Status.PUBLISHED,
+                    )
+                    .values_list("news_id", flat=True)
+                    .first()
+                )
 
-                if translation:
-                    published_translations = {
-                        t.language: t
-                        for t in NewsTranslation.objects.filter(
-                            news_id=translation.news_id,
+                if news_id:
+                    published_translations = dict(
+                        NewsTranslation.objects.filter(
+                            news_id=news_id,
                             status=NewsTranslation.Status.PUBLISHED,
-                        )
-                    }
+                        ).values_list("language", "slug")
+                    )
                     request._language_url_translations = published_translations
 
             if published_translations:
                 with override(language_code):
-                    translated = published_translations.get(language_code)
+                    translated_slug = published_translations.get(language_code)
 
-                    if translated:
+                    if translated_slug:
                         return reverse(
                             "view_news",
-                            kwargs={"slug": translated.slug},
+                            kwargs={"slug": translated_slug},
                         )
 
                     return reverse("homepages")

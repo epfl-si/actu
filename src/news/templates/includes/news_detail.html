@@ -1,0 +1,48 @@
+{% load i18n %}
+
+<article class="row" itemscope itemtype="https://schema.org/NewsArticle">
+  <div class="col-md-12 pl-0 pr-0">
+    <figure class="cover">
+      <picture>
+        <source
+          media="(min-width: 1140px)"
+          srcset="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-2240x1260.jpg 2x">
+        <source
+          media="(min-width: 960px)"
+          srcset="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-2240x1260.jpg 2x">
+        <source
+          media="(min-width: 720px)"
+          srcset="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-1920x1080.jpg 2x">
+        <source
+          media="(min-width: 541px)"
+          srcset="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-1440x810.jpg 2x">
+        <source
+          media="(max-width: 540px)"
+          srcset="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-1080x608.jpg 2x">
+        <img src="https://epfl-si.github.io/elements/images/styleguide/teaser/news-teaser-1920x1080.jpg" class="img-fluid" alt="Cover description">
+      </picture>
+    </figure>
+  </div>
+
+  <section class="offset-md-1 col-md-10 px-4 py-3 bg-white mt-0 mt-md-n5 mt-lg-n6 mx-md-auto">
+    <h1 class="mb-4" itemprop="name">{{ translation.title }}</h1>
+    <p class="h4 font-weight-bold" itemprop="abstract">{{ translation.standfirst|safe }}</p>
+    {% if translation.is_published %}
+      <time class="font-weight-bold text-muted opacity-70" datetime="{{ translation.published_at|date:'c' }}" itemprop="datePublished">
+        {% if translation.is_modified_after_publication %}
+          {% blocktrans trimmed with published_date=translation.published_at|date:"j F Y" published_time=translation.published_at|date:"H:i" updated_date=translation.updated_at|date:"j F Y" updated_time=translation.updated_at|date:"H:i" %}
+            Published on {{ published_date }} at {{ published_time }}, modified on {{ updated_date }} at {{ updated_time }}
+          {% endblocktrans %}
+        {% else %}
+          {% blocktrans trimmed with date=translation.published_at|date:"j F Y" time=translation.published_at|date:"H:i" %}
+            Published on {{ date }} at {{ time }}
+          {% endblocktrans %}
+        {% endif %}
+      </time>
+    {% endif %}
+  </section>
+
+  <section class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 mt-4 px-md-0" itemprop="articleBody">
+    {{ translation.extract|safe }}
+  </section>
+</article>

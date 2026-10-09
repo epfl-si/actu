@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block web2018_title %}
+  {{ translation.title }} · {% trans "News" %}
+{% endblock %}
+
+{% block web2018_content %}
+<div class="container">
+  <div class="mb-3">
+    <div class="d-flex justify-content-end">
+      {% if translation.status == "draft" %}
+        <form method="post" action="{% url 'publish_news_translation' news_id=translation.news_id lang=translation.language %}" class="mr-2">
+        {% csrf_token %}
+          <button type="submit" class="btn btn-primary">
+            {% trans "Publish" %}
+          </button>
+        </form>
+      {% elif translation.status == "published" %}
+        <form method="post" action="{% url 'unpublish_news_translation' news_id=translation.news_id lang=translation.language %}" class="mr-2">
+        {% csrf_token %}
+          <button type="submit" class="btn btn-primary">
+            {% trans "Unpublish" %}
+          </button>
+        </form>
+      {% endif %}
+
+      <a href="{% url 'edit_news' news_id=translation.news.id lang=translation.language %}" class="btn btn-outline-dark">
+        {% trans "Edit" %}
+      </a>
+    </div>
+  </div>
+
+  {% include "includes/news_detail.html" %}
+</div>
+{% endblock %}

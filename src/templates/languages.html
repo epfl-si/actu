@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load language_url %}
 
 {% get_available_languages as available_languages %}
 {% get_current_language as current_language %}
@@ -6,31 +7,30 @@
 <nav class="nav-lang dropdown" aria-label="{% trans "Language selection" %}">
   <div class="dropdown">
     <button class="dropdown-toggle btn btn-secondary" aria-haspopup="true" aria-expanded="false" data-toggle="dropdown">
-      <svg class="icon" aria-hidden="true">
-        <use xlink:href="#icon-planet"></use>
-      </svg>
+      <svg class="icon" aria-hidden="true"><use xlink:href="#icon-planet"></use></svg>
       <span>{{ current_language|upper }}</span>
     </button>
-    <form action="{% url 'set_language' %}" method="post" class="m-0">
-      {% csrf_token %}
-      <ul class="dropdown-menu">
-        {% for code, name in available_languages %}
-          <li>
-            {% if code == current_language %}
-              <a class="active dropdown-item" aria-label="{% trans name %}">
-                <svg class="icon mb-1" aria-hidden="true">
-                  <use xlink:href="#icon-planet"></use>
-                </svg>
-                <span>{{ code|upper }}</span>
-              </a>
-            {% else %}
-              <button type="submit" name="language" value="{{ code }}" class="dropdown-item" aria-label="{% trans name %}">
+
+    <ul class="dropdown-menu">
+      {% for code, name in available_languages %}
+        <li>
+          {% if code == current_language %}
+            <a class="active dropdown-item" aria-label="{% trans name %}">
+              <svg class="icon mb-1" aria-hidden="true"><use xlink:href="#icon-planet"></use></svg>
+              <span>{{ code|upper }}</span>
+            </a>
+          {% else %}
+            <form action="{% url 'set_language' %}" method="post" class="m-0">
+              {% csrf_token %}
+              <input type="hidden" name="language" value="{{ code }}">
+              <input type="hidden" name="next" value="{% language_url code %}">
+              <button type="submit" class="dropdown-item" aria-label="{% trans name %}">
                 {{ code|upper }}
               </button>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    </form>
+            </form>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
   </div>
 </nav>

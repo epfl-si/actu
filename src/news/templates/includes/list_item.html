@@ -1,6 +1,6 @@
 {% load humanize %}
 
-<a href="#" class="list-group-teaser list-group-news-teaser list-group-item list-group-teaser-container link-trapeze-vertical">
+<a href="{% url 'view_news' slug=translation.slug %}" class="list-group-teaser list-group-news-teaser list-group-item list-group-teaser-container link-trapeze-vertical">
   <div class="list-group-teaser-thumbnail">
     <picture>
       <source media="(min-width: 992px)" srcset="https://picsum.photos/160/90 1x, https://picsum.photos/320/180 2x">

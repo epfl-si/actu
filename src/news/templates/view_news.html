@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block web2018_title %}
+  {{ translation.title }} · {% trans "News" %}
+{% endblock %}
+
+{% block web2018_content %}
+<div class="container">
+  {% include "includes/news_detail.html" %}
+</div>
+{% endblock %}

@@ -107,6 +107,16 @@ class NewsTranslation(AuditModelMixin, models.Model):
         return f"{self.title} [{self.language}]"
 
     @property
+    def is_modified_after_publication(self):
+        if not self.published_at or not self.updated_at:
+            return False
+
+        published = self.published_at.replace(second=0, microsecond=0)
+        updated = self.updated_at.replace(second=0, microsecond=0)
+
+        return updated > published
+
+    @property
     def is_published(self):
         return self.status == self.Status.PUBLISHED
 

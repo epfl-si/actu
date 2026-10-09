@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 15:26+0200\n"
+"POT-Creation-Date: 2026-10-09 17:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -532,6 +532,14 @@ msgstr "Anzeige der Creative Commons Lizenz (CC BY-SA) am Ende des Artikels."
 msgid "Save"
 msgstr "Speichern"
 
+#, python-format
+msgid "Published on %(published_date)s at %(published_time)s, modified on %(updated_date)s at %(updated_time)s"
+msgstr "Veröffentlicht am %(published_date)s um %(published_time)s, geändert am %(updated_date)s um %(updated_time)s"
+
+#, python-format
+msgid "Published on %(date)s at %(time)s"
+msgstr "Veröffentlicht am %(date)s um %(time)s"
+
 msgid "Show metadata"
 msgstr "Metadaten anzeigen"
 
@@ -565,11 +573,23 @@ msgstr "Keine Nachrichten gefunden."
 msgid "Do you really want to delete this news translation?"
 msgstr "Möchten Sie diese Version der Nachrichtenübersetzung wirklich löschen?"
 
+msgid "Publish"
+msgstr "Veröffentlichen"
+
+msgid "Unpublish"
+msgstr "Veröffentlichung aufheben"
+
 msgid "The news has been saved successfully."
 msgstr "Die Nachricht wurde erfolgreich gespeichert."
 
 msgid "The form contains errors. Please correct the highlighted fields below."
 msgstr "Das Formular enthält Fehler. Bitte korrigieren Sie die unten hervorgehobenen Felder."
+
+msgid "The news has been published."
+msgstr "Die Nachricht wurde veröffentlicht"
+
+msgid "The news has been unpublished."
+msgstr "Die Nachricht bleibt unveröffentlicht."
 
 msgid "News Format"
 msgstr "Nachrichtenformat"

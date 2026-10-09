@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-08 14:29+0200\n"
+"POT-Creation-Date: 2026-10-09 17:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -649,24 +649,6 @@ msgstr "Traduzione"
 
 msgid "URL"
 msgstr "URL"
-
-msgid "today"
-msgstr "oggi"
-
-msgid "yesterday"
-msgstr "ieri"
-
-#, python-format
-msgid "Published %(date)s at %(time)s"
-msgstr "Pubblicata %(date)s alle %(time)s"
-
-#, python-format
-msgid "modified %(date)s at %(time)s"
-msgstr "modificata %(date)s alle %(time)s"
-
-#, python-format
-msgid "modified on %(date)s at %(time)s"
-msgstr "modificata il %(date)s alle %(time)s"
 
 msgid "Published on"
 msgstr "Pubblicato il"

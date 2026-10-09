@@ -172,15 +172,13 @@ class GlobalAuditLogTests(TestCase):
 
         log_json_string = mock_logger.call_args[0][0]
         log_data = json.loads(log_json_string)
+        payload = json.loads(log_data["payload"])
 
         self.assertIn("@timestamp", log_data)
         self.assertEqual(log_data["crudt"], "c")
         self.assertEqual(log_data["source"], "actu-opdo")
         self.assertEqual(log_data["handler_id"], "System")
-
         self.assertEqual(log_data["handled_id"], "system-background-task")
-
-        payload = json.loads(log_data["payload"])
         self.assertIn("object_name", payload)
         self.assertEqual(payload["details"]["username"], "opdo_user")
 
@@ -199,10 +197,9 @@ class GlobalAuditLogTests(TestCase):
 
         log_json_string = mock_logger.call_args[0][0]
         log_data = json.loads(log_json_string)
+        payload = json.loads(log_data["payload"])
 
         self.assertEqual(log_data["crudt"], "d")
         self.assertEqual(log_data["handled_id"], "system-background-task")
         self.assertEqual(log_data["handler_id"], "System")
-
-        payload = json.loads(log_data["payload"])
         self.assertEqual(payload["object_name"], "Lazy Title")

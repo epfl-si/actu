@@ -63,7 +63,7 @@ case "$SKIP_ANSIBLE_SUITCASE" in
     # Do nothing if it matches
     ;;
   *)
-    ensure_ansible
+    ensure_suitcase
     ;;
 esac
 

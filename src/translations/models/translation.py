@@ -141,8 +141,7 @@ class NewsTranslation(AuditModelMixin, models.Model):
                 .exists()
             ):
                 counter += 1
-                if counter != 1:
-                    slug = f"{base_slug}-{counter}"
+                slug = f"{base_slug}-{counter}"
 
             self.slug = slug
 

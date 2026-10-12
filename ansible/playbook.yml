@@ -18,3 +18,10 @@
     - role: roles/nginx
   tags:
     - nginx
+
+- name: logstash
+  hosts: all
+  roles:
+    - role: roles/logstash
+  tags:
+    - logstash

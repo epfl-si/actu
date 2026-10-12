@@ -1,0 +1,30 @@
+input {
+  file {
+    path => "/audit/*.jsonl"
+    sincedb_clean_after => "52 weeks"
+    sincedb_path => "/audit/sincedb"
+    stat_interval => "30 seconds"
+    start_position => "beginning"
+  }
+}
+filter {
+  json {
+    source => "[event][original]"
+  }
+  mutate {
+    add_field => { "[agent][name]" => "%{[host][name]}" }
+    remove_field => ["host", "message", "log", "@version", "event"]
+  }
+}
+output {
+  elasticsearch {
+    hosts => ["${PIPELINE_OUTPUT_ELASTICSEARCH_HOST1}", "${PIPELINE_OUTPUT_ELASTICSEARCH_HOST2}", "${PIPELINE_OUTPUT_ELASTICSEARCH_HOST3}"]
+    api_key => "${PIPELINE_OUTPUT_ELASTICSEARCH_API_KEY}"
+    index => "${PIPELINE_OUTPUT_ELASTICSEARCH_INDEX}"
+    manage_template => false
+    data_stream => false
+    action => "create"
+    ssl_enabled => true
+    ssl_certificate_authorities => ["/usr/local/share/ca-certificates/opdo-ca.crt"]
+  }
+}

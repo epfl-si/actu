@@ -2,6 +2,10 @@
 Django specific settings for OpenShift Container Platform.
 """
 
+import logging
+import os
+from datetime import datetime
+
 from .settings import *  # noqa
 
 ALLOWED_HOSTS = ["*"]
@@ -50,3 +54,63 @@ SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 REST_FRAMEWORK["DEFAULT_RENDERER_CLASSES"] = [  # noqa: F405
     "rest_framework.renderers.JSONRenderer",
 ]
+
+
+class AuditLogDailyFileHandler(logging.FileHandler):
+    """Custom FileHandler that create new file every day."""
+
+    def __init__(self, folder, mode="a", encoding=None, delay=False):
+        self.folder = folder
+        filename = self._get_filename()
+        super().__init__(filename, mode, encoding, delay)
+
+    def _get_filename(self):
+        date_str = datetime.now().strftime("%Y-%m-%d")
+        return os.path.join(self.folder, f"actu-audit-{date_str}.jsonl")
+
+    def emit(self, record):
+        current_file = self._get_filename()
+        if self.baseFilename != os.path.abspath(current_file):
+            if self.stream:
+                self.stream.close()
+                self.stream = None
+            self.baseFilename = current_file
+        super().emit(record)
+
+
+AUDIT_LOG_FOLDER = os.getenv("ACTU_AUDIT_LOG_PATH")
+
+if AUDIT_LOG_FOLDER:
+    os.makedirs(AUDIT_LOG_FOLDER, exist_ok=True)
+
+    handler_config = {
+        "level": "INFO",
+        "class": "configs.ocp.AuditLogDailyFileHandler",
+        "folder": AUDIT_LOG_FOLDER,
+        "formatter": "json_raw",
+    }
+else:
+    handler_config = {
+        "level": "INFO",
+        "class": "logging.NullHandler",
+    }
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "json_raw": {
+            "format": "%(message)s",
+        },
+    },
+    "handlers": {
+        "opdo_file": handler_config,
+    },
+    "loggers": {
+        "opdo_audit": {
+            "handlers": ["opdo_file"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}

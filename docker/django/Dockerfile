@@ -8,7 +8,7 @@ RUN \
     python3=* \
     python3-pip=* && \
   rm -rf /var/lib/apt/lists/* && \
-  mkdir -p /public/static /public/uploads
+  mkdir -p /public/static /public/uploads /audit
 
 WORKDIR /app
 
@@ -92,8 +92,8 @@ COPY --from=assets /public/static /app/static
 COPY ./docker/django/entrypoint-django-prod.sh /entrypoint.sh
 
 RUN \
-  chown -R 1000:0 /app /public && \
-  chmod -R g=u /app /public && \
+  chown -R 1000:0 /app /public /audit && \
+  chmod -R g=u /app /public /audit && \
   chmod +x /entrypoint.sh
 
 VOLUME /public/static

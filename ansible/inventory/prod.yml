@@ -8,6 +8,7 @@ all:
   vars:
     openshift_env: prod
     secrets: "{{ lookup('pipe', 'keybase fs read /keybase/team/epfl_actu/prod/secrets.yml') | from_yaml }}"
+    opdo_certificate: "{{ lookup('pipe', 'keybase fs read /keybase/team/epfl_actu/prod/OPDo_ca.crt') }}"
     app: actu
 
     # Images

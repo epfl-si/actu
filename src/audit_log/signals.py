@@ -7,6 +7,7 @@ from django.utils.translation import override
 from .models import (
     AuditModelMixin,
     GlobalAuditLog,
+    _get_readable_value,
     _get_user_str,
 )
 
@@ -30,7 +31,7 @@ def _save_m2m_audit_log(instance, field_name):
                 object_repr=str(instance),
                 action="Edit",
                 user=user_str,
-                details=modifs,
+                details={"changes": modifs},
             )
 
     if field_name in getattr(instance, "_m2m_memory", {}):
@@ -83,6 +84,14 @@ def audit_delete_log(sender, instance, **kwargs):
         user_str = _get_user_str()
         ctype = ContentType.objects.get_for_model(instance)
 
+        state_before_delete = instance._get_current_state()
+
+        formatted_details = {
+            field: _get_readable_value(instance.__class__, field, value)
+            for field, value in state_before_delete.items()
+            if value != "Empty"
+        }
+
         with override("en"):
             GlobalAuditLog.objects.create(
                 content_type=ctype,
@@ -90,7 +99,7 @@ def audit_delete_log(sender, instance, **kwargs):
                 object_repr=str(instance),
                 action="Delete",
                 user=user_str,
-                details={},
+                details=formatted_details,
             )
 
 

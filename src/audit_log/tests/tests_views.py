@@ -34,7 +34,7 @@ class GlobalHistoryViewTests(TestCase):
             object_repr="test",
             action="Create",
             user="admin",
-            details={"title": ["", "Accueil"]},
+            details={"title": "Accueil"},
         )
         GlobalAuditLog.objects.create(
             content_type=self.content_type,
@@ -42,7 +42,7 @@ class GlobalHistoryViewTests(TestCase):
             object_repr="news-1",
             action="Edit",
             user="System",
-            details={"status": ["Draft", "Published"]},
+            details={"changes": {"status": ["Draft", "Published"]}},
         )
 
     def test_access_forbidden_for_normal_user(self):
@@ -80,7 +80,7 @@ class GlobalHistoryViewTests(TestCase):
             content_type=self.content_type,
             object_id="1",
             action="Edit",
-            details={"username": ["old", "new"]},
+            details={"changes": {"username": ["old", "new"]}},
         )
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)

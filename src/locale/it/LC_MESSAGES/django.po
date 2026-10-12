@@ -195,6 +195,9 @@ msgstr "Nessun dettaglio"
 msgid "No result"
 msgstr "Nessun risultato"
 
+msgid "Unknown"
+msgstr "Sconosciuto"
+
 msgid "Empty"
 msgstr "Vuoto"
 

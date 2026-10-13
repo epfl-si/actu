@@ -181,7 +181,9 @@ class NewsViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
                 title__icontains=search.strip(),
             )
 
-        return translations_qs.select_related("news").order_by("-published_at")
+        return translations_qs.select_related("news", "news__format").order_by(
+            "-published_at"
+        )
 
 
 @extend_schema(

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-09 17:35+0200\n"
+"POT-Creation-Date: 2026-10-13 15:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -542,6 +542,9 @@ msgstr "Veröffentlicht am %(published_date)s um %(published_time)s, geändert a
 #, python-format
 msgid "Published on %(date)s at %(time)s"
 msgstr "Veröffentlicht am %(date)s um %(time)s"
+
+msgid "CC_LICENSE_TEXT"
+msgstr "Dieser Inhalt wird gemäss den Bedingungen der Creative Commons-Lizenz CC BY-SA 4.0 verbreitet. Sie können darin enthaltene Texte, Videos und Bilder ungehindert übernehmen, sofern Sie den Urheber des jeweiligen Werks nennen und die Verwendung nicht beschränken. Für Abbildungen, die nicht den Hinweis CC BY-SA enthalten, ist die Zustimmung des Urhebers erforderlich."
 
 msgid "Show metadata"
 msgstr "Metadaten anzeigen"

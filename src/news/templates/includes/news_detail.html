@@ -45,4 +45,12 @@
   <section class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 mt-4 px-md-0" itemprop="articleBody">
     {{ translation.extract|safe }}
   </section>
+
+  {% if translation.news.is_under_cc_license %}
+    <section class="col-md-8 offset-md-2 col-lg-6 offset-lg-3 mt-4 px-md-0" itemprop="licence">
+      <p class="small text-muted mb-0 mt-1">
+        {% trans "CC_LICENSE_TEXT" %}
+      </p>
+    </section>
+  {% endif %}
 </article>

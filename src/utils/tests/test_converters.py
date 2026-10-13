@@ -1,9 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import NoReverseMatch, reverse
 
 from homepages.models import Homepage
-from homepages.views import User
 from topics.models import Topic
+
+User = get_user_model()
 
 
 class ConvertersTest(TestCase):

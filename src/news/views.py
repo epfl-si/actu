@@ -298,8 +298,14 @@ def manage_news(request):
         "published_by",
     )
 
-    news = News.objects.all().prefetch_related(
-        Prefetch("translations", queryset=translations_qs)
+    news = (
+        News.objects.all()
+        .select_related("format")
+        .prefetch_related(
+            Prefetch("translations", queryset=translations_qs),
+            "topics",
+            "entities",
+        )
     )
 
     news = _apply_filters(news, filters)

@@ -39,7 +39,13 @@ class NewsAdmin(admin.ModelAdmin):
 
     @admin.display(description=_("Translations"))
     def translations_overview(self, obj):
-        translations = sorted(obj.translations.all(), key=lambda t: t.language)
+        language_order = {
+            code: index for index, (code, _) in enumerate(settings.LANGUAGES)
+        }
+        translations = sorted(
+            obj.translations.all(),
+            key=lambda t: language_order.get(t.language, len(language_order)),
+        )
         return format_html_join(
             mark_safe("<br>"),
             '<a href="{}">{} — {}</a>',

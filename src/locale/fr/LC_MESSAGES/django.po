@@ -472,6 +472,9 @@ msgstr "Crop droite"
 msgid "Crop lower"
 msgstr "Crop bas"
 
+msgid "Translations"
+msgstr "Traductions"
+
 msgid "A news must have at least one topic."
 msgstr "Une actualité doit avoir au moins une thématique."
 

@@ -472,6 +472,9 @@ msgstr ""
 msgid "Crop lower"
 msgstr ""
 
+msgid "Translations"
+msgstr ""
+
 msgid "A news must have at least one topic."
 msgstr ""
 

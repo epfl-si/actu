@@ -487,6 +487,12 @@ msgstr ""
 msgid "Format"
 msgstr ""
 
+msgid "History"
+msgstr ""
+
+msgid "Edit on the site"
+msgstr ""
+
 msgid "Edit News"
 msgstr ""
 

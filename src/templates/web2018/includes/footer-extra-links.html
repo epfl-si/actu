@@ -1,0 +1,6 @@
+{% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<a href="{% if LANGUAGE_CODE == 'fr' %}https://go.epfl.ch/charte{% else %}https://go.epfl.ch/guidelines{% endif %}">
+  {% trans "Charter" %}
+</a>

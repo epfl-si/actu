@@ -290,3 +290,9 @@ def show_debug_toolbar(request):
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK": show_debug_toolbar,
 }
+
+# Web2018 for Django
+# https://github.com/epfl-si/django-epfl-web2018
+WEB2018 = {
+    "SHOW_BREADCRUMB": False,
+}

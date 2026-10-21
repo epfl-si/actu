@@ -472,6 +472,9 @@ msgstr ""
 msgid "Crop lower"
 msgstr ""
 
+msgid "Translations"
+msgstr ""
+
 msgid "A news must have at least one topic."
 msgstr ""
 
@@ -485,6 +488,12 @@ msgid "Entities related to this news."
 msgstr ""
 
 msgid "Format"
+msgstr ""
+
+msgid "History"
+msgstr ""
+
+msgid "Edit on the site"
 msgstr ""
 
 msgid "Edit News"

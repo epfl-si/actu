@@ -472,6 +472,9 @@ msgstr "Crop droite"
 msgid "Crop lower"
 msgstr "Crop bas"
 
+msgid "Translations"
+msgstr "Traductions"
+
 msgid "A news must have at least one topic."
 msgstr "Une actualité doit avoir au moins une thématique."
 
@@ -486,6 +489,12 @@ msgstr "Entités liées à cette actualité."
 
 msgid "Format"
 msgstr "Format"
+
+msgid "History"
+msgstr "Historique"
+
+msgid "Edit on the site"
+msgstr "Modifier sur le site"
 
 msgid "Edit News"
 msgstr "Éditer l'actualité"

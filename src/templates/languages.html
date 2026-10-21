@@ -20,14 +20,9 @@
               <span>{{ code|upper }}</span>
             </a>
           {% else %}
-            <form action="{% url 'set_language' %}" method="post" class="m-0">
-              {% csrf_token %}
-              <input type="hidden" name="language" value="{{ code }}">
-              <input type="hidden" name="next" value="{% language_url code %}">
-              <button type="submit" class="dropdown-item" aria-label="{% trans name %}">
-                {{ code|upper }}
-              </button>
-            </form>
+            <a href="{% language_url code %}" class="dropdown-item" aria-label="{% trans name %}">
+              {{ code|upper }}
+            </a>
           {% endif %}
         </li>
       {% endfor %}

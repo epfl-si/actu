@@ -63,21 +63,21 @@
             {% for topic in topics %}
               {% if topic.id in filters.topics %}
                 <a href="#" class="tag tag-primary filter-remove" data-type="topics" data-val="{{ topic.id }}">
-                  {{ topic.label_en }} <span class="remove removeTag" tabindex="-1" title="{% trans 'Remove' %}">×</span>
+                  {{ topic }} <span class="remove removeTag" tabindex="-1" title="{% trans 'Remove' %}">×</span>
                 </a>
               {% endif %}
             {% endfor %}
             {% for entity in entities %}
               {% if entity.id in filters.entities %}
                 <a href="#" class="tag tag-primary filter-remove" data-type="entities" data-val="{{ entity.id }}">
-                  {{ entity.label_en }} <span class="remove removeTag" tabindex="-1" title="{% trans 'Remove' %}">×</span>
+                  {{ entity }} <span class="remove removeTag" tabindex="-1" title="{% trans 'Remove' %}">×</span>
                 </a>
               {% endif %}
             {% endfor %}
             {% for format in formats %}
               {% if format.id in filters.formats %}
                 <a href="#" class="tag tag-primary filter-remove" data-type="formats" data-val="{{ format.id }}">
-                  {{ format.label_en }} <span class="remove removeTag" tabindex="-1" title="{% trans 'Remove' %}">×</span>
+                  {{ format }} <span class="remove removeTag" tabindex="-1" title="{% trans 'Remove' %}">×</span>
                 </a>
               {% endif %}
             {% endfor %}

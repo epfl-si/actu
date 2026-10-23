@@ -486,6 +486,9 @@ msgstr "Crop destra"
 msgid "Crop lower"
 msgstr "Crop basso"
 
+msgid "Image file not found."
+msgstr "File immagine non trovato."
+
 msgid "Translations"
 msgstr "Traduzioni"
 

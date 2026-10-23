@@ -487,6 +487,9 @@ msgstr ""
 msgid "Crop lower"
 msgstr ""
 
+msgid "Image file not found."
+msgstr ""
+
 msgid "Translations"
 msgstr ""
 

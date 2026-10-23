@@ -3,7 +3,6 @@ from drf_spectacular.utils import OpenApiExample, extend_schema_serializer
 from rest_framework import serializers
 
 from entities.models import Entity
-from media.serializers import NewsImageSerializer  # noqa: F401
 from topics.models import Topic
 from translations.models import NewsTranslation
 

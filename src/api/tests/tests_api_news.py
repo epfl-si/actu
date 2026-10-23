@@ -754,6 +754,35 @@ class NewsAPITests(TestCase):
             {"Entity news", "Other entity news"},
         )
 
+    def test_no_duplicate_news_with_multiple_matching_topics(self):
+        news, _ = self._create_news(
+            title="Dual topic news",
+            topic=self.topic,
+            published_at=self.now,
+        )
+        news.topics.add(self.other_topic)
+        self._create_news(
+            title="Single topic news",
+            topic=self.topic,
+            published_at=self.now,
+        )
+
+        url = reverse("news-list", kwargs={"version": "v1"})
+        response = self.client.get(
+            url,
+            {"topic_id": [self.topic.pk, self.other_topic.pk]},
+        )
+
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data["count"], 2)
+        self.assertEqual(len(data["results"]), 2)
+        titles = {result["title"] for result in data["results"]}
+        self.assertEqual(
+            titles,
+            {"Dual topic news", "Single topic news"},
+        )
+
     def test_filters_by_multiple_formats(self):
         self._create_news(
             title="Format news",

@@ -181,6 +181,9 @@ class NewsViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
                 title__icontains=search.strip(),
             )
 
+        if topic_ids or entity_ids:
+            translations_qs = translations_qs.distinct()
+
         return translations_qs.select_related("news", "news__format").order_by(
             "-published_at"
         )

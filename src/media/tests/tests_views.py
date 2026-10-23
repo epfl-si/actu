@@ -17,7 +17,6 @@ from .utils import create_image_file
 User = get_user_model()
 
 
-@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
 class NewsImageEndpointsTest(TestCase):
 
     @classmethod

@@ -1,31 +1,20 @@
 import os
 import shutil
 import tempfile
-from io import BytesIO
 
 from django.contrib.auth import get_user_model
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, override_settings
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 
 from media.models import NewsImage
+from media.tests.utils import create_image_file
 from news.models import News
 from news_formats.models import NewsFormat
 from topics.models import Topic
 
 User = get_user_model()
-
-
-def _create_image_file(name="test.jpg"):
-    from PIL import Image
-
-    image = Image.new("RGB", (1600, 900), (255, 0, 0))
-    buffer = BytesIO()
-    image.save(buffer, format="JPEG")
-    buffer.seek(0)
-    return SimpleUploadedFile(name, buffer.read(), content_type="image/jpeg")
 
 
 class NewsImagesAPITests(TestCase):
@@ -62,13 +51,13 @@ class NewsImagesAPITests(TestCase):
     def test_list_images_for_news(self):
         NewsImage.objects.create(
             news=self.news,
-            image=_create_image_file("first.jpg"),
+            image=create_image_file("first.jpg"),
             created_by=self.user,
             alt_text_en="First alt",
         )
         NewsImage.objects.create(
             news=self.news,
-            image=_create_image_file("second.jpg"),
+            image=create_image_file("second.jpg"),
             created_by=self.user,
             caption_en="Second caption",
         )
@@ -118,7 +107,7 @@ class NewsImagesAPITests(TestCase):
     def test_image_file_exists_after_creation(self):
         news_image = NewsImage.objects.create(
             news=self.news,
-            image=_create_image_file("cleanup.jpg"),
+            image=create_image_file("cleanup.jpg"),
             created_by=self.user,
         )
         self.assertTrue(os.path.exists(news_image.image.path))

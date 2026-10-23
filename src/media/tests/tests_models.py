@@ -1,10 +1,8 @@
 import os
 import shutil
 import tempfile
-from io import BytesIO
 
 from django.contrib.auth import get_user_model
-from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, override_settings
 
 from media.models import NewsImage
@@ -12,17 +10,9 @@ from news.models import News
 from news_formats.models import NewsFormat
 from topics.models import Topic
 
+from .utils import create_image_file
+
 User = get_user_model()
-
-
-def _create_image_file(name="test.jpg"):
-    from PIL import Image
-
-    image = Image.new("RGB", (1600, 900), (255, 0, 0))
-    buffer = BytesIO()
-    image.save(buffer, format="JPEG")
-    buffer.seek(0)
-    return SimpleUploadedFile(name, buffer.read(), content_type="image/jpeg")
 
 
 class NewsImageModelTest(TestCase):
@@ -56,7 +46,7 @@ class NewsImageModelTest(TestCase):
     def test_str_returns_image_id_and_name(self):
         news_image = NewsImage.objects.create(
             news=self.news,
-            image=_create_image_file(),
+            image=create_image_file(),
             created_by=self.user,
         )
         self.assertEqual(
@@ -67,7 +57,7 @@ class NewsImageModelTest(TestCase):
     def test_get_alt_text_with_language_fallback(self):
         news_image = NewsImage.objects.create(
             news=self.news,
-            image=_create_image_file(),
+            image=create_image_file(),
             alt_text_en="English alt",
             alt_text_fr="Texte alternatif",
             created_by=self.user,
@@ -78,7 +68,7 @@ class NewsImageModelTest(TestCase):
     def test_get_caption_with_language_fallback(self):
         news_image = NewsImage.objects.create(
             news=self.news,
-            image=_create_image_file(),
+            image=create_image_file(),
             caption_en="English caption",
             created_by=self.user,
         )
@@ -88,7 +78,7 @@ class NewsImageModelTest(TestCase):
     def test_created_by_is_set(self):
         news_image = NewsImage.objects.create(
             news=self.news,
-            image=_create_image_file(),
+            image=create_image_file(),
             created_by=self.user,
         )
         self.assertEqual(news_image.created_by, self.user)
@@ -96,7 +86,7 @@ class NewsImageModelTest(TestCase):
     def test_image_file_is_deleted_on_news_image_delete(self):
         news_image = NewsImage.objects.create(
             news=self.news,
-            image=_create_image_file(),
+            image=create_image_file(),
             created_by=self.user,
         )
         file_path = news_image.image.path
@@ -108,13 +98,13 @@ class NewsImageModelTest(TestCase):
     def test_old_image_file_is_deleted_on_image_replace(self):
         news_image = NewsImage.objects.create(
             news=self.news,
-            image=_create_image_file("original.jpg"),
+            image=create_image_file("original.jpg"),
             created_by=self.user,
         )
         old_file_path = news_image.image.path
         self.assertTrue(os.path.exists(old_file_path))
 
-        news_image.image = _create_image_file("replacement.jpg")
+        news_image.image = create_image_file("replacement.jpg")
         news_image.save()
 
         self.assertFalse(os.path.exists(old_file_path))

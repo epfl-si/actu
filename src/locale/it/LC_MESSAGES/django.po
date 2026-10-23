@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 13:38+0200\n"
+"POT-Creation-Date: 2026-10-23 11:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -419,6 +419,21 @@ msgstr "Questa traduzione non è archiviata."
 
 msgid "Translation restored successfully."
 msgstr "Traduzione ripristinata con successo."
+
+#, python-format
+msgid "'%(name)s': only JPEG and PNG images are accepted."
+msgstr "'%(name)s': solo immagini JPEG e PNG sono accettate."
+
+#, python-format
+msgid "'%(name)s': the image must be at least %(width)d x %(height)d pixels."
+msgstr "'%(name)s': l'immagine deve essere almeno %(width)d x %(height)d pixel."
+
+#, python-format
+msgid "'%(name)s': this file is not a valid image."
+msgstr "'%(name)s': questo file non è un'immagine valida."
+
+msgid "Images"
+msgstr "Immagini"
 
 msgid "News image"
 msgstr "Immagine della notizia"

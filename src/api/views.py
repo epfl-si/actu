@@ -15,11 +15,11 @@ from api.filters import EntityFilter, TopicFilter
 from api.pagination import NewsPagination
 from api.serializers import (
     EntitySerializer,
-    NewsImageSerializer,
     NewsSerializer,
     TopicSerializer,
 )
 from entities.models import Entity
+from media.serializers import NewsImageSerializer
 from news.models import News
 from topics.models import Topic
 from translations.models import NewsTranslation

@@ -46,14 +46,14 @@ def _validate_image_file(image):
         with Image.open(image) as probe:
             if probe.format not in ALLOWED_IMAGE_FORMATS:
                 return _(
-                    "“%(name)s”: only JPEG and PNG images are accepted."
+                    "'%(name)s': only JPEG and PNG images are accepted."
                 ) % {"name": name}
             if (
                 probe.width < MIN_IMAGE_WIDTH
                 or probe.height < MIN_IMAGE_HEIGHT
             ):
                 return _(
-                    "“%(name)s”: the image must be at least "
+                    "'%(name)s': the image must be at least "
                     "%(width)d x %(height)d pixels."
                 ) % {
                     "name": name,
@@ -61,7 +61,7 @@ def _validate_image_file(image):
                     "height": MIN_IMAGE_HEIGHT,
                 }
     except (OSError, ValueError, Image.DecompressionBombError):
-        return _("“%(name)s”: this file is not a valid image.") % {
+        return _("'%(name)s': this file is not a valid image.") % {
             "name": name
         }
     return None

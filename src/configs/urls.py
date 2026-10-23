@@ -22,14 +22,17 @@ from django.contrib import admin
 from django.urls import include, path, register_converter
 
 from api.converters import APIVersionConverter
+from media.converters import ImageResolutionConverter
 from utils.converters import LanguageConverter
 from utils.views import healthz
 
 register_converter(APIVersionConverter, "api_version")
+register_converter(ImageResolutionConverter, "image_resolution")
 register_converter(LanguageConverter, "language")
 
 urlpatterns = [
     path("api/<api_version:version>/", include("api.urls")),
+    path("", include("media.public_urls")),
     path("auth/", include("mozilla_django_oidc.urls")),
     path("healthz/", healthz, name="healthz"),
     path("tinymce/", include("tinymce.urls")),

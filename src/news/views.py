@@ -28,9 +28,7 @@ User = get_user_model()
 def list_news(request):
     current_lang = get_language()
 
-    topics = Topic.objects.all()
-    entities = Entity.objects.all()
-    formats = NewsFormat.objects.all()
+    topics, entities, formats, _ = _initialize_view()
 
     search_query = request.GET.get("search", "").strip()
     selected_topics = _safe_int_set(request.GET.getlist("topics"))

@@ -1,5 +1,34 @@
 # Changelog
 
+## v0.0.7 / 2026-10-14
+
+- Implement OPDo audit log (#133)
+- Fix bash code incompatible with Macos (#136)
+- Preview and View a news + redirect to other translation on lang switch (#122)
+- Add link to the search page in the mobile menu (#129)
+- [feat] Display Commons licence of a news if checked (#128)
+- [fix] Run build-assets before coverage (#126)
+- Add initial AGENTS.md (#125)
+- Add React Islands (#120)
+- Add API News images endpoint + fix nginx/media config (#121)
+- Add some slugs and urls to news seeds for the db (#124)
+- Add a way to run playwright tests locally (#123)
+- Fix pushing integers into the stringData structure (#117)
+- Fix the deprecated usage of local_action (#118)
+- Fix accessing fact as vars (#119)
+- Add missing namespaces definition (#116)
+- Add a way to skip the suitcase installation, giving some room for other ways
+- [feature] Add make command to seed db with sample_data (#114)
+- Rename "thematic" to "topic"
+- Add title on the search page and fine-tune spacing (#109)
+- [feature] Add urls (#104)
+- Create NewsImage model (#112)
+- Fix having debug-toolbar started when running local tests
+- Feature/edit create news status (#105)
+- Activate Django media uploads (settings, folder) (#111)
+- Set the link to the search page in the header (#108)
+- Fix having two times the LanguageConverter registered
+
 ## v0.0.6 / 2026-09-22
 
 - Feature/filter news (#96)

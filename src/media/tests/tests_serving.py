@@ -23,7 +23,6 @@ def open_response_image(response):
     return Image.open(BytesIO(response.content))
 
 
-@override_settings(MEDIA_ROOT=tempfile.mkdtemp())
 class ServeNewsImageTest(TestCase):
 
     @classmethod

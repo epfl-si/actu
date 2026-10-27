@@ -59,9 +59,14 @@ class ServeNewsImageTest(TestCase):
         )
 
     def serve_url(self, image_id, resolution):
+        """Build the serving URL; WxH strings become (width, height)."""
+        if resolution == "original":
+            value = resolution
+        else:
+            value = tuple(map(int, resolution.split("x")))
         return reverse(
             "serve_news_image",
-            kwargs={"image_id": image_id, "resolution": resolution},
+            kwargs={"image_id": image_id, "resolution": value},
         )
 
     def test_original_returns_source_dimensions(self):
@@ -162,6 +167,14 @@ class ServeNewsImageTest(TestCase):
                 f"/image/{news_image.pk}/{resolution}.jpg"
             )
             self.assertEqual(response.status_code, 404, resolution)
+
+    def test_resolution_exceeding_pixel_limit_returns_404(self):
+        news_image = self.create_image()
+
+        # 9999x9999 passes the regex but exceeds MAX_IMAGE_PIXELS_SERVING.
+        response = self.client.get(f"/image/{news_image.pk}/9999x9999.jpg")
+
+        self.assertEqual(response.status_code, 404)
 
     def test_missing_file_returns_404(self):
         news_image = self.create_image()

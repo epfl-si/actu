@@ -98,9 +98,10 @@ def _flatten_on_white(image):
 def serve_news_image(request, image_id, resolution):
     """Serve a news image, cropped and resized, as a cached JPEG.
 
-    "original" serves the unmodified image. A (width, height) tuple —
-    validated and typed by the URL converter — applies the stored crop
-    (when set) and fits the result within the box, never upscaling.
+    "full" serves the image at its source dimensions — still re-encoded
+    as JPEG. A (width, height) tuple — validated and typed by the URL
+    converter — applies the stored crop (when set) and fits the result
+    within the box, never upscaling.
     """
     news_image = get_object_or_404(NewsImage, pk=image_id)
 
@@ -114,7 +115,7 @@ def serve_news_image(request, image_id, resolution):
     except (OSError, ValueError, Image.DecompressionBombError):
         raise Http404(_("Image file not found."))
 
-    if resolution != "original":
+    if resolution != "full":
         if all(
             getattr(news_image, f"crop_{part}") is not None
             for part in ("left", "upper", "right", "lower")

@@ -2,12 +2,12 @@ from django.conf import settings
 
 
 class ImageResolutionConverter:
-    """Match an image serving resolution: "original" or "WxH" in pixels."""
+    """Match an image serving resolution: "full" or "WxH" in pixels."""
 
-    regex = r"original|[1-9][0-9]{0,3}x[1-9][0-9]{0,3}"
+    regex = r"full|[1-9][0-9]{0,3}x[1-9][0-9]{0,3}"
 
     def to_python(self, value):
-        if value == "original":
+        if value == "full":
             return value
 
         width, height = map(int, value.split("x"))
@@ -15,7 +15,7 @@ class ImageResolutionConverter:
         return width, height
 
     def to_url(self, value):
-        if value == "original":
+        if value == "full":
             return value
 
         width, height = value

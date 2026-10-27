@@ -59,7 +59,7 @@ class ServeNewsImageTest(TestCase):
 
     def serve_url(self, image_id, resolution):
         """Build the serving URL; WxH strings become (width, height)."""
-        if resolution == "original":
+        if resolution == "full":
             value = resolution
         else:
             value = tuple(map(int, resolution.split("x")))
@@ -68,10 +68,10 @@ class ServeNewsImageTest(TestCase):
             kwargs={"image_id": image_id, "resolution": value},
         )
 
-    def test_original_returns_source_dimensions(self):
+    def test_full_returns_source_dimensions(self):
         news_image = self.create_image()
 
-        response = self.client.get(self.serve_url(news_image.pk, "original"))
+        response = self.client.get(self.serve_url(news_image.pk, "full"))
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "image/jpeg")
@@ -112,7 +112,7 @@ class ServeNewsImageTest(TestCase):
 
         self.assertEqual(open_response_image(response).size, (1440, 810))
 
-    def test_original_skips_crop(self):
+    def test_full_skips_crop(self):
         news_image = self.create_image(
             crop_left=0,
             crop_upper=0,
@@ -120,14 +120,14 @@ class ServeNewsImageTest(TestCase):
             crop_lower=810,
         )
 
-        response = self.client.get(self.serve_url(news_image.pk, "original"))
+        response = self.client.get(self.serve_url(news_image.pk, "full"))
 
         self.assertEqual(open_response_image(response).size, (1600, 900))
 
     def test_png_is_served_as_jpeg(self):
         news_image = self.create_image(name="test.png")
 
-        response = self.client.get(self.serve_url(news_image.pk, "original"))
+        response = self.client.get(self.serve_url(news_image.pk, "full"))
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response["Content-Type"], "image/jpeg")
@@ -147,14 +147,14 @@ class ServeNewsImageTest(TestCase):
             created_by=self.news.created_by,
         )
 
-        response = self.client.get(self.serve_url(news_image.pk, "original"))
+        response = self.client.get(self.serve_url(news_image.pk, "full"))
 
         self.assertEqual(
             open_response_image(response).getpixel((0, 0)), (255, 255, 255)
         )
 
     def test_unknown_image_returns_404(self):
-        response = self.client.get(self.serve_url(99999, "original"))
+        response = self.client.get(self.serve_url(99999, "full"))
 
         self.assertEqual(response.status_code, 404)
 
@@ -179,6 +179,6 @@ class ServeNewsImageTest(TestCase):
         news_image = self.create_image()
         os.remove(news_image.image.path)
 
-        response = self.client.get(self.serve_url(news_image.pk, "original"))
+        response = self.client.get(self.serve_url(news_image.pk, "full"))
 
         self.assertEqual(response.status_code, 404)

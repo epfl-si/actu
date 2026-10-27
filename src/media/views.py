@@ -129,7 +129,7 @@ def serve_news_image(request, image_id, resolution):
                 )
             )
 
-        image.thumbnail(resolution, Image.LANCZOS)
+        image.thumbnail(resolution, Image.Resampling.LANCZOS)
 
     image = _flatten_on_white(image)
 

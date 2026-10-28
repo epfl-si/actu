@@ -1,3 +1,5 @@
+import json
+
 from django import forms
 from django.db import transaction
 from django.forms.models import BaseModelFormSet, modelformset_factory
@@ -6,6 +8,7 @@ from tinymce.widgets import TinyMCE
 
 from translations.models import NewsTranslation, NewsUrl
 
+from .block_editor import BLOCK_TYPES
 from .models import News
 
 
@@ -30,6 +33,11 @@ class NewsForm(forms.ModelForm):
 
 
 class NewsTranslationForm(forms.ModelForm):
+    blocks = forms.CharField(
+        required=False,
+        widget=forms.HiddenInput,
+    )
+
     class Meta:
         model = NewsTranslation
         fields = [
@@ -54,6 +62,34 @@ class NewsTranslationForm(forms.ModelForm):
             ),
         }
 
+    def clean_blocks(self):
+        raw = self.cleaned_data.get("blocks", "")
+        if not raw:
+            return []
+
+        try:
+            blocks = json.loads(raw)
+        except json.JSONDecodeError:
+            raise forms.ValidationError(
+                _("The page content is not valid JSON.")
+            )
+
+        if not isinstance(blocks, list):
+            raise forms.ValidationError(
+                _("The page content must be a list of blocks.")
+            )
+
+        for block in blocks:
+            if (
+                not isinstance(block, dict)
+                or block.get("type") not in BLOCK_TYPES
+                or not isinstance(block.get("data"), dict)
+            ):
+                raise forms.ValidationError(
+                    _("The page content contains an invalid block.")
+                )
+        return blocks
+
     def save(self, user, language, news):
         is_new = self.instance.pk is None
         translation = super().save(commit=False)
@@ -63,6 +99,10 @@ class NewsTranslationForm(forms.ModelForm):
             translation.news = news
         else:
             translation.updated_by = user
+        if "blocks" in self.data:
+            # The React editor posts `blocks`. Without JavaScript the key is
+            # absent and the persisted content is left untouched.
+            translation.content = self.cleaned_data.get("blocks", [])
         translation.save()
         return translation
 

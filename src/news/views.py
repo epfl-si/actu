@@ -19,6 +19,7 @@ from topics.models import Topic
 from translations.models import NewsTranslation, NewsUrl
 from utils.parser import _safe_int, _safe_int_set
 
+from .block_editor import news_blocks_editor_props
 from .forms import NewsWithTranslationForm
 from .models import News
 
@@ -203,10 +204,9 @@ def _initialize_form_and_render_view(request, lang, news_id=None):
         "selected_topic_ids": selected_topic_ids,
         "selected_entity_ids": selected_entity_ids,
         "selected_format_id": selected_format_id,
-        "news_blocks_editor_props": {
-            "newsId": news.pk if news else None,
-            "language": lang,
-        },
+        "news_blocks_editor_props": news_blocks_editor_props(
+            news, lang, translation
+        ),
     }
     return render(request, "edit_news.html", context)
 

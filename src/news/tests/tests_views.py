@@ -881,6 +881,7 @@ class EditNewsTranslationViewTest(TestCase):
         news_blocks_editor_props = response.context["news_blocks_editor_props"]
         self.assertEqual(news_blocks_editor_props["newsId"], self.news.id)
         self.assertEqual(news_blocks_editor_props["language"], "en")
+        self.assertEqual(news_blocks_editor_props["uiLanguage"], "en")
         self.assertEqual(news_blocks_editor_props["blocks"], [])
         self.assertEqual(
             news_blocks_editor_props["i18n"]["addBlock"],

@@ -107,6 +107,11 @@ $nbe-header-height: 5.5rem;
   border: 1px solid $nbe-hairline;
   border-radius: 4px;
 
+  // The block currently edited in the side panel.
+  &.is-editing {
+    border: 1px solid variables.$red;
+  }
+
   // SortableJS states.
   &.dropzone-block-chosen .block-grip {
     cursor: grabbing;

@@ -14,6 +14,7 @@ import './news-blocks-editor.scss'
 export type NewsBlocksEditorProps = {
   newsId: number | null,
   language: string,
+  uiLanguage: string,
   blocks: BlockTypePayload[],
   i18n: BlockEditorI18n,
 }
@@ -73,12 +74,12 @@ const toPayload = (blocks: Block[]): BlockTypePayload[] =>
 const TinyMceEditor = ({
   id,
   initialValue,
-  language,
+  uiLanguage,
   onChange,
 }: {
   id: string,
   initialValue: string,
-  language: string,
+  uiLanguage: string,
   onChange: (value: string) => void,
 }) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null)
@@ -94,7 +95,7 @@ const TinyMceEditor = ({
     if (!tinymce || !textarea) return undefined
 
     const config: Record<string, unknown> = { target: textarea, ...TINYMCE_CONFIG }
-    const tinymceLanguage = TINYMCE_LANGUAGES[language]
+    const tinymceLanguage = TINYMCE_LANGUAGES[uiLanguage]
     if (tinymceLanguage) config.language = tinymceLanguage
 
     let editor: TinyMceEditorInstance | null = null
@@ -118,7 +119,7 @@ const TinyMceEditor = ({
       disposed = true
       editor?.destroy()
     }
-  }, [language])
+  }, [uiLanguage])
 
   return (
     <textarea
@@ -205,6 +206,7 @@ const AddBlockButton = ({
 type BlockCardProps = {
   block: Block,
   i18n: BlockEditorI18n,
+  isEditing: boolean,
   isFirst: boolean,
   isLast: boolean,
   onEdit: () => void,
@@ -212,11 +214,23 @@ type BlockCardProps = {
   onMove: (offset: -1 | 1) => void,
 }
 
-const BlockCard = ({ block, i18n, isFirst, isLast, onEdit, onDelete, onMove }: BlockCardProps) => {
+const BlockCard = ({
+  block,
+  i18n,
+  isEditing,
+  isFirst,
+  isLast,
+  onEdit,
+  onDelete,
+  onMove,
+}: BlockCardProps) => {
   const Preview = BLOCK_PREVIEWS[block.type]
 
   return (
-    <article className='dropzone-block' data-block-id={block.id}>
+    <article
+      className={`dropzone-block${isEditing ? ' is-editing' : ''}`}
+      data-block-id={block.id}
+    >
       <header className='block-header'>
         <div className='block-title'>
           <button
@@ -280,7 +294,7 @@ const BlockCard = ({ block, i18n, isFirst, isLast, onEdit, onDelete, onMove }: B
 type EditAsideProps = {
   block: Block,
   i18n: BlockEditorI18n,
-  language: string,
+  uiLanguage: string,
   draft: BlockData,
   onChange: (key: string, value: string) => void,
   onSave: () => void,
@@ -290,7 +304,7 @@ type EditAsideProps = {
 const EditAside = ({
   block,
   i18n,
-  language,
+  uiLanguage,
   draft,
   onChange,
   onSave,
@@ -383,7 +397,7 @@ const EditAside = ({
               <TinyMceEditor
                 id={fieldId}
                 initialValue={draft[field.key] ?? ''}
-                language={language}
+                uiLanguage={uiLanguage}
                 onChange={value => onChange(field.key, value)}
               />
             </div>
@@ -397,13 +411,13 @@ const EditAside = ({
 const NewsBlocksEditor = ({
   newsId,
   language,
+  uiLanguage,
   blocks: initialBlocks,
   i18n,
 }: NewsBlocksEditorProps) => {
   const [blocks, setBlocks] = useState<Block[]>(() => toBlocks(initialBlocks))
   const [editingId, setEditingId] = useState<string | null>(null)
   const [draft, setDraft] = useState<BlockData | null>(null)
-  const [showBottomAdd, setShowBottomAdd] = useState(false)
   const dropzoneRef = useRef<HTMLDivElement | null>(null)
 
   const editingBlock = blocks.find(block => block.id === editingId) ?? null
@@ -457,22 +471,6 @@ const NewsBlocksEditor = ({
       },
     })
     return () => sortable.destroy()
-  }, [])
-
-  // The bottom add button appears once the blocks are taller than the screen.
-  useEffect(() => {
-    const update = () => {
-      const zone = dropzoneRef.current
-      setShowBottomAdd(zone !== null && zone.scrollHeight > window.innerHeight)
-    }
-    update()
-    window.addEventListener('resize', update)
-    const observer = new ResizeObserver(update)
-    if (dropzoneRef.current) observer.observe(dropzoneRef.current)
-    return () => {
-      window.removeEventListener('resize', update)
-      observer.disconnect()
-    }
   }, [])
 
   const addBlock = (type: BlockType, position: AddPosition) => {
@@ -541,6 +539,7 @@ const NewsBlocksEditor = ({
               key={block.id}
               block={displayBlock}
               i18n={i18n}
+              isEditing={block.id === editingId}
               isFirst={index === 0}
               isLast={index === blocks.length - 1}
               onEdit={() => openEditAside(block)}
@@ -549,13 +548,15 @@ const NewsBlocksEditor = ({
             />
           )
         })}
-        {showBottomAdd && <AddBlockButton position='bottom' i18n={i18n} onSelect={addBlock} />}
+        {blocks.length > 0 && (
+          <AddBlockButton position='bottom' i18n={i18n} onSelect={addBlock} />
+        )}
       </div>
       {editingBlock && draft !== null && (
         <EditAside
           block={editingBlock}
           i18n={i18n}
-          language={language}
+          uiLanguage={uiLanguage}
           draft={draft}
           onChange={changeDraftField}
           onSave={saveDraft}

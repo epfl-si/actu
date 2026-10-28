@@ -4,6 +4,7 @@ The block type keys are persisted in ``NewsTranslation.content``; the labels
 are translatable and handed to the block editor React island as props.
 """
 
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
 BLOCK_TYPES = {
@@ -33,6 +34,8 @@ def news_blocks_editor_props(news, lang, translation):
     return {
         "newsId": news.pk if news else None,
         "language": lang,
+        # UI language the user picked on the site, for editor (TinyMCE).
+        "uiLanguage": get_language(),
         "blocks": translation.content if translation else [],
         "i18n": {
             **{key: str(label) for key, label in BLOCK_EDITOR_LABELS.items()},

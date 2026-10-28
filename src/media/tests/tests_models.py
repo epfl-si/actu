@@ -1,11 +1,13 @@
 import os
 import shutil
 import tempfile
+from io import BytesIO
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase, override_settings
+from PIL import Image
 
-from media.models import NewsImage
+from media.models import ImageRenderingError, NewsImage
 from news.models import News
 from news_formats.models import NewsFormat
 from topics.models import Topic
@@ -109,3 +111,35 @@ class NewsImageModelTest(TestCase):
 
         self.assertFalse(os.path.exists(old_file_path))
         self.assertTrue(os.path.exists(news_image.image.path))
+
+    def create_news_image(self, **kwargs):
+        return NewsImage.objects.create(
+            news=self.news,
+            image=create_image_file(),
+            created_by=self.user,
+            **kwargs,
+        )
+
+    def test_rendered_jpeg_returns_jpeg_at_source_dimensions(self):
+        # A PNG source is still rendered as JPEG.
+        news_image = self.create_news_image()
+
+        content = news_image.rendered_jpeg("full")
+
+        rendered = Image.open(BytesIO(content))
+        self.assertEqual(rendered.format, "JPEG")
+        self.assertEqual(rendered.size, (1600, 900))
+
+    def test_rendered_jpeg_fits_within_box(self):
+        news_image = self.create_news_image()
+
+        rendered = Image.open(BytesIO(news_image.rendered_jpeg((1440, 810))))
+
+        self.assertEqual(rendered.size, (1440, 810))
+
+    def test_rendered_jpeg_raises_for_missing_file(self):
+        news_image = self.create_news_image()
+        os.remove(news_image.image.path)
+
+        with self.assertRaises(ImageRenderingError):
+            news_image.rendered_jpeg("full")

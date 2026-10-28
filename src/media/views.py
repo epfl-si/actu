@@ -4,12 +4,11 @@ from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
-from PIL import Image
 
 from news.models import News
 
 from .forms import MultipleImageUploadForm, NewsImageForm
-from .models import NewsImage
+from .models import ImageRenderingError, NewsImage
 from .serializers import NewsImageSerializer
 
 
@@ -82,58 +81,19 @@ def delete_news_image(request, news_id, image_id):
     return JsonResponse({"success": True})
 
 
-def _flatten_on_white(image):
-    """Convert an image to RGB, compositing transparency on white."""
-    if image.mode not in ("RGB", "RGBA", "LA", "P"):
-        image = image.convert("RGB")
-    if image.mode == "RGB":
-        return image
-
-    background = Image.new("RGB", image.size, (255, 255, 255))
-    rgba = image.convert("RGBA")
-    background.paste(rgba, mask=rgba.split()[-1])
-    return background
-
-
 def serve_news_image(request, image_id, resolution):
-    """Serve a news image, cropped and resized, as a cached JPEG.
+    """Serve a rendered variant of a news image as a cached JPEG.
 
-    "full" serves the image at its source dimensions — still re-encoded
-    as JPEG. A (width, height) tuple — validated and typed by the URL
-    converter — applies the stored crop (when set) and fits the result
-    within the box, never upscaling.
+    The rendering itself (decode, crop, resize, encoding) lives on
+    NewsImage.rendered_jpeg; this view is only the HTTP pass-through.
     """
     news_image = get_object_or_404(NewsImage, pk=image_id)
 
     try:
-        image_file = news_image.image.open("rb")
-        try:
-            image = Image.open(image_file)
-            image.load()
-        finally:
-            image_file.close()
-    except (OSError, ValueError, Image.DecompressionBombError):
+        content = news_image.rendered_jpeg(resolution)
+    except ImageRenderingError:
         raise Http404(_("Image file not found."))
 
-    if resolution != "full":
-        if all(
-            getattr(news_image, f"crop_{part}") is not None
-            for part in ("left", "upper", "right", "lower")
-        ):
-            image = image.crop(
-                (
-                    news_image.crop_left,
-                    news_image.crop_upper,
-                    news_image.crop_right,
-                    news_image.crop_lower,
-                )
-            )
-
-        image.thumbnail(resolution, Image.Resampling.LANCZOS)
-
-    image = _flatten_on_white(image)
-
-    response = HttpResponse(content_type="image/jpeg")
+    response = HttpResponse(content, content_type="image/jpeg")
     response["Cache-Control"] = "max-age=900, public"
-    image.save(response, "jpeg", optimize=True, quality=90, progressive=True)
     return response

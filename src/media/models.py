@@ -1,11 +1,18 @@
+from io import BytesIO
+
 from django.conf import settings
 from django.db import models
 from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
+from PIL import Image
 
 from audit_log.models import AuditModelMixin
 from news.models import News
+
+
+class ImageRenderingError(Exception):
+    """The image file cannot be decoded or rendered."""
 
 
 def news_image_upload_path(instance, filename):
@@ -132,6 +139,63 @@ class NewsImage(AuditModelMixin, models.Model):
     def get_caption(self, language):
         """Return the caption for the given language, falling back to EN."""
         return getattr(self, f"caption_{language}", "") or self.caption_en
+
+    def rendered_jpeg(self, resolution):
+        """Render this image as progressive JPEG quality 90 bytes.
+
+        "full" renders at the source dimensions — still re-encoded.
+        A (width, height) tuple — validated and typed by the URL
+        converter — applies the stored crop (when set) and fits the
+        result within the box, never upscaling.
+
+        Raises ImageRenderingError if the file cannot be rendered.
+        """
+        try:
+            image_file = self.image.open("rb")
+            try:
+                image = Image.open(image_file)
+                image.load()
+            finally:
+                image_file.close()
+        except (OSError, ValueError, Image.DecompressionBombError) as error:
+            raise ImageRenderingError(
+                "Image file cannot be rendered."
+            ) from error
+
+        if resolution != "full":
+            if all(
+                getattr(self, f"crop_{part}") is not None
+                for part in ("left", "upper", "right", "lower")
+            ):
+                image = image.crop(
+                    (
+                        self.crop_left,
+                        self.crop_upper,
+                        self.crop_right,
+                        self.crop_lower,
+                    )
+                )
+
+            image.thumbnail(resolution, Image.Resampling.LANCZOS)
+
+        image = _flatten_on_white(image)
+
+        buffer = BytesIO()
+        image.save(buffer, "jpeg", optimize=True, quality=90, progressive=True)
+        return buffer.getvalue()
+
+
+def _flatten_on_white(image):
+    """Convert an image to RGB, compositing transparency on white."""
+    if image.mode not in ("RGB", "RGBA", "LA", "P"):
+        image = image.convert("RGB")
+    if image.mode == "RGB":
+        return image
+
+    background = Image.new("RGB", image.size, (255, 255, 255))
+    rgba = image.convert("RGBA")
+    background.paste(rgba, mask=rgba.split()[-1])
+    return background
 
 
 @receiver(pre_save, sender=NewsImage)

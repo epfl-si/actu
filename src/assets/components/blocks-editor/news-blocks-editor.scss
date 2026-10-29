@@ -106,6 +106,7 @@ $nbe-header-height: 5.5rem;
   background-color: variables.$white;
   border: 1px solid $nbe-hairline;
   border-radius: 4px;
+  cursor: pointer;
 
   // The block currently edited in the side panel.
   &.is-editing {
@@ -162,6 +163,15 @@ $nbe-header-height: 5.5rem;
 
   &:active {
     cursor: grabbing;
+  }
+}
+
+.grip-icon {
+  width: 16px;
+  height: 16px;
+
+  circle {
+    fill: currentColor;
   }
 }
 

@@ -230,6 +230,7 @@ const BlockCard = ({
     <article
       className={`dropzone-block${isEditing ? ' is-editing' : ''}`}
       data-block-id={block.id}
+      onClick={onEdit}
     >
       <header className='block-header'>
         <div className='block-title'>
@@ -238,9 +239,14 @@ const BlockCard = ({
             className='block-grip'
             aria-label={i18n.reorder}
             title={i18n.reorder}
+            onClick={event => event.stopPropagation()}
           >
-            <svg className='icon feather' aria-hidden='true'>
-              <use xlinkHref='#more-vertical' />
+            <svg className='grip-icon' viewBox='0 0 16 16' aria-hidden='true'>
+              {[5.5, 10.5].map(x =>
+                [4.5, 8, 11.5].map(y => (
+                  <circle key={`${x}-${y}`} cx={x} cy={y} r='1.5' />
+                )),
+              )}
             </svg>
           </button>
           <svg className='icon feather' aria-hidden='true'>
@@ -248,7 +254,10 @@ const BlockCard = ({
           </svg>
           <span className='block-type-label'>{i18n.blockTypes[block.type]}</span>
         </div>
-        <div className='block-controls'>
+        <div
+          className='block-controls'
+          onClick={event => event.stopPropagation()}
+        >
           <button
             type='button'
             className='icon-btn'

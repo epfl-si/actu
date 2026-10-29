@@ -120,26 +120,26 @@ class NewsImageModelTest(TestCase):
             **kwargs,
         )
 
-    def test_rendered_jpeg_returns_jpeg_at_source_dimensions(self):
+    def test_render_returns_jpeg_at_source_dimensions(self):
         # A PNG source is still rendered as JPEG.
         news_image = self.create_news_image()
 
-        content = news_image.rendered_jpeg("full")
+        content = news_image.render("full")
 
         rendered = Image.open(BytesIO(content))
         self.assertEqual(rendered.format, "JPEG")
         self.assertEqual(rendered.size, (1600, 900))
 
-    def test_rendered_jpeg_fits_within_box(self):
+    def test_render_fits_within_box(self):
         news_image = self.create_news_image()
 
-        rendered = Image.open(BytesIO(news_image.rendered_jpeg((1440, 810))))
+        rendered = Image.open(BytesIO(news_image.render((1440, 810))))
 
         self.assertEqual(rendered.size, (1440, 810))
 
-    def test_rendered_jpeg_raises_for_missing_file(self):
+    def test_render_raises_for_missing_file(self):
         news_image = self.create_news_image()
         os.remove(news_image.image.path)
 
         with self.assertRaises(ImageRenderingError):
-            news_image.rendered_jpeg("full")
+            news_image.render("full")

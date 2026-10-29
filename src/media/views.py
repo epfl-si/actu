@@ -85,12 +85,12 @@ def serve_news_image(request, image_id, resolution):
     """Serve a rendered variant of a news image as a cached JPEG.
 
     The rendering itself (decode, crop, resize, encoding) lives on
-    NewsImage.rendered_jpeg; this view is only the HTTP pass-through.
+    NewsImage.render; this view is only the HTTP pass-through.
     """
     news_image = get_object_or_404(NewsImage, pk=image_id)
 
     try:
-        content = news_image.rendered_jpeg(resolution)
+        content = news_image.render(resolution)
     except ImageRenderingError:
         raise Http404(_("Image file not found."))
 

@@ -140,7 +140,7 @@ class NewsImage(AuditModelMixin, models.Model):
         """Return the caption for the given language, falling back to EN."""
         return getattr(self, f"caption_{language}", "") or self.caption_en
 
-    def rendered_jpeg(self, resolution):
+    def render(self, resolution):
         """Render this image as progressive JPEG quality 90 bytes.
 
         "full" renders at the source dimensions — still re-encoded.

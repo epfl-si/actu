@@ -185,12 +185,17 @@ class NewsImage(AuditModelMixin, models.Model):
         return buffer.getvalue()
 
 
-def _flatten_on_white(image):
-    """Convert an image to RGB, compositing transparency on white."""
-    if image.mode not in ("RGB", "RGBA", "LA", "P"):
-        image = image.convert("RGB")
+def _flatten_on_white(image: Image.Image):
+    """Convert an image to RGB, compositing transparency on white.
+
+    JPEG has no alpha: RGBA, LA and P images are composited on white
+    so transparent areas do not render black (a plain convert("RGB")
+    drops the alpha without compositing).
+    """
     if image.mode == "RGB":
         return image
+    if image.mode not in ("RGBA", "LA", "P"):
+        return image.convert("RGB")
 
     background = Image.new("RGB", image.size, (255, 255, 255))
     rgba = image.convert("RGBA")

@@ -148,7 +148,8 @@ class NewsImage(AuditModelMixin, models.Model):
         A (width, height) tuple applies the stored crop (when set)
         and fits the result within the box, never upscaling.
 
-        Raises ImageRenderingError if the file cannot be rendered.
+        Raises:
+            ImageRenderingError: if the file cannot be rendered.
         """
         try:
             image_file = self.image.open("rb")

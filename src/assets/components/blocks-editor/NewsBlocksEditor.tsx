@@ -554,6 +554,7 @@ const NewsBlocksEditor = ({
       </div>
       {editingBlock && draft !== null && (
         <EditAside
+          key={editingBlock.id}
           block={editingBlock}
           i18n={i18n}
           uiLanguage={uiLanguage}

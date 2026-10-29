@@ -1,6 +1,6 @@
+import PIL.Image
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from PIL import Image
 
 from .models import NewsImage
 
@@ -39,11 +39,11 @@ def _validate_image_file(image):
     name = getattr(image, "name", "")
     try:
         image.seek(0)
-        with Image.open(image) as probe:
+        with PIL.Image.open(image) as probe:
             probe.verify()
 
         image.seek(0)
-        with Image.open(image) as probe:
+        with PIL.Image.open(image) as probe:
             if probe.format not in ALLOWED_IMAGE_FORMATS:
                 return _(
                     "'%(name)s': only JPEG and PNG images are accepted."
@@ -60,7 +60,7 @@ def _validate_image_file(image):
                     "width": MIN_IMAGE_WIDTH,
                     "height": MIN_IMAGE_HEIGHT,
                 }
-    except (OSError, ValueError, Image.DecompressionBombError):
+    except (OSError, ValueError, PIL.Image.DecompressionBombError):
         return _("'%(name)s': this file is not a valid image.") % {
             "name": name
         }

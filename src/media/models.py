@@ -1,12 +1,12 @@
 from io import BytesIO
 from typing import Literal
 
+import PIL.Image
 from django.conf import settings
 from django.db import models
 from django.db.models.signals import post_delete, pre_save
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
-from PIL import Image
 
 from audit_log.models import AuditModelMixin
 from news.models import News
@@ -153,11 +153,15 @@ class NewsImage(AuditModelMixin, models.Model):
         try:
             image_file = self.image.open("rb")
             try:
-                image = Image.open(image_file)
+                image = PIL.Image.open(image_file)
                 image.load()
             finally:
                 image_file.close()
-        except (OSError, ValueError, Image.DecompressionBombError) as error:
+        except (
+            OSError,
+            ValueError,
+            PIL.Image.DecompressionBombError,
+        ) as error:
             raise ImageRenderingError(
                 "Image file cannot be rendered."
             ) from error
@@ -176,7 +180,7 @@ class NewsImage(AuditModelMixin, models.Model):
                     )
                 )
 
-            image.thumbnail(resolution, Image.Resampling.LANCZOS)
+            image.thumbnail(resolution, PIL.Image.Resampling.LANCZOS)
 
         image = _flatten_on_white(image)
 
@@ -185,7 +189,7 @@ class NewsImage(AuditModelMixin, models.Model):
         return buffer.getvalue()
 
 
-def _flatten_on_white(image: Image.Image):
+def _flatten_on_white(image: PIL.Image.Image):
     """Convert an image to RGB, compositing transparency on white.
 
     JPEG has no alpha: RGBA, LA and P images are composited on white
@@ -197,7 +201,7 @@ def _flatten_on_white(image: Image.Image):
     if image.mode not in ("RGBA", "LA", "P"):
         return image.convert("RGB")
 
-    background = Image.new("RGB", image.size, (255, 255, 255))
+    background = PIL.Image.new("RGB", image.size, (255, 255, 255))
     rgba = image.convert("RGBA")
     background.paste(rgba, mask=rgba.split()[-1])
     return background

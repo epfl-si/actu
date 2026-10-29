@@ -1,4 +1,5 @@
 from io import BytesIO
+from typing import Literal
 
 from django.conf import settings
 from django.db import models
@@ -140,13 +141,12 @@ class NewsImage(AuditModelMixin, models.Model):
         """Return the caption for the given language, falling back to EN."""
         return getattr(self, f"caption_{language}", "") or self.caption_en
 
-    def render(self, resolution):
+    def render(self, resolution: Literal["full"] | tuple[int, int]) -> bytes:
         """Render this image as progressive JPEG quality 90 bytes.
 
         "full" renders at the source dimensions — still re-encoded.
-        A (width, height) tuple — validated and typed by the URL
-        converter — applies the stored crop (when set) and fits the
-        result within the box, never upscaling.
+        A (width, height) tuple applies the stored crop (when set)
+        and fits the result within the box, never upscaling.
 
         Raises ImageRenderingError if the file cannot be rendered.
         """

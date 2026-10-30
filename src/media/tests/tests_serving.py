@@ -179,6 +179,7 @@ class ServeNewsImageTest(TestCase):
         news_image = self.create_image()
         os.remove(news_image.image.path)
 
-        response = self.client.get(self.serve_url(news_image.pk, "full"))
+        with self.assertLogs("django", level="ERROR"):
+            response = self.client.get(self.serve_url(news_image.pk, "full"))
 
         self.assertEqual(response.status_code, 404)

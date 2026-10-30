@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.http import Http404, HttpResponse, JsonResponse
@@ -10,6 +12,8 @@ from news.models import News
 from .forms import MultipleImageUploadForm, NewsImageForm
 from .models import ImageRenderingError, NewsImage
 from .serializers import NewsImageSerializer
+
+logger = logging.getLogger("django")
 
 
 def _form_errors(form):
@@ -92,6 +96,7 @@ def serve_news_image(request, image_id, resolution):
     try:
         content = news_image.render(resolution)
     except ImageRenderingError:
+        logger.exception(f"[Media] News image {image_id} cannot be rendered.")
         raise Http404(_("Image file not found."))
 
     response = HttpResponse(content, content_type="image/jpeg")

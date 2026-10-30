@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
@@ -876,9 +878,33 @@ class EditNewsTranslationViewTest(TestCase):
             form.translation.initial["title"],
             "Original title",
         )
+        news_blocks_editor_props = response.context["news_blocks_editor_props"]
+        self.assertEqual(news_blocks_editor_props["newsId"], self.news.id)
+        self.assertEqual(news_blocks_editor_props["language"], "en")
+        self.assertEqual(news_blocks_editor_props["uiLanguage"], "en")
+        self.assertEqual(news_blocks_editor_props["blocks"], [])
         self.assertEqual(
-            response.context["news_blocks_editor_props"],
-            {"newsId": self.news.id, "language": "en"},
+            news_blocks_editor_props["i18n"]["addBlock"],
+            "Add a block",
+        )
+
+    def test_get_passes_persisted_blocks_to_editor(self):
+        self.translation.content = [
+            {"type": "text", "data": {"content": "Hello"}},
+        ]
+        self.translation.save()
+        self.client.force_login(self.user)
+        url = reverse(
+            "edit_news",
+            kwargs={
+                "news_id": self.news.id,
+                "lang": "en",
+            },
+        )
+        response = self.client.get(url)
+        self.assertEqual(
+            response.context["news_blocks_editor_props"]["blocks"],
+            [{"type": "text", "data": {"content": "Hello"}}],
         )
 
     def test_post_updates_news_and_translation(self):
@@ -920,6 +946,102 @@ class EditNewsTranslationViewTest(TestCase):
         self.assertEqual(self.translation.title, "Updated title")
         self.assertEqual(self.news.created_by, self.user)
         self.assertEqual(self.translation.created_by, self.user)
+
+    def test_post_stores_blocks_in_content(self):
+        self.client.force_login(self.user)
+        url = reverse(
+            "edit_news",
+            kwargs={
+                "news_id": self.news.id,
+                "lang": "en",
+            },
+        )
+        blocks = [
+            {"type": "text", "data": {"content": "First block"}},
+            {"type": "text", "data": {"content": "Second block"}},
+        ]
+        data = {
+            "title": "Original title",
+            "topics": [self.topic.id],
+            "entities": [self.entity.id],
+            "format": self.format.id,
+            "author": "Lindsey Vonn",
+            "standfirst": "This is a standfirst",
+            "blocks": json.dumps(blocks),
+            "urls-TOTAL_FORMS": "1",
+            "urls-INITIAL_FORMS": "1",
+            "urls-0-id": self.existing_url.id,
+            "urls-0-url": self.existing_url.url,
+        }
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 302)
+
+        self.translation.refresh_from_db()
+        self.assertEqual(self.translation.content, blocks)
+
+    def test_post_without_blocks_keeps_persisted_content(self):
+        self.translation.content = [{"type": "text", "data": {}}]
+        self.translation.save()
+        self.client.force_login(self.user)
+        url = reverse(
+            "edit_news",
+            kwargs={
+                "news_id": self.news.id,
+                "lang": "en",
+            },
+        )
+        data = {
+            "title": "Original title",
+            "topics": [self.topic.id],
+            "entities": [self.entity.id],
+            "format": self.format.id,
+            "author": "Lindsey Vonn",
+            "standfirst": "This is a standfirst",
+            "urls-TOTAL_FORMS": "1",
+            "urls-INITIAL_FORMS": "1",
+            "urls-0-id": self.existing_url.id,
+            "urls-0-url": self.existing_url.url,
+        }
+        response = self.client.post(url, data)
+        self.assertEqual(response.status_code, 302)
+
+        self.translation.refresh_from_db()
+        self.assertEqual(
+            self.translation.content, [{"type": "text", "data": {}}]
+        )
+
+    def test_post_with_invalid_blocks_shows_error(self):
+        self.client.force_login(self.user)
+        url = reverse(
+            "edit_news",
+            kwargs={
+                "news_id": self.news.id,
+                "lang": "en",
+            },
+        )
+        for invalid_blocks in (
+            "not-json",
+            '{"type": "text"}',
+            json.dumps([{"type": "unknown", "data": {}}]),
+            json.dumps([{"type": "text", "data": "not-a-dict"}]),
+        ):
+            data = {
+                "title": "Original title",
+                "topics": [self.topic.id],
+                "entities": [self.entity.id],
+                "format": self.format.id,
+                "author": "Lindsey Vonn",
+                "standfirst": "This is a standfirst",
+                "blocks": invalid_blocks,
+                "urls-TOTAL_FORMS": "1",
+                "urls-INITIAL_FORMS": "1",
+                "urls-0-id": self.existing_url.id,
+                "urls-0-url": self.existing_url.url,
+            }
+            response = self.client.post(url, data)
+            self.assertEqual(response.status_code, 200)
+            form = response.context["form"]
+            self.assertTrue(form.translation.errors["blocks"], invalid_blocks)
 
     def test_invalid_post_renders_form_again(self):
         self.client.force_login(self.user)

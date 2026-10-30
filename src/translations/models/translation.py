@@ -55,6 +55,11 @@ class NewsTranslation(AuditModelMixin, models.Model):
     )
     funding = HTMLField(verbose_name=_("Funding"), null=True, blank=True)
     references = HTMLField(verbose_name=_("References"), null=True, blank=True)
+    content = models.JSONField(
+        default=list,
+        blank=True,
+        verbose_name=_("Content blocks"),
+    )
     slug = models.SlugField(
         max_length=255,
         unique=True,

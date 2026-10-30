@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-23 11:28+0200\n"
+"POT-Creation-Date: 2026-10-30 08:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -490,7 +490,44 @@ msgstr ""
 msgid "Translations"
 msgstr ""
 
+msgid "Text"
+msgstr ""
+
+msgid "Add a block"
+msgstr ""
+
+msgid "Move the block up"
+msgstr ""
+
+msgid "Move the block down"
+msgstr ""
+
+msgid "Edit the block"
+msgstr ""
+
+msgid "Delete the block"
+msgstr ""
+
+msgid "Reorder the block"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+#, python-brace-format
+msgid "Edit the {type} block"
+msgstr ""
+
 msgid "A news must have at least one topic."
+msgstr ""
+
+msgid "The page content is not valid JSON."
+msgstr ""
+
+msgid "The page content must be a list of blocks."
+msgstr ""
+
+msgid "The page content contains an invalid block."
 msgstr ""
 
 msgid "The same link cannot be added twice."
@@ -554,9 +591,6 @@ msgid "License"
 msgstr ""
 
 msgid "Display the Creative Commons license (CC BY-SA) at the bottom of the article."
-msgstr ""
-
-msgid "Save"
 msgstr ""
 
 #, python-format
@@ -667,6 +701,9 @@ msgid "News translation"
 msgstr ""
 
 msgid "News translations"
+msgstr ""
+
+msgid "Content blocks"
 msgstr ""
 
 msgid "News URL"

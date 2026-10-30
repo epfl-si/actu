@@ -1,8 +1,347 @@
 @use 'variables';
 
+// POC News Template palette (design-specific, not in _variables.scss)
+$nbe-hairline: #e0e0e0;
+$nbe-dropzone-bg: #fafafa;
+$nbe-dropzone-border: #bdbdbd;
+$nbe-surface-muted: #f4f4f4;
+$nbe-indicator-bg: #fff3f3;
+
+// Height of the web2018 `.header`, so the aside never overlaps it.
+$nbe-header-height: 5.5rem;
+
 .news-blocks-editor {
-  margin: 1rem 0 0;
-  border-left: 4px solid variables.$leman;
+  .icon {
+    display: inline-block;
+    flex-shrink: 0;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+  }
+}
+
+.dropzone-blocs-dynamiques {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background-color: $nbe-dropzone-bg;
+  border: 1px dashed $nbe-dropzone-border;
+  border-radius: 4px;
+}
+
+.dropdown-anchor {
+  position: relative;
+}
+
+.add-block-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background-color: transparent;
+  border: 1px solid variables.$gray-500;
+  border-radius: 2px;
+  font-size: 1rem;
+  color: variables.$black;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $nbe-surface-muted;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.dropdown-menu-news {
+  display: flex;
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  z-index: 1000;
+  flex-direction: column;
+  width: 260px;
+  padding: 8px 0;
+  background-color: variables.$white;
+  border: 1px solid rgba(33, 33, 33, 0.15);
+  border-radius: 2px;
+  box-shadow: 0 8px 16px rgba(33, 33, 33, 0.175);
+
+  &.dropdown-menu-news-up {
+    top: auto;
+    bottom: calc(100% + 2px);
+  }
+}
+
+.dropdown-item-news {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 24px;
+  background: none;
+  border: none;
+  font-size: 13.28px;
+  line-height: 20px;
+  color: variables.$black;
+  cursor: pointer;
+  text-align: left;
+
+  &:hover {
+    background-color: variables.$red;
+    color: variables.$white;
+  }
+
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.dropzone-block {
+  display: flex;
+  flex-direction: column;
+  background-color: variables.$white;
+  border: 1px solid $nbe-hairline;
+  border-radius: 4px;
+  cursor: pointer;
+
+  // The block currently edited in the side panel.
+  &.is-editing {
+    border: 1px solid variables.$red;
+  }
+
+  // SortableJS states.
+  &.dropzone-block-chosen .block-grip {
+    cursor: grabbing;
+  }
+
+  &.dropzone-block-fallback {
+    opacity: 0.9;
+    background-color: $nbe-indicator-bg;
+    border: 1px dashed variables.$red;
+  }
+}
+
+.block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 50px;
+  padding: 12px 20px;
+}
+
+.block-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: variables.$gray-600;
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.block-grip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  background: none;
+  border: none;
+  color: variables.$gray-300;
+  cursor: grab;
+
+  &:hover {
+    color: variables.$gray-500;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.grip-icon {
+  width: 16px;
+  height: 16px;
+
+  circle {
+    fill: currentColor;
+  }
+}
+
+.block-type-label {
+  font-size: 12.45px;
+  font-weight: 700;
+  color: variables.$gray-600;
+}
+
+.block-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  background-color: variables.$white;
+  border: 1px solid variables.$gray-500;
+  border-radius: 2px;
+  color: variables.$gray-600;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: $nbe-surface-muted;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.block-separator {
+  height: 1px;
+  background-color: $nbe-hairline;
+}
+
+.block-body-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+}
+
+.block-preview-text {
+  margin: 0;
   font-size: 0.875rem;
-  color: variables.$canard-dark;
+  color: variables.$black;
+}
+
+.edit-aside {
+  display: flex;
+  position: fixed;
+  // --nbe-aside-top / --nbe-aside-bottom are set from JS: the aside spans
+  // from below the header and breadcrumb down to above the footer.
+  top: var(--nbe-aside-top, #{$nbe-header-height});
+  right: 0;
+  bottom: var(--nbe-aside-bottom, 0);
+  z-index: 1040;
+  flex-direction: column;
+  gap: 24px;
+  width: 40%;
+  min-width: 0;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: variables.$white;
+  border: 1px solid variables.$gray-200;
+  box-shadow: -8px 0 16px rgba(33, 33, 33, 0.1);
+
+  @media (max-width: 991.98px) {
+    width: 100%;
+  }
+}
+
+.edit-aside-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.edit-aside-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.edit-aside-title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: variables.$black;
+}
+
+.save-changes-btn {
+  flex: 1 1 auto;
+  padding: 14px 0;
+  background-color: variables.$red;
+  border: none;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: variables.$white;
+  cursor: pointer;
+
+  &:hover {
+    background-color: variables.$red-dark;
+  }
+}
+
+.cancel-changes-btn {
+  flex: 1 1 auto;
+  padding: 14px 0;
+  background-color: variables.$white;
+  border: 1px solid variables.$gray-500;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: variables.$black;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $nbe-surface-muted;
+  }
+}
+
+.edit-aside-separator {
+  height: 1px;
+  background-color: variables.$gray-200;
+}
+
+.edit-aside-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edit-field-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.28px;
+  font-weight: 700;
+  color: variables.$black;
+}
+
+.edit-field-required {
+  color: variables.$red;
+}
+
+.edit-field-editor {
+  padding: 12px 14px;
+  background-color: variables.$white;
+  border: 1px solid $nbe-hairline;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: variables.$black;
+  resize: vertical;
 }

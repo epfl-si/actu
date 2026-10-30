@@ -38,11 +38,17 @@ export default [
         },
       },
     },
+    rules: {
+      'no-undef': 'off',
+    },
   },
   {
     files: ['**/*.ts'],
     languageOptions: {
       parser: tsParser,
+    },
+    rules: {
+      'no-undef': 'off',
     },
   },
 ]

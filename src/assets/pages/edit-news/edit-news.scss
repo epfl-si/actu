@@ -1,4 +1,16 @@
 
+// News edit layout: all fields on the left (60%), edit aside fixed on the
+// right (40%, full viewport height).
+.news-edit-main {
+  width: 60%;
+  min-width: 0;
+  padding: 0 24px;
+
+  @media (max-width: 991.98px) {
+    width: 100%;
+  }
+}
+
 .tox-statusbar__right-container {
   visibility: hidden;
 }

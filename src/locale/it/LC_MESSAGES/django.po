@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ACTU\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-23 11:28+0200\n"
+"POT-Creation-Date: 2026-10-30 08:55+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -489,8 +489,45 @@ msgstr "Crop basso"
 msgid "Translations"
 msgstr "Traduzioni"
 
+msgid "Text"
+msgstr "Testo"
+
+msgid "Add a block"
+msgstr "Aggiungere un blocco"
+
+msgid "Move the block up"
+msgstr "Spostare il blocco in su"
+
+msgid "Move the block down"
+msgstr "Spostare il blocco in giù"
+
+msgid "Edit the block"
+msgstr "Modificare il blocco"
+
+msgid "Delete the block"
+msgstr "Eliminare il blocco"
+
+msgid "Reorder the block"
+msgstr "Riordinare il blocco"
+
+msgid "Save"
+msgstr "Salva"
+
+#, python-brace-format
+msgid "Edit the {type} block"
+msgstr "Modificare il blocco {type}"
+
 msgid "A news must have at least one topic."
 msgstr "Una notizia deve avere almeno una tematica."
+
+msgid "The page content is not valid JSON."
+msgstr "Il contenuto della pagina non è un JSON valido."
+
+msgid "The page content must be a list of blocks."
+msgstr "Il contenuto della pagina deve essere un elenco di blocchi."
+
+msgid "The page content contains an invalid block."
+msgstr "Il contenuto della pagina contiene un blocco non valido."
 
 msgid "The same link cannot be added twice."
 msgstr "Lo stesso link non può essere aggiunto due volte."
@@ -554,9 +591,6 @@ msgstr "Licenza"
 
 msgid "Display the Creative Commons license (CC BY-SA) at the bottom of the article."
 msgstr "Visualizza la licenza Creative Commons (CC BY-SA) in fondo all’articolo."
-
-msgid "Save"
-msgstr "Salva"
 
 #, python-format
 msgid "Published on %(published_date)s at %(published_time)s, modified on %(updated_date)s at %(updated_time)s"
@@ -667,6 +701,9 @@ msgstr "Traduzione della notizia"
 
 msgid "News translations"
 msgstr "Traduzioni delle notizie"
+
+msgid "Content blocks"
+msgstr "Blocchi di contenuto"
 
 msgid "News URL"
 msgstr "URL della notizia"

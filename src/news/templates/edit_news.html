@@ -15,7 +15,7 @@
 
 {% block web2018_content %}
 <main id="main" class="content">
-  <div class="container-lg">
+  <div class="news-edit-main">
 
     {% include 'includes/title.inc.html' %}
 
@@ -164,6 +164,9 @@
             </label>
             {{ form.translation.extract }}
           </div>
+          {{ news_blocks_editor_props|json_script:"news-blocks-editor-props" }}
+          <div id="news-blocks-editor-root" class="form-group">
+          </div>
           <div class="form-group">
             <span class="text-danger">*</span>
             <label class="{% if form.translation.author.errors %}invalid-label{% endif %}" for="{{ form.translation.author.id_for_label }}">
@@ -235,9 +238,6 @@
                 {% trans "Display the Creative Commons license (CC BY-SA) at the bottom of the article." %}
               </label>
             </div>
-          </div>
-          {{ news_blocks_editor_props|json_script:"news-blocks-editor-props" }}
-          <div id="news-blocks-editor-root" class="form-group">
           </div>
           <div class="d-flex flex-wrap align-items-start">
             <div class="d-flex flex-wrap">

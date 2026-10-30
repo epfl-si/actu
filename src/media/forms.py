@@ -42,6 +42,8 @@ def _validate_image_file(image):
         with PIL.Image.open(image) as probe:
             probe.verify()
 
+        # verify() discards the image data, we need to reopen it to
+        # check the format and dimensions.
         image.seek(0)
         with PIL.Image.open(image) as probe:
             if probe.format not in ALLOWED_IMAGE_FORMATS:

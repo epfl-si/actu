@@ -23,7 +23,7 @@ BLOCK_EDITOR_LABELS = {
     "remove": _("Delete the block"),
     "reorder": _("Reorder the block"),
     "save": _("Save"),
-    "close": _("Close without saving"),
+    "cancel": _("Cancel"),
     # JS-side interpolation of the block type label.
     "editBlockTitle": _("Edit the {type} block"),
 }

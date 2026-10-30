@@ -263,10 +263,8 @@ $nbe-header-height: 5.5rem;
   gap: 16px;
 }
 
-.edit-aside-title-row {
+.edit-aside-actions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 12px;
 }
 
@@ -277,11 +275,8 @@ $nbe-header-height: 5.5rem;
   color: variables.$black;
 }
 
-.edit-aside-close {
-  flex-shrink: 0;
-}
-
 .save-changes-btn {
+  flex: 1 1 auto;
   padding: 14px 0;
   background-color: variables.$red;
   border: none;
@@ -292,6 +287,21 @@ $nbe-header-height: 5.5rem;
 
   &:hover {
     background-color: variables.$red-dark;
+  }
+}
+
+.cancel-changes-btn {
+  flex: 1 1 auto;
+  padding: 14px 0;
+  background-color: variables.$white;
+  border: 1px solid variables.$gray-500;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: variables.$black;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $nbe-surface-muted;
   }
 }
 

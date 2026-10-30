@@ -26,7 +26,7 @@ export type BlockEditorI18n = {
   remove: string,
   reorder: string,
   save: string,
-  close: string,
+  cancel: string,
   editBlockTitle: string,
   blockTypes: Record<BlockType, string>,
   fieldLabels: Record<string, string>,

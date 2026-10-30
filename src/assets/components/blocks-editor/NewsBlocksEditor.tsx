@@ -307,7 +307,7 @@ type EditAsideProps = {
   draft: BlockData,
   onChange: (key: string, value: string) => void,
   onSave: () => void,
-  onClose: () => void,
+  onCancel: () => void,
 }
 
 const EditAside = ({
@@ -317,17 +317,28 @@ const EditAside = ({
   draft,
   onChange,
   onSave,
-  onClose,
+  onCancel,
 }: EditAsideProps) => {
   const asideRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose()
+    const cancelOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onCancel()
     }
-    document.addEventListener('keydown', closeOnEscape)
-    return () => document.removeEventListener('keydown', closeOnEscape)
-  }, [onClose])
+    document.addEventListener('keydown', cancelOnEscape)
+    return () => document.removeEventListener('keydown', cancelOnEscape)
+  }, [onCancel])
+
+  // Losing focus (mousedown outside the aside) saves the pending edits.
+  useEffect(() => {
+    const saveOnFocusLoss = (event: Event) => {
+      if (asideRef.current && !asideRef.current.contains(event.target as Node)) {
+        onSave()
+      }
+    }
+    document.addEventListener('mousedown', saveOnFocusLoss)
+    return () => document.removeEventListener('mousedown', saveOnFocusLoss)
+  }, [onSave])
 
   // Full-height aside between the web2018 header/breadcrumb and the footer:
   // it stops below the header and breadcrumb at the top of the page, and
@@ -371,25 +382,17 @@ const EditAside = ({
   return (
     <aside className='edit-aside' ref={asideRef}>
       <div className='edit-aside-header'>
-        <div className='edit-aside-title-row'>
-          <h2 className='edit-aside-title'>
-            {i18n.editBlockTitle.replace('{type}', i18n.blockTypes[block.type])}
-          </h2>
-          <button
-            type='button'
-            className='icon-btn edit-aside-close'
-            aria-label={i18n.close}
-            title={i18n.close}
-            onClick={onClose}
-          >
-            <svg className='icon feather' aria-hidden='true'>
-              <use xlinkHref='#x' />
-            </svg>
+        <h2 className='edit-aside-title'>
+          {i18n.editBlockTitle.replace('{type}', i18n.blockTypes[block.type])}
+        </h2>
+        <div className='edit-aside-actions'>
+          <button type='button' className='save-changes-btn' onClick={onSave}>
+            {i18n.save}
+          </button>
+          <button type='button' className='cancel-changes-btn' onClick={onCancel}>
+            {i18n.cancel}
           </button>
         </div>
-        <button type='button' className='save-changes-btn' onClick={onSave}>
-          {i18n.save}
-        </button>
       </div>
       <div className='edit-aside-separator' role='presentation' />
       <div className='edit-aside-fields'>
@@ -513,11 +516,17 @@ const NewsBlocksEditor = ({
   }
 
   const openEditAside = (block: Block) => {
+    // Switching blocks saves the block currently being edited.
+    if (editingId !== null && editingId !== block.id && draft !== null) {
+      setBlocks(previous =>
+        previous.map(existing => (existing.id === editingId ? { ...existing, data: draft } : existing)),
+      )
+    }
     setEditingId(block.id)
     setDraft(block.data)
   }
 
-  const closeEditAside = () => {
+  const discardDraft = () => {
     setEditingId(null)
     setDraft(null)
   }
@@ -526,13 +535,14 @@ const NewsBlocksEditor = ({
     setDraft(previous => ({ ...(previous ?? {}), [key]: value }))
   }
 
-  // Live edits update the preview immediately; committing happens on save.
-  const saveDraft = () => {
+  // Live edits update the preview immediately; committing happens on save
+  // (Save button, focus loss or switching to another block).
+  const commitDraft = () => {
     if (editingId === null || draft === null) return
     setBlocks(previous =>
       previous.map(block => (block.id === editingId ? { ...block, data: draft } : block)),
     )
-    closeEditAside()
+    discardDraft()
   }
 
   return (
@@ -569,8 +579,8 @@ const NewsBlocksEditor = ({
           uiLanguage={uiLanguage}
           draft={draft}
           onChange={changeDraftField}
-          onSave={saveDraft}
-          onClose={closeEditAside}
+          onSave={commitDraft}
+          onCancel={discardDraft}
         />
       )}
     </div>

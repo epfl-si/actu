@@ -1,14 +1,19 @@
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
-from django.http import JsonResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
+from django.utils.translation import gettext_lazy as _
 from django.views.decorators.http import require_POST
 
 from news.models import News
 
 from .forms import MultipleImageUploadForm, NewsImageForm
-from .models import NewsImage
+from .models import ImageRenderingError, NewsImage
 from .serializers import NewsImageSerializer
+
+logger = logging.getLogger("django")
 
 
 def _form_errors(form):
@@ -78,3 +83,22 @@ def delete_news_image(request, news_id, image_id):
     news_image.delete()
 
     return JsonResponse({"success": True})
+
+
+def serve_news_image(request, image_id, resolution):
+    """Serve a rendered variant of a news image as a cached JPEG.
+
+    The rendering itself (decode, crop, resize, encoding) lives on
+    NewsImage.render; this view is only the HTTP pass-through.
+    """
+    news_image = get_object_or_404(NewsImage, pk=image_id)
+
+    try:
+        content = news_image.render(resolution)
+    except ImageRenderingError:
+        logger.exception(f"[Media] News image {image_id} cannot be rendered.")
+        raise Http404(_("Image file not found."))
+
+    response = HttpResponse(content, content_type="image/jpeg")
+    response["Cache-Control"] = "max-age=900, public"
+    return response

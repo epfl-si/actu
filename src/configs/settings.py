@@ -15,6 +15,7 @@ import sys
 from pathlib import Path
 
 from django.utils.translation import gettext_lazy as _
+from PIL import Image
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -211,6 +212,15 @@ STATIC_URL = "static/"
 MEDIA_ROOT = BASE_DIR.parent / "public" / "uploads"
 
 MEDIA_URL = "/uploads/"
+
+# Uploaded source images can be very large (e.g. 19200x9066 in the previous
+# app): allow Pillow to decode them while keeping a zip-bomb guard
+# (PIL default is ~89 MP).
+Image.MAX_IMAGE_PIXELS = 300_000_000
+
+# Maximum requested output resolution (width x height) accepted by the image
+# serving endpoint; larger requests get a 404.
+MAX_IMAGE_PIXELS_SERVING = 12_000_000
 
 DJANGO_VITE = {
     "default": {
